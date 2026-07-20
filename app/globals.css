@@ -1,0 +1,141 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f7f7f8;
+  --surface: #ffffff;
+  --surface-2: #f1f1f3;
+  --foreground: #1c1e22;
+  --muted: #6b7178;
+  --border: #e4e4e7;
+
+  --atlas-orange: #ff5618;
+  --atlas-orange-2: #ff8347;
+  --atlas-graphite: #333333;
+  --atlas-ring: rgba(255, 86, 24, 0.45);
+
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+.dark {
+  --background: #131417;
+  --surface: #1a1c20;
+  --surface-2: #212327;
+  --foreground: #f1f1f2;
+  --muted: #9a9ea6;
+  --border: #2c2f34;
+
+  --atlas-orange: #ff6a35;
+  --atlas-orange-2: #ff8f5c;
+  --atlas-graphite: #1c1e22;
+  --atlas-ring: rgba(255, 106, 53, 0.45);
+
+  --glass-bg: rgba(26, 28, 32, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-atlas-orange: var(--atlas-orange);
+  --color-atlas-orange-2: var(--atlas-orange-2);
+  --color-atlas-graphite: var(--atlas-graphite);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-jetbrains);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--atlas-orange);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--atlas-orange);
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .text-gradient-atlas {
+    background: linear-gradient(90deg, var(--atlas-orange), var(--atlas-orange-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-atlas {
+    background: linear-gradient(135deg, var(--atlas-orange) 0%, var(--atlas-orange-2) 100%);
+  }
+
+  .font-display {
+    font-family: var(--font-display), monospace;
+    letter-spacing: -0.01em;
+  }
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes content-in {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dialog-overlay {
+  animation: overlay-in 180ms ease-out both;
+}
+.dialog-content {
+  animation: content-in 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+/* Popover/Tooltip do Radix já controlam position via transform inline (Popper) —
+   animar apenas opacidade evita sobrescrever esse posicionamento. */
+@keyframes popover-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.popover-fade {
+  animation: popover-fade-in 140ms ease-out both;
+}
+.reveal-up {
+  animation: reveal-up 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
