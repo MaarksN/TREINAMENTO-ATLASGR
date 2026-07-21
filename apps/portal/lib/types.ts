@@ -83,6 +83,12 @@ export interface RegistrationData {
   aceiteTermos: boolean;
 }
 
+export interface EnrolledColaborador extends RegistrationData {
+  id: string;
+  enrolledAt: string;
+  accessCode: string;
+}
+
 export interface ModuleProgress {
   completed: boolean;
   bestScore?: number;

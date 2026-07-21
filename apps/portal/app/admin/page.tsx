@@ -1,11 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Download, Search, TrendingDown, TrendingUp, Users } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Download, Search, Trash2, TrendingDown, TrendingUp, UserCheck, Users } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { EnrollColaboradorForm } from "@/components/onboarding/EnrollColaboradorForm";
 import { useOnboardingStore } from "@/lib/store";
 import { seedCollaborators, demoKpis, type SeedCollaborator } from "@/content/seedDemo";
 
@@ -17,8 +19,12 @@ const statusLabel: Record<SeedCollaborator["status"], { label: string; variant: 
 };
 
 export default function AdminPage() {
+  const router = useRouter();
   const registration = useOnboardingStore((s) => s.registration);
   const examResult = useOnboardingStore((s) => s.examResult);
+  const enrolled = useOnboardingStore((s) => s.enrolled);
+  const removeColaborador = useOnboardingStore((s) => s.removeColaborador);
+  const startSessionAs = useOnboardingStore((s) => s.startSessionAs);
   const [query, setQuery] = useState("");
 
   const rows: SeedCollaborator[] = useMemo(() => {
@@ -61,6 +67,10 @@ export default function AdminPage() {
     URL.revokeObjectURL(url);
   }
 
+  function handleSimulateAccess(id: string) {
+    if (startSessionAs(id)) router.push("/trilha");
+  }
+
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -75,8 +85,51 @@ export default function AdminPage() {
           </Button>
         </div>
 
+        {/* Cadastro de colaboradores — único ponto de entrada, feito pelo Admin */}
+        <Card className="mt-6 p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <UserCheck size={18} className="text-atlas-orange" />
+            <p className="font-display font-semibold">Cadastrar colaborador</p>
+          </div>
+          <p className="mb-4 text-xs text-muted">
+            O autocadastro foi removido: apenas o Administrador cadastra colaboradores. Após o cadastro, o colaborador
+            faz o &ldquo;primeiro acesso&rdquo; na Home selecionando o próprio nome.
+          </p>
+          <EnrollColaboradorForm />
+
+          {enrolled.length > 0 && (
+            <div className="mt-6 space-y-2 border-t border-border pt-5">
+              <p className="mb-2 text-xs font-semibold text-muted">Colaboradores cadastrados ({enrolled.length})</p>
+              {enrolled.map((c) => (
+                <div key={c.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-surface-2 px-3 py-2">
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{c.nomeCompleto}</p>
+                    <p className="text-xs text-muted">
+                      {c.cargo} · {c.departamento} · código {c.accessCode}
+                    </p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button size="sm" variant="outline" onClick={() => handleSimulateAccess(c.id)}>
+                      Simular acesso
+                    </Button>
+                    <button
+                      onClick={() => removeColaborador(c.id)}
+                      aria-label={`Remover ${c.nomeCompleto}`}
+                      className="rounded-lg p-2 text-muted transition hover:bg-red-500/10 hover:text-red-500"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </Card>
+
         <Card className="mt-4 flex items-center gap-2 border-sky-400/30 bg-sky-400/5 p-3 text-xs text-sky-700 dark:text-sky-300">
-          <Users size={14} /> Dados de colaboradores abaixo são fictícios (seed de demonstração) — a única linha real é a sua sessão atual, já que este protótipo não possui banco de dados.
+          <Users size={14} /> Os KPIs e a tabela analítica abaixo usam dados fictícios (seed de demonstração) para
+          ilustrar a visão executiva em escala — este protótipo não possui banco de dados. A seção acima já é
+          funcional de verdade, com os colaboradores que você cadastrar.
         </Card>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -135,7 +188,7 @@ export default function AdminPage() {
 
         <Card className="mt-6 p-5">
           <div className="mb-4 flex items-center justify-between gap-3">
-            <p className="font-display font-semibold">Colaboradores</p>
+            <p className="font-display font-semibold">Base analítica (demonstração)</p>
             <div className="relative w-56">
               <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
               <input

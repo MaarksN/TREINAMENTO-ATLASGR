@@ -2,11 +2,13 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { CertificateInfo, ExamResult, ModuleProgress, RegistrationData } from "./types";
+import type { CertificateInfo, EnrolledColaborador, ExamResult, ModuleProgress, RegistrationData } from "./types";
 import { BADGES, XP_CERTIFICATE, XP_PER_EXAM_PASS, XP_PER_MODULE, XP_PER_QUIZ_PASS } from "./gamification";
+import { genId } from "./utils";
 
 interface OnboardingState {
   registration: RegistrationData | null;
+  enrolled: EnrolledColaborador[];
   progress: Record<string, ModuleProgress>;
   xp: number;
   badges: string[];
@@ -16,7 +18,9 @@ interface OnboardingState {
   hasHydrated: boolean;
 
   setHasHydrated: (v: boolean) => void;
-  register: (data: RegistrationData) => void;
+  enrollColaborador: (data: RegistrationData) => EnrolledColaborador;
+  removeColaborador: (id: string) => void;
+  startSessionAs: (id: string) => boolean;
   clearRegistration: () => void;
   touchStreak: () => void;
   completeModuleQuiz: (slug: string, score: number) => boolean;
@@ -30,10 +34,15 @@ function todayKey() {
   return new Date().toISOString().slice(0, 10);
 }
 
+function genAccessCode() {
+  return Math.random().toString(36).slice(2, 8).toUpperCase();
+}
+
 export const useOnboardingStore = create<OnboardingState>()(
   persist(
     (set, get) => ({
       registration: null,
+      enrolled: [],
       progress: {},
       xp: 0,
       badges: [],
@@ -44,10 +53,32 @@ export const useOnboardingStore = create<OnboardingState>()(
 
       setHasHydrated: (v) => set({ hasHydrated: v }),
 
-      register: (data) => {
-        set({ registration: data });
+      // Cadastro é feito exclusivamente pelo Administrador (painel /admin).
+      // O colaborador apenas faz seu primeiro acesso escolhendo o próprio nome.
+      enrollColaborador: (data) => {
+        const record: EnrolledColaborador = {
+          ...data,
+          id: genId("COL"),
+          enrolledAt: new Date().toISOString(),
+          accessCode: genAccessCode(),
+        };
+        set((s) => ({ enrolled: [...s.enrolled, record] }));
+        return record;
+      },
+
+      removeColaborador: (id) => {
+        set((s) => ({ enrolled: s.enrolled.filter((c) => c.id !== id) }));
+      },
+
+      startSessionAs: (id) => {
+        const record = get().enrolled.find((c) => c.id === id);
+        if (!record) return false;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { id: _id, enrolledAt: _enrolledAt, accessCode: _accessCode, ...registrationData } = record;
+        set({ registration: registrationData });
         get().touchStreak();
         get().addBadge("primeiro-passo");
+        return true;
       },
 
       clearRegistration: () => set({ registration: null }),

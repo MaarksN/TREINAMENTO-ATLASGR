@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Building2, Compass, Heart, PlayCircle, Sparkles, Target } from "lucide-react";
+import { Building2, Compass, Heart, Sparkles, Target } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Logo } from "@/components/brand/Logo";
-import { RegistrationModal } from "@/components/onboarding/RegistrationModal";
+import { SocialLinks, ContactAddress } from "@/components/brand/SocialLinks";
+import { AccessModal } from "@/components/onboarding/AccessModal";
+import { InstitutionalVideo } from "@/components/media/InstitutionalVideo";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { useOnboardingStore } from "@/lib/store";
@@ -44,9 +46,19 @@ export default function HomePage() {
               initial={{ opacity: 0, y: -16, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="mb-8 flex justify-center"
+              className="mb-6 flex justify-center"
             >
               <Logo className="scale-150" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              className="mb-6 flex flex-col items-center gap-2"
+            >
+              <SocialLinks />
+              <ContactAddress />
             </motion.div>
 
             <motion.span
@@ -78,24 +90,19 @@ export default function HomePage() {
 
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-8">
               <Button size="lg" onClick={handleStart}>
-                Iniciar Onboarding
+                {registration ? "Continuar minha trilha" : "Iniciar Onboarding"}
               </Button>
             </motion.div>
           </div>
 
-          {/* Vídeo institucional (placeholder) */}
+          {/* Vídeo institucional */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="mx-auto mt-14 max-w-3xl"
           >
-            <div className="group relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-atlas-graphite to-black">
-              <PlayCircle size={56} className="text-white/80 transition group-hover:scale-110 group-hover:text-white" />
-              <span className="absolute bottom-4 left-4 text-xs text-white/60">
-                Vídeo institucional — espaço reservado para o material oficial da ATLASGR
-              </span>
-            </div>
+            <InstitutionalVideo />
           </motion.div>
         </section>
 
@@ -149,7 +156,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <RegistrationModal open={modalOpen} onOpenChange={setModalOpen} />
+      <AccessModal open={modalOpen} onOpenChange={setModalOpen} />
     </div>
   );
 }
