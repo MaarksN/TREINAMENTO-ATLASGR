@@ -110,4 +110,5 @@ export interface CertificateInfo {
   issuedAt: string;
   hash: string;
   cargaHoraria: number;
+  score: number;
 }

@@ -28,7 +28,7 @@ export default function CertificadoPage() {
       const id = genId("ATLAS");
       const issuedAt = new Date().toISOString();
       const hash = await sha256Hex(`${registration.cpf}|${registration.email}|${id}|${issuedAt}|${examResult.score}`);
-      issueCertificate({ id, issuedAt, hash, cargaHoraria });
+      issueCertificate({ id, issuedAt, hash, cargaHoraria, score: examResult.score });
     }
     issue();
   }, [registration, examResult, certificate, issueCertificate, cargaHoraria]);
