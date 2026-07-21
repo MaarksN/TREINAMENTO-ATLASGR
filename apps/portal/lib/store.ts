@@ -16,11 +16,13 @@ interface OnboardingState {
   examResult: ExamResult | null;
   certificate: CertificateInfo | null;
   hasHydrated: boolean;
+  onboardingCompleted: boolean;
 
   setHasHydrated: (v: boolean) => void;
   enrollColaborador: (data: RegistrationData) => EnrolledColaborador;
   removeColaborador: (id: string) => void;
   startSessionAs: (id: string) => boolean;
+  completeOnboarding: () => void;
   clearRegistration: () => void;
   touchStreak: () => void;
   completeModuleQuiz: (slug: string, score: number) => boolean;
@@ -50,8 +52,10 @@ export const useOnboardingStore = create<OnboardingState>()(
       examResult: null,
       certificate: null,
       hasHydrated: false,
+      onboardingCompleted: false,
 
       setHasHydrated: (v) => set({ hasHydrated: v }),
+      completeOnboarding: () => set({ onboardingCompleted: true }),
 
       // Cadastro é feito exclusivamente pelo Administrador (painel /admin).
       // O colaborador apenas faz seu primeiro acesso escolhendo o próprio nome.
@@ -143,6 +147,7 @@ export const useOnboardingStore = create<OnboardingState>()(
           streakDays: [],
           examResult: null,
           certificate: null,
+          onboardingCompleted: false,
         }),
     }),
     {
