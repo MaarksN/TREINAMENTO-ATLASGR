@@ -1,0 +1,42 @@
+
+> atlasgr-enterprise-monorepo@1.0.0 dev
+> turbo dev
+
+• turbo 2.10.5
+
+   • Packages in scope: @atlasgr/admin, @atlasgr/analytics, @atlasgr/api, @atlasgr/auth, @atlasgr/certificates, @atlasgr/design-system, @atlasgr/gamification, @atlasgr/glossary, @atlasgr/lms, @atlasgr/notifications, @atlasgr/portal, @atlasgr/search, @atlasgr/shared, @atlasgr/storage, @atlasgr/tracking, @atlasgr/ui, @atlasgr/worker
+   • Running dev in 17 packages
+   • Remote caching disabled
+
+@atlasgr/portal:dev: cache bypass, force executing 14c4b4f962a4fd84
+@atlasgr/portal:dev:
+@atlasgr/portal:dev: > @atlasgr/portal@0.1.0 dev
+@atlasgr/portal:dev: > next dev
+@atlasgr/portal:dev:
+@atlasgr/portal:dev: ▲ Next.js 16.2.10 (Turbopack)
+@atlasgr/portal:dev: - Local:         http://localhost:3000
+@atlasgr/portal:dev: - Network:       http://192.168.0.2:3000
+@atlasgr/portal:dev: ✓ Ready in 616ms
+@atlasgr/portal:dev:
+@atlasgr/portal:dev: ○ Compiling /dashboard ...
+@atlasgr/portal:dev:  GET /dashboard 200 in 5.5s (next.js: 4.9s, application-code: 609ms)
+@atlasgr/portal:dev: ○ Compiling / ...
+@atlasgr/portal:dev:  GET / 200 in 3.7s (next.js: 3.6s, application-code: 81ms)
+@atlasgr/portal:dev: [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+@atlasgr/portal:dev:  GET /trilha/01-bem-vindo-atlasgr 200 in 4.4s (next.js: 3.9s, generate-params: 1169ms, application-code: 429ms)
+@atlasgr/portal:dev:  GET / 200 in 32ms (next.js: 4ms, application-code: 28ms)
+@atlasgr/portal:dev: [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+@atlasgr/portal:dev:  GET / 200 in 237ms (next.js: 7ms, application-code: 230ms)
+@atlasgr/portal:dev:  GET /dashboard 200 in 71ms (next.js: 5ms, application-code: 66ms)
+@atlasgr/portal:dev:  GET / 200 in 33ms (next.js: 4ms, application-code: 29ms)
+@atlasgr/portal:dev: [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+@atlasgr/portal:dev:  GET /trilha/01-bem-vindo-atlasgr 200 in 117ms (next.js: 31ms, generate-params: 28ms, application-code: 85ms)
+@atlasgr/portal:dev:  GET / 200 in 72ms (next.js: 6ms, application-code: 66ms)
+@atlasgr/portal:dev: [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+@atlasgr/portal:dev:  GET / 200 in 93ms (next.js: 5ms, application-code: 88ms)
+@atlasgr/portal:dev:  GET /dashboard 200 in 64ms (next.js: 4ms, application-code: 60ms)
+@atlasgr/portal:dev:  GET / 200 in 30ms (next.js: 4ms, application-code: 26ms)
+@atlasgr/portal:dev: [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+@atlasgr/portal:dev:  GET /trilha/01-bem-vindo-atlasgr 200 in 172ms (next.js: 29ms, generate-params: 25ms, application-code: 143ms)
+@atlasgr/portal:dev:  GET / 200 in 41ms (next.js: 4ms, application-code: 37ms)
+@atlasgr/portal:dev: [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
