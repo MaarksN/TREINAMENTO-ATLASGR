@@ -213,7 +213,7 @@ export default function DashboardPage() {
             </PremiumCard>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </ColaboradorLayout>
   );
 }
