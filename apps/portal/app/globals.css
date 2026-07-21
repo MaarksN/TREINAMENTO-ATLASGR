@@ -119,6 +119,15 @@ body {
 }
 
 @layer utilities {
+  .focus-visible-ring {
+    outline: none;
+  }
+  .focus-visible-ring:focus-visible {
+    outline: 2px solid var(--atlas-orange);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--atlas-ring);
+  }
+
   .glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -172,4 +181,31 @@ body {
 }
 .reveal-up {
   animation: reveal-up 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/*
+ * -------------------------------------------------------------
+ * ATLASGR ANIMATION UTILITIES
+ * Durações restritas entre 150ms e 300ms.
+ * -------------------------------------------------------------
+ */
+
+@keyframes fade-in-atlas {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-atlas {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in-atlas {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes progress-atlas {
+  from { width: 0%; }
+  to { width: 100%; }
 }

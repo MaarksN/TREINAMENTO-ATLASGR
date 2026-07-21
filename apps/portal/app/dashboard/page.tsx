@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { Award, Clock, Flame, Target, Trophy } from "lucide-react";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { ColaboradorLayout } from "@/components/layout/ColaboradorLayout";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Button } from "@/components/ui/Button";
+import { MetricCard } from "@/components/dashboard/MetricCard";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { moduleMetas, readyModuleSlugs } from "@/content/modules";
@@ -40,39 +41,46 @@ export default function DashboardPage() {
     .slice(0, 6);
 
   return (
-    <div className="min-h-screen">
-      <SiteHeader />
-      <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-        <h1 className="font-display text-3xl font-bold text-foreground">
-          Painel de {registration.nomeCompleto.split(" ")[0]}
-        </h1>
-        <p className="mt-1 text-muted">{registration.cargo} · {registration.departamento}</p>
-
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <Card className="p-5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted"><Trophy size={14} /> NÍVEL</div>
-            <p className="mt-2 font-display text-xl font-bold">{current.level} · {current.title}</p>
-            <ProgressBar value={pct} className="mt-3" />
-            <p className="mt-1 text-xs text-muted">{xp} XP {next && `· próximo nível em ${next.minXp - xp} XP`}</p>
-          </Card>
-          <Card className="p-5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted"><Target size={14} /> TRILHA</div>
-            <p className="mt-2 font-display text-xl font-bold">{completedReady}/{readyModuleSlugs.length} módulos</p>
-            <ProgressBar value={trailPct} className="mt-3" />
-          </Card>
-          <Card className="p-5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted"><Clock size={14} /> TEMPO ESTUDADO</div>
-            <p className="mt-2 font-display text-xl font-bold">{timeStudied} min</p>
-            <p className="mt-1 text-xs text-muted">soma dos módulos concluídos</p>
-          </Card>
-          <Card className="p-5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted"><Flame size={14} /> STREAK</div>
-            <p className="mt-2 font-display text-xl font-bold">{streakDays.length} dia(s)</p>
-            <p className="mt-1 text-xs text-muted">dias distintos de estudo</p>
-          </Card>
+    <ColaboradorLayout>
+      <div className="space-y-8">
+        <div>
+          <h1 className="font-display text-3xl font-bold text-foreground">
+            Painel de {registration.nomeCompleto.split(" ")[0]}
+          </h1>
+          <p className="mt-1 text-muted">{registration.cargo} · {registration.departamento}</p>
         </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
+        {/* 12-column Grid for MetricCards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <MetricCard
+            title="NÍVEL"
+            icon={<Trophy size={16} />}
+            value={`${current.level} · ${current.title}`}
+            subtitle={`${xp} XP ${next ? `· próximo nível em ${next.minXp - xp} XP` : ''}`}
+            trend={{ value: pct, label: "progresso atual", isPositive: true }}
+          />
+          <MetricCard
+            title="TRILHA"
+            icon={<Target size={16} />}
+            value={`${completedReady}/${readyModuleSlugs.length} módulos`}
+            subtitle="concluídos"
+            trend={{ value: trailPct, label: "progresso geral", isPositive: true }}
+          />
+          <MetricCard
+            title="TEMPO ESTUDADO"
+            icon={<Clock size={16} />}
+            value={`${timeStudied} min`}
+            subtitle="soma dos módulos concluídos"
+          />
+          <MetricCard
+            title="STREAK"
+            icon={<Flame size={16} />}
+            value={`${streakDays.length} dia(s)`}
+            subtitle="dias distintos de estudo"
+          />
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-3">
           <Card className="p-6 lg:col-span-2">
             <p className="font-display font-semibold">Conquistas</p>
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -125,7 +133,7 @@ export default function DashboardPage() {
             </ol>
           </Card>
         </div>
-      </main>
-    </div>
+      </div>
+    </ColaboradorLayout>
   );
 }
