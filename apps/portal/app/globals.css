@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -8,14 +10,31 @@
   --foreground: #1c1e22;
   --muted: #6b7178;
   --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: rgba(255, 86, 24, 0.45);
 
-  --atlas-orange: #ff5618;
+  --primary: #FF5618;
+  --primary-foreground: #FFFFFF;
+  --secondary: #333333;
+  --secondary-foreground: #FFFFFF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --accent: #f1f1f3;
+  --accent-foreground: #1c1e22;
+  --popover: #ffffff;
+  --popover-foreground: #1c1e22;
+  --card: #ffffff;
+  --card-foreground: #1c1e22;
+
+  --atlas-orange: #FF5618;
   --atlas-orange-2: #ff8347;
   --atlas-graphite: #333333;
   --atlas-ring: rgba(255, 86, 24, 0.45);
 
   --glass-bg: rgba(255, 255, 255, 0.6);
   --glass-border: rgba(255, 255, 255, 0.4);
+
+  --radius: 0.5rem;
 }
 
 .dark {
@@ -25,6 +44,21 @@
   --foreground: #f1f1f2;
   --muted: #9a9ea6;
   --border: #2c2f34;
+  --input: #2c2f34;
+  --ring: rgba(255, 106, 53, 0.45);
+
+  --primary: #FF5618;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1c1e22;
+  --secondary-foreground: #f1f1f2;
+  --destructive: #EF4444;
+  --destructive-foreground: #f1f1f2;
+  --accent: #212327;
+  --accent-foreground: #f1f1f2;
+  --popover: #1a1c20;
+  --popover-foreground: #f1f1f2;
+  --card: #1a1c20;
+  --card-foreground: #f1f1f2;
 
   --atlas-orange: #ff6a35;
   --atlas-orange-2: #ff8f5c;
@@ -46,13 +80,8 @@
   --color-atlas-orange-2: var(--atlas-orange-2);
   --color-atlas-graphite: var(--atlas-graphite);
 
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-jetbrains);
-
-  --animate-fade-in: fade-in-atlas 200ms ease-out both;
-  --animate-slide-in: slide-in-atlas 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-scale-in: scale-in-atlas 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-progress: progress-atlas 300ms ease-out both;
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-mont);
 }
 
 * {
@@ -118,7 +147,7 @@ body {
   }
 
   .font-display {
-    font-family: var(--font-display), monospace;
+    font-family: var(--font-display), sans-serif;
     letter-spacing: -0.01em;
   }
 }
