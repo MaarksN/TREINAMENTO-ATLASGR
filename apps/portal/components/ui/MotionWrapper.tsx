@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion, HTMLMotionProps, TargetAndTransition, Transition } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export interface MotionWrapperProps extends HTMLMotionProps<'div'> {
@@ -10,7 +10,15 @@ export interface MotionWrapperProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode;
 }
 
-const variants = {
+const variants: Record<
+  NonNullable<MotionWrapperProps['variant']>,
+  {
+    initial: TargetAndTransition;
+    animate: TargetAndTransition;
+    exit: TargetAndTransition;
+    transition: Transition;
+  }
+> = {
   fade: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
