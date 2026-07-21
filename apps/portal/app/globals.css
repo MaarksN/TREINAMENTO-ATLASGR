@@ -85,6 +85,15 @@ body {
 }
 
 @layer utilities {
+  .focus-visible-ring {
+    outline: none;
+  }
+  .focus-visible-ring:focus-visible {
+    outline: 2px solid var(--atlas-orange);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--atlas-ring);
+  }
+
   .glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
