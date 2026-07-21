@@ -14,7 +14,6 @@ const links = [
   { href: "/glossario", label: "Glossário" },
   { href: "/dashboard", label: "Meu painel" },
   { href: "/admin", label: "Admin" },
-  { href: "/login", label: "Login" },
 ];
 
 export function SiteHeader() {
