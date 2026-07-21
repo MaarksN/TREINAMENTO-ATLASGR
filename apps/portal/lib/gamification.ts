@@ -12,10 +12,10 @@ export interface LevelInfo {
 
 export const LEVELS: LevelInfo[] = [
   { level: 1, title: "Recruta Atlas", minXp: 0, maxXp: 149 },
-  { level: 2, title: "Aprendiz de Risco", minXp: 150, maxXp: 349 },
-  { level: 3, title: "Operador Júnior", minXp: 350, maxXp: 599 },
-  { level: 4, title: "Analista em Formação", minXp: 600, maxXp: 899 },
-  { level: 5, title: "Especialista Atlas", minXp: 900, maxXp: null },
+  { level: 2, title: "Agente Logístico", minXp: 150, maxXp: 349 },
+  { level: 3, title: "Operador Tático", minXp: 350, maxXp: 599 },
+  { level: 4, title: "Estrategista de Rota", minXp: 600, maxXp: 899 },
+  { level: 5, title: "Comandante Atlas", minXp: 900, maxXp: null },
 ];
 
 export function getLevel(xp: number): LevelInfo {
@@ -36,15 +36,15 @@ export interface BadgeDef {
   id: string;
   label: string;
   description: string;
-  icon: string;
+  tier: "bronze" | "silver" | "gold" | "holographic";
 }
 
 export const BADGES: BadgeDef[] = [
-  { id: "primeiro-passo", label: "Primeiro Passo", description: "Concluiu o cadastro e iniciou a trilha.", icon: "flag" },
-  { id: "modulo-1", label: "Boas-vindas Atlas", description: "Concluiu o módulo Bem-vindo à ATLASGR.", icon: "handshake" },
-  { id: "guardiao-risco", label: "Guardião do Risco", description: "Concluiu o módulo de Gerenciamento de Risco.", icon: "shield" },
-  { id: "mestre-connect", label: "Mestre do Connect", description: "Concluiu o módulo de Tecnologia / Sistema Connect.", icon: "cpu" },
-  { id: "nota-maxima", label: "Nota Máxima", description: "Gabaritou um quiz de módulo.", icon: "star" },
-  { id: "certificado", label: "Certificado Atlas", description: "Concluiu a prova final e emitiu o certificado.", icon: "award" },
-  { id: "streak-3", label: "Consistência", description: "Estudou em 3 dias diferentes.", icon: "flame" },
+  { id: "primeiro-passo", label: "Iniciação Logística", description: "Primeiro login no Cockpit AtlasGR.", tier: "bronze" },
+  { id: "modulo-1", label: "Operador de Base", description: "Concluiu o módulo Bem-vindo à ATLASGR.", tier: "bronze" },
+  { id: "guardiao-risco", label: "Guardião da Carga", description: "Concluiu o módulo de Gerenciamento de Risco.", tier: "silver" },
+  { id: "mestre-connect", label: "Arquiteto Connect", description: "Concluiu o módulo de Tecnologia / Sistema Connect.", tier: "gold" },
+  { id: "nota-maxima", label: "Precisão Cirúrgica", description: "Gabaritou um simulador tático.", tier: "gold" },
+  { id: "certificado", label: "Especialista Homologado", description: "Emitiu o certificado oficial AtlasGR.", tier: "holographic" },
+  { id: "streak-3", label: "Vigilância Constante", description: "Acessou o Cockpit por 3 dias consecutivos.", tier: "silver" },
 ];

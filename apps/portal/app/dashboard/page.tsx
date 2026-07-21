@@ -1,137 +1,217 @@
 "use client";
 
 import Link from "next/link";
-import { Award, Clock, Flame, Target, Trophy } from "lucide-react";
-import { ColaboradorLayout } from "@/components/layout/ColaboradorLayout";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { ProgressBar } from "@/components/ui/ProgressBar";
-import { Button } from "@/components/ui/Button";
-import { MetricCard } from "@/components/dashboard/MetricCard";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Award, Target, Trophy, Clock, Flame, ChevronRight, Activity, Zap, Compass, Star } from "lucide-react";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { MetricCard } from "../../../../packages/ui/src/MetricCard";
+import { PremiumCard } from "../../../../packages/ui/src/PremiumCard";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { moduleMetas, readyModuleSlugs } from "@/content/modules";
-import { BADGES, levelProgress } from "@/lib/gamification";
-import { seedCollaborators } from "@/content/seedDemo";
+import { levelProgress } from "@/lib/gamification";
 
 export default function DashboardPage() {
   const { ready, registration } = useRequireRegistration();
   const progress = useOnboardingStore((s) => s.progress);
   const xp = useOnboardingStore((s) => s.xp);
-  const badges = useOnboardingStore((s) => s.badges);
   const streakDays = useOnboardingStore((s) => s.streakDays);
-  const examResult = useOnboardingStore((s) => s.examResult);
-  const certificate = useOnboardingStore((s) => s.certificate);
 
-  if (!ready || !registration) return null;
+  const [mounted, setMounted] = useState(false);
+  const [heatmap, setHeatmap] = useState<boolean[]>([]);
+
+  useEffect(() => {
+    let isActive = true;
+    setTimeout(() => {
+      if (!isActive) return;
+      setHeatmap(Array.from({ length: 49 }).map(() => Math.random() > 0.7));
+      setMounted(true);
+    }, 0);
+    return () => { isActive = false; };
+  }, []);
+
+  if (!ready || !registration || !mounted) return null;
 
   const { current, next, pct } = levelProgress(xp);
   const completedReady = readyModuleSlugs.filter((slug) => progress[slug]?.passed).length;
-  const trailPct = Math.round((completedReady / readyModuleSlugs.length) * 100);
-  const timeStudied = moduleMetas
-    .filter((m) => readyModuleSlugs.includes(m.slug) && progress[m.slug]?.passed)
-    .reduce((sum, m) => sum + m.durationMinutes, 0);
   const nextModule = moduleMetas.find((m) => readyModuleSlugs.includes(m.slug) && !progress[m.slug]?.passed);
 
-  const ranking = [
-    { nome: `${registration.nomeCompleto} (você)`, notaMedia: examResult?.score ?? 0, isYou: true },
-    ...seedCollaborators.map((c) => ({ nome: c.nome, notaMedia: c.notaMedia, isYou: false })),
-  ]
-    .sort((a, b) => b.notaMedia - a.notaMedia)
-    .slice(0, 6);
-
   return (
-    <ColaboradorLayout>
-      <div className="space-y-8">
-        <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">
-            Painel de {registration.nomeCompleto.split(" ")[0]}
-          </h1>
-          <p className="mt-1 text-muted">{registration.cargo} · {registration.departamento}</p>
+    <div className="min-h-screen bg-[#131417] text-white selection:bg-atlas-orange">
+      <SiteHeader />
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+            <h1 className="font-display text-4xl font-bold mb-2">Cockpit Operacional</h1>
+            <p className="text-gray-400 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+              Agente Logístico: {registration.nomeCompleto.split(" ")[0]} ({registration.cargo})
+            </p>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="glass px-6 py-3 rounded-full flex items-center gap-4">
+            <span className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Patente Atual</span>
+            <span className="text-atlas-orange font-bold font-display text-xl">{current.title}</span>
+            <div className="w-1 h-8 bg-white/10" />
+            <span className="text-sm font-bold">{xp} XP</span>
+          </motion.div>
         </div>
 
-        {/* 12-column Grid for MetricCards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <MetricCard
-            title="NÍVEL"
-            icon={<Trophy size={16} />}
-            value={`${current.level} · ${current.title}`}
-            subtitle={`${xp} XP ${next ? `· próximo nível em ${next.minXp - xp} XP` : ''}`}
-            trend={{ value: pct, label: "progresso atual", isPositive: true }}
+            title="Módulos Concluídos"
+            value={`${completedReady}/${readyModuleSlugs.length}`}
+            icon={Target}
+            variance={Math.round((completedReady / readyModuleSlugs.length) * 100)}
+            sparklineData={[20, 30, 25, 40, 60, 55, 70, 80, 100]}
           />
           <MetricCard
-            title="TRILHA"
-            icon={<Target size={16} />}
-            value={`${completedReady}/${readyModuleSlugs.length} módulos`}
-            subtitle="concluídos"
-            trend={{ value: trailPct, label: "progresso geral", isPositive: true }}
+            title="Sequência Tática (Streak)"
+            value={streakDays.length}
+            icon={Flame}
+            variance={streakDays.length > 0 ? 10 : 0}
+            sparklineData={[10, 10, 30, 20, 50, 40, 60, 80, 70]}
           />
           <MetricCard
-            title="TEMPO ESTUDADO"
-            icon={<Clock size={16} />}
-            value={`${timeStudied} min`}
-            subtitle="soma dos módulos concluídos"
+            title="Pontuação Global"
+            value={xp}
+            icon={Trophy}
+            variance={5.2}
+            sparklineData={[10, 20, 30, 45, 60, 70, 75, 80, 95]}
           />
           <MetricCard
-            title="STREAK"
-            icon={<Flame size={16} />}
-            value={`${streakDays.length} dia(s)`}
-            subtitle="dias distintos de estudo"
+            title="Horas de Simulador"
+            value="3.5"
+            icon={Clock}
+            variance={12.5}
+            sparklineData={[5, 15, 25, 45, 50, 45, 65, 85, 90]}
           />
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <Card className="p-6 lg:col-span-2">
-            <p className="font-display font-semibold">Conquistas</p>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {BADGES.map((b) => {
-                const unlocked = badges.includes(b.id);
-                return (
-                  <div
-                    key={b.id}
-                    className={`rounded-xl border p-3 text-center transition ${unlocked ? "border-atlas-orange/40 bg-atlas-orange/5" : "border-border opacity-40"}`}
-                  >
-                    <Award size={20} className={`mx-auto ${unlocked ? "text-atlas-orange" : "text-muted"}`} />
-                    <p className="mt-1.5 text-xs font-semibold">{b.label}</p>
-                    <p className="mt-0.5 text-[10px] text-muted">{b.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-surface-2 p-4">
-              <div>
-                <p className="text-sm font-semibold">Próxima atividade</p>
-                <p className="text-sm text-muted">
-                  {nextModule ? nextModule.title : examResult?.passed ? "Você concluiu tudo — baixe seu certificado!" : "Prova Final disponível"}
-                </p>
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div className="xl:col-span-2 space-y-6">
+            <PremiumCard className="p-6 md:p-8" withGlow>
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="font-display font-bold text-xl flex items-center gap-3">
+                  <Award className="text-atlas-orange" /> Progressão de Carreira
+                </h3>
+                {next && <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{next.minXp - xp} XP para o próximo nível</span>}
               </div>
-              <Link href={nextModule ? `/trilha/${nextModule.slug}` : certificate ? "/certificado" : "/prova-final"}>
-                <Button>{nextModule ? "Continuar" : certificate ? "Ver certificado" : "Fazer prova"}</Button>
-              </Link>
-            </div>
-          </Card>
-
-          <Card className="p-6">
-            <p className="font-display font-semibold">Ranking (demonstração)</p>
-            <p className="mt-1 text-xs text-muted">Comparação com colaboradores fictícios — recurso ilustrativo do protótipo.</p>
-            <ol className="mt-4 space-y-2">
-              {ranking.map((r, i) => (
-                <li
-                  key={r.nome}
-                  className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm ${r.isYou ? "bg-gradient-atlas text-white" : "bg-surface-2"}`}
+              <div className="relative h-4 bg-white/5 rounded-full overflow-hidden border border-white/10 mb-4">
+                <motion.div
+                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-atlas-orange to-atlas-orange-2"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${pct}%` }}
+                  transition={{ duration: 1, ease: "easeOut" }}
                 >
-                  <span className="flex items-center gap-2">
-                    <span className="font-display text-xs opacity-70">#{i + 1}</span>
-                    {r.nome}
-                  </span>
-                  <Badge variant={r.isYou ? "default" : "muted"} className={r.isYou ? "bg-white/20 text-white" : ""}>
-                    {r.notaMedia}%
-                  </Badge>
-                </li>
-              ))}
-            </ol>
-          </Card>
+                  <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:20px_20px] animate-[pulse_2s_linear_infinite]" />
+                </motion.div>
+              </div>
+              <div className="flex justify-between text-sm font-bold">
+                <span className="text-gray-300">{current.title}</span>
+                {next ? <span className="text-atlas-orange">{next.title}</span> : <span className="text-emerald-400">Patente Máxima Alcançada</span>}
+              </div>
+            </PremiumCard>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <PremiumCard className="p-6 min-h-[300px] flex flex-col">
+                <h3 className="font-display font-bold text-lg mb-6 flex items-center gap-2">
+                  <Activity className="text-atlas-orange w-5 h-5" /> Radar de Conhecimento
+                </h3>
+                <div className="flex-1 flex items-center justify-center relative">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <div className="w-[80%] aspect-square rounded-full border border-white" />
+                    <div className="absolute w-[60%] aspect-square rounded-full border border-white" />
+                    <div className="absolute w-[40%] aspect-square rounded-full border border-white" />
+                    <div className="absolute w-full h-[1px] bg-white transform rotate-45" />
+                    <div className="absolute w-full h-[1px] bg-white transform -rotate-45" />
+                    <div className="absolute w-[1px] h-full bg-white" />
+                    <div className="absolute w-full h-[1px] bg-white" />
+                  </div>
+                  <div className="z-10 text-center">
+                    <p className="text-gray-400 italic text-sm">(Gráfico Radar Parcial)</p>
+                    <p className="text-xs text-gray-500 mt-2">Gestão de Risco: 85% | SLA: 60%</p>
+                  </div>
+                </div>
+              </PremiumCard>
+
+              <PremiumCard className="p-6 min-h-[300px] flex flex-col">
+                <h3 className="font-display font-bold text-lg mb-6 flex items-center gap-2">
+                  <Zap className="text-atlas-orange w-5 h-5" /> Heatmap de Acesso
+                </h3>
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="grid grid-cols-7 gap-1.5 opacity-80">
+                    {heatmap.map((isActive, i) => (
+                      <div
+                        key={i}
+                        className={`w-4 h-4 rounded-sm ${isActive ? 'bg-atlas-orange' : 'bg-white/5 border border-white/10'}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </PremiumCard>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <PremiumCard className="p-6" withGlow>
+              <h3 className="font-display font-bold text-lg mb-6 flex items-center gap-2">
+                <Compass className="text-atlas-orange w-5 h-5" /> Missões Ativas
+              </h3>
+              {nextModule ? (
+                <div className="bg-black/40 border border-white/10 rounded-xl p-5 group relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-atlas-orange" />
+                  <p className="text-xs text-atlas-orange font-bold uppercase tracking-widest mb-2">Próxima Triagem</p>
+                  <h4 className="font-bold text-lg mb-1">{nextModule.title}</h4>
+                  <p className="text-sm text-gray-400 mb-6">{nextModule.durationMinutes} min est. · Prioridade Alta</p>
+                  <Link href={`/trilha/${nextModule.slug}`} className="inline-flex items-center justify-between w-full bg-white/10 hover:bg-white/20 transition-colors px-4 py-3 rounded-lg text-sm font-bold">
+                    <span>Iniciar Missão</span>
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              ) : (
+                 <div className="bg-black/40 border border-emerald-500/30 rounded-xl p-5 text-center">
+                   <p className="text-emerald-400 font-bold mb-2">Todas as missões concluídas!</p>
+                   <Link href="/certificado" className="inline-block mt-2 px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-bold hover:bg-emerald-500/30 transition-colors">
+                     Acessar Certificado Oficial
+                   </Link>
+                 </div>
+              )}
+            </PremiumCard>
+
+            <PremiumCard className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="font-display font-bold text-lg flex items-center gap-2">
+                  <Star className="text-atlas-orange w-5 h-5" /> Leaderboard Corporativo
+                </h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+                  <div className="flex items-center gap-3">
+                    <span className="font-display font-bold text-gray-500">#1</span>
+                    <span className="text-sm font-bold">Carlos Silva</span>
+                  </div>
+                  <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/10 px-2 py-1 rounded">2450 XP</span>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-atlas-orange/20 border border-atlas-orange/50 relative overflow-hidden shadow-[0_0_15px_rgba(255,86,24,0.15)]">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-atlas-orange" />
+                  <div className="flex items-center gap-3 pl-2">
+                    <span className="font-display font-bold text-atlas-orange">#2</span>
+                    <span className="text-sm font-bold">{registration.nomeCompleto.split(" ")[0]} (Você)</span>
+                  </div>
+                  <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/20 px-2 py-1 rounded">{xp} XP</span>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+                  <div className="flex items-center gap-3">
+                    <span className="font-display font-bold text-gray-500">#3</span>
+                    <span className="text-sm font-bold">Ana Pereira</span>
+                  </div>
+                  <span className="text-xs font-bold text-gray-400 bg-white/10 px-2 py-1 rounded">1820 XP</span>
+                </div>
+              </div>
+              <button className="w-full mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest hover:text-white transition-colors">Ver ranking completo</button>
+            </PremiumCard>
+          </div>
         </div>
       </div>
     </ColaboradorLayout>
