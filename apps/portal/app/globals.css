@@ -48,6 +48,11 @@
 
   --font-sans: var(--font-inter);
   --font-display: var(--font-jetbrains);
+
+  --animate-fade-in: fade-in-atlas 200ms ease-out both;
+  --animate-slide-in: slide-in-atlas 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scale-in: scale-in-atlas 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-progress: progress-atlas 300ms ease-out both;
 }
 
 * {
@@ -138,4 +143,31 @@ body {
 }
 .reveal-up {
   animation: reveal-up 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/*
+ * -------------------------------------------------------------
+ * ATLASGR ANIMATION UTILITIES
+ * Durações restritas entre 150ms e 300ms.
+ * -------------------------------------------------------------
+ */
+
+@keyframes fade-in-atlas {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-atlas {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in-atlas {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes progress-atlas {
+  from { width: 0%; }
+  to { width: 100%; }
 }
