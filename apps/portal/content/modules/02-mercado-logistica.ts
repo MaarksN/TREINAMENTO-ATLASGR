@@ -8,6 +8,7 @@ export const module02: ModuleContentFull = {
   sources: [
     "Outline consolidado para este módulo (content/modules/meta.ts)",
     "Dados públicos de transporte de cargas — ANTT e CNT (Pesquisa Rodoviária)",
+    "Treinamento Operacional 2022 — Área de risco (raio por região metropolitana)",
     "Módulo 3 — Gerenciamento de Risco (conceitos de PGR e apólice já introduzidos)",
     "Módulo 5 — Software Logístico (Atlas Connect e integrações já apresentadas)",
   ],
@@ -17,6 +18,7 @@ export const module02: ModuleContentFull = {
     "Reconhecer os principais tipos de carga e como cada um muda o perfil de risco.",
     "Explicar o que são TMS e ERP e como eles se conectam ao rastreamento.",
     "Situar o Brasil no contexto do transporte rodoviário de cargas usando dados públicos.",
+    "Reconhecer como o raio de área de risco de uma região entra no PGR de um cliente.",
   ],
   sections: [
     {
@@ -153,6 +155,44 @@ export const module02: ModuleContentFull = {
         },
       ],
     },
+    {
+      id: "areas-de-risco",
+      title: "Áreas de risco no Brasil",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "\"Área de risco\" não é uma percepção subjetiva — é uma classificação com raio definido em quilômetros ao redor de regiões metropolitanas com maior incidência histórica de roubo e furto de carga. Esse raio entra diretamente no desenho do PGR de cada cliente.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Exemplos de raio de área de risco por região",
+          items: [
+            "São Paulo/SP — raio de 200 km",
+            "Rio de Janeiro/RJ — raio de 200 km",
+            "Salvador/BA — raio de 200 km",
+            "Fortaleza/CE — raio de 200 km",
+            "Porto Alegre/RS — raio de 200 km",
+            "Belo Horizonte/MG — raio de 150 km",
+            "Ribeirão Preto/SP — raio de 150 km",
+            "Joinville/SC — raio de 150 km",
+            "Recife/PE — raio de 150 km",
+            "Curitiba/PR, Uberlândia/MG, Anápolis/GO, Vitória/ES — raio de 100 km",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "O raio muda o que a Central faz",
+          text: [
+            "Um evento de nível 4 chamado 'Entrada em Área de Risco' é justamente o veículo cruzando um desses raios cadastrados — o que pode disparar reforço no monitoramento, restrição de horário ou exigência de escolta, dependendo do PGR do cliente.",
+          ],
+        },
+      ],
+    },
   ],
   summary: [
     "A cadeia de suprimentos liga fabricante, transportadora, embarcador e destino final — a Atlas atua principalmente entre transportadoras e embarcadores.",
@@ -160,12 +200,14 @@ export const module02: ModuleContentFull = {
     "O tipo de carga (alto valor, perigosa, perecível, granel, fracionada) muda diretamente o perfil de risco e o desenho do PGR.",
     "TMS e ERP são sistemas do cliente que podem trocar dados com o Atlas Connect via API — mas não substituem o gerenciamento de risco.",
     "O Brasil transporta a maior parte de sua carga por rodovia, o que reforça a relevância do gerenciamento de risco no modal rodoviário.",
+    "Área de risco é uma classificação com raio em km ao redor de regiões metropolitanas (ex.: 200 km em São Paulo), que entra diretamente no PGR do cliente.",
   ],
   finalChecklist: [
     "Sei diferenciar embarcador de transportadora.",
     "Reconheço pelo menos 3 categorias de carga e como elas mudam o risco.",
     "Sei explicar a diferença entre TMS, ERP e Atlas Connect.",
     "Entendo por que o modal rodoviário concentra a atenção do gerenciamento de risco no Brasil.",
+    "Sei o que muda quando um veículo entra em uma área de risco cadastrada.",
   ],
   mindMap: {
     root: "Mercado de Logística",
@@ -174,6 +216,7 @@ export const module02: ModuleContentFull = {
       { label: "Tipos de carga", items: ["Alto valor", "Perigosa", "Perecível", "Granel", "Fracionada"] },
       { label: "Sistemas do cliente", items: ["TMS", "ERP", "API", "ETA"] },
       { label: "Panorama Brasil", items: ["Predomínio rodoviário", "ANTT / RNTRC", "CNT"] },
+      { label: "Área de risco", items: ["Raio em km", "São Paulo 200km", "Belo Horizonte 150km", "Entrada dispara alerta nível 4"] },
     ],
   },
   scenario:
