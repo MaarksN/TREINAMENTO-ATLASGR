@@ -107,10 +107,14 @@ export function ModulePageClient() {
                 {section.blocks.map((b, i) => (
                   <ContentBlockView key={i} block={b} />
                 ))}
-              </ul>
-            </Card>
+              </div>
+            </motion.section>
+          ))}
+        </div>
 
-            <Card className="p-6 sticky top-[22rem]">
+        {content.summary?.length > 0 && (
+          <motion.div className="mt-20 max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <Card className="p-6">
               <div className="mb-4 flex items-center gap-2">
                 <ClipboardList size={18} className="text-atlas-orange" />
                 <p className="font-display font-semibold">Resumo do módulo</p>
@@ -121,6 +125,8 @@ export function ModulePageClient() {
                 ))}
               </ul>
             </Card>
+          </motion.div>
+        )}
 
         {/* 4. Video Placeholder */}
         <motion.div className="mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>

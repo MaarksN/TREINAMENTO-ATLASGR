@@ -1,25 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Command } from "cmdk";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Search, Book, FileText, Briefcase, Award, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useHotkeys } from "@/lib/useHotkeys";
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
+  useHotkeys({
+    "ctrl+k": () => setOpen((v) => !v),
+    "meta+k": () => setOpen((v) => !v),
+  });
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>

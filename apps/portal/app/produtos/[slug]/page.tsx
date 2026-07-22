@@ -1,0 +1,132 @@
+import TerminalWindow from "@/components/showcase/TerminalWindow";
+import ArchitectureFlow from "@/components/showcase/ArchitectureFlow";
+import ValueMetricsCards from "@/components/showcase/ValueMetricsCards";
+import MapaDoCrime from "@/components/charts/MapaDoCrime";
+import RankingOfensores from "@/components/charts/RankingOfensores";
+import RepresentatividadeEventos from "@/components/charts/RepresentatividadeEventos";
+import TempoEmAlvosTable from "@/components/charts/TempoEmAlvosTable";
+import GlossaryTooltip from "@/components/ui/GlossaryTooltip";
+
+const PRODUCT_SLUGS = ["profile", "connect", "gr", "analytics"];
+
+export function generateStaticParams() {
+  return PRODUCT_SLUGS.map((slug) => ({ slug }));
+}
+
+// This is a dynamic route. In a real app, data would be fetched based on slug.
+export default async function ProdutoPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  // Render different content based on slug, or a generic layout
+  const isProfile = slug === "profile";
+  const isConnectOrGR = slug === "connect" || slug === "gr";
+  const isAnalytics = slug === "analytics";
+
+  if (!isProfile && !isConnectOrGR && !isAnalytics) {
+    // Basic fallback for now
+    return (
+      <div className="min-h-screen bg-atlas-dark text-white flex flex-col items-center justify-center p-8">
+         <h1 className="text-4xl font-bold mb-4 capitalize">Módulo {slug}</h1>
+         <p className="text-gray-400 max-w-2xl text-center">
+            Este módulo não possui um showcase específico ainda. Navegue para /produtos/profile, /produtos/connect ou /produtos/gr.
+         </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-atlas-dark text-white font-sans overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-8 flex flex-col items-center text-center">
+        {/* Background glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-atlas-orange/10 rounded-full blur-[120px] pointer-events-none" />
+        
+        <h1 className="text-5xl md:text-7xl font-bold font-secondary mb-6 relative z-10">
+          Atlas <span className="text-atlas-orange capitalize">{slug}</span>
+        </h1>
+        <p className="text-xl text-gray-400 max-w-3xl mb-12 relative z-10">
+          {isProfile && "Inteligência Artificial que analisa o risco de contratação em menos de 5 minutos, garantindo a conformidade da sua operação."}
+          {isConnectOrGR && "A Torre de Controle definitiva. Transforme eventos brutos em gestão por exceção e acione a Célula de Inteligência Atlas (C.I.A) automaticamente."}
+          {slug === "analytics" && "O Cockpit Executivo para visualização de dados logísticos e operacionais em tempo real."}
+        </p>
+      </section>
+
+      {/* Showcase Content */}
+      <section className="py-16 px-8 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          
+          {isProfile && (
+            <div className="w-full flex flex-col lg:flex-row items-center gap-16 justify-between">
+              <div className="lg:w-1/2">
+                <h2 className="text-3xl font-bold mb-4">O Custo Invisível da Contratação</h2>
+                <p className="text-gray-400 text-lg leading-relaxed mb-6">
+                  Um erro na contratação pode custar milhões. O Atlas Profile utiliza IA para cruzar dados criminais, biometria facial e histórico profissional instantaneamente.
+                </p>
+                <GlossaryTooltip>
+                  <ul className="space-y-4">
+                    <li className="flex items-center gap-3 text-gray-300">
+                      <div className="w-2 h-2 rounded-full bg-atlas-orange" />
+                      Resumo automático de processos judiciais
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-300">
+                      <div className="w-2 h-2 rounded-full bg-atlas-orange" />
+                      Validação por FaceID
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-300">
+                      <div className="w-2 h-2 rounded-full bg-atlas-orange" />
+                      SLA de retorno em menos de 5 minutos
+                    </li>
+                  </ul>
+                </GlossaryTooltip>
+              </div>
+              <div className="lg:w-1/2 flex justify-center">
+                <TerminalWindow />
+              </div>
+            </div>
+          )}
+
+          {isConnectOrGR && (
+            <div className="w-full flex flex-col items-center">
+              <div className="text-center max-w-3xl mb-16">
+                <h2 className="text-3xl font-bold mb-4">Arquitetura de Resposta Rápida</h2>
+                <GlossaryTooltip>
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    Não dependa do WhatsApp para salvar sua carga. O Atlas Connect integra-se ao seu rastreador e escala automaticamente eventos críticos para a Torre de Controle e a C.I.A.
+                  </p>
+                </GlossaryTooltip>
+              </div>
+              <ArchitectureFlow />
+            </div>
+          )}
+
+          {isAnalytics && (
+            <div className="w-full">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-3xl font-bold mb-4">Cockpit Executivo em Tempo Real</h2>
+                <GlossaryTooltip>
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    As mesmas visões de Power BI usadas pela gestão da Atlas: risco por rodovia, ofensores de safety e SLA de permanência em alvos.
+                  </p>
+                </GlossaryTooltip>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <MapaDoCrime />
+                <RankingOfensores />
+                <RepresentatividadeEventos />
+                <TempoEmAlvosTable />
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Value Metrics Section */}
+      <section className="py-24 px-8 bg-black/50 border-t border-white/5 relative z-10">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-16">Impacto Real em Operações Complexas</h2>
+          <ValueMetricsCards />
+        </div>
+      </section>
+    </div>
+  );
+}

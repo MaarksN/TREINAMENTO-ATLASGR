@@ -26,9 +26,10 @@ export default function HomePage() {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const registration = useOnboardingStore((s) => s.registration);
+  const onboardingCompleted = useOnboardingStore((s) => s.onboardingCompleted);
 
   function handleStart() {
-    if (registration) router.push("/trilha");
+    if (registration && onboardingCompleted) router.push("/trilha");
     else setModalOpen(true);
   }
 

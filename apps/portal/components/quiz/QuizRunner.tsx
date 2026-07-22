@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, PartyPopper, RotateCcw, Timer, XCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle, Clock, PartyPopper, RotateCcw, TerminalSquare, XCircle } from "lucide-react";
 import type { QuizQuestion } from "@/lib/types";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { shuffle } from "@/content/quizzes";
+import { useHotkeys } from "@/lib/useHotkeys";
 
 export function QuizRunner({
   questions,
@@ -34,6 +35,8 @@ export function QuizRunner({
   const isLast = step === ordered.length - 1;
   const score = Math.round((correctCount / ordered.length) * 100);
   const passed = score >= passThreshold;
+  const isCorrect = answered && selected !== null && selected === q.correctIndex;
+  const urgent = !!timeLimitSeconds && secondsLeft < 60 && !done;
 
   useEffect(() => {
     if (!timeLimitSeconds || done) return;
@@ -56,6 +59,13 @@ export function QuizRunner({
     if (idx === q.correctIndex) setCorrectCount((c) => c + 1);
   }
 
+  // Atalhos de operador: teclas 1-9 selecionam a opção correspondente rapidamente.
+  useHotkeys(
+    done || answered
+      ? {}
+      : Object.fromEntries(q.options.map((_, i) => [String(i + 1), () => selectOption(i)]))
+  );
+
   function next() {
     if (isLast) {
       setDone(true);
@@ -73,6 +83,7 @@ export function QuizRunner({
     setAnswered(false);
     setCorrectCount(0);
     setDone(false);
+    setSecondsLeft(timeLimitSeconds ?? 0);
   }
 
   if (done) {
@@ -97,68 +108,89 @@ export function QuizRunner({
   }
 
   return (
-    <Card className="p-6 sm:p-8">
-      <div className="mb-5 flex items-center justify-between">
-        <p className="font-display text-sm font-semibold text-muted">{title}</p>
+    <div className="w-full rounded-2xl overflow-hidden border border-red-500/20 bg-black shadow-[0_0_50px_rgba(239,68,68,0.1)] relative">
+      {/* Pulso de fundo para transmitir urgência quando o tempo está acabando */}
+      <div className={`absolute inset-0 pointer-events-none transition-colors duration-1000 ${urgent ? "bg-red-500/10 animate-pulse" : ""}`} />
+
+      {/* Header / Timer */}
+      <div className="bg-[#0d1117] p-4 flex justify-between items-center border-b border-white/5 relative z-10">
         <div className="flex items-center gap-3">
-          {!!timeLimitSeconds && (
-            <span className={`flex items-center gap-1 text-xs font-medium ${secondsLeft < 60 ? "text-red-500" : "text-muted"}`}>
-              <Timer size={13} />
-              {String(Math.floor(secondsLeft / 60)).padStart(2, "0")}:{String(secondsLeft % 60).padStart(2, "0")}
-            </span>
-          )}
-          <p className="text-xs text-muted">
+          <AlertTriangle className="w-5 h-5 text-red-500" />
+          <span className="text-white font-bold tracking-widest uppercase text-sm">{title}</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-xs text-gray-500">
             {step + 1} / {ordered.length}
-          </p>
+          </span>
+          {!!timeLimitSeconds && (
+            <div className={`flex items-center gap-2 font-mono text-lg ${urgent ? "text-red-500" : "text-atlas-orange"}`}>
+              <Clock className="w-4 h-4" />
+              <span>
+                {String(Math.floor(secondsLeft / 60)).padStart(2, "0")}:{String(secondsLeft % 60).padStart(2, "0")}
+              </span>
+            </div>
+          )}
         </div>
       </div>
-      <ProgressBar value={((step + (answered ? 1 : 0)) / ordered.length) * 100} className="mb-6" />
 
-      <AnimatePresence mode="wait">
-        <motion.div key={q.id} initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }} transition={{ duration: 0.25 }}>
-          <p className="font-display text-lg font-semibold leading-snug text-foreground">{q.question}</p>
+      <div className="p-6 sm:p-8 relative z-10">
+        <ProgressBar value={((step + (answered ? 1 : 0)) / ordered.length) * 100} className="mb-6" />
 
-          <div className="mt-5 space-y-2.5">
-            {q.options.map((opt, i) => {
-              const isCorrect = i === q.correctIndex;
-              const isSelected = i === selected;
-              let style = "border-border hover:border-atlas-orange/50";
-              if (answered && isCorrect) style = "border-emerald-500 bg-emerald-500/10";
-              else if (answered && isSelected && !isCorrect) style = "border-red-500 bg-red-500/10";
+        <AnimatePresence mode="wait">
+          {!answered ? (
+            <motion.div key={q.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
+              <p className="font-display text-xl sm:text-2xl font-bold leading-snug text-white">{q.question}</p>
 
-              return (
-                <button
-                  key={i}
-                  onClick={() => selectOption(i)}
-                  disabled={answered}
-                  className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition ${style}`}
-                >
-                  <span>{opt}</span>
-                  {answered && isCorrect && <CheckCircle2 size={16} className="text-emerald-500" />}
-                  {answered && isSelected && !isCorrect && <XCircle size={16} className="text-red-500" />}
-                </button>
-              );
-            })}
-          </div>
-
-          {answered && (
+              <div className="mt-6 space-y-3">
+                {q.options.map((opt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => selectOption(i)}
+                    className="w-full text-left p-4 sm:p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group flex gap-4 items-center"
+                  >
+                    <div className="w-8 h-8 shrink-0 rounded bg-black flex items-center justify-center text-gray-500 font-mono text-sm group-hover:text-atlas-orange border border-white/10 group-hover:border-atlas-orange/50">
+                      {i + 1}
+                    </div>
+                    <span className="text-gray-200">{opt}</span>
+                  </button>
+                ))}
+              </div>
+              <p className="text-center text-gray-500 text-xs mt-6">
+                Pressione as teclas numéricas para selecionar rapidamente.
+              </p>
+            </motion.div>
+          ) : (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              className="mt-4 rounded-xl bg-surface-2 p-4 text-sm"
+              key="feedback"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className={`p-6 sm:p-8 rounded-xl border ${isCorrect ? "bg-green-500/10 border-green-500/30" : "bg-red-500/10 border-red-500/30"}`}
             >
-              <p className="text-foreground/90">{q.explanation}</p>
-              <p className="mt-2 text-xs text-muted">Revise: {q.reference}</p>
+              <div className="flex items-start gap-5">
+                <div className="mt-1 shrink-0">
+                  {isCorrect ? <CheckCircle className="w-10 h-10 text-green-500" /> : <XCircle className="w-10 h-10 text-red-500" />}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <TerminalSquare className="w-4 h-4 text-gray-400" />
+                    <span className="text-gray-400 text-xs font-mono font-bold uppercase">Atlas Mentor AI</span>
+                  </div>
+                  <h3 className={`text-xl font-bold mb-3 ${isCorrect ? "text-green-400" : "text-red-400"}`}>
+                    {isCorrect ? "Protocolo Executado com Sucesso" : "Falha Crítica na Operação"}
+                  </h3>
+                  <p className="text-white leading-relaxed">{q.explanation}</p>
+                  <p className="mt-3 text-xs text-gray-500">Revise: {q.reference}</p>
+                  <Button className="mt-6" onClick={next}>
+                    {isLast ? "Finalizar Simulação" : "Próximo Cenário"}
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           )}
-        </motion.div>
-      </AnimatePresence>
-
-      <div className="mt-6 flex justify-end">
-        <Button onClick={next} disabled={!answered}>
-          {isLast ? "Finalizar" : "Próxima pergunta"}
-        </Button>
+        </AnimatePresence>
       </div>
-    </Card>
+    </div>
   );
 }
+
+export default QuizRunner;
