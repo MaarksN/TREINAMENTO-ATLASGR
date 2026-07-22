@@ -129,4 +129,10 @@ export const module15: ModuleContentFull = {
       { label: "Governança e casos", items: ["Módulo 10", "Módulo 12", "Módulo 14"] },
     ],
   },
+  scenario:
+    "Faltam 10 minutos para a Prova Final abrir. Você revisou os 14 módulos anteriores, mas ainda não tem certeza se consegue explicar o fluxo completo, do PGR ao Analytics, sem parar para pensar. O que vale mais a pena revisar agora, nos minutos que restam?",
+  diagram: {
+    title: "O fio condutor da trilha completa",
+    chart: "graph LR\n  A[PGR define a regra] --> B[Connect / Profile aplicam]\n  B --> C[CIA trata a excecao]\n  C --> D[Analytics mede o resultado]",
+  },
 };

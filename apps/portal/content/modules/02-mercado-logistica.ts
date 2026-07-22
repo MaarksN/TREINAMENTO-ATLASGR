@@ -176,4 +176,10 @@ export const module02: ModuleContentFull = {
       { label: "Panorama Brasil", items: ["Predomínio rodoviário", "ANTT / RNTRC", "CNT"] },
     ],
   },
+  scenario:
+    "Um novo cliente liga perguntando se a Atlas atende 'transportadora ou embarcador'. Antes de responder, você precisa identificar: ele é dono da carga, ou executa o transporte por conta de terceiros? A resposta muda qual dor a Atlas vai resolver primeiro.",
+  diagram: {
+    title: "Da cadeia de suprimentos ao gerenciamento de risco",
+    chart: "graph LR\n  A[Fabricante] --> B[Transportadora]\n  B --> C[Embarcador]\n  C --> D[Destino final]\n  B --> E[Atlas GR]\n  C --> E",
+  },
 };

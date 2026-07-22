@@ -9,6 +9,7 @@ export const module07: ModuleContentFull = {
     "Outline consolidado para este módulo (content/modules/meta.ts)",
     "Módulo 5 — Software Logístico (tecnologias de rastreamento atendidas pela Atlas)",
     "Módulo 2 — Mercado de Logística (TMS, ERP e API)",
+    "Treinamento Tratativa de Alertas — SM Iniciada (particularidades de ativação de sensores por tecnologia)",
   ],
   objectives: [
     "Explicar por que o Atlas Connect precisa conversar com sistemas de terceiros.",
@@ -71,6 +72,15 @@ export const module07: ModuleContentFull = {
             "Para cada uma dessas tecnologias, o operador precisa dominar três competências: envio de comandos (bloqueio, sirene), desbloqueio manual em caso de falha, e leitura de relatórios de eventos — a lógica muda pouco de fabricante para fabricante, mas a tela e os nomes dos botões, sim.",
           ],
         },
+        {
+          type: "text",
+          heading: "Onde cada fabricante guarda a ativação de sensores",
+          paragraphs: [
+            [
+              "Um exemplo concreto de como a tela muda entre fabricantes: na Sighra, os sensores ficam agrupados em uma única lista (\"Sensores Ativos\"); na Onix, cada sensor é habilitado individualmente (porta do motorista, porta do carona, painel, desengate); no Pósitron, a ativação é feita item a item em \"Comandos\"; e no Autotrac, os sensores ficam distribuídos por níveis dentro do menu \"Geral\".",
+            ],
+          ],
+        },
       ],
     },
     {
@@ -126,5 +136,11 @@ export const module07: ModuleContentFull = {
       { label: "Sistemas do cliente", items: ["TMS", "ERP", "ETA automático"] },
       { label: "Risco de falha", items: ["Perda de sinal → CIA", "Falha de API → só visibilidade"] },
     ],
+  },
+  scenario:
+    "Durante uma auditoria, o cliente reclama que o ETA não aparece no TMS dele. Antes de entrar em pânico, você precisa diagnosticar: o problema está no rastreador (crítico) ou na integração com o TMS (visibilidade)?",
+  diagram: {
+    title: "Onde a informação trafega",
+    chart: "graph LR\n  A[Rastreador] --> B[Atlas Connect]\n  B --> C[TMS / ERP do cliente]\n  B --> D[Torre de Controle]",
   },
 };

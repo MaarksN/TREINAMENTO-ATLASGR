@@ -125,4 +125,10 @@ export const module14: ModuleContentFull = {
       { label: "Risco por região", items: ["Histórico de eventos", "Classificação por nível", "PGR ajustado por trecho"] },
     ],
   },
+  scenario:
+    "18h42, cenário de treinamento 'Operação Pôr do Sol': um veículo com carga de alto valor perde sinal em um trecho classificado como risco elevado. Nenhum cliente real está envolvido — mas o relógio do SLA já está correndo. Você consegue reconstituir os passos até a CIA II sem consultar o módulo?",
+  diagram: {
+    title: "Do alerta ao relatório de sinistro",
+    chart: "graph LR\n  A[Perda de sinal] --> B[CIA I]\n  B --> C[CIA II]\n  C --> D[Pronta Resposta]\n  D --> E[Relatorio em 48h]",
+  },
 };

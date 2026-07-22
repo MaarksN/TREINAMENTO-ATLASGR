@@ -109,4 +109,10 @@ export const module08: ModuleContentFull = {
       { label: "Cases", items: ["R$ 95M economizados (combustível)", "-26% tempo em fazendas (suco)"] },
     ],
   },
+  scenario:
+    "Na mesma manhã, você atende uma transportadora preocupada com o custo de um sinistro recente e, depois, um embarcador perguntando sobre tempo parado em fazendas. Dores completamente diferentes — como isso muda sua resposta em cada ligação?",
+  diagram: {
+    title: "Perfis de cliente atendidos pela Atlas",
+    chart: "graph LR\n  A[Transportadora] --> D[Atlas]\n  B[Embarcador] --> D\n  C[Operador logistico] --> D",
+  },
 };

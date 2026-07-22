@@ -207,4 +207,10 @@ export const module01: ModuleContentFull = {
       { label: "Conduta", items: ["Sigilo", "Pontualidade", "Uso correto de e-mail e internet", "Reciclagem a cada 3 anos"] },
     ],
   },
+  scenario:
+    "É seu primeiro dia na Atlas. Um colega comenta que, antes de 2004, negociações de risco eram resolvidas informalmente entre transportadora e cliente, sem processo documentado. Hoje, cada decisão segue um fluxo definido, do Comercial à CIA. O que a Bem-vindo à ATLASGR ensina sobre essa mudança de cultura?",
+  diagram: {
+    title: "Da fundação à operação de hoje",
+    chart: "graph LR\n  A[2004: Fundação] --> B[Governança e processo]\n  B --> C[Estrutura por Diretoria]\n  C --> D[Central 24 horas]",
+  },
 };

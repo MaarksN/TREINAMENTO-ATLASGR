@@ -190,4 +190,10 @@ export const module03: ModuleContentFull = {
       { label: "GR no equipamento", items: ["GR Principal", "Comando Disponível", "Ação Embarcada Disponível", "Alerta Compartilhado"] },
     ],
   },
+  scenario:
+    "Você está monitorando uma carga avaliada em R$ 1,5 milhão. O painel aponta um desvio de rota 15 km fora da área permitida pelo PGR. O motorista não atende. O que o Gerenciamento de Risco ensina sobre os próximos passos?",
+  diagram: {
+    title: "Do PGR ao relatório de sinistro",
+    chart: "graph LR\n  A[PGR definido] --> B[Checklist valida veiculo]\n  B --> C[Monitoramento]\n  C --> D[CIA]\n  D --> E[Relatorio em 48h]",
+  },
 };

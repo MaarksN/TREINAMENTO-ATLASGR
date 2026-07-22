@@ -173,4 +173,10 @@ export const module05: ModuleContentFull = {
       { label: "Tecnologias integradas", items: ["Sascar / Sighra", "Onix / Omnilink", "Pósitron / Autotrac"] },
     ],
   },
+  scenario:
+    "Um supervisor pede para você localizar rapidamente o histórico de checklist de uma placa específica, no meio de um turno cheio. Em qual menu do Atlas Connect essa informação está, e em quantos passos você chega até ela?",
+  diagram: {
+    title: "Fluxo de um veículo dentro do Atlas Connect",
+    chart: "graph LR\n  A[Cadastros Gerais] --> B[Solicitar CheckList]\n  B --> C[Operador CheckList]\n  C --> D[SM Ativa]\n  D --> E[Consolidado SM]",
+  },
 };

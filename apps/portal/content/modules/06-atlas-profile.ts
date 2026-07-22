@@ -147,4 +147,11 @@ export const module06: ModuleContentFull = {
       { label: "Compliance", items: ["LGPD", "Consentimento", "Finalidade clara"] },
     ],
   },
+  scenario:
+    "Faltam 40 minutos para um motorista sair em viagem e o cadastro dele aparece como 'Requer Atenção' no Atlas Profile. A transportadora pressiona para liberar agora. O que a análise do Perfil Securitário — e não a pressão do cliente — deve decidir aqui?",
+  diagram: {
+    title: "Da documentação à aprovação",
+    chart:
+      "graph LR\n  A[Documentacao e antecedentes] --> B[FaceID]\n  B --> C{Requer Atencao?}\n  C -->|Sim| D[Analise do Perfil Securitario]\n  C -->|Nao| E[Aprovado]\n  D --> E\n  D --> F[Reprovado]",
+  },
 };

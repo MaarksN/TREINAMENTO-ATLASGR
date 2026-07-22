@@ -89,7 +89,7 @@ export function ModulePageClient() {
 
         {/* 2. Critical Situation (Immersive Story) */}
         <motion.div className="mt-16" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }}>
-          <ImmersiveStory story={`Você está monitorando uma carga avaliada em R$ 1.5M. O painel aponta um desvio de rota 15km fora da área de sombra programada. O motorista não atende. O que o ${content.title} nos ensina sobre isso?`} />
+          <ImmersiveStory story={content.scenario} />
         </motion.div>
 
         {/* 3. Theoretical Concept */}
@@ -141,10 +141,7 @@ export function ModulePageClient() {
 
         {/* 5. Diagram */}
         <motion.div className="mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <MermaidViewer
-            title="Fluxo de Escalonamento de Crise"
-            chart={`graph LR\n A[Início] --> B[Monitoramento]\n B --> C[Conclusão]\n B --> D[Desvio]`}
-          />
+          <MermaidViewer title={content.diagram.title} chart={content.diagram.chart} />
         </motion.div>
 
         {/* 6. Decision/Quiz */}

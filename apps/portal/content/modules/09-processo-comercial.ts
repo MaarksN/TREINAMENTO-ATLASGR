@@ -119,4 +119,10 @@ export const module09: ModuleContentFull = {
       { label: "Diferencial", items: ["Tecnologia (Connect)", "Pessoas (CIA)", "Processo (PGR)"] },
     ],
   },
+  scenario:
+    "Um prospect responde: 'já temos rastreador instalado, não precisamos de mais nada'. Você tem 30 segundos para virar essa objeção em uma conversa real sobre risco — o que você diz primeiro?",
+  diagram: {
+    title: "Da dor ao fechamento",
+    chart: "graph LR\n  A[ICP e persona] --> B[Dor identificada]\n  B --> C[Pilar do portfolio]\n  C --> D[Objecao respondida]\n  D --> E[Fechamento]",
+  },
 };

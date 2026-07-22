@@ -165,4 +165,10 @@ export const module10: ModuleContentFull = {
       { label: "Regulatório", items: ["ANTT", "CNT", "SUSEP", "LGPD", "ISO 31000"] },
     ],
   },
+  scenario:
+    "Um colega novo, no segundo dia de operação, ouve um supervisor falar 'a SM tá com nível 6 e o PGR já autorizou a Pronta' — e não entende metade da frase. Quantos desses termos você consegue traduzir sem abrir o Glossário?",
+  diagram: {
+    title: "Categorias de termos técnicos",
+    chart: "graph TD\n  A[Termos tecnicos] --> B[Risco e seguro]\n  A --> C[Operacao da Central]\n  A --> D[Mercado e tecnologia]\n  A --> E[Regulatorio]",
+  },
 };

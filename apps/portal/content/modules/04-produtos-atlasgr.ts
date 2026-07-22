@@ -151,4 +151,10 @@ export const module04: ModuleContentFull = {
       { label: "Atlas Analytics", items: ["Mapa de risco", "Ranking de ofensores", "SLA em alvos"] },
     ],
   },
+  scenario:
+    "Um cliente pergunta por que precisa de 'quatro produtos' em vez de um sistema só. Você tem que explicar, em poucas frases, o que cada pilar resolve — sem soar como se estivesse empurrando mais contrato do que o necessário.",
+  diagram: {
+    title: "Os quatro pilares em uma viagem",
+    chart: "graph LR\n  A[Atlas Profile] --> B[Atlas GR]\n  B --> C[Atlas Connect]\n  C --> D[Atlas Analytics]",
+  },
 };

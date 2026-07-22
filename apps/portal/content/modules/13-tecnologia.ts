@@ -120,4 +120,10 @@ export const module13: ModuleContentFull = {
       { label: "IA", items: ["Reconhecimento de padrões", "Não substitui PGR nem CIA"] },
     ],
   },
+  scenario:
+    "O sensor de Safety aponta três eventos de fadiga do mesmo motorista na mesma semana, em rotas diferentes. Nenhum virou acidente — ainda. Como transformar esse padrão em ação preventiva, em vez de esperar o quarto evento?",
+  diagram: {
+    title: "De reativo a preditivo",
+    chart: "graph LR\n  A[Evento isolado] --> B[Historico consolidado]\n  B --> C[Atlas Analytics]\n  C --> D[Acao preventiva]",
+  },
 };

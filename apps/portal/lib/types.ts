@@ -45,6 +45,10 @@ export interface ModuleContentFull extends ModuleMeta {
   summary: string[];
   finalChecklist: string[];
   mindMap: { root: string; branches: { label: string; items: string[] }[] };
+  /** Situação crítica específica do módulo, exibida no início da página (ImmersiveStory). */
+  scenario: string;
+  /** Diagrama Mermaid específico do módulo, exibido na página de conteúdo. */
+  diagram: { title: string; chart: string };
 }
 
 export interface GlossaryTerm {
