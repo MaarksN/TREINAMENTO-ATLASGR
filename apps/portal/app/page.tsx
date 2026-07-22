@@ -100,8 +100,8 @@ export default function HomePage() {
             <p className="font-display text-xs font-semibold uppercase tracking-wider text-atlas-orange">Índice da trilha</p>
             <h2 className="mt-1 font-display text-2xl font-bold text-foreground sm:text-3xl">15 módulos de onboarding</h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted">
-              Do propósito da empresa aos sistemas usados todos os dias. Clique em um módulo disponível para abrir o
-              conteúdo completo — os demais mostram o outline já estruturado.
+              Do propósito da empresa aos sistemas usados todos os dias. Clique em qualquer módulo para abrir o
+              conteúdo completo.
             </p>
           </div>
 
