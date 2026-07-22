@@ -12,7 +12,6 @@ import { InstitutionalVideo } from "@/components/media/InstitutionalVideo";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { useOnboardingStore } from "@/lib/store";
-import { CinematicHero } from "@/components/home/CinematicHero";
 
 const values = [
   { icon: Target, label: "Perseverança" },
@@ -27,56 +26,112 @@ export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const registration = useOnboardingStore((s) => s.registration);
   const onboardingCompleted = useOnboardingStore((s) => s.onboardingCompleted);
+  const canContinue = !!registration && onboardingCompleted;
 
   function handleStart() {
-    if (registration && onboardingCompleted) router.push("/trilha");
+    if (canContinue) router.push("/trilha");
     else setModalOpen(true);
   }
 
   return (
-    <div className="min-h-screen bg-[#131417]">
+    <div className="min-h-screen">
       <SiteHeader />
 
       <main>
-        {/* Cinematic Hero directly integrates into Home */}
-        <div onClick={handleStart}>
-           <CinematicHero />
-        </div>
+        {/* Hero */}
+        <section className="relative overflow-hidden px-4 py-20 sm:py-28">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-atlas opacity-[0.06]" />
+          <div className="pointer-events-none absolute -top-32 right-[-10%] -z-10 h-96 w-96 rounded-full bg-atlas-orange/20 blur-3xl" />
+
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: -16, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 flex justify-center"
+            >
+              <Logo className="scale-150" />
+            </motion.div>
+
+            <motion.span
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted"
+            >
+              Portal de Onboarding e Treinamento Corporativo
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-6xl"
+            >
+              Bem-vindo à <span className="text-gradient-atlas">ATLASGR</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mx-auto mt-5 max-w-xl text-base text-muted sm:text-lg"
+            >
+              Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação. Sua trilha de onboarding
+              começa aqui — do propósito da empresa aos sistemas que você vai usar todos os dias.
+            </motion.p>
+
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-8">
+              <Button size="lg" onClick={handleStart}>
+                {canContinue ? "Continuar minha trilha" : "Iniciar Onboarding"}
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Vídeo institucional real da ATLASGR */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mx-auto mt-14 max-w-3xl"
+          >
+            <InstitutionalVideo />
+          </motion.div>
+        </section>
 
         {/* Indicadores */}
-        <section className="mx-auto max-w-5xl px-4 py-10 relative z-10">
+        <section className="mx-auto max-w-5xl px-4 py-10">
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               { label: "Desde", value: "2004" },
               { label: "Central de monitoramento", value: "24 horas" },
               { label: "Áreas na Diretoria", value: "5" },
             ].map((s) => (
-              <Card key={s.label} className="reveal-up p-6 text-center glass border border-white/10">
+              <Card key={s.label} className="reveal-up p-6 text-center">
                 <p className="font-display text-3xl font-bold text-gradient-atlas">{s.value}</p>
-                <p className="mt-1 text-sm text-gray-400">{s.label}</p>
+                <p className="mt-1 text-sm text-muted">{s.label}</p>
               </Card>
             ))}
           </div>
         </section>
 
         {/* Propósito e Valores */}
-        <section className="mx-auto max-w-5xl px-4 py-14 relative z-10">
+        <section className="mx-auto max-w-5xl px-4 py-14">
           <div className="grid gap-8 lg:grid-cols-2">
-            <Card className="p-8 glass border border-white/10">
-              <h2 className="font-display text-xl font-semibold text-white">Propósito</h2>
-              <p className="mt-3 text-gray-300">
+            <Card className="p-8">
+              <h2 className="font-display text-xl font-semibold text-foreground">Propósito</h2>
+              <p className="mt-3 text-muted">
                 &ldquo;Nós conectamos pessoas e tecnologia gerando valores com segurança e inovação.&rdquo;
               </p>
-              <p className="mt-4 text-xs text-gray-500">
+              <p className="mt-4 text-xs text-muted/70">
                 Missão e visão formais em texto público serão incorporadas ao portal assim que o material institucional
                 oficial for disponibilizado — este protótipo usa apenas conteúdo confirmado nos documentos internos.
               </p>
             </Card>
-            <Card className="p-8 glass border border-white/10">
-              <h2 className="font-display text-xl font-semibold text-white">Valores</h2>
+            <Card className="p-8">
+              <h2 className="font-display text-xl font-semibold text-foreground">Valores</h2>
               <ul className="mt-4 grid grid-cols-2 gap-3">
                 {values.map((v) => (
-                  <li key={v.label} className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-sm text-gray-300">
+                  <li key={v.label} className="flex items-center gap-2 rounded-xl bg-surface-2 px-3 py-2 text-sm">
                     <v.icon size={16} className="text-atlas-orange" />
                     {v.label}
                   </li>
@@ -86,10 +141,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-3xl px-4 pb-24 text-center relative z-10">
-          <Button size="lg" onClick={handleStart} className="shadow-glow hover:scale-105 transition-transform bg-atlas-orange text-white">
-            {registration ? "Continuar minha trilha" : "Iniciar Onboarding"}
+        <section className="mx-auto max-w-3xl px-4 pb-12 text-center">
+          <Button size="lg" onClick={handleStart}>
+            {canContinue ? "Continuar minha trilha" : "Iniciar Onboarding"}
           </Button>
+        </section>
+
+        {/* Contato e redes sociais */}
+        <section className="mx-auto max-w-3xl px-4 pb-24 text-center">
+          <SocialLinks className="justify-center" />
+          <ContactAddress className="mt-4" />
         </section>
       </main>
 
