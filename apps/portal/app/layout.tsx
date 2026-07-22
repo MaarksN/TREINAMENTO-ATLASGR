@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
@@ -9,11 +9,17 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-// Since the "Mont" font files are not currently available in the repository,
-// we will define the CSS variable for the theme, but omit the Next.js localFont setup
-// so that the build does not fail. We can rely on fallback fonts (sans-serif)
-// until the actual Mont font files are added.
-// This ensures WCAG compliance and smooth build.
+// Os arquivos da fonte "Mont" (identidade oficial ATLASGR) não estão disponíveis
+// no repositório para uso via next/font/local. Poppins é a geométrica sans mais
+// próxima do desenho da Mont entre as disponíveis no Google Fonts — mesmo
+// contra-formas circulares e traço uniforme — e serve como substituta de
+// display até os arquivos oficiais da Mont serem adicionados.
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-mont",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Portal de Onboarding ATLASGR",
@@ -21,10 +27,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  // Pass only the available montserrat variable.
-  // The global.css maps --font-mont to sans-serif when not provided.
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${montserrat.variable} h-full`}>
+    <html lang="pt-BR" suppressHydrationWarning className={`${montserrat.variable} ${poppins.variable} h-full`}>
       <body className="min-h-full antialiased">
         <ThemeProvider>{children}</ThemeProvider>
       </body>

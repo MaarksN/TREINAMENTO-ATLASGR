@@ -11,6 +11,8 @@ import { AccessModal } from "@/components/onboarding/AccessModal";
 import { InstitutionalVideo } from "@/components/media/InstitutionalVideo";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ModuleCard } from "@/components/trail/ModuleCard";
+import { moduleMetas } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
 
 const values = [
@@ -38,21 +40,13 @@ export default function HomePage() {
       <SiteHeader />
 
       <main>
-        {/* Hero */}
+        {/* Hero (capa) */}
         <section className="relative overflow-hidden px-4 py-20 sm:py-28">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-atlas opacity-[0.06]" />
-          <div className="pointer-events-none absolute -top-32 right-[-10%] -z-10 h-96 w-96 rounded-full bg-atlas-orange/20 blur-3xl" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-atlas-orange/20 via-atlas-orange/[0.04] to-atlas-orange-2/15" />
+          <div className="pointer-events-none absolute -top-32 right-[-10%] -z-10 h-96 w-96 rounded-full bg-atlas-orange/25 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 left-[-10%] -z-10 h-80 w-80 rounded-full bg-atlas-orange-2/20 blur-3xl" />
 
           <div className="mx-auto max-w-3xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: -16, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8 flex justify-center"
-            >
-              <Logo className="scale-150" />
-            </motion.div>
-
             <motion.span
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -65,16 +59,18 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-6xl"
+              className="mt-6 flex flex-wrap items-center justify-center gap-3 font-display text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-6xl"
             >
-              Bem-vindo à <span className="text-gradient-atlas">ATLASGR</span>
+              Bem-vindo à
+              <Logo withWordmark={false} className="h-9 w-auto sm:h-12" />
+              <span className="text-gradient-atlas">ATLASGR</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mx-auto mt-5 max-w-xl text-base text-muted sm:text-lg"
+              className="mx-auto mt-5 max-w-xl text-lg font-medium text-foreground/80 sm:text-xl"
             >
               Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação. Sua trilha de onboarding
               começa aqui — do propósito da empresa aos sistemas que você vai usar todos os dias.
@@ -96,6 +92,24 @@ export default function HomePage() {
           >
             <InstitutionalVideo />
           </motion.div>
+        </section>
+
+        {/* Índice da Trilha — 15 módulos */}
+        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <div className="reveal-up text-center">
+            <p className="font-display text-xs font-semibold uppercase tracking-wider text-atlas-orange">Índice da trilha</p>
+            <h2 className="mt-1 font-display text-2xl font-bold text-foreground sm:text-3xl">15 módulos de onboarding</h2>
+            <p className="mx-auto mt-2 max-w-2xl text-muted">
+              Do propósito da empresa aos sistemas usados todos os dias. Clique em um módulo disponível para abrir o
+              conteúdo completo — os demais mostram o outline já estruturado.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {moduleMetas.map((m, i) => (
+              <ModuleCard key={m.slug} meta={m} index={i} />
+            ))}
+          </div>
         </section>
 
         {/* Indicadores */}
