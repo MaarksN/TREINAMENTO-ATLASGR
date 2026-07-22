@@ -11,6 +11,8 @@ export const module11: ModuleContentFull = {
     "Treinamento Tratativa de Alertas — Desvio de Rota (sobreposição de níveis)",
     "Desenvolvimento Profissional em Atendimento ao Cliente e Motorista (script, regra dos 90%, regras de desbloqueio)",
     "Treinamento de Malícia (senha de voz, itens de atenção antes da viagem)",
+    "Treinamento Operacional 2022 (rastreamento x monitoramento, parada eventual x longa, erros de atendimento)",
+    "Treinamento Tratativa de Alertas — Perda de Sinal (posto de combustível, escalonamento à CIA em 2h)",
     "Manual de Check list Central",
     "Módulo 3 — Gerenciamento de Risco (fluxo de checklist e acionamento da CIA)",
     "Módulo 5 — Software Logístico (Atlas Connect)",
@@ -20,6 +22,8 @@ export const module11: ModuleContentFull = {
     "Explicar o papel da Torre de Controle na priorização de eventos por nível.",
     "Reconhecer os 7 níveis de prioridade de alerta usados no Atlas Connect.",
     "Aplicar o SLA real de tratativa (início em até 10 minutos, término em até 45) e o roteiro de escalonamento.",
+    "Diferenciar rastreamento de monitoramento, e parada eventual de parada longa.",
+    "Reconhecer erros comuns de atendimento e como conduzir uma ligação corretamente.",
     "Interpretar anotações padronizadas da grade de veículos.",
   ],
   sections: [
@@ -138,6 +142,70 @@ export const module11: ModuleContentFull = {
       ],
     },
     {
+      id: "nuances-operacionais",
+      title: "Nuances do dia a dia que fazem diferença",
+      blocks: [
+        {
+          type: "comparison",
+          title: "Rastreamento x Monitoramento",
+          left: {
+            label: "Rastreamento (sem SM)",
+            points: [
+              "Acompanhamento passivo — o evento só é tratado mediante solicitação do cliente.",
+              "Não há uma viagem sendo acompanhada ativamente do início ao destino.",
+            ],
+          },
+          right: {
+            label: "Monitoramento (com SM)",
+            points: [
+              "Acompanhamento ativo — a viagem é analisada do início ao destino.",
+              "Todo evento adverso à programação da viagem é tratado proativamente pela Central.",
+            ],
+          },
+        },
+        {
+          type: "comparison",
+          title: "Parada Eventual x Parada Longa",
+          left: {
+            label: "Parada Eventual — até 1 hora",
+            points: ["Banheiro", "Refeição", "Troca de pneu", "Abastecimento", "Posto fiscal"],
+          },
+          right: {
+            label: "Parada Longa — até 11 horas",
+            points: ["Aguardando descarga", "Pernoite"],
+          },
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Perda de sinal em posto de combustível não se desconsidera",
+          text: [
+            "Mesmo que o posto esteja cadastrado na rota, uma perda de sinal ali não é ignorada automaticamente. O alerta só é finalizado como \"Sinal restabelecido\" (se o sinal voltar) ou \"Veículo dentro de local autorizado\" (se, dentro da base ou do alvo, a ignição estiver desligada e a velocidade zerada) — caso contrário, segue-se o procedimento padrão normalmente.",
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Solicitações que só o responsável da frota pode autorizar",
+          items: [
+            "Reset do veículo.",
+            "Desativar um sensor (portas da cabine, do baú, painel, engate, antena ou bateria).",
+            "Cancelar uma SM.",
+            "Autorizar desvio de rota.",
+            "Autorizar o veículo a rodar após o horário permitido.",
+            "Bloqueio ou desbloqueio do veículo.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Toda autorização vira um registro",
+          text: [
+            "Cada uma dessas solicitações exige um registro (POP) informando o motivo do comando, o nome do responsável e a previsão de reinício. O motorista nunca tem autonomia para solicitar Reset ou desativação de sensor por conta própria.",
+          ],
+        },
+      ],
+    },
+    {
       id: "atendimento-e-bloqueio",
       title: "Atendimento ao motorista e regras de bloqueio",
       blocks: [
@@ -189,6 +257,26 @@ export const module11: ModuleContentFull = {
           },
         },
         {
+          type: "case",
+          title: "Um atendimento padrão, do início ao fim",
+          text:
+            "Operador: \"Atlas GR, [nome], bom dia!\" — Motorista: \"Bom dia, preciso de um desbloqueio!\" — Operador: \"Por favor, informe seu nome e a placa do veículo.\" — Motorista: \"É o Pedro, placa ABC-1234.\" — o operador confirma que o veículo está na grade, solicita a senha de voz e só então segue com \"Em que posso ajudar?\".",
+          source: "Treinamento Operacional (script de atendimento)",
+        },
+        {
+          type: "checklist",
+          title: "Erros comuns de atendimento a evitar",
+          items: [
+            "Não solicitar a senha de voz, ou solicitá-la só no final da ligação, depois de já ter passado informações.",
+            "Não se identificar, ou não pedir a identificação do motorista e do veículo.",
+            "Usar um script de abertura diferente a cada ligação.",
+            "Esquecer de colocar a ligação em mudo ao conversar com outra pessoa.",
+            "Vícios de linguagem: \"Beleza!\", \"Peraí!\", \"Opa!\", \"Falô!\", \"Sem maldade!\".",
+            "Deixar o motorista esperando sem avisar que vai demorar mais um momento.",
+            "Transferir a ligação sem avisar o motorista ou o próximo operador.",
+          ],
+        },
+        {
           type: "faq",
           items: [
             { q: "Por que não posso confirmar ao motorista qual parte da senha de voz ele errou?", a: "Isso evitaria que uma pessoa não autorizada, tentando adivinhar a senha, descubra por eliminação qual é a combinação correta." },
@@ -236,6 +324,8 @@ export const module11: ModuleContentFull = {
     "O SLA real é iniciar a tratativa em até 10 minutos e concluí-la em até 45 minutos.",
     "O roteiro padrão de escalonamento vai de mensagem ao motorista até o acionamento de pronta resposta, em 8 passos sequenciais.",
     "Após 2 tentativas erradas de senha de voz, o atendimento é encerrado e escalado à supervisão; e em ~90% dos casos com bloqueio sistêmico ativo, o desbloqueio não é autorizado.",
+    "Rastreamento é acompanhamento passivo (sem SM); monitoramento é acompanhamento ativo (com SM). Parada eventual dura até 1 hora; parada longa, até 11 horas.",
+    "Solicitações como reset, cancelamento de SM ou autorização de desvio só podem ser feitas pelo responsável da frota, nunca pelo motorista, e sempre com registro.",
     "A grade de veículos usa uma nomenclatura padronizada (#CONF, #AUT, @Porta, ****, entre outras) para registrar tratativas de forma ágil.",
   ],
   finalChecklist: [
@@ -243,7 +333,9 @@ export const module11: ModuleContentFull = {
     "Consigo listar os 7 níveis de prioridade de alerta e um exemplo de cada.",
     "Sei o SLA real de início (10 min) e conclusão (45 min) da tratativa.",
     "Consigo descrever o roteiro de 8 passos do escalonamento padrão.",
+    "Sei diferenciar rastreamento de monitoramento, e parada eventual de parada longa.",
     "Sei quando um desbloqueio pode ser feito diretamente e quando exige autorização da transportadora.",
+    "Reconheço pelo menos 3 erros comuns de atendimento e como evitá-los.",
     "Reconheço pelo menos 3 códigos padronizados usados na grade de veículos.",
   ],
   mindMap: {
@@ -253,7 +345,8 @@ export const module11: ModuleContentFull = {
       { label: "7 níveis de alerta", items: ["1 — SM iniciada", "5 — Desvio de rota", "6 — Perda de sinal (sobrepõe nível 5)", "7 — Botão de pânico / Senha de coação"] },
       { label: "SLA", items: ["Início em até 10 min", "Conclusão em até 45 min"] },
       { label: "Escalonamento", items: ["Mensagem → Contato → Sirene → Bloqueio → Polícia → Pronta Resposta"] },
-      { label: "Atendimento e bloqueio", items: ["Script de identificação", "2 tentativas de senha", "Regra dos 90%", "Autorização da transportadora"] },
+      { label: "Nuances", items: ["Rastreamento x Monitoramento", "Parada Eventual x Longa", "Perda de sinal em posto", "Autorizações exclusivas da frota"] },
+      { label: "Atendimento e bloqueio", items: ["Script de identificação", "Erros comuns", "2 tentativas de senha", "Regra dos 90%"] },
       { label: "Grade de veículos", items: ["#CONF", "#AUT", "@Porta/@Painel/@Baú", "*SM ATIVA"] },
     ],
   },

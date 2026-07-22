@@ -234,16 +234,16 @@ const quiz02: QuizQuestion[] = [
   {
     id: "q02-5",
     moduleSlug: "02-mercado-logistica",
-    question: "Por que o mesmo veículo pode ter regras vindas tanto da transportadora quanto do embarcador?",
+    question: "O que é uma 'área de risco', na prática do gerenciamento de risco?",
     options: [
-      "Porque o PGR da transportadora e as exigências específicas do embarcador daquela carga podem coexistir",
-      "Porque o veículo troca de dono a cada viagem",
-      "Porque a Atlas exige isso por padrão em todos os contratos",
-      "Isso nunca acontece na prática",
+      "Uma impressão subjetiva do operador sobre o trajeto",
+      "Uma classificação com raio definido em km ao redor de regiões metropolitanas de maior incidência de roubo/furto",
+      "Qualquer trecho de estrada sem asfalto",
+      "Uma área onde o rastreador nunca funciona",
     ],
-    correctIndex: 0,
-    explanation: "É comum que o PGR da transportadora conviva com regras adicionais exigidas pelo embarcador de uma carga específica.",
-    reference: "Módulo 2 — A cadeia de suprimentos e seus elos",
+    correctIndex: 1,
+    explanation: "Área de risco é uma classificação objetiva com raio em quilômetros (ex.: 200 km em São Paulo), usada no desenho do PGR.",
+    reference: "Módulo 2 — Áreas de risco no Brasil",
   },
 ];
 
