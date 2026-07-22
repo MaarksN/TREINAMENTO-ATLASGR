@@ -1,14 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { PlayCircle, Sparkles, Trophy } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ModuleCard } from "@/components/trail/ModuleCard";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import { moduleMetas } from "@/content/modules";
 import { readyModuleSlugs } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
-import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { moduleIcons } from "@/lib/moduleIcons";
 import Link from "next/link";
 
 export default function TrilhaPage() {
@@ -20,37 +21,107 @@ export default function TrilhaPage() {
   const completedReady = readyModuleSlugs.filter((slug) => progress[slug]?.passed).length;
   const pct = Math.round((completedReady / readyModuleSlugs.length) * 100);
   const allReadyDone = completedReady === readyModuleSlugs.length;
+  const nextModule = moduleMetas.find((m) => readyModuleSlugs.includes(m.slug) && !progress[m.slug]?.passed);
+  const NextIcon = nextModule ? moduleIcons[nextModule.slug] : undefined;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#0b0c0e] text-white">
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <div className="reveal-up">
-          <p className="font-display text-xs font-semibold uppercase tracking-wider text-atlas-orange">
+      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+          <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-atlas-orange">
             Olá, {registration.nomeCompleto.split(" ")[0]}
           </p>
-          <h1 className="mt-1 font-display text-3xl font-bold text-foreground">Trilha de Onboarding</h1>
-          <p className="mt-2 max-w-2xl text-muted">
+          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Trilha de Onboarding
+          </h1>
+          <p className="mt-2 max-w-2xl text-gray-400">
             15 módulos compõem a trilha completa, todos com conteúdo, quiz e certificação totalmente funcionais.
           </p>
-        </div>
+        </motion.div>
 
-        <Card className="reveal-up mt-6 flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex-1">
-            <p className="text-sm font-medium">Progresso dos módulos disponíveis ({completedReady}/{readyModuleSlugs.length})</p>
-            <ProgressBar value={pct} className="mt-2" />
-          </div>
-          {allReadyDone && (
-            <Link href="/prova-final">
-              <Button>Ir para a Prova Final</Button>
-            </Link>
+        {/* Banner "continuar assistindo" / progresso — estilo Netflix */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1c1e22] via-[#1c1e22] to-[#2a1712] p-6 sm:p-8"
+        >
+          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-atlas-orange/20 blur-3xl" />
+          {NextIcon && (
+            <NextIcon className="pointer-events-none absolute -bottom-6 -right-6 h-40 w-40 text-white/5" aria-hidden />
           )}
-        </Card>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {moduleMetas.map((m, i) => (
-            <ModuleCard key={m.slug} meta={m} index={i} />
-          ))}
+          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-xl">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-gray-300">
+                <Sparkles size={12} className="text-atlas-orange" />
+                {allReadyDone ? "Trilha concluída" : "Continue de onde parou"}
+              </span>
+
+              {allReadyDone ? (
+                <>
+                  <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
+                    Todos os módulos disponíveis foram concluídos 🎉
+                  </h2>
+                  <p className="mt-2 text-gray-400">
+                    Você está pronto para a avaliação final e emissão do certificado oficial ATLASGR.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
+                    {nextModule?.title}
+                  </h2>
+                  <p className="mt-2 text-gray-400">{nextModule?.shortDescription}</p>
+                </>
+              )}
+
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                {allReadyDone ? (
+                  <Link href="/prova-final">
+                    <Button size="lg" leftIcon={<Trophy size={18} />}>
+                      Ir para a Prova Final
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link href={`/trilha/${nextModule?.slug}`}>
+                    <Button size="lg" leftIcon={<PlayCircle size={18} />}>
+                      Continuar módulo
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            <div className="w-full max-w-sm shrink-0 rounded-2xl border border-white/10 bg-black/30 p-5 backdrop-blur-sm">
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium text-gray-300">Progresso da trilha</span>
+                <span className="font-display font-bold text-atlas-orange">{pct}%</span>
+              </div>
+              <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+                <motion.div
+                  className="h-full rounded-full bg-gradient-to-r from-atlas-orange to-atlas-orange-2"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${pct}%` }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              </div>
+              <p className="mt-2 text-xs text-gray-500">
+                {completedReady} de {readyModuleSlugs.length} módulos disponíveis concluídos
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Grade de módulos */}
+        <div className="mt-12">
+          <h2 className="font-display text-lg font-semibold tracking-tight text-white">Todos os módulos</h2>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {moduleMetas.map((m, i) => (
+              <ModuleCard key={m.slug} meta={m} index={i} />
+            ))}
+          </div>
         </div>
       </main>
     </div>

@@ -94,21 +94,23 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        {/* Índice da Trilha — 15 módulos */}
-        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <div className="reveal-up text-center">
-            <p className="font-display text-xs font-semibold uppercase tracking-wider text-atlas-orange">Índice da trilha</p>
-            <h2 className="mt-1 font-display text-2xl font-bold text-foreground sm:text-3xl">15 módulos de onboarding</h2>
-            <p className="mx-auto mt-2 max-w-2xl text-muted">
-              Do propósito da empresa aos sistemas usados todos os dias. Clique em qualquer módulo para abrir o
-              conteúdo completo.
-            </p>
-          </div>
+        {/* Índice da Trilha — 15 módulos, em faixa escura estilo catálogo */}
+        <section className="bg-[#0b0c0e] py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="reveal-up text-center">
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-atlas-orange">Índice da trilha</p>
+              <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">15 módulos de onboarding</h2>
+              <p className="mx-auto mt-2 max-w-2xl text-gray-400">
+                Do propósito da empresa aos sistemas usados todos os dias. Clique em qualquer módulo para abrir o
+                conteúdo completo.
+              </p>
+            </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {moduleMetas.map((m, i) => (
-              <ModuleCard key={m.slug} meta={m} index={i} />
-            ))}
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {moduleMetas.map((m, i) => (
+                <ModuleCard key={m.slug} meta={m} index={i} />
+              ))}
+            </div>
           </div>
         </section>
 
