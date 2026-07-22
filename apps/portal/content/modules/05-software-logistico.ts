@@ -114,6 +114,14 @@ export const module05: ModuleContentFull = {
             "Teclado",
           ],
         },
+        {
+          type: "callout",
+          variant: "success",
+          title: "O resultado nunca fica em aberto",
+          text: [
+            "Ao final da validação, o veículo é aprovado (\"Atlas GR deseja um excelente trabalho!\") ou reprovado, indo direto para manutenção. Se um sensor específico apresentar defeito (ex.: indicar porta aberta com a porta fechada), a placa é encaminhada à supervisão com um script de comunicação descrevendo objetivamente o problema identificado.",
+          ],
+        },
       ],
     },
     {

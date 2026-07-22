@@ -8,6 +8,7 @@ export const module03: ModuleContentFull = {
   sources: [
     "Manual Site Gerenciamento de Risco (Pósitron Rastreamento, DTPE, jan/2017) — associação de GR e permissões",
     "Cronograma de Treinamentos 2º semestre — tópicos de PGR, apólice RCF-DC e Malícia",
+    "Treinamento PGR 2023 — estrutura real de um Plano de Gerenciamento de Risco",
     "Manual de Check list (procedimento de teste de sensores e atuadores)",
     "CARGOS.pdf — funções de Implantação, Perfil Securitário, CIA I e CIA II",
   ],
@@ -15,6 +16,7 @@ export const module03: ModuleContentFull = {
     "Explicar o que é um PGR e por que ele existe.",
     "Diferenciar apólice, sinistro, sublimite e RCF-DC.",
     "Descrever o caminho de um alerta, do checklist até o acionamento da CIA.",
+    "Reconhecer a estrutura real de um PGR e o que é responsabilidade da transportadora x da Central.",
     "Associar um veículo a uma Gerenciadora de Risco (GR) e explicar cada permissão.",
     "Reconhecer sinais de coação usando as técnicas do treinamento de Malícia.",
   ],
@@ -51,6 +53,52 @@ export const module03: ModuleContentFull = {
             [
               "É o PGR que transforma \"gerenciamento de risco\" de um conceito abstrato em um procedimento operacional concreto, seguido de forma consistente por qualquer operador, em qualquer turno.",
             ],
+          ],
+        },
+      ],
+    },
+    {
+      id: "estrutura-de-um-pgr",
+      title: "O que tem dentro de um PGR de verdade",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "O PGR não é um documento genérico — ele é escrito sob medida para cada cliente, mas segue uma estrutura consistente, dividida entre o que é responsabilidade da transportadora e o que é responsabilidade da Central de Monitoramento.",
+            ],
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Responsabilidade da Transportadora x da Central",
+          left: {
+            label: "Transportadora",
+            points: [
+              "Consulta e cadastro de motoristas.",
+              "Comboio e escolta, quando exigidos.",
+              "Divulgação e orientação da equipe operacional e condutores.",
+              "Checklist do rastreador e disponibilidade do sinal do veículo.",
+              "Senha de voz combinada com a Central.",
+            ],
+          },
+          right: {
+            label: "Central de Monitoramento (Gerenciadora)",
+            points: [
+              "Ciclos de macros e senhas de motoristas.",
+              "Regras de monitoramento e particularidades da transportadora.",
+              "Procedimentos de paradas durante a viagem.",
+              "Suspeitas de roubo em rodovias e cidades.",
+              "Escalation list e contatos da seguradora/corretora em caso de sinistro.",
+            ],
+          },
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Também define o quadro sinóptico",
+          text: [
+            "Todo PGR começa com um quadro sinóptico: dados gerais da operação, limites e regras de embarque, sublimites e especificações, e os bens que não estão cobertos pela apólice — a base sobre a qual todas as outras regras são construídas.",
           ],
         },
       ],
@@ -171,11 +219,13 @@ export const module03: ModuleContentFull = {
     "Gerenciar risco é reduzir a chance e o impacto de roubo, furto, acidente ou desvio durante uma viagem.",
     "O PGR traduz o gerenciamento de risco em regras operacionais concretas para a Central seguir.",
     "A apólice (frequentemente RCF-DC) define o LMI geral; o sublimite é o teto para uma cobertura específica.",
+    "Um PGR real divide responsabilidades entre transportadora (cadastro de motoristas, escolta, senha de voz) e Central (macros, regras de monitoramento, escalation list).",
     "O caminho típico é: Implantação cria o PGR → checklist valida o veículo → monitoramento acompanha a viagem → Malícia identifica coação → CIA aciona autoridades/pronta resposta → relatório de sinistro em até 48h.",
     "No portal do fabricante do rastreador, cada veículo é associado a uma GR com 4 permissões: GR Principal, Comando Disponível, Ação Embarcada Disponível e Alerta Compartilhado.",
   ],
   finalChecklist: [
     "Sei explicar o que é um PGR e quem o cria.",
+    "Sei o que é responsabilidade da transportadora e o que é responsabilidade da Central dentro de um PGR.",
     "Sei diferenciar apólice, sinistro e sublimite.",
     "Consigo descrever o procedimento de checklist de sensores e atuadores.",
     "Reconheço pelo menos 3 sinais trabalhados no treinamento de Malícia.",
@@ -185,6 +235,7 @@ export const module03: ModuleContentFull = {
     root: "Gerenciamento de Risco",
     branches: [
       { label: "Conceito", items: ["Reduzir chance e impacto de sinistro", "PGR traduz risco em regra operacional"] },
+      { label: "Estrutura do PGR", items: ["Quadro sinóptico", "Responsabilidade da transportadora", "Responsabilidade da Central"] },
       { label: "Seguro", items: ["Apólice / LMI", "RCF-DC", "Sublimite", "Sinistro"] },
       { label: "Fluxo operacional", items: ["Implantação cria PGR", "Checklist", "Monitoramento", "Malícia", "CIA", "Relatório em 48h"] },
       { label: "GR no equipamento", items: ["GR Principal", "Comando Disponível", "Ação Embarcada Disponível", "Alerta Compartilhado"] },

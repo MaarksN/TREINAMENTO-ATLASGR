@@ -203,6 +203,15 @@ export const module11: ModuleContentFull = {
             "Cada uma dessas solicitações exige um registro (POP) informando o motivo do comando, o nome do responsável e a previsão de reinício. O motorista nunca tem autonomia para solicitar Reset ou desativação de sensor por conta própria.",
           ],
         },
+        {
+          type: "text",
+          heading: "Uma parada em rodovia pede atenção redobrada",
+          paragraphs: [
+            [
+              "Uma parada indevida dentro de um posto costuma ter explicação simples; a mesma parada em plena rodovia pode ser sinal de acidente ou sinistro. Por isso, o operador sempre verifica o histórico de velocidade do veículo: uma queda gradual de velocidade sugere uma parada normal, enquanto uma queda brusca — velocidade zerada ou travada de forma abrupta — é um indício mais forte de colisão, exigindo o procedimento padrão completo, não apenas uma verificação rápida.",
+            ],
+          ],
+        },
       ],
     },
     {
@@ -326,6 +335,7 @@ export const module11: ModuleContentFull = {
     "Após 2 tentativas erradas de senha de voz, o atendimento é encerrado e escalado à supervisão; e em ~90% dos casos com bloqueio sistêmico ativo, o desbloqueio não é autorizado.",
     "Rastreamento é acompanhamento passivo (sem SM); monitoramento é acompanhamento ativo (com SM). Parada eventual dura até 1 hora; parada longa, até 11 horas.",
     "Solicitações como reset, cancelamento de SM ou autorização de desvio só podem ser feitas pelo responsável da frota, nunca pelo motorista, e sempre com registro.",
+    "Uma queda brusca de velocidade em rodovia (zerada ou travada de forma abrupta) é indício mais forte de acidente do que uma redução gradual, e exige o procedimento padrão completo.",
     "A grade de veículos usa uma nomenclatura padronizada (#CONF, #AUT, @Porta, ****, entre outras) para registrar tratativas de forma ágil.",
   ],
   finalChecklist: [
