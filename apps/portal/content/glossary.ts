@@ -112,6 +112,16 @@ export const glossary: GlossaryTerm[] = [
     atlasUsage: "Tema de treinamento periódico obrigatório para operação, supervisão e liderança, incluindo reciclagens.",
   },
   {
+    id: "senha-de-voz",
+    term: "Senha de Voz",
+    definition:
+      "Palavra de confirmação usada em toda ligação com a Central — diferente da senha de coação — que garante que só pessoas autorizadas (administrativo do cliente ou motorista) têm acesso às informações da operação por telefone. Sem a confirmação da senha de voz, o atendimento é encerrado.",
+    example:
+      "Empresas costumam usar uma senha combinada (ex.: 'TRANSPORTADORA@ATLASGR'); motoristas costumam usar o nome de uma cidade combinada, para facilitar a memorização.",
+    importance: "Evita que uma pessoa não autorizada, se passando por motorista ou responsável da transportadora, obtenha informações sensíveis da viagem por telefone.",
+    atlasUsage: "Solicitada pelo operador logo no início de qualquer atendimento por telefone — antes mesmo de tratar o motivo da ligação.",
+  },
+  {
     id: "senha-de-coacao",
     term: "Senha de Coação",
     definition:
@@ -236,9 +246,53 @@ export const glossary: GlossaryTerm[] = [
     definition: "Confederação Nacional do Transporte — entidade que representa o setor de transporte no Brasil e produz pesquisas e estatísticas do setor.",
   },
   {
+    id: "rntrc",
+    term: "RNTRC (Registro Nacional de Transportadores Rodoviários de Cargas)",
+    definition:
+      "Cadastro obrigatório da ANTT para transportadoras rodoviárias de carga. As apólices de RCTR-C e RC-DC exigidas pela Lei nº 14.599/2023 são vinculadas ao RNTRC da transportadora.",
+    atlasUsage: "Referenciado no treinamento sobre a Lei nº 14.599/2023, que trata das mudanças em seguros de carga obrigatórios.",
+  },
+  {
+    id: "rctr-c",
+    term: "RCTR-C",
+    definition:
+      "Responsabilidade Civil do Transportador Rodoviário de Cargas: seguro obrigatório (Lei nº 14.599/2023) que cobre perdas ou danos à carga causados por acidente do veículo transportador — colisão, tombamento, capotagem, incêndio ou explosão.",
+    importance: "É um dos três seguros que todo transportador rodoviário de cargas passou a ser obrigado a contratar desde a Medida Provisória nº 1.153 (dez/2022).",
+    atlasUsage: "Tema do treinamento interno sobre a Nova Lei de Seguros, vinculado ao PGR de cada cliente.",
+  },
+  {
+    id: "rc-dc",
+    term: "RC-DC (Responsabilidade Civil do Transportador Rodoviário por Desaparecimento de Carga)",
+    definition:
+      "Seguro obrigatório desde a Lei nº 14.599/2023 que cobre roubo, furto, apropriação indébita, estelionato ou extorsão sofridos pela carga durante o transporte. É o sucessor, agora obrigatório, do que o mercado já chamava de RCF-DC quando essa cobertura ainda era facultativa.",
+    atlasUsage: "Vinculado ao PGR de cada cliente, conforme exigido pela Nova Lei de Seguros.",
+  },
+  {
+    id: "rc-v",
+    term: "RC-V (Responsabilidade Civil de Veículos)",
+    definition:
+      "Seguro obrigatório, novidade trazida pela Lei nº 14.599/2023, que cobre danos corporais e materiais causados a terceiros pelo veículo usado no transporte de cargas. Pode ser contratado para a frota toda, com cobertura mínima de 35.000 DES para danos corporais e 20.000 DES para danos materiais.",
+    atlasUsage: "Um dos três seguros obrigatórios tratados no treinamento interno sobre a Nova Lei de Seguros.",
+  },
+  {
     id: "susep",
     term: "SUSEP",
     definition: "Superintendência de Seguros Privados — autarquia federal que regula e fiscaliza o mercado de seguros no Brasil, incluindo apólices de transporte como a RCF-DC.",
+  },
+  {
+    id: "faceid",
+    term: "FaceID (biometria facial)",
+    definition:
+      "Validação biométrica facial usada para confirmar que a pessoa realizando um cadastro ou embarque é de fato o motorista documentado — comparando uma foto capturada no momento com a foto de referência do cadastro.",
+    importance: "Reduz o risco de um motorista diferente do cadastrado assumir a viagem sem o conhecimento da transportadora ou do embarcador.",
+    atlasUsage: "Usado pelo Atlas Profile na etapa de aprovação de motoristas, junto com a checagem documental e de antecedentes.",
+  },
+  {
+    id: "icp",
+    term: "ICP (Ideal Customer Profile)",
+    definition:
+      "Perfil de cliente ideal: conjunto de características (porte, segmento, tipo de carga, maturidade em gestão de risco) que descrevem o cliente que mais se beneficia da solução e tem maior chance de fechar negócio.",
+    atlasUsage: "Usado pelo processo comercial para priorizar prospecção e adaptar o discurso de vendas conforme o perfil do cliente (transportadora, embarcador ou operador logístico).",
   },
 ];
 

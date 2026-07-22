@@ -8,6 +8,7 @@ export const module05: ModuleContentFull = {
   sources: [
     "Manual de Check list — telas do Atlas Connect (cadastro de veículo, checklist, menus)",
     "Cronograma de Treinamentos 2º semestre — treinamentos de Atlas Connect e de tecnologias de rastreamento",
+    "Treinamento Connect — Acesso ao Atlas Connect (telas de Dashboard e cadastros gerais)",
   ],
   objectives: [
     "Explicar para que serve o Atlas Connect no dia a dia da Central.",
@@ -62,6 +63,15 @@ export const module05: ModuleContentFull = {
             "Cadastros Gerais — cadastro de veículos, motoristas e demais objetos monitorados.",
             "Localização — informações de posicionamento dos veículos.",
             "P.G.R. — configuração do Plano de Gerenciamento de Risco de cada cliente.",
+          ],
+        },
+        {
+          type: "text",
+          heading: "As telas do Dashboard",
+          paragraphs: [
+            [
+              "O menu Dashboard reúne cinco telas: Painel de Viagens ODO (progressão de cada viagem, previsão de chegada e dispersão de quilometragem), BI de Pátio (veículos parados em pátio e o tempo de permanência), Panorâmica (visão geral de frotas, viagens em andamento, em atraso e checklists aprovados/reprovados), Mapa Gerencial (grid em tempo real com placa, frota, código da SM e última macro) e Requisição.",
+            ],
           ],
         },
         {
@@ -162,5 +172,11 @@ export const module05: ModuleContentFull = {
       { label: "Monitoramento", items: ["Evento ATLAS/TECNOL", "Macro", "Auditoria", "Tela de Alerta", "Operador CheckList", "Consolidado SM"] },
       { label: "Tecnologias integradas", items: ["Sascar / Sighra", "Onix / Omnilink", "Pósitron / Autotrac"] },
     ],
+  },
+  scenario:
+    "Um supervisor pede para você localizar rapidamente o histórico de checklist de uma placa específica, no meio de um turno cheio. Em qual menu do Atlas Connect essa informação está, e em quantos passos você chega até ela?",
+  diagram: {
+    title: "Fluxo de um veículo dentro do Atlas Connect",
+    chart: "graph LR\n  A[Cadastros Gerais] --> B[Solicitar CheckList]\n  B --> C[Operador CheckList]\n  C --> D[SM Ativa]\n  D --> E[Consolidado SM]",
   },
 };

@@ -31,8 +31,7 @@ export default function TrilhaPage() {
           </p>
           <h1 className="mt-1 font-display text-3xl font-bold text-foreground">Trilha de Onboarding</h1>
           <p className="mt-2 max-w-2xl text-muted">
-            15 módulos compõem a trilha completa. Nesta versão de protótipo, 3 módulos têm conteúdo, quiz e
-            certificação totalmente funcionais — os demais mostram o outline já estruturado.
+            15 módulos compõem a trilha completa, todos com conteúdo, quiz e certificação totalmente funcionais.
           </p>
         </div>
 

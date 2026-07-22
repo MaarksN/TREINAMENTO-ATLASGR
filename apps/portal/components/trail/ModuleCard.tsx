@@ -7,11 +7,13 @@ import type { ModuleMeta } from "@/lib/types";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { useOnboardingStore } from "@/lib/store";
+import { moduleIcons } from "@/lib/moduleIcons";
 
 export function ModuleCard({ meta, index }: { meta: ModuleMeta; index: number }) {
   const progress = useOnboardingStore((s) => s.progress[meta.slug]);
   const passed = !!progress?.passed;
   const isBuilding = meta.status === "building";
+  const Icon = moduleIcons[meta.slug];
 
   const content = (
     <Card
@@ -20,7 +22,14 @@ export function ModuleCard({ meta, index }: { meta: ModuleMeta; index: number })
       }`}
     >
       <div className="mb-3 flex items-center justify-between">
-        <span className="font-display text-xs font-semibold text-muted">MÓDULO {String(meta.number).padStart(2, "0")}</span>
+        <span className="flex items-center gap-2 font-display text-xs font-semibold text-muted">
+          {Icon && (
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-atlas-orange/10 text-atlas-orange">
+              <Icon size={15} />
+            </span>
+          )}
+          MÓDULO {String(meta.number).padStart(2, "0")}
+        </span>
         {isBuilding ? (
           <Badge variant="muted" className="gap-1">
             <Wrench size={12} /> Em construção

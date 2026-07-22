@@ -15,12 +15,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Mercado de Logística",
     shortDescription: "Supply chain, transportadoras, embarcadores e tipos de carga e operação.",
     durationMinutes: 35,
-    status: "building",
-    outline: {
-      what: "Panorama do setor de logística e transporte de cargas no Brasil: cadeia de suprimentos, elos e agentes.",
-      why: "Entender o mercado em que a Atlas atua ajuda o colaborador a falar a língua do cliente e enxergar onde o gerenciamento de risco se encaixa.",
-      how: "Mapeamento dos principais tipos de carga, operação e agentes da cadeia logística, com apoio de dados públicos (ANTT, CNT).",
-    },
+    status: "ready",
   },
   {
     slug: "03-gerenciamento-risco",
@@ -36,12 +31,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Produtos ATLASGR",
     shortDescription: "Visão geral do portfólio: gerenciamento de risco, tecnologia, perfil securitário e bases dedicadas.",
     durationMinutes: 45,
-    status: "building",
-    outline: {
-      what: "Catálogo consolidado de tudo o que a Atlas entrega ao cliente, além do monitoramento em si.",
-      why: "O colaborador precisa reconhecer cada produto/serviço de cabeça para atender e vender com segurança.",
-      how: "Cada produto será detalhado com o que é, para quem serve e como se conecta às áreas operacionais já estudadas nos módulos 1, 3 e 5.",
-    },
+    status: "ready",
   },
   {
     slug: "05-software-logistico",
@@ -57,12 +47,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Atlas Profile",
     shortDescription: "Background check, biometria e compliance na análise de motoristas e veículos.",
     durationMinutes: 35,
-    status: "building",
-    outline: {
-      what: "Solução de checagem documental e comportamental de motoristas e veículos antes e durante a operação.",
-      why: "Reduz o risco de colocar em rota um motorista ou veículo com pendências ou histórico suspeito.",
-      how: "Conecta-se ao setor de Perfil Securitário (já apresentado no módulo 1) e às regras de compliance/LGPD.",
-    },
+    status: "ready",
   },
   {
     slug: "07-integracoes",
@@ -70,12 +55,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Integrações",
     shortDescription: "Como o Atlas Connect conversa com ERP, TMS e rastreadores de diferentes fabricantes.",
     durationMinutes: 30,
-    status: "building",
-    outline: {
-      what: "Panorama de como o Connect troca dados com sistemas do cliente e com equipamentos de rastreamento de terceiros.",
-      why: "Boa parte do suporte ao cliente envolve entender por onde a informação trafega entre sistemas.",
-      how: "Mapeamento dos pontos de integração já citados nos treinamentos de tecnologia (Sascar, Sighra, Onix, Omnilink, Pósitron, Autotrac).",
-    },
+    status: "ready",
   },
   {
     slug: "08-clientes",
@@ -83,12 +63,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Clientes",
     shortDescription: "Perfis de cliente atendidos pela Atlas: transportadoras, embarcadores e segmentos.",
     durationMinutes: 30,
-    status: "building",
-    outline: {
-      what: "Quem contrata a Atlas e por quê — transportadoras, embarcadores e operadores logísticos de diferentes segmentos.",
-      why: "Atendimento e argumentação comercial mudam conforme o perfil e a dor do cliente.",
-      how: "Perfis serão descritos a partir de casos documentados internamente, com o devido sigilo comercial.",
-    },
+    status: "ready",
   },
   {
     slug: "09-processo-comercial",
@@ -96,12 +71,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Processo Comercial",
     shortDescription: "ICP, persona, dores, objeções, diferenciais competitivos e argumentação.",
     durationMinutes: 40,
-    status: "building",
-    outline: {
-      what: "Como a área Comercial identifica, aborda e converte um cliente em potencial.",
-      why: "Mesmo fora do time comercial, todo colaborador representa a marca — entender o discurso comercial evita contradições no atendimento.",
-      how: "Construído a partir do playbook comercial interno (quando disponibilizado) e da estrutura comercial já vista no módulo 1.",
-    },
+    status: "ready",
   },
   {
     slug: "10-termos-tecnicos",
@@ -109,12 +79,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Termos Técnicos",
     shortDescription: "Glossário consolidado com os termos usados no dia a dia da Central e do mercado.",
     durationMinutes: 30,
-    status: "building",
-    outline: {
-      what: "Um glossário de referência rápida, sempre disponível durante o estudo dos demais módulos.",
-      why: "Vocabulário técnico é a base para entender qualquer módulo posterior sem depender de explicações repetidas.",
-      how: "Os termos já usados nos módulos 1, 3 e 5 estão disponíveis na página de Glossário — este módulo será o hub central quando os 15 módulos estiverem completos.",
-    },
+    status: "ready",
   },
   {
     slug: "11-operacao",
@@ -122,12 +87,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Operação",
     shortDescription: "Fluxos, monitoramento, checklist, alertas e eventos do dia a dia da Central.",
     durationMinutes: 45,
-    status: "building",
-    outline: {
-      what: "Detalhamento passo a passo da rotina operacional da Central de Monitoramento 24 horas.",
-      why: "É a área que mais recebe colaboradores novos — dominar o fluxo operacional é pré-requisito para qualquer outra função.",
-      how: "Baseado nos manuais de checklist e nos fluxos de alerta já referenciados no módulo 3, detalhando cada etapa.",
-    },
+    status: "ready",
   },
   {
     slug: "12-compliance",
@@ -135,12 +95,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Compliance",
     shortDescription: "LGPD, segurança da informação, sigilo e boas práticas internas.",
     durationMinutes: 30,
-    status: "building",
-    outline: {
-      what: "Regras de conduta, confidencialidade e proteção de dados que todo colaborador precisa seguir.",
-      why: "A Atlas lida com dados sensíveis de clientes, motoristas e cargas — falhas de compliance geram risco jurídico e reputacional.",
-      how: "Baseado na Política Organizacional e Ética interna (sigilo, uso de e-mail/internet, redes sociais) e na LGPD.",
-    },
+    status: "ready",
   },
   {
     slug: "13-tecnologia",
@@ -148,12 +103,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Tecnologia",
     shortDescription: "IA, analytics e automações aplicadas ao gerenciamento de risco logístico.",
     durationMinutes: 35,
-    status: "building",
-    outline: {
-      what: "Tendências tecnológicas do setor — IA aplicada a rastreamento, analytics operacional, automação de alertas.",
-      why: "O mercado de gerenciamento de risco está migrando de monitoramento reativo para prevenção baseada em dados.",
-      how: "Contextualizado a partir do que já existe no Connect (BI de indicadores, sensores de fadiga) e de tendências públicas do setor.",
-    },
+    status: "ready",
   },
   {
     slug: "14-casos-reais",
@@ -161,12 +111,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Casos Reais",
     shortDescription: "Cases, recuperações e resultados operacionais da Atlas.",
     durationMinutes: 30,
-    status: "building",
-    outline: {
-      what: "Casos reais e anonimizados de operações, recuperações e resultados obtidos pela Central.",
-      why: "Casos concretos tornam o treinamento tangível e mostram o impacto direto do trabalho de cada colaborador.",
-      how: "Serão documentados a partir de relatórios internos de sinistro e recuperação, sempre com dados anonimizados.",
-    },
+    status: "ready",
   },
   {
     slug: "15-preparacao-final",
@@ -174,12 +119,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Preparação Final",
     shortDescription: "Revisão geral de todo o conteúdo antes da prova final.",
     durationMinutes: 30,
-    status: "building",
-    outline: {
-      what: "Revisão consolidada dos pontos-chave de todos os módulos, com mapa mental geral da trilha.",
-      why: "Reforça a retenção do conteúdo antes da avaliação final e da emissão do certificado.",
-      how: "Disponível assim que os 15 módulos estiverem com conteúdo completo — nesta versão, a Prova Final já cobre os módulos prontos.",
-    },
+    status: "ready",
   },
 ];
 
