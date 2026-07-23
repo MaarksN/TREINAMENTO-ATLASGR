@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  role      String   @default("COLLABORATOR") // "ADMIN", "COLLABORATOR"
+  tenantId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Gamification Relations
+  gamificationProfile GamificationProfile?
+  achievements        UserAchievement[]
+  moduleProgress      ModuleProgress[]
+}
+
+model GamificationProfile {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  xp             Int      @default(0)
+  level          Int      @default(1)
+  currentStreak  Int      @default(0)
+  longestStreak  Int      @default(0)
+  lastActiveDate DateTime @default(now())
+  avatarUrl      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Achievement {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  type        String   @default("BADGE") // "BADGE", "MEDAL", "CERTIFICATE"
+  iconSvg     String?
+  pointsValue Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  users       UserAchievement[]
+}
+
+model UserAchievement {
+  id            String      @id @default(uuid())
+  userId        String
+  achievementId String
+  earnedAt      DateTime    @default(now())
+
+  user          User        @relation(fields: [userId], references: [id])
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+
+  @@unique([userId, achievementId])
+}
+
+model Module {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  category    String
+  createdAt   DateTime @default(now())
+
+  progress    ModuleProgress[]
+}
+
+model ModuleProgress {
+  id          String   @id @default(uuid())
+  userId      String
+  moduleId    String
+  status      String   @default("NOT_STARTED") // "NOT_STARTED", "IN_PROGRESS", "COMPLETED"
+  score       Int?     // e.g. Quiz score
+  completedAt DateTime?
+
+  user        User     @relation(fields: [userId], references: [id])
+  module      Module   @relation(fields: [moduleId], references: [id])
+
+  @@unique([userId, moduleId])
+}

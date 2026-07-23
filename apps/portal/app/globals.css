@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f7f7f8;
+  --background: #fcfcfc;
   --surface: #ffffff;
-  --surface-2: #f1f1f3;
-  --foreground: #1c1e22;
+  --surface-2: #f4f4f5;
+  --foreground: #111111; /* A bit darker for premium contrast */
   --muted: #6b7178;
   --border: #e4e4e7;
   --input: #e4e4e7;
@@ -20,53 +20,53 @@
   --secondary-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --accent: #f1f1f3;
-  --accent-foreground: #1c1e22;
+  --accent: #f4f4f5;
+  --accent-foreground: #111111;
   --popover: #ffffff;
-  --popover-foreground: #1c1e22;
+  --popover-foreground: #111111;
   --card: #ffffff;
-  --card-foreground: #1c1e22;
+  --card-foreground: #111111;
 
   --atlas-orange: #FF5618;
   --atlas-orange-2: #ff8347;
   --atlas-graphite: #333333;
   --atlas-ring: rgba(255, 86, 24, 0.45);
 
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
 
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: #131417;
-  --surface: #1a1c20;
-  --surface-2: #212327;
-  --foreground: #f1f1f2;
-  --muted: #9a9ea6;
-  --border: #2c2f34;
-  --input: #2c2f34;
-  --ring: rgba(255, 106, 53, 0.45);
+  --background: #0a0a0a;
+  --surface: #121212;
+  --surface-2: #1a1a1a;
+  --foreground: #ededed;
+  --muted: #a1a1aa;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: rgba(255, 86, 24, 0.45);
 
   --primary: #FF5618;
   --primary-foreground: #FFFFFF;
-  --secondary: #1c1e22;
-  --secondary-foreground: #f1f1f2;
+  --secondary: #27272a;
+  --secondary-foreground: #ededed;
   --destructive: #EF4444;
-  --destructive-foreground: #f1f1f2;
-  --accent: #212327;
-  --accent-foreground: #f1f1f2;
-  --popover: #1a1c20;
-  --popover-foreground: #f1f1f2;
-  --card: #1a1c20;
-  --card-foreground: #f1f1f2;
+  --destructive-foreground: #ededed;
+  --accent: #27272a;
+  --accent-foreground: #ededed;
+  --popover: #121212;
+  --popover-foreground: #ededed;
+  --card: #121212;
+  --card-foreground: #ededed;
 
-  --atlas-orange: #ff6a35;
-  --atlas-orange-2: #ff8f5c;
-  --atlas-graphite: #1c1e22;
-  --atlas-ring: rgba(255, 106, 53, 0.45);
+  --atlas-orange: #FF5618;
+  --atlas-orange-2: #ff8347;
+  --atlas-graphite: #27272a;
+  --atlas-ring: rgba(255, 86, 24, 0.45);
 
-  --glass-bg: rgba(26, 28, 32, 0.55);
+  --glass-bg: rgba(18, 18, 18, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -97,6 +97,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
@@ -132,8 +134,16 @@ body {
   .glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .glass-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
   }
 
   .text-gradient-atlas {
@@ -149,7 +159,11 @@ body {
 
   .font-display {
     font-family: var(--font-display), sans-serif;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+  }
+
+  .font-sans {
+    font-family: var(--font-sans), sans-serif;
   }
 }
 
@@ -166,47 +180,18 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .dialog-overlay {
-  animation: overlay-in 180ms ease-out both;
+  animation: overlay-in 200ms ease-out both;
 }
 .dialog-content {
   animation: content-in 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-/* Popover/Tooltip do Radix já controlam position via transform inline (Popper) —
-   animar apenas opacidade evita sobrescrever esse posicionamento. */
 @keyframes popover-fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 .popover-fade {
-  animation: popover-fade-in 140ms ease-out both;
+  animation: popover-fade-in 150ms ease-out both;
 }
 .reveal-up {
-  animation: reveal-up 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/*
- * -------------------------------------------------------------
- * ATLASGR ANIMATION UTILITIES
- * Durações restritas entre 150ms e 300ms.
- * -------------------------------------------------------------
- */
-
-@keyframes fade-in-atlas {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slide-in-atlas {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scale-in-atlas {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes progress-atlas {
-  from { width: 0%; }
-  to { width: 100%; }
+  animation: reveal-up 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
