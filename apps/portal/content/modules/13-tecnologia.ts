@@ -7,123 +7,147 @@ export const module13: ModuleContentFull = {
   ...meta,
   sources: [
     "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulo 5 — Software Logístico (Atlas Connect, BI de indicadores, sensores de fadiga)",
     "Showcase de produto Atlas Analytics (/produtos/analytics)",
+    "Visão Estratégica AtlasGR 2026",
   ],
   objectives: [
-    "Reconhecer como IA e analytics já aparecem na operação atual da Atlas.",
-    "Diferenciar monitoramento reativo de prevenção baseada em dados.",
-    "Explicar o papel do sensor de fadiga (Safety) como exemplo de tecnologia preditiva.",
-    "Situar o Atlas Analytics como a camada que transforma eventos em decisão executiva.",
+    "Compreender a virada do modelo Reativo para o modelo Preditivo na logística.",
+    "Explicar como sensores embarcados (ex: Fadiga) alimentam a nossa Inteligência Artificial.",
+    "Reconhecer que a IA e os dados não substituem os operadores, mas os tornam taticamente superiores.",
+    "Descrever o valor do Atlas Analytics para a diretoria dos nossos clientes.",
   ],
   sections: [
     {
-      id: "do-reativo-ao-preditivo",
-      title: "De reativo para preditivo",
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
       blocks: [
         {
           type: "text",
+          heading: "Visão Geral",
           paragraphs: [
             [
-              "Por muito tempo, gerenciamento de risco significou reagir depois que algo já tinha acontecido: um alerta disparava, o operador tratava, e só depois a liderança analisava o que deu errado. A tendência do mercado — e da própria Atlas — é migrar para uma postura preventiva: usar dados para antecipar onde o risco é maior antes que o evento aconteça.",
+              "Historicamente, o gerenciamento de risco foi baseado na pergunta 'O que aconteceu?'. Hoje, a tecnologia que construímos na AtlasGR responde à pergunta 'O que vai acontecer nas próximas 2 horas?'. Este módulo foca no futuro.",
             ],
           ],
         },
+        {
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Intermediário (Tecnologia/Dados)",
+            "Pré-requisitos: Módulo 04 e Módulo 05",
+            "Tempo estimado: 35 minutos",
+            "Competências desenvolvidas: Pensamento Analítico, Fluência em IA Aplicada",
+            "Gamificação: +500 XP, Badge 'Mente Preditiva'",
+          ],
+        },
+      ],
+    },
+    {
+      id: "reativo-vs-preditivo",
+      title: "A Virada de Chave: Do Reativo ao Preditivo",
+      blocks: [
         {
           type: "comparison",
-          title: "Monitoramento reativo x Prevenção baseada em dados",
+          title: "Os Dois Mundos",
           left: {
-            label: "Reativo",
-            points: [
-              "Alerta dispara, operador trata.",
-              "Análise acontece depois do evento.",
-              "Decisão baseada em um caso isolado.",
-            ],
+            label: "O Risco Reativo (Passado)",
+            points: ["O caminhão é roubado.", "O cliente liga para perguntar o que houve.", "Envia-se um relatório contando a tragédia e acionando o seguro."],
           },
           right: {
-            label: "Preditivo",
-            points: [
-              "Padrões históricos apontam onde o risco é maior antes da viagem.",
-              "Indicadores acompanhados continuamente (Atlas Analytics).",
-              "Decisão baseada em tendência, não em um caso isolado.",
-            ],
+            label: "O Risco Preditivo (AtlasGR Hoje)",
+            points: ["A IA detecta que o motorista entrou em uma região onde houve 5 furtos esta semana e parou o veículo de forma anômala.", "A Torre bloqueia o baú remotamente.", "O cliente é avisado da prevenção bem sucedida."],
           },
         },
       ],
     },
     {
-      id: "safety-como-exemplo",
-      title: "Safety: um exemplo de tecnologia já em uso",
+      id: "telemetria-avancada",
+      title: "Telemetria e Sensores de Safety (Segurança)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O sensor de ",
-              { term: "safety" },
-              " é um bom exemplo de tecnologia preditiva já aplicada na operação: em vez de esperar um acidente por fadiga, o sistema identifica sinais de risco (bocejo, olhos fechados, uso de celular) em tempo real e gera um alerta antes que o pior aconteça.",
+              "Antigamente, risco era só 'roubo'. Hoje, risco é 'acidente'. Um acidente na serra destrói a carga, o caminhão e tira vidas. É aí que entram as câmeras com Inteligência Artificial embarcada (Telemetria Avançada).",
             ],
-            [
-              "Quando esses eventos são consolidados ao longo do tempo, viram indicador de tendência: qual motorista, rota ou horário concentra mais eventos de fadiga — informação valiosa tanto para a Central quanto para a gestão do cliente.",
-            ],
+          ],
+        },
+        {
+          type: "timeline",
+          title: "O Ciclo do Sensor de Fadiga",
+          items: [
+            { label: "Cabine", text: "A câmera detecta o motorista bocejando três vezes ou fechando o olho por 2 segundos." },
+            { label: "Bordo", text: "O sensor apita alto dentro da cabine e vibra o banco (alerta local)." },
+            { label: "Connect", text: "O evento de Fadiga sobe para a tela da AtlasGR." },
+            { label: "Torre", text: "O Operador liga para o motorista ordenando a parada na próxima base segura para descanso mandatório." },
           ],
         },
       ],
     },
     {
-      id: "analytics-e-ia",
-      title: "Atlas Analytics e o papel da IA",
+      id: "o-poder-dos-dados",
+      title: "Atlas Analytics e a Visão do CEO",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O Atlas Analytics consolida eventos, alertas e indicadores de ",
-              { term: "kpi" },
-              " em painéis executivos: mapa de risco por região, ranking de ofensores de safety, tempo de permanência em alvos. É essa camada de análise que aponta tendência, e não apenas o histórico bruto de eventos.",
+              "A Torre de Controle apaga o incêndio de hoje. O ",
+              { term: "analytics" },
+              " descobre por que a casa está pegando fogo todos os dias.",
             ],
             [
-              "Tecnologias de inteligência artificial aplicadas a esse tipo de dado — reconhecimento de padrões em grandes volumes de eventos, por exemplo — são uma tendência clara do setor de gerenciamento de risco logístico, e o caminho natural de evolução para tornar a prevenção ainda mais precisa.",
+              "Nós pegamos 1 milhão de pontos de GPS, 50 mil eventos de fadiga, 10 mil perdas de sinal, cruzamos tudo e entregamos um painel visual para o CEO do cliente.",
             ],
           ],
         },
         {
-          type: "callout",
-          variant: "info",
-          title: "Tecnologia não substitui processo",
-          text: [
-            "Nenhuma tecnologia de análise de dados substitui um PGR bem desenhado ou uma CIA bem treinada — ela existe para tornar esse processo mais preciso e mais rápido, não para substituí-lo.",
+          type: "case",
+          title: "A Descoberta de Padrões",
+          text: "O Analytics mostrou que 80% das avarias de carga de uma transportadora aconteciam com 5 motoristas específicos, num trecho de serra, de madrugada. Solução: Trocar a rota ou reciclar esses 5 motoristas. Isso é impossível de ver apenas olhando a Grade diária.",
+          source: "Showcase Atlas Analytics",
+        },
+      ],
+    },
+    {
+      id: "ia-e-humanos",
+      title: "A Máquina Substitui o Operador?",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "A resposta é NÃO. A inteligência artificial não substitui o julgamento humano crítico (a malícia) de um operador experiente ou da CIA. A tecnologia filtra o 'lixo' (falsos positivos) para que os humanos foquem apenas nas anomalias complexas que requerem decisão criativa e negociação.",
+            ],
           ],
         },
       ],
     },
   ],
   summary: [
-    "O mercado de gerenciamento de risco está migrando de monitoramento reativo para prevenção baseada em dados.",
-    "O sensor de Safety é um exemplo já em uso de tecnologia preditiva, identificando risco antes do acidente.",
-    "O Atlas Analytics consolida eventos em indicadores de tendência — mapa de risco, ranking de ofensores, tempo em alvos.",
-    "Inteligência artificial aplicada a grandes volumes de eventos é uma tendência natural de evolução do setor.",
-    "Tecnologia não substitui PGR nem CIA — ela torna o processo mais preciso e mais rápido.",
+    "A evolução do negócio saiu de avisar sobre roubos (Reativo) para antecipar acidentes e furtos (Preditivo).",
+    "Sensores de fadiga analisam o comportamento humano em tempo real usando câmeras de bordo.",
+    "O Atlas Analytics converte milhões de eventos caóticos em indicadores visuais para a gestão do cliente.",
+    "Tecnologia não demite pessoas boas; ela corta o trabalho robótico e eleva o nível estratégico da equipe humana.",
   ],
   finalChecklist: [
-    "Sei diferenciar monitoramento reativo de prevenção baseada em dados.",
-    "Consigo explicar o papel do sensor de Safety como exemplo de tecnologia preditiva.",
-    "Sei o que o Atlas Analytics consolida e para quem serve.",
-    "Entendo por que tecnologia não substitui processo (PGR/CIA).",
+    "Sei a diferença entre modelo reativo e modelo preditivo.",
+    "Posso explicar como um sensor de fadiga funciona.",
+    "Entendo que o Atlas Analytics foca no histórico/tendência, não no despacho em tempo real.",
   ],
   mindMap: {
-    root: "Tecnologia",
+    root: "Tecnologia e Dados",
     branches: [
-      { label: "Tendência", items: ["Reativo → preditivo", "Prevenção baseada em dados"] },
-      { label: "Safety", items: ["Bocejo", "Olhos fechados", "Uso de celular", "Indicador de tendência"] },
-      { label: "Analytics", items: ["Mapa de risco", "Ranking de ofensores", "Tempo em alvos", "KPI"] },
-      { label: "IA", items: ["Reconhecimento de padrões", "Não substitui PGR nem CIA"] },
+      { label: "Visão Preditiva", items: ["Antecipação", "IA", "Padrões Históricos"] },
+      { label: "Safety", items: ["Fadiga", "Câmeras Bordo", "Prevenção de Acidentes"] },
+      { label: "Analytics", items: ["Visão Executiva", "Raio-X da Frota", "Indicadores de Diretoria"] },
     ],
   },
   scenario:
-    "O sensor de Safety aponta três eventos de fadiga do mesmo motorista na mesma semana, em rotas diferentes. Nenhum virou acidente — ainda. Como transformar esse padrão em ação preventiva, em vez de esperar o quarto evento?",
+    "O cliente acha que 'pagar por sensores de fadiga é caro'. Como você argumenta, usando a lógica preditiva e os custos (visíveis e invisíveis) de um tombamento de carreta com perda total na serra?",
   diagram: {
-    title: "De reativo a preditivo",
-    chart: "graph LR\n  A[Evento isolado] --> B[Historico consolidado]\n  B --> C[Atlas Analytics]\n  C --> D[Acao preventiva]",
+    title: "O Loop Preditivo",
+    chart: "graph LR\n  A[Sensores no Veículo] -->|Gera Dados| B[IA Detecta Padrão]\n  B -->|Alerta Operador| C[Ação Preventiva]\n  C -->|Alimenta Banco| D[Atlas Analytics (Gráficos)]\n  D -->|Cliente Muda Rota| A",
   },
 };

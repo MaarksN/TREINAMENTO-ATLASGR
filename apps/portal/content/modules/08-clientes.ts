@@ -11,108 +11,131 @@ export const module08: ModuleContentFull = {
     "Cases de cliente apresentados nos showcases de produto do portal",
   ],
   objectives: [
-    "Reconhecer os principais perfis de cliente atendidos pela Atlas.",
-    "Explicar como a dor de cada perfil muda o que a Atlas entrega.",
-    "Relacionar cada perfil de cliente a exemplos de resultado (cases).",
+    "Reconhecer os três principais perfis de cliente atendidos pela Atlas.",
+    "Explicar como a dor de cada perfil muda o que a Atlas entrega e como argumentar.",
+    "Relacionar cada perfil de cliente a exemplos reais de resultado operacional (cases).",
+    "Compreender a dinâmica de poder entre Embarcador e Transportadora.",
   ],
   sections: [
     {
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
+      blocks: [
+        {
+          type: "text",
+          heading: "Visão Geral",
+          paragraphs: [
+            [
+              "Não existe um 'cliente padrão'. Quem liga para a Atlas pode ser o dono de uma transportadora buscando cumprir a apólice ou o diretor de um embarcador multinacional buscando dados táticos. Você precisa saber com quem está falando.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Intermediário (Negócios)",
+            "Pré-requisitos: Módulo 02 e Módulo 04",
+            "Tempo estimado: 30 minutos",
+            "Competências desenvolvidas: Inteligência de Mercado, Empatia Comercial, Perfilamento",
+            "Gamificação: +400 XP, Badge 'Analista de Perfis'",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "success",
+          title: "Dica de Ouro",
+          text: [
+            "A linguagem muda o jogo. Ao falar com Transportadoras, fale em 'Prejuízo Evitado' e 'Conformidade de Apólice'. Ao falar com Embarcadores, fale em 'SLA de Entrega', 'Visibilidade' e 'Eficiência'.",
+          ],
+        },
+      ],
+    },
+    {
       id: "perfis-de-cliente",
-      title: "Quem contrata a Atlas",
+      title: "Quem contrata a AtlasGR?",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A Atlas atende três grandes perfis de cliente, cada um com uma dor principal diferente — e reconhecer qual perfil está do outro lado da conversa muda como o colaborador explica o valor da Atlas.",
+              "A Atlas atende três grandes perfis, cada um com uma dor principal muito específica.",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "Transportadora x Embarcador",
+          title: "As Dores Diferentes",
           left: {
-            label: "Transportadora",
+            label: "A Transportadora",
             points: [
-              "Precisa cumprir exigências de apólice para manter a cobertura de seguro válida.",
-              "Quer reduzir o próprio prejuízo direto com sinistros (indenização, multa, reputação).",
-              "Costuma ter contato mais frequente com a operação do dia a dia da Central.",
+              "Foco: Custos Diretos e Apólice.",
+              "Dor: O seguro não vai pagar o roubo se o PGR não for cumprido.",
+              "Precisa de: Atlas Profile para evitar motoristas ruins e Atlas GR para cumprir a regra.",
             ],
           },
           right: {
-            label: "Embarcador",
+            label: "O Embarcador (Dono da Carga)",
             points: [
-              "Quer visibilidade sobre a carga, mesmo transportada por terceiros.",
-              "Preocupa-se com o custo total da operação — inclusive tempo parado (ex.: tempo em fazendas ou fábricas).",
-              "Costuma acompanhar a operação por indicadores e relatórios executivos (Atlas Analytics).",
+              "Foco: Prazo de Entrega e Custo Oculto.",
+              "Dor: A transportadora terceirizada perdeu a carga ou atrasou a entrega.",
+              "Precisa de: Atlas Connect para ver todos os terceirizados na mesma tela e Analytics para medir quem é melhor.",
             ],
           },
         },
         {
           type: "text",
-          heading: "Operador logístico",
+          heading: "O Terceiro Jogador: Operador Logístico",
           paragraphs: [
             [
-              "Um terceiro perfil, o operador logístico, atua entre os dois: contrata frota e serviços de transporte por conta de um ou mais embarcadores, e costuma precisar tanto da visão operacional (Connect) quanto da visão executiva (Analytics).",
+              "O operador logístico (como uma DHL ou Julio Simões) não é nem o dono da carga nem, muitas vezes, o dono do caminhão. Ele organiza o jogo. Para ele, a dor é a gestão gigantesca. Eles são os maiores consumidores do Atlas Analytics.",
             ],
           ],
         },
       ],
     },
     {
-      id: "dor-por-perfil",
-      title: "A dor de cada perfil, na prática",
+      id: "dores-reais",
+      title: "As Dores Traduzidas em Números",
       blocks: [
         {
           type: "case",
-          title: "Embarcador de combustível",
-          text:
-            "Um embarcador de combustível relatou R$ 95 milhões economizados em perdas ao adotar o gerenciamento de risco da Atlas — a dor principal, nesse caso, era o prejuízo direto com roubo de carga de alto valor.",
-          source: "Case de cliente apresentado no showcase de produto Atlas Profile",
+          title: "Case Embarcador de Combustível (A Dor do Roubo)",
+          text: "Um grande embarcador focado na distribuição de combustíveis sofria com desvios em rodovias remotas. A implantação do Atlas GR aliado a sensores de abertura de válvula impediu R$ 95 milhões em perdas em 2 anos.",
+          source: "Arquivo Comercial AtlasGR",
         },
         {
           type: "case",
-          title: "Embarcador de suco",
-          text:
-            "Um embarcador do setor de suco reduziu em 26% o tempo de permanência de veículos em fazendas — nesse caso, a dor não era roubo de carga, mas custo operacional invisível: tempo parado que não aparecia como prioridade até ser medido.",
-          source: "Case de cliente apresentado no showcase de produto Atlas Connect / GR",
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "O mesmo produto, dores diferentes",
-          text: [
-            "O Atlas Connect e o Atlas Analytics são os mesmos produtos nos dois cases acima — o que muda é qual indicador o cliente mais valoriza: perda evitada ou tempo economizado.",
-          ],
+          title: "Case Embarcador de Suco (A Dor da Ineficiência)",
+          text: "Neste caso, não havia roubo. A dor era o tempo. O cliente descobriu via Atlas Analytics que os caminhões ficavam dias parados nas fazendas de laranja aguardando carregamento. A Atlas reduziu o tempo de pátio em 26%.",
+          source: "Arquivo Comercial AtlasGR",
         },
       ],
     },
   ],
   summary: [
-    "A Atlas atende três perfis principais: transportadora, embarcador e operador logístico.",
-    "Transportadora foca em cumprir apólice e reduzir prejuízo direto com sinistro.",
-    "Embarcador foca em visibilidade da carga e custo total da operação, incluindo tempo parado.",
-    "Operador logístico combina as duas visões, operacional e executiva.",
-    "O mesmo produto pode resolver dores diferentes dependendo do perfil do cliente — por isso a Atlas usa cases distintos para cada um.",
+    "Identificar se o cliente é Transportadora, Embarcador ou Operador muda a sua abordagem e linguagem.",
+    "A Transportadora quer cumprir o seguro. O Embarcador quer gerir prazos e visão global.",
+    "O mesmo portfólio de produtos Atlas resolve ambas as dores, se a argumentação for ajustada.",
+    "Resultados práticos (Cases) são a melhor forma de tangibilizar o valor do nosso serviço.",
   ],
   finalChecklist: [
-    "Sei nomear os três perfis de cliente atendidos pela Atlas.",
-    "Consigo explicar a dor principal de cada perfil.",
-    "Sei relacionar cada perfil a um exemplo de resultado (case).",
+    "Diferencio Transportadora de Embarcador com base em dores operacionais.",
+    "Entendo qual produto oferecer baseado na dor inicial do cliente.",
+    "Consigo explicar pelo menos um case real de sucesso (Combustível ou Suco).",
   ],
   mindMap: {
-    root: "Clientes",
+    root: "Perfis de Cliente",
     branches: [
-      { label: "Transportadora", items: ["Cumprir apólice", "Reduzir prejuízo com sinistro"] },
-      { label: "Embarcador", items: ["Visibilidade da carga", "Custo total da operação"] },
-      { label: "Operador logístico", items: ["Visão operacional", "Visão executiva"] },
-      { label: "Cases", items: ["R$ 95M economizados (combustível)", "-26% tempo em fazendas (suco)"] },
+      { label: "Transportadora", items: ["Seguro", "Prejuízo", "GR e Profile"] },
+      { label: "Embarcador", items: ["Visibilidade", "Tempo de Pátio", "Connect e Analytics"] },
+      { label: "Operador Logístico", items: ["Gestão Macro", "SLA", "Analytics"] },
     ],
   },
   scenario:
-    "Na mesma manhã, você atende uma transportadora preocupada com o custo de um sinistro recente e, depois, um embarcador perguntando sobre tempo parado em fazendas. Dores completamente diferentes — como isso muda sua resposta em cada ligação?",
+    "Você atende a ligação de um diretor da Coca-Cola (Embarcador). Ele diz que está perdendo cargas porque as transportadoras dele são ineficientes. Você vai focar em vender a Apólice (GR) ou a Visibilidade (Connect)? Por quê?",
   diagram: {
-    title: "Perfis de cliente atendidos pela Atlas",
-    chart: "graph LR\n  A[Transportadora] --> D[Atlas]\n  B[Embarcador] --> D\n  C[Operador logistico] --> D",
+    title: "Mapeamento de Valor",
+    chart: "graph LR\n  A[Transportadora] -->|Busca Proteção| B[Atlas GR / Profile]\n  C[Embarcador] -->|Busca Visão Geral| D[Atlas Connect / Analytics]",
   },
 };

@@ -10,129 +10,110 @@ export const module15: ModuleContentFull = {
     "Módulos 1 a 14 — revisão consolidada de toda a trilha",
   ],
   objectives: [
-    "Revisar, em uma visão única, os pontos-chave de todos os módulos da trilha.",
-    "Identificar lacunas de conhecimento antes de realizar a Prova Final.",
-    "Reconhecer a ligação entre os quatro pilares do portfólio e o dia a dia da Central.",
+    "Revisar, em uma visão executiva única, todos os pilares ensinados no Onboarding.",
+    "Identificar lacunas de conhecimento antes da Prova Final de Certificação.",
+    "Sintetizar o papel estratégico de cada colaborador dentro da AtlasGR.",
   ],
   sections: [
     {
-      id: "revisao-por-bloco",
-      title: "Revisão por bloco de conteúdo",
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
       blocks: [
         {
           type: "text",
-          heading: "Bloco 1 — Empresa e mercado (Módulos 1, 2, 8, 9)",
+          heading: "Visão Geral",
           paragraphs: [
             [
-              "A ATLASGR nasceu em 2004 para tirar operações do modo reativo e trazer governança ao gerenciamento de risco. Atua entre transportadoras e embarcadores, cada um com dores diferentes, e o processo comercial conecta essas dores aos quatro pilares do portfólio.",
+              "Este é o seu momento de concentração final. Você passou pela fundação cultural da AtlasGR, entendeu o mercado, mergulhou nos softwares e operou a Torre de Controle. Este módulo não traz informações novas, ele amarra todos os fios soltos para a sua Certificação.",
             ],
           ],
         },
         {
-          type: "text",
-          heading: "Bloco 2 — Gerenciamento de risco e produtos (Módulos 3, 4, 6)",
-          paragraphs: [
-            [
-              "O PGR traduz o gerenciamento de risco em regras operacionais concretas. O portfólio se organiza em quatro pilares: Atlas Profile (quem dirige), Atlas GR (aderência à apólice e CIA), Atlas Connect (tempo real) e Atlas Analytics (indicadores e tendência).",
-            ],
-          ],
-        },
-        {
-          type: "text",
-          heading: "Bloco 3 — Tecnologia e operação (Módulos 5, 7, 11, 13)",
-          paragraphs: [
-            [
-              "O Atlas Connect centraliza o fluxo de trabalho da Central e integra com diferentes tecnologias de rastreamento. A rotina operacional segue o princípio de gestão por exceção, e a tendência do setor é migrar de reativo para preditivo.",
-            ],
-          ],
-        },
-        {
-          type: "text",
-          heading: "Bloco 4 — Governança e casos (Módulos 10, 12, 14)",
-          paragraphs: [
-            [
-              "Termos técnicos, compliance e LGPD sustentam a operação com segurança jurídica, enquanto os casos reais documentam o impacto concreto de tudo isso: economia de perdas, redução de tempo parado e aderência à apólice.",
-            ],
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Revisão Executiva",
+            "Pré-requisitos: Módulos 01 ao 14 concluídos com aprovação",
+            "Tempo estimado: 30 minutos",
+            "Competências desenvolvidas: Consolidação do Conhecimento, Preparação para Avaliação",
+            "Gamificação: +200 XP, Badge 'A Caminho da Elite'",
           ],
         },
       ],
     },
     {
-      id: "mapa-mental-geral",
-      title: "Mapa mental geral da trilha",
+      id: "revisao-pilares",
+      title: "O Grande Resumo: Os Pilares da AtlasGR",
       blocks: [
         {
           type: "timeline",
-          title: "Do primeiro ao último módulo",
+          title: "O Ciclo Logístico Completo",
           items: [
-            { label: "1 — Bem-vindo à ATLASGR", text: "História, propósito, valores e estrutura organizacional." },
-            { label: "2 — Mercado de Logística", text: "Cadeia de suprimentos, tipos de carga, TMS/ERP." },
-            { label: "3 — Gerenciamento de Risco", text: "PGR, apólice, sinistro, fluxo até a CIA." },
-            { label: "4 — Produtos ATLASGR", text: "Profile, GR, Connect e Analytics." },
-            { label: "5 — Software Logístico", text: "Atlas Connect na prática." },
-            { label: "6 — Atlas Profile", text: "Background check, FaceID, compliance." },
-            { label: "7 — Integrações", text: "Rastreadores, TMS, ERP, API." },
-            { label: "8 — Clientes", text: "Transportadora, embarcador, operador logístico." },
-            { label: "9 — Processo Comercial", text: "ICP, persona, dores, objeções." },
-            { label: "10 — Termos Técnicos", text: "Consolidação do glossário." },
-            { label: "11 — Operação", text: "Rotina da Central, alertas, SLA." },
-            { label: "12 — Compliance", text: "LGPD, sigilo, boas práticas." },
-            { label: "13 — Tecnologia", text: "De reativo a preditivo, Safety, Analytics." },
-            { label: "14 — Casos Reais", text: "Resultados documentados e cenário ilustrativo." },
-            { label: "15 — Preparação Final", text: "Você está aqui." },
+            { label: "1. A Fundação (Mod 1 e 12)", text: "Agimos com Atitude de Dono, protegendo dados (LGPD) e seguindo as regras da casa." },
+            { label: "2. O Negócio (Mod 2, 8 e 9)", text: "Atendemos Transportadoras e Embarcadores. Resolvemos dores de roubos milionários ou ineficiência usando Integração e APIs (Mod 7)." },
+            { label: "3. O Manual do Jogo (Mod 3 e 10)", text: "A Seguradora manda na Apólice, e nós executamos a Proteção via PGR usando Termos Precisos." },
+            { label: "4. A Execução Tática (Mod 4, 5 e 6)", text: "Profile aprova motoristas. Connect orquestra a viagem. A Torre atua em cima dos Alertas." },
+            { label: "5. A Crise (Mod 11 e 14)", text: "Se o protocolo quebra e a coisa fica grave (sem SLA furado), escalonamos para a CIA intervir imediatamente." },
+            { label: "6. O Futuro (Mod 13)", text: "O Analytics e os Sensores de Fadiga (IA) param de olhar para trás e começam a prever e prevenir acidentes antes de acontecerem." },
           ],
         },
       ],
     },
     {
-      id: "antes-da-prova",
-      title: "Antes de fazer a Prova Final",
+      id: "pre-prova",
+      title: "Como a Prova Final Funciona",
       blocks: [
         {
-          type: "checklist",
-          title: "Checklist de autoavaliação",
-          items: [
-            "Consigo explicar o que é PGR, apólice, sinistro e sublimite sem consultar o glossário.",
-            "Sei nomear os quatro pilares do portfólio ATLASGR e o que cada um resolve.",
-            "Sei descrever o fluxo de escalonamento de um alerta até a CIA.",
-            "Reconheço as principais siglas de mercado (TMS, ERP, API, KPI, SLA) e internas da Atlas (SM, CIA, PGR).",
-            "Entendo minha responsabilidade individual com compliance e LGPD.",
+          type: "text",
+          paragraphs: [
+            [
+              "A avaliação final (Simulador de Decisão Master) testa o seu julgamento. Você enfrentará 15 questões que exigem análise de cenário, não apenas decoreba de conceitos.",
+            ],
           ],
         },
         {
-          type: "callout",
-          variant: "success",
-          title: "Pronto para a Prova Final",
-          text: [
-            "A Prova Final reúne perguntas de todos os módulos com conteúdo completo, embaralhadas e com tempo limite. A aprovação exige 70% de acerto — revise o glossário e os resumos de cada módulo antes de começar.",
+          type: "faq",
+          items: [
+            { q: "Qual a nota de corte?", a: "Você precisa de 70% de acertos para ser certificado e emitir o seu diploma digital na AtlasGR Training Platform." },
+            { q: "Se eu falhar?", a: "Você poderá revisar o conteúdo e tentar novamente. O importante é o aprendizado." },
+            { q: "O que acontece depois da certificação?", a: "O seu Gestor e o DHO vão alinhar o seu Plano dos Primeiros 30 Dias (PDI Operacional) para atuação prática no seu setor." },
           ],
+        },
+      ],
+    },
+    {
+      id: "mensagem-final",
+      title: "Mensagem da Diretoria",
+      blocks: [
+        {
+          type: "quote",
+          text: "Vocês não operam botões ou vendem telas; vocês protegem motoristas, preservam o abastecimento do país e garantem que a nossa promessa ('Conectar pessoas e tecnologia gerando valor com segurança') seja cumprida diariamente.",
+          author: "Diretoria AtlasGR",
         },
       ],
     },
   ],
   summary: [
-    "A trilha cobre quatro blocos: empresa e mercado, gerenciamento de risco e produtos, tecnologia e operação, e governança e casos.",
-    "O fio condutor de toda a trilha é: PGR define a regra, Connect e Profile aplicam no dia a dia, CIA trata a exceção, Analytics mede o resultado.",
-    "Antes da Prova Final, revise o glossário e os resumos de cada módulo já concluído.",
+    "Todos os 14 módulos formam um ecossistema único: o Comercial vende, a TI integra, o Profile filtra, a Torre monitora e a CIA age.",
+    "O seu certificado marca o fim da teoria base e o início da sua trilha de desenvolvimento prático na AtlasGR.",
   ],
   finalChecklist: [
-    "Revisei o resumo de todos os módulos com conteúdo completo.",
-    "Sei explicar o fluxo PGR → Connect/Profile → CIA → Analytics de ponta a ponta.",
-    "Estou pronto para iniciar a Prova Final.",
+    "Estou seguro sobre os conceitos de Profile, Connect, GR, Analytics, PGR e CIA.",
+    "Reconheço que falhas de conformidade (LGPD, Sigilo, SLA) são inegociáveis.",
+    "Estou pronto para a Prova de Certificação.",
   ],
   mindMap: {
     root: "Preparação Final",
     branches: [
-      { label: "Empresa e mercado", items: ["Módulo 1", "Módulo 2", "Módulo 8", "Módulo 9"] },
-      { label: "Risco e produtos", items: ["Módulo 3", "Módulo 4", "Módulo 6"] },
-      { label: "Tecnologia e operação", items: ["Módulo 5", "Módulo 7", "Módulo 11", "Módulo 13"] },
-      { label: "Governança e casos", items: ["Módulo 10", "Módulo 12", "Módulo 14"] },
+      { label: "Visão Macro", items: ["Cultura", "Produtos", "Mercado", "Tecnologia"] },
+      { label: "A Prova", items: ["15 Questões", "Cenários Táticos", "70% de Corte"] },
+      { label: "Próximos Passos", items: ["Certificação", "PDI", "Atuação Real"] },
     ],
   },
   scenario:
-    "Faltam 10 minutos para a Prova Final abrir. Você revisou os 14 módulos anteriores, mas ainda não tem certeza se consegue explicar o fluxo completo, do PGR ao Analytics, sem parar para pensar. O que vale mais a pena revisar agora, nos minutos que restam?",
+    "Respire fundo. Revise mentalmente o diagrama do ecossistema AtlasGR. Se sentir qualquer dúvida (como 'Qual a diferença entre TMS e Connect?' ou 'Quem eu aciono no Nível 1?'), volte nos módulos. Se estiver confiante, boa sorte na Avaliação de Certificação.",
   diagram: {
-    title: "O fio condutor da trilha completa",
-    chart: "graph LR\n  A[PGR define a regra] --> B[Connect / Profile aplicam]\n  B --> C[CIA trata a excecao]\n  C --> D[Analytics mede o resultado]",
+    title: "Sua Trilha de Evolução",
+    chart: "graph LR\n  A[Onboarding] --> B[Certificação Final]\n  B --> C[Planos 30-60-90 Dias]\n  C --> D[Operador Especialista]",
   },
 };

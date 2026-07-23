@@ -9,8 +9,6 @@ export const module02: ModuleContentFull = {
     "Outline consolidado para este módulo (content/modules/meta.ts)",
     "Dados públicos de transporte de cargas — ANTT e CNT (Pesquisa Rodoviária)",
     "Treinamento Operacional 2022 — Área de risco (raio por região metropolitana)",
-    "Módulo 3 — Gerenciamento de Risco (conceitos de PGR e apólice já introduzidos)",
-    "Módulo 5 — Software Logístico (Atlas Connect e integrações já apresentadas)",
   ],
   objectives: [
     "Descrever os elos da cadeia de suprimentos e onde a Atlas atua nela.",
@@ -22,6 +20,40 @@ export const module02: ModuleContentFull = {
   ],
   sections: [
     {
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
+      blocks: [
+        {
+          type: "text",
+          heading: "Visão Geral",
+          paragraphs: [
+            [
+              "Bem-vindo ao Módulo 02. Para gerenciar risco com excelência, você precisa antes entender o ecossistema onde nossos clientes operam. Este módulo mapeia as regras do jogo do mercado logístico nacional.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Iniciante (Mercado)",
+            "Pré-requisitos: Módulo 01",
+            "Tempo estimado: 35 minutos",
+            "Competências desenvolvidas: Visão de Negócio Logístico, Conhecimento de Supply Chain",
+            "Gamificação: +500 XP, Badge 'Visão de Águia', Missão 'Raio X da Carga'",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Dica do Assistente IA",
+          text: [
+            "Durante a leitura sobre TMS e ERP, se você não for de TI e ficar confuso, peça ao Assistente de IA para explicar com uma analogia do dia a dia. Isso ajuda a fixar o conceito rapidamente.",
+          ],
+        },
+      ],
+    },
+    {
       id: "cadeia-de-suprimentos",
       title: "A cadeia de suprimentos e seus elos",
       blocks: [
@@ -30,10 +62,7 @@ export const module02: ModuleContentFull = {
           heading: "Do fabricante à prateleira",
           paragraphs: [
             [
-              "Toda mercadoria percorre uma cadeia de suprimentos até chegar ao destino final: sai de quem produz, passa por quem transporta, às vezes por um centro de distribuição, e termina em quem recebe — uma fábrica, uma loja ou o consumidor final.",
-            ],
-            [
-              "O colaborador da Atlas não precisa decorar teoria de supply chain, mas precisa reconhecer os papéis principais dessa cadeia para entender onde o gerenciamento de risco se encaixa e por que cada cliente pede um tipo diferente de atenção.",
+              "A cadeia de suprimentos (supply chain) é o caminho que um produto faz desde o campo (ou da fábrica) até chegar à sua casa. A AtlasGR não fabrica produtos nem tem caminhões; nós atuamos como os 'fiscais e guardiões' dessa cadeia para que nada se perca ou seja roubado no caminho.",
             ],
           ],
         },
@@ -43,26 +72,26 @@ export const module02: ModuleContentFull = {
           left: {
             label: "Embarcador",
             points: [
-              "É o dono da carga: fabricante, distribuidor ou varejista que precisa transportar seu produto.",
-              "Pode contratar a Atlas diretamente para monitorar cargas transportadas por terceiros.",
-              "Costuma ter exigências de segurança específicas por tipo de produto (combustível, eletrônico, alimentos).",
+              "É o dono da carga: fabricante, distribuidor ou varejista.",
+              "Contrata a Atlas para monitorar cargas transportadas por terceiros.",
+              "Tem exigências focadas na qualidade do produto (ex: temperatura).",
             ],
           },
           right: {
             label: "Transportadora",
             points: [
-              "É quem executa o transporte: possui ou contrata frota, motoristas e rotas.",
-              "Contrata a Atlas para cumprir exigências de apólice e reduzir o próprio prejuízo com sinistros.",
-              "Pode atender vários embarcadores ao mesmo tempo, cada um com seu próprio PGR.",
+              "É quem executa o transporte: possui a frota e os motoristas.",
+              "Contrata a Atlas para cumprir regras de seguro (PGR).",
+              "Pode atender dezenas de embarcadores diferentes ao mesmo tempo.",
             ],
           },
         },
         {
           type: "callout",
-          variant: "info",
-          title: "Um mesmo veículo, dois clientes diferentes",
+          variant: "warning",
+          title: "Atenção: Regras Sobrepostas",
           text: [
-            "É comum que o mesmo caminhão apareça no sistema com um PGR da transportadora e, ao mesmo tempo, regras adicionais exigidas pelo embarcador daquela carga específica — por isso o cadastro correto do cliente e do contrato é tão importante.",
+            "É extremamente comum que um mesmo caminhão, no Connect, possua regras de segurança vindas da transportadora E regras adicionais vindas do embarcador.",
           ],
         },
       ],
@@ -75,154 +104,129 @@ export const module02: ModuleContentFull = {
           type: "text",
           paragraphs: [
             [
-              "Nem toda carga tem o mesmo valor ou o mesmo risco. Uma carga de eletrônicos de alto valor agregado atrai um perfil de crime diferente de uma carga de grãos a granel, e isso muda diretamente o desenho do PGR e a intensidade do monitoramento.",
+              "Um carregamento de 10 toneladas de areia tem um risco diferente de 10 toneladas de iPhones. O que muda o risco e o ",
+              { term: "pgr" },
+              " é o que chamamos de Atratividade e Custo Agregado da carga.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Categorias de carga mais relevantes para o gerenciamento de risco",
+          title: "Categorias e Níveis de Risco",
           items: [
-            "Alto valor agregado — eletrônicos, autopeças, produtos farmacêuticos: maior atratividade para roubo e furto.",
-            "Perigosa — combustíveis, químicos: exige regras adicionais de segurança e resposta a emergência (MOPP).",
-            "Perecível — alimentos e bebidas refrigerados: risco de perda por atraso, não só por sinistro.",
-            "Granel sólido ou líquido — grãos, minério, combustível a granel: menor atratividade de roubo, maior sensibilidade a desvio de rota e perda de tempo.",
-            "Carga fracionada — vários destinatários em uma mesma viagem: mais paradas, mais exposição por trajeto mais longo.",
+            "Alto valor (Eletrônicos, Remédios): Risco Máximo de roubo. Exige escolta armada armada.",
+            "Carga Perigosa (Combustível, Químicos): Risco Alto de contaminação e explosão. Exige MOPP.",
+            "Perecível (Carne Frigorificada): Risco Moderado de roubo, mas Risco Alto de perda por temperatura/atraso.",
+            "Granel e Minérios: Risco Baixo de roubo (difícil repasse), mas com foco em controle de desvio de rotas.",
           ],
         },
       ],
     },
     {
       id: "sistemas-de-gestao",
-      title: "Sistemas de gestão que conversam com a Atlas",
+      title: "Sistemas de gestão: A Torre de Babel",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O cliente da Atlas normalmente já usa outros sistemas para tocar sua operação: um ",
+              "Na logística, ninguém trabalha com um sistema só. O cliente usa o ",
               { term: "tms" },
-              " para planejar rotas e fretes, e às vezes um ",
+              " para organizar fretes, e o ",
               { term: "erp" },
-              " para controlar estoque, faturamento e compras.",
+              " para emitir nota fiscal.",
             ],
             [
-              "Quando esses sistemas trocam dados com o rastreamento por ",
+              "A AtlasGR conecta essas informações no Atlas Connect usando ",
               { term: "api" },
-              ", o cliente ganha uma visão única: o ",
+              ". Quando os sistemas conversam, o ",
               { term: "eta" },
-              " de uma entrega, por exemplo, pode aparecer automaticamente no TMS do embarcador sem que ninguém precise copiar informação manualmente entre sistemas.",
+              " atualiza sozinho no painel do cliente, sem necessidade de enviar e-mails de posição.",
             ],
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            { q: "TMS e Atlas Connect são a mesma coisa?", a: "Não. O TMS é do cliente e cuida do planejamento logístico (rotas, fretes, entregas); o Atlas Connect é da Atlas e cuida do gerenciamento de risco (PGR, checklist, monitoramento, alertas)." },
-            { q: "Todo cliente da Atlas tem TMS ou ERP?", a: "Não necessariamente. Clientes menores podem operar sem esses sistemas, e nesse caso o Atlas Connect é a principal ferramenta de gestão da operação de risco." },
-            { q: "Por que isso importa no dia a dia da Central?", a: "Entender que o cliente pode ter outros sistemas ajuda a explicar por que às vezes um evento tratado no Connect também aparece (ou deveria aparecer) em uma tela do cliente." },
           ],
         },
       ],
     },
     {
       id: "panorama-brasil",
-      title: "O transporte de cargas no Brasil em números",
+      title: "O cenário logístico do Brasil",
       blocks: [
         {
           type: "stat",
           items: [
-            { value: "~65%", label: "das cargas no Brasil são transportadas por rodovia (fonte: CNT)" },
-            { value: "1,7M+", label: "veículos de carga registrados no RNTRC (fonte: ANTT)" },
-            { value: "24h", label: "operação da Central da Atlas, todos os dias do ano" },
+            { value: "65%", label: "das cargas no Brasil são transportadas via rodovias" },
+            { value: "1.7M+", label: "veículos registrados na ANTT" },
+            { value: "Nº 1", label: "O Brasil tem índices altíssimos de roubo de cargas na América Latina" },
           ],
         },
         {
           type: "text",
           paragraphs: [
             [
-              "O predomínio do modal rodoviário é também o motivo pelo qual o risco de roubo de carga é uma preocupação tão relevante no Brasil: rodovias cruzam regiões com diferentes níveis de segurança pública, e cada trecho pode ter um perfil de risco distinto — algo que o PGR de cada cliente leva em conta ao definir rotas e horários permitidos.",
+              "É essa extrema dependência de estradas misturada com desigualdade social e problemas de segurança pública que torna o Gerenciamento de Risco da AtlasGR não um luxo, mas um requisito vital de sobrevivência para empresas de transporte.",
             ],
-          ],
-        },
-        {
-          type: "callout",
-          variant: "success",
-          title: "Por que isso importa para você",
-          text: [
-            "Conhecer esse panorama ajuda a entender por que a Atlas existe: quanto mais concentrado o transporte em rodovias, maior a exposição da carga — e maior o valor de um gerenciamento de risco bem feito.",
           ],
         },
       ],
     },
     {
       id: "areas-de-risco",
-      title: "Áreas de risco no Brasil",
+      title: "A Geografia do Risco",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "\"Área de risco\" não é uma percepção subjetiva — é uma classificação com raio definido em quilômetros ao redor de regiões metropolitanas com maior incidência histórica de roubo e furto de carga. Esse raio entra diretamente no desenho do PGR de cada cliente.",
+              "O que define uma área de risco não é 'achismo'. São raios matemáticos em torno de metrópoles, baseados em histórico de sinistros, configurados diretamente no motor de regras.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Exemplos de raio de área de risco por região",
+          title: "Zonas Quentes (Raios Oficiais)",
           items: [
-            "São Paulo/SP — raio de 200 km",
-            "Rio de Janeiro/RJ — raio de 200 km",
-            "Salvador/BA — raio de 200 km",
-            "Fortaleza/CE — raio de 200 km",
-            "Porto Alegre/RS — raio de 200 km",
-            "Belo Horizonte/MG — raio de 150 km",
-            "Ribeirão Preto/SP — raio de 150 km",
-            "Joinville/SC — raio de 150 km",
-            "Recife/PE — raio de 150 km",
-            "Curitiba/PR, Uberlândia/MG, Anápolis/GO, Vitória/ES — raio de 100 km",
+            "São Paulo (SP) e Rio de Janeiro (RJ): Raio de 200 km",
+            "Salvador (BA), Fortaleza (CE) e Porto Alegre (RS): Raio de 200 km",
+            "Belo Horizonte (MG), Recife (PE): Raio de 150 km",
+            "Curitiba (PR), Vitória (ES): Raio de 100 km",
           ],
         },
         {
-          type: "callout",
-          variant: "info",
-          title: "O raio muda o que a Central faz",
-          text: [
-            "Um evento de nível 4 chamado 'Entrada em Área de Risco' é justamente o veículo cruzando um desses raios cadastrados — o que pode disparar reforço no monitoramento, restrição de horário ou exigência de escolta, dependendo do PGR do cliente.",
-          ],
+          type: "case",
+          title: "Por que o Raio importa",
+          text: "Se um caminhão de eletrônicos cruza o raio de 200km de SP (Eventos de Área de Risco), o sistema automaticamente exige comunicação com a Central a cada 30 minutos e bloqueia pernoite em locais não homologados.",
+          source: "Manual de Operação AtlasGR",
         },
       ],
     },
   ],
   summary: [
-    "A cadeia de suprimentos liga fabricante, transportadora, embarcador e destino final — a Atlas atua principalmente entre transportadoras e embarcadores.",
-    "Embarcador é dono da carga; transportadora executa o transporte — o mesmo veículo pode ter regras de PGR vindas dos dois.",
-    "O tipo de carga (alto valor, perigosa, perecível, granel, fracionada) muda diretamente o perfil de risco e o desenho do PGR.",
-    "TMS e ERP são sistemas do cliente que podem trocar dados com o Atlas Connect via API — mas não substituem o gerenciamento de risco.",
-    "O Brasil transporta a maior parte de sua carga por rodovia, o que reforça a relevância do gerenciamento de risco no modal rodoviário.",
-    "Área de risco é uma classificação com raio em km ao redor de regiões metropolitanas (ex.: 200 km em São Paulo), que entra diretamente no PGR do cliente.",
+    "A cadeia liga embarcador (dono) e transportadora (frota), e a Atlas atua gerenciando as regras de ambos.",
+    "O nível de risco muda com base no que está dentro do caminhão (atratividade, periculosidade).",
+    "TMS e ERP são de gestão logística; o Connect cuida da gestão de riscos de forma integrada via API.",
+    "O Brasil é 65% rodoviário, tornando a segurança na estrada o principal gargalo econômico do transporte.",
+    "Áreas de Risco são mapeadas matematicamente em raios quilométricos para disparar protocolos automáticos.",
   ],
   finalChecklist: [
-    "Sei diferenciar embarcador de transportadora.",
-    "Reconheço pelo menos 3 categorias de carga e como elas mudam o risco.",
-    "Sei explicar a diferença entre TMS, ERP e Atlas Connect.",
-    "Entendo por que o modal rodoviário concentra a atenção do gerenciamento de risco no Brasil.",
-    "Sei o que muda quando um veículo entra em uma área de risco cadastrada.",
+    "Diferencio embarcador e transportadora.",
+    "Entendo que cada tipo de carga aciona uma regra de segurança diferente.",
+    "Sei a diferença entre um TMS (logística) e o Connect (risco).",
+    "Consigo explicar por que o Brasil demanda gerenciamento de risco agressivo.",
+    "Entendo o que acontece operacionalmente quando um caminhão cruza um raio de Área de Risco.",
   ],
   mindMap: {
-    root: "Mercado de Logística",
+    root: "Mercado Logístico",
     branches: [
-      { label: "Cadeia de suprimentos", items: ["Embarcador", "Transportadora", "Operador logístico", "Destino final"] },
-      { label: "Tipos de carga", items: ["Alto valor", "Perigosa", "Perecível", "Granel", "Fracionada"] },
-      { label: "Sistemas do cliente", items: ["TMS", "ERP", "API", "ETA"] },
-      { label: "Panorama Brasil", items: ["Predomínio rodoviário", "ANTT / RNTRC", "CNT"] },
-      { label: "Área de risco", items: ["Raio em km", "São Paulo 200km", "Belo Horizonte 150km", "Entrada dispara alerta nível 4"] },
+      { label: "Jogadores", items: ["Embarcador", "Transportadora", "Operador"] },
+      { label: "O Perigo", items: ["Alto Valor", "Perigoso", "Perecível"] },
+      { label: "Sistemas", items: ["TMS", "ERP", "Connect", "APIs"] },
+      { label: "Zonas Quentes", items: ["Raios 100 a 200km", "Controle de Pernoite", "Eventos de Risco"] },
     ],
   },
   scenario:
-    "Um novo cliente liga perguntando se a Atlas atende 'transportadora ou embarcador'. Antes de responder, você precisa identificar: ele é dono da carga, ou executa o transporte por conta de terceiros? A resposta muda qual dor a Atlas vai resolver primeiro.",
+    "Um cliente de Alto Valor te liga pedindo para liberar um pernoite a 50km do Rio de Janeiro sem escolta. Sabendo que o raio de risco lá é de 200km, como você justifica comercial e operacionalmente que isso precisa passar pelo aval da Seguradora e da CIA primeiro?",
   diagram: {
-    title: "Da cadeia de suprimentos ao gerenciamento de risco",
-    chart: "graph LR\n  A[Fabricante] --> B[Transportadora]\n  B --> C[Embarcador]\n  C --> D[Destino final]\n  B --> E[Atlas GR]\n  C --> E",
+    title: "Ecossistema Logístico",
+    chart: "graph LR\n  A[Embarcador/Dono] --> B[Transportadora]\n  B --> C[TMS/ERP]\n  C --> D[Atlas Connect (API)]\n  D --> E[Torre de Controle]",
   },
 };

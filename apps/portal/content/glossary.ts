@@ -299,3 +299,9 @@ export const glossary: GlossaryTerm[] = [
 export function findGlossaryTerm(id: string): GlossaryTerm | undefined {
   return glossary.find((g) => g.id === id);
 }
+glossary.push({
+  id: "analytics",
+  term: "Atlas Analytics",
+  definition: "Produto do portfólio da AtlasGR focado em consolidar dados históricos e gerar dashboards executivos para tomada de decisão estratégica.",
+  atlasUsage: "Usado para descobrir padrões e gargalos de eficiência, diferentemente do Connect que foca no tempo real.",
+});

@@ -7,128 +7,149 @@ export const module14: ModuleContentFull = {
   ...meta,
   sources: [
     "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Cases de cliente apresentados nos showcases de produto do portal",
-    "Atlas Analytics — mapa de risco por rodovia (/produtos/analytics)",
+    "Cases de Recuperação e Relatórios de Sinistro",
+    "Estudos de Casos Comerciais",
   ],
   objectives: [
-    "Relacionar cases reais de cliente aos pilares do portfólio que os resolveram.",
-    "Interpretar um cenário ilustrativo de escalonamento de risco, do alerta ao acionamento da CIA.",
-    "Reconhecer por que trechos de rodovia são classificados por nível de risco no Atlas Analytics.",
+    "Analisar ocorrências reais (sinistros e recuperações) para conectar teoria e prática.",
+    "Identificar os fatores críticos de sucesso (SLA, CIA) e de falha (Enforcamento) em um evento.",
+    "Consolidar a percepção de valor que entregamos aos grandes embarcadores.",
   ],
   sections: [
     {
-      id: "resultados-documentados",
-      title: "Resultados documentados com cliente",
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
       blocks: [
         {
           type: "text",
+          heading: "Visão Geral",
           paragraphs: [
             [
-              "Os números a seguir já apareceram em módulos anteriores — aqui eles são revisitados como casos completos, mostrando a dor original do cliente e o pilar do portfólio que resolveu.",
+              "A guerra logística é ganha nos detalhes. Este módulo não ensina novos conceitos; ele mostra como tudo o que você aprendeu nos módulos anteriores foi usado para salvar milhões em cargas ou onde as coisas deram errado.",
             ],
           ],
         },
         {
-          type: "case",
-          title: "Embarcador de combustível — R$ 95M economizados",
-          text:
-            "Cliente com histórico recorrente de roubo de carga de alto valor adotou o gerenciamento de risco completo da Atlas (Profile + GR + Connect). O resultado documentado foi R$ 95 milhões economizados em perdas evitadas.",
-          source: "Case de cliente apresentado no showcase de produto Atlas Profile",
-        },
-        {
-          type: "case",
-          title: "Embarcador de suco — -26% de tempo em fazendas",
-          text:
-            "Cliente identificou, via Atlas Analytics, que o tempo de permanência de veículos em fazendas era um custo operacional maior do que o risco de roubo em si. Ajustes no processo, orientados pelos indicadores, reduziram esse tempo em 26%.",
-          source: "Case de cliente apresentado no showcase de produto Atlas Connect / GR",
-        },
-        {
-          type: "case",
-          title: "Operação Varejo — 99,8% de aderência à apólice",
-          text:
-            "Cliente do setor de varejo alcançou 99,8% de aderência às exigências da apólice contratada, reduzindo o risco de a seguradora recusar cobertura em caso de sinistro.",
-          source: "Case de cliente apresentado no showcase de produto Atlas Profile",
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Avançado (Laboratório Prático)",
+            "Pré-requisitos: Módulo 11 (Operação)",
+            "Tempo estimado: 30 minutos",
+            "Competências desenvolvidas: Análise de Causa Raiz, Pensamento Tático, Resolução Crítica",
+            "Gamificação: +500 XP, Badge 'Investigador'",
+          ],
         },
       ],
     },
     {
-      id: "cenario-ilustrativo",
-      title: "Cenário ilustrativo: da perda de sinal ao acionamento da CIA",
+      id: "sucesso-recuperacao",
+      title: "O Sucesso: Operação Carga Viva",
       blocks: [
         {
-          type: "callout",
-          variant: "info",
-          title: "Sobre este cenário",
-          text: [
-            "O cenário abaixo é ilustrativo — uma reconstrução didática do tipo de situação que a Central trata, sem se referir a um cliente ou evento específico. Serve para conectar, em sequência, os conceitos já vistos nos módulos anteriores.",
+          type: "text",
+          heading: "O Cenário",
+          paragraphs: [
+            [
+              "Caminhão transportando eletroeletrônicos (Valor: R$ 1.5M). Viagem de São Paulo para Curitiba. Às 03:15 da manhã, o Connect aciona Alerta Nível 1: 'Perda do Rastreador Principal'. O motorista não atende o celular.",
+            ],
           ],
         },
         {
           type: "timeline",
-          title: "\"Operação Pôr do Sol\" — cenário de treinamento",
+          title: "Cronologia da Recuperação",
           items: [
-            { label: "18h42", text: "Veículo com carga de alto valor perde sinal do rastreador em um trecho classificado como de risco elevado pelo PGR do cliente." },
-            { label: "18h44", text: "Operador tenta contato com o motorista pelo canal padrão; sem resposta em 2 minutos." },
-            { label: "18h45", text: "Alerta é escalado para a CIA I, que reforça a tentativa de contato e revisa o histórico recente do veículo." },
-            { label: "18h50", text: "Sem retorno de sinal ou contato, a CIA II assume o caso, aciona a pronta resposta e avalia acionamento policial, conforme o PGR do cliente." },
-            { label: "Após confirmação", text: "Se confirmado o sinistro, a CIA II monta o relatório completo em até 48 horas, incluindo linha do tempo, ações tomadas e recomendações." },
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            { q: "Por que o cenário se chama 'Operação Pôr do Sol'?", a: "É apenas um nome ilustrativo de treinamento — a Central usa nomes de operação para organizar simulações e cenários de estudo, sem relação com clientes reais." },
-            { q: "O que este cenário ensina sobre gestão por exceção?", a: "Mostra como um evento (perda de sinal) escala em minutos, de operador para CIA I e depois CIA II, sempre seguindo o que está definido no PGR — nunca por decisão informal de quem está de plantão." },
-          ],
-        },
-      ],
-    },
-    {
-      id: "risco-por-regiao",
-      title: "Por que algumas rodovias concentram mais risco",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "O Atlas Analytics classifica trechos de rodovia por nível de risco, com base no histórico de eventos registrados naquela região — não em uma opinião, mas em dados acumulados de ocorrências. Essa classificação alimenta diretamente o desenho do PGR: em um trecho de risco elevado, o PGR pode exigir escolta, horário restrito de circulação ou pontos de parada mais controlados.",
-            ],
+            { label: "03:15", text: "Alerta cai na tela. Operador inicia tratativa imediatamente (Dentro do SLA de 10 min)." },
+            { label: "03:18", text: "Macro de bloqueio e sirene enviados. Celular do motorista desligado. Operador não hesita e passa para a CIA." },
+            { label: "03:22", text: "CIA rastreia a ISCA móvel (que não foi achada pelos bandidos). Posição aponta um galpão abandonado a 10km da Dutra." },
+            { label: "03:25", text: "CIA aciona viaturas da PM mais próximas via rádio direto e aciona Pronta Resposta." },
+            { label: "03:45", text: "PM intercepta a carreta no galpão. Carga intacta. Motorista liberado." },
           ],
         },
         {
           type: "callout",
           variant: "success",
-          title: "O que este módulo reforça",
+          title: "O Ponto de Virada",
           text: [
-            "Cada caso documentado — e cada cenário de treinamento — existe para reforçar a mesma ideia: o gerenciamento de risco funciona quando o processo (PGR, checklist, CIA) é seguido com disciplina, e os dados (Analytics) orientam onde reforçar esse processo.",
+            "O Sucesso ocorreu porque o Operador NÃO demorou para acionar a CIA. Se ele esperasse 20 minutos 'tentando o celular', o caminhão teria entrado em um local onde a Isca também perderia o sinal.",
           ],
+        },
+      ],
+    },
+    {
+      id: "falha-enforcamento",
+      title: "A Falha: O Preço do 'Enforcamento'",
+      blocks: [
+        {
+          type: "text",
+          heading: "O Cenário (O Que Não Fazer)",
+          paragraphs: [
+            [
+              "Carga de defensivos agrícolas (R$ 800k). Alerta gerado: 'Parada Indevida' no interior de MG. Nível de prioridade Alto.",
+            ],
+          ],
+        },
+        {
+          type: "timeline",
+          title: "Cronologia da Falha",
+          items: [
+            { label: "14:00", text: "Alerta gerado no Connect." },
+            { label: "14:15", text: "Operador inicia a tratativa (Fora do SLA de 10 min). Liga para o motorista." },
+            { label: "14:18", text: "Motorista atende calmo e diz: 'Parei para almoçar, tô voltando já'. Operador confia na voz e encerra a tratativa SEM pedir a contra-senha." },
+            { label: "17:00", text: "Cliente liga perguntando por que o caminhão sumiu do mapa há 2 horas. A carga foi 100% roubada. O motorista estava rendido com uma arma nas costas durante a ligação das 14:18." },
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "A Causa Raiz",
+          text: [
+            "O Operador 'Burlou' o processo. Deixou a empatia ou a preguiça vencer o PGR. Não validar a contra-senha é um erro fatal que custou R$ 800 mil à seguradora (e manchou a imagem da Atlas).",
+          ],
+        },
+      ],
+    },
+    {
+      id: "cases-macro",
+      title: "Resultados Macro (O Valor para o Diretoria)",
+      blocks: [
+        {
+          type: "case",
+          title: "95 Milhões Economizados",
+          text: "Um cliente de combustíveis mudou totalmente sua cultura. Adotando Atlas Profile rígido + Atlas GR implacável, o número de roubos caiu de 40 no ano para ZERO em dois anos seguidos. Isso representa R$ 95 Milhões em perdas diretas evitadas.",
+          source: "Case Comercial Combustíveis (2024)",
+        },
+        {
+          type: "case",
+          title: "-26% em Tempo de Pátio",
+          text: "O cliente de sucos não tinha problemas de roubo. O problema era que motoristas dormiam no pátio da fazenda. Usando a cerca eletrônica do Connect e os dashboards do Analytics, o cliente provou para a fazenda que eles eram lentos. O tempo de carregamento caiu 26%, aumentando os lucros da transportadora brutalmente.",
+          source: "Case Comercial Sucos (2025)",
         },
       ],
     },
   ],
   summary: [
-    "Os três cases documentados (R$ 95M, -26% em tempo, 99,8% de aderência) mostram resultados reais ligados a diferentes pilares do portfólio.",
-    "O cenário 'Operação Pôr do Sol' é ilustrativo e mostra o escalonamento de um alerta de perda de sinal, do operador à CIA II.",
-    "O Atlas Analytics classifica trechos de rodovia por nível de risco com base em dados históricos, e essa classificação orienta o PGR.",
-    "O fio condutor de todos os casos é o mesmo: processo seguido com disciplina + dados orientando a decisão.",
+    "A velocidade no SLA de primeira ação (10 minutos) é a diferença entre sucesso e fracasso no acionamento policial.",
+    "Regras processuais (como pedir contra-senha) não podem ser puladas baseado na 'entonação de voz' do motorista.",
+    "O valor entregue pela Atlas se traduz em grandes cases focados na anulação do roubo (combustível) ou ganho de eficiência (sucos).",
   ],
   finalChecklist: [
-    "Sei relacionar cada case documentado ao pilar do portfólio que o resolveu.",
-    "Consigo descrever o escalonamento de um alerta de perda de sinal, do operador à CIA.",
-    "Entendo por que o Atlas Analytics classifica rodovias por nível de risco.",
+    "Entendo o peso real de seguir o PGR sob pressão.",
+    "Sei os fatores que salvaram a carga de eletrônicos.",
+    "Entendo o erro crítico que causou a perda da carga de defensivos.",
   ],
   mindMap: {
-    root: "Casos Reais",
+    root: "Laboratório de Casos",
     branches: [
-      { label: "Cases documentados", items: ["R$ 95M — combustível", "-26% tempo — suco", "99,8% aderência — varejo"] },
-      { label: "Cenário ilustrativo", items: ["Perda de sinal", "Escalonamento CIA I → CIA II", "Relatório em 48h"] },
-      { label: "Risco por região", items: ["Histórico de eventos", "Classificação por nível", "PGR ajustado por trecho"] },
+      { label: "Fatores de Sucesso", items: ["SLA Rápido", "Acionamento CIA", "Isca Móvel"] },
+      { label: "Erros Fatais", items: ["Enforcar Alertas", "Ignorar Contra-senha", "Fugir do PGR"] },
+      { label: "Cases Macro", items: ["R$ 95M Combustíveis", "-26% Pátio de Sucos"] },
     ],
   },
   scenario:
-    "18h42, cenário de treinamento 'Operação Pôr do Sol': um veículo com carga de alto valor perde sinal em um trecho classificado como risco elevado. Nenhum cliente real está envolvido — mas o relógio do SLA já está correndo. Você consegue reconstituir os passos até a CIA II sem consultar o módulo?",
+    "Analisando o case do roubo dos defensivos, se você fosse o supervisor desse operador, o que diria a ele na reunião de feedback pós-incidente sobre a importância das regras engessadas em momentos de crise?",
   diagram: {
-    title: "Do alerta ao relatório de sinistro",
-    chart: "graph LR\n  A[Perda de sinal] --> B[CIA I]\n  B --> C[CIA II]\n  C --> D[Pronta Resposta]\n  D --> E[Relatorio em 48h]",
+    title: "O Ponto de Decisão",
+    chart: "graph TD\n  A[Alerta na Tela] --> B{Operador segue PGR?}\n  B -- Sim --> C[Velocidade, CIA, Recuperação]\n  B -- Não --> D[Quebra de SLA, Confiança Cega, Roubo Total]",
   },
 };

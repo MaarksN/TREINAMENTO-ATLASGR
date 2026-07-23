@@ -6,169 +6,138 @@ const meta = getModuleMeta("10-termos-tecnicos")!;
 export const module10: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Glossário consolidado do portal (content/glossary.ts)",
-    "Módulos 1, 3 e 5 — primeira aparição da maioria dos termos operacionais",
+    "Glossário Oficial AtlasGR",
+    "Manuais Operacionais",
+    "Treinamentos de Implantação",
   ],
   objectives: [
-    "Consolidar os termos técnicos já vistos nos módulos anteriores em quatro categorias.",
-    "Usar o Glossário do portal como referência rápida durante o estudo dos demais módulos.",
-    "Reconhecer siglas de mercado (TMS, ERP, KPI, SLA) e siglas internas da Atlas (CIA, PGR, SM) sem confundi-las.",
+    "Dominar a linguagem técnica e as siglas usadas internamente e pelo mercado logístico.",
+    "Prevenir erros operacionais causados por má interpretação de termos técnicos (ex: Jammer vs Sombra).",
+    "Garantir a uniformidade da comunicação com clientes, seguradoras e forças policiais.",
   ],
   sections: [
     {
-      id: "por-que-um-hub",
-      title: "Por que este módulo existe",
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
+      blocks: [
+        {
+          type: "text",
+          heading: "Visão Geral",
+          paragraphs: [
+            [
+              "Bem-vindo ao Dicionário AtlasGR. Você não pode jogar o jogo se não souber o nome das peças. O linguajar logístico e de risco é cheio de siglas que, se confundidas, podem atrasar a CIA ou irritar o cliente.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Básico (Referência)",
+            "Pré-requisitos: Nenhum",
+            "Tempo estimado: 30 minutos",
+            "Competências desenvolvidas: Comunicação Corporativa, Precisão Técnica",
+            "Gamificação: +300 XP, Badge 'Tradutor'",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "O Glossário Digital",
+          text: [
+            "Sempre que você vir uma palavra sublinhada ao longo da Universidade Corporativa, basta passar o mouse (ou clicar) para ver a definição imediata.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "tecnologia-e-rastreamento",
+      title: "Siglas de Tecnologia e Equipamentos",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Cada módulo da trilha introduz termos técnicos no contexto em que eles aparecem — o que é ótimo para entender o significado, mas difícil para lembrar todos de uma vez. Este módulo funciona como um hub de revisão: reúne os termos já vistos em quatro categorias e aponta para o ",
-              "Glossário",
-              " do portal, disponível a qualquer momento pelo menu principal.",
+              "A torre lida o tempo todo com hardware embarcado. É essencial distinguir as tecnologias.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Hardwares Comuns",
+          items: [
+            "VSR (Veículo Sem Rastreador): Caminhão que opera 'às cegas' no sistema principal, dependendo de iscas.",
+            "Isca (Rastreador Móvel): Dispositivo autônomo a bateria, geralmente escondido dentro da carga, indetectável no painel do caminhão.",
+            "Jammer (Chupa-Cabra): Aparelho usado por quadrilhas para derrubar o sinal GSM/GPS do rastreador.",
+            "Área de Sombra: Região de rodovia onde o sinal cai naturalmente (buraco de cobertura de celular), não devendo ser confundido com ação de Jammer.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "processos-e-documentos",
+      title: "Documentação Logística",
+      blocks: [
+        {
+          type: "comparison",
+          title: "Conhecimentos e Notas",
+          left: {
+            label: "CT-e (Conhecimento de Transporte Eletrônico)",
+            points: ["O documento do FRETE.", "Emitido pela transportadora.", "Relaciona quem transporta e qual a placa."],
+          },
+          right: {
+            label: "NF-e (Nota Fiscal Eletrônica)",
+            points: ["O documento do PRODUTO.", "Emitido pelo vendedor/embarcador.", "Relaciona valor, quantidade e tipo de carga."],
+          },
+        },
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Você não bloqueia um caminhão por erro de NF-e, mas a ausência do valor correto da nota pode violar a Apólice.",
             ],
           ],
         },
       ],
     },
     {
-      id: "termos-de-risco-e-seguro",
-      title: "Termos de risco e seguro",
+      id: "indicadores-de-desempenho",
+      title: "As Métricas (KPIs)",
       blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Do universo de gerenciamento de risco e seguro: ",
-              { term: "pgr" },
-              ", ",
-              { term: "sinistro" },
-              ", ",
-              { term: "sublimite" },
-              " e ",
-              { term: "rcf-dc" },
-              " — todos vistos em detalhe no Módulo 3.",
-            ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "termos-operacionais",
-      title: "Termos operacionais da Central",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Do dia a dia da Central: ",
-              { term: "connect" },
-              ", ",
-              { term: "torre-de-controle" },
-              ", ",
-              { term: "sm" },
-              ", ",
-              { term: "checklist" },
-              ", ",
-              { term: "sensores-atuadores" },
-              ", ",
-              { term: "botao-de-panico" },
-              ", ",
-              { term: "macro" },
-              ", ",
-              { term: "malicia" },
-              " e ",
-              { term: "cia" },
-              ".",
-            ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "termos-de-mercado",
-      title: "Termos de mercado e tecnologia",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Termos de uso mais amplo no mercado de logística e tecnologia: ",
-              { term: "tms" },
-              ", ",
-              { term: "erp" },
-              ", ",
-              { term: "api" },
-              ", ",
-              { term: "eta" },
-              ", ",
-              { term: "kpi" },
-              ", ",
-              { term: "sla" },
-              " e ",
-              { term: "geofencing" },
-              ".",
-            ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "termos-regulatorios",
-      title: "Termos regulatórios e institucionais",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Órgãos e normas citados ao longo da trilha: ",
-              { term: "antt" },
-              ", ",
-              { term: "cnt" },
-              ", ",
-              { term: "susep" },
-              ", ",
-              { term: "lgpd" },
-              " e ",
-              { term: "iso-31000" },
-              ".",
-            ],
-          ],
-        },
         {
           type: "faq",
           items: [
-            { q: "Onde encontro a definição completa de cada termo?", a: "No Glossário do portal (menu principal), com busca e explicação detalhada de cada um." },
-            { q: "Por que algumas siglas são internas da Atlas e outras são de mercado?", a: "Siglas como PGR, SM e CIA são específicas da forma como a Atlas organiza seu trabalho; siglas como TMS, ERP, KPI e SLA são usadas amplamente no mercado de logística e gestão." },
+            { q: "O que é SLA?", a: "Service Level Agreement (Acordo de Nível de Serviço). O tempo máximo que temos para fazer algo. Ex: SLA de Atendimento de Alerta Crítico é de 10 minutos." },
+            { q: "O que é ETA?", a: "Estimated Time of Arrival (Tempo Estimado de Chegada). A inteligência artificial calculando que horas o caminhão vai entregar a carga." },
+            { q: "O que é OTD?", a: "On-Time Delivery. O indicador do cliente de quantas entregas chegaram no prazo." },
           ],
         },
       ],
     },
   ],
   summary: [
-    "Este módulo reúne os termos técnicos já vistos, organizados em 4 categorias: risco/seguro, operação da Central, mercado/tecnologia e regulatório.",
-    "O Glossário do portal é a referência rápida para consultar qualquer termo a qualquer momento.",
-    "Siglas internas da Atlas (PGR, SM, CIA) não devem ser confundidas com siglas de mercado (TMS, ERP, KPI, SLA).",
+    "A comunicação precisa evita falsos positivos (ex: reportar um Jammer quando era só uma Área de Sombra).",
+    "Iscas são equipamentos autônomos dentro da carga, essenciais se o rastreador principal for destruído.",
+    "CT-e é o imposto do frete, NF-e é o imposto do produto. O valor total da carga em risco vem da NF-e.",
+    "KPIs como SLA e ETA são as métricas pelas quais o mercado avalia a eficiência da AtlasGR e da transportadora.",
   ],
   finalChecklist: [
-    "Sei em qual categoria (risco/seguro, operação, mercado, regulatório) cada termo técnico se encaixa.",
-    "Sei onde consultar o Glossário do portal a qualquer momento.",
-    "Não confundo mais siglas internas da Atlas com siglas de mercado.",
+    "Sei a diferença entre ação de Jammer e Área de Sombra.",
+    "Consigo explicar para um cliente a diferença entre Rastreador Principal e Isca Móvel.",
+    "Sei o significado de SLA.",
   ],
   mindMap: {
     root: "Termos Técnicos",
     branches: [
-      { label: "Risco e seguro", items: ["PGR", "Sinistro", "Sublimite", "RCF-DC"] },
-      { label: "Operação da Central", items: ["Connect", "Torre de Controle", "SM", "Checklist", "CIA"] },
-      { label: "Mercado e tecnologia", items: ["TMS", "ERP", "API", "ETA", "KPI", "SLA"] },
-      { label: "Regulatório", items: ["ANTT", "CNT", "SUSEP", "LGPD", "ISO 31000"] },
+      { label: "Equipamentos", items: ["Jammer", "Sombra", "Isca", "VSR"] },
+      { label: "Documentos", items: ["NF-e", "CT-e", "PGR"] },
+      { label: "Métricas", items: ["SLA", "ETA", "OTD"] },
     ],
   },
   scenario:
-    "Um colega novo, no segundo dia de operação, ouve um supervisor falar 'a SM tá com nível 6 e o PGR já autorizou a Pronta' — e não entende metade da frase. Quantos desses termos você consegue traduzir sem abrir o Glossário?",
+    "O motorista entra em uma serra famosa por não ter torre de celular e o sinal cai. O sistema alerta. Você anota no relatório 'Suspeita de Uso de Jammer'. Por que isso é um erro gravíssimo de nomenclatura?",
   diagram: {
-    title: "Categorias de termos técnicos",
-    chart: "graph TD\n  A[Termos tecnicos] --> B[Risco e seguro]\n  A --> C[Operacao da Central]\n  A --> D[Mercado e tecnologia]\n  A --> E[Regulatorio]",
+    title: "Relação de Documentos",
+    chart: "graph LR\n  A[Embarcador] -->|Emite| B[NF-e (Valor da Carga)]\n  C[Transportadora] -->|Emite| D[CT-e (Valor do Frete)]\n  B --> E[Sistema Atlas]\n  D --> E",
   },
 };

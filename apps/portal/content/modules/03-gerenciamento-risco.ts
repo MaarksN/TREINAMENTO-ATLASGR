@@ -6,245 +6,179 @@ const meta = getModuleMeta("03-gerenciamento-risco")!;
 export const module03: ModuleContentFull = {
   ...meta,
   sources: [
-    "Manual Site Gerenciamento de Risco (Pósitron Rastreamento, DTPE, jan/2017) — associação de GR e permissões",
-    "Cronograma de Treinamentos 2º semestre — tópicos de PGR, apólice RCF-DC e Malícia",
-    "Treinamento PGR 2023 — estrutura real de um Plano de Gerenciamento de Risco",
-    "Manual de Check list (procedimento de teste de sensores e atuadores)",
-    "CARGOS.pdf — funções de Implantação, Perfil Securitário, CIA I e CIA II",
+    "Outline consolidado para este módulo (content/modules/meta.ts)",
+    "Apólice de Seguro de Transporte e RCTR-C",
+    "Manual de Estruturação de PGR",
+    "Protocolos de CIA - Central de Inteligência Atlas",
   ],
   objectives: [
-    "Explicar o que é um PGR e por que ele existe.",
-    "Diferenciar apólice, sinistro, sublimite e RCF-DC.",
-    "Descrever o caminho de um alerta, do checklist até o acionamento da CIA.",
-    "Reconhecer a estrutura real de um PGR e o que é responsabilidade da transportadora x da Central.",
-    "Associar um veículo a uma Gerenciadora de Risco (GR) e explicar cada permissão.",
-    "Reconhecer sinais de coação usando as técnicas do treinamento de Malícia.",
+    "Definir o que é Gerenciamento de Risco, Apólice e PGR.",
+    "Entender a diferença jurídica e operacional entre Roubo, Furto, Sinistro e Avaria.",
+    "Descrever o papel vital da CIA em eventos críticos.",
+    "Entender a estrutura básica de um PGR e como ele dita o comportamento da Torre de Controle.",
   ],
   sections: [
     {
-      id: "conceito-de-risco",
-      title: "O que é gerenciamento de risco",
+      id: "guia-do-modulo",
+      title: "Guia Estratégico do Módulo",
       blocks: [
         {
           type: "text",
-          heading: "Do conceito básico...",
+          heading: "Visão Geral",
           paragraphs: [
             [
-              "Gerenciar risco, no contexto logístico, é reduzir a chance — e o impacto — de eventos que ameacem a carga, o veículo ou o motorista durante uma viagem: roubo, furto, acidente, desvio de rota ou perda de contato.",
-            ],
-            [
-              "A ATLASGR existe justamente para isso: ela é a ",
-              { term: "gr" },
-              " contratada pelo cliente (transportadora ou embarcador) para monitorar a operação em tempo real, seguindo regras definidas previamente.",
+              "Este é o núcleo da nossa existência. O Gerenciamento de Risco (GR) é o que fazemos. Aqui você aprenderá as regras do jogo: como seguradoras ditam normas, como o PGR as traduz, e como a nossa CIA executa a proteção final.",
             ],
           ],
         },
         {
+          type: "checklist",
+          title: "Ficha Técnica",
+          items: [
+            "Nível de dificuldade: Intermediário",
+            "Pré-requisitos: Módulo 01 e Módulo 02",
+            "Tempo estimado: 55 minutos",
+            "Competências desenvolvidas: Análise de Risco, Compreensão Jurídica Básica, Gestão de Crises",
+            "Gamificação: +800 XP, Badge 'Guardião da Carga', Missão 'Leitor de PGR'",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Desafio de Aprendizagem",
+          text: [
+            "O termo 'PGR' vai aparecer dezenas de vezes. Toda vez que lê-lo, traduza na sua mente para: 'O Livro de Regras do Jogo daquele caminhão específico'.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "apolice-e-pgr",
+      title: "Apólice e PGR: As Regras do Jogo",
+      blocks: [
+        {
           type: "text",
-          heading: "...ao avançado",
           paragraphs: [
             [
-              "Essas regras ficam documentadas no ",
+              "A transportadora compra um seguro (a Apólice). Para esse seguro ter validade, a seguradora exige que a transportadora siga um conjunto estrito de regras de segurança. Esse manual de regras é o ",
               { term: "pgr" },
-              ": rotas permitidas, horários de maior risco, pontos de parada autorizados e o passo a passo que a Central deve seguir diante de cada tipo de alerta — inclusive quando acionar a polícia ou uma empresa de ",
-              { term: "pronta-resposta" },
+              " (Plano de Gerenciamento de Risco).",
+            ],
+            [
+              "O papel da AtlasGR não é ser a seguradora, e sim ser a auditora e executora em tempo real. Nós usamos a tecnologia e nossos operadores para garantir que o caminhão não quebre o PGR.",
+            ],
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Apólice x PGR",
+          left: {
+            label: "Apólice de Seguro",
+            points: [
+              "É o contrato comercial e financeiro.",
+              "Diz QUANTO vai ser pago em caso de perda.",
+              "Gerido pela Corretora/Seguradora.",
+            ],
+          },
+          right: {
+            label: "PGR (Plano de Gerenciamento de Risco)",
+            points: [
+              "É o manual tático e operacional.",
+              "Diz O QUE TEM QUE SER FEITO para evitar a perda.",
+              "Gerido pela AtlasGR.",
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: "sinistros-e-tipos",
+      title: "Quando o pior acontece: Sinistros",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Um ",
+              { term: "sinistro" },
+              " é a materialização do risco. É o momento em que o pior acontece. No mercado, existem terminologias muito estritas para isso.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Termos Técnicos Obrigatórios",
+          items: [
+            "Roubo: Subtração da carga mediante violência ou grave ameaça (ex: assalto armado).",
+            "Furto: Subtração da carga sem violência (ex: carga levada enquanto o motorista dormia).",
+            "Avaria: Dano físico à carga (ex: tombamento do caminhão quebrou os produtos).",
+            "Perda de Sinal: O rastreador parou de comunicar (pode ser área de sombra ou uso de Jammer).",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "A Importância Jurídica",
+          text: [
+            "Para a AtlasGR, usar a palavra certa nos relatórios muda tudo. Uma Apólice pode ter cobertura para Roubo mas não para Furto Simples. Nunca escreva 'Roubo' em um evento se não houver confirmação de violência; use termos neutros como 'ocorrência' ou 'suspeita' até a confirmação policial.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "o-papel-da-cia",
+      title: "A Central de Inteligência Atlas (CIA)",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Quando a Torre de Controle (o operador padrão) detecta uma quebra de PGR gravíssima ou uma suspeita real de roubo, o evento sai do atendimento normal e é escalonado para a ",
+              { term: "cia" },
               ".",
             ],
             [
-              "É o PGR que transforma \"gerenciamento de risco\" de um conceito abstrato em um procedimento operacional concreto, seguido de forma consistente por qualquer operador, em qualquer turno.",
+              "A CIA é a nossa 'tropa de elite'. São especialistas treinados para falar com a polícia, acionar pronta resposta armada (se contratado), e iniciar a recuperação de carga.",
             ],
           ],
         },
-      ],
-    },
-    {
-      id: "estrutura-de-um-pgr",
-      title: "O que tem dentro de um PGR de verdade",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "O PGR não é um documento genérico — ele é escrito sob medida para cada cliente, mas segue uma estrutura consistente, dividida entre o que é responsabilidade da transportadora e o que é responsabilidade da Central de Monitoramento.",
-            ],
-          ],
-        },
-        {
-          type: "comparison",
-          title: "Responsabilidade da Transportadora x da Central",
-          left: {
-            label: "Transportadora",
-            points: [
-              "Consulta e cadastro de motoristas.",
-              "Comboio e escolta, quando exigidos.",
-              "Divulgação e orientação da equipe operacional e condutores.",
-              "Checklist do rastreador e disponibilidade do sinal do veículo.",
-              "Senha de voz combinada com a Central.",
-            ],
-          },
-          right: {
-            label: "Central de Monitoramento (Gerenciadora)",
-            points: [
-              "Ciclos de macros e senhas de motoristas.",
-              "Regras de monitoramento e particularidades da transportadora.",
-              "Procedimentos de paradas durante a viagem.",
-              "Suspeitas de roubo em rodovias e cidades.",
-              "Escalation list e contatos da seguradora/corretora em caso de sinistro.",
-            ],
-          },
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Também define o quadro sinóptico",
-          text: [
-            "Todo PGR começa com um quadro sinóptico: dados gerais da operação, limites e regras de embarque, sublimites e especificações, e os bens que não estão cobertos pela apólice — a base sobre a qual todas as outras regras são construídas.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "apolice-e-seguro",
-      title: "Apólice, sinistro e sublimite",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Grande parte da razão de existir do gerenciamento de risco está ligada ao seguro de carga. A ",
-              { term: "rcf-dc" },
-              " é uma das modalidades mais comuns no mercado de transporte rodoviário, e frequentemente exige contrapartidas operacionais — como rastreamento, checklist e PGR — como condição para a cobertura ser válida.",
-            ],
-          ],
-        },
-        {
-          type: "comparison",
-          title: "Apólice x Sinistro x Sublimite",
-          left: {
-            label: "Apólice",
-            points: [
-              "Contrato de seguro entre o cliente e a seguradora.",
-              "Define o Limite Máximo de Indenização (LMI) geral.",
-              "Pode exigir requisitos operacionais para manter a cobertura válida.",
-            ],
-          },
-          right: {
-            label: "Sinistro e Sublimite",
-            points: [
-              "Sinistro: evento coberto que efetivamente ocorreu (roubo, furto, acidente).",
-              "Sublimite: teto de indenização para uma cobertura específica dentro do LMI geral.",
-              "A Central atua para reduzir a chance de sinistro e, quando ele ocorre, para documentá-lo corretamente.",
-            ],
-          },
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Por que isso importa para quem não é da área comercial",
-          text: [
-            "Mesmo quem trabalha na Central precisa entender apólice e sublimite: o PGR de cada cliente é desenhado em cima das exigências da apólice contratada — por isso o mesmo tipo de alerta pode ter tratativas diferentes de cliente para cliente.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "do-pgr-ao-dia-a-dia",
-      title: "Do PGR ao dia a dia da Central",
-      blocks: [
         {
           type: "timeline",
-          title: "O caminho de uma operação segura",
+          title: "Cronologia de um Escalonamento para a CIA",
           items: [
-            { label: "1. Implantação", text: "O Analista de Implantação analisa a apólice do cliente novo e cria o PGR, definindo regras, macros e sublimites relevantes." },
-            { label: "2. Checklist", text: "Antes e durante a viagem, sensores e atuadores do veículo são testados e validados no Atlas Connect." },
-            { label: "3. Monitoramento", text: "Operadores acompanham a viagem em tempo real e tratam alertas conforme o PGR — com ou sem SM ativa." },
-            { label: "4. Malícia", text: "Em uma ligação suspeita, o operador usa as técnicas de Malícia para identificar coação sem expor o motorista." },
-            { label: "5. CIA", text: "Em qualquer suspeita de sinistro, a CIA é acionada e decide sobre acionamento policial e pronta resposta, conforme o PGR." },
-            { label: "6. Relatório", text: "Se confirmado o sinistro, a CIA II monta o relatório completo em até 48 horas após o evento." },
-          ],
-        },
-        {
-          type: "case",
-          title: "Checklist como primeira linha de defesa",
-          text:
-            "O Manual de Check List da Central descreve o procedimento padrão: solicitar ao motorista a macro de início de viagem, acionar o botão de pânico por 5 segundos, testar sensores de porta e do baú, e validar cada item (bloqueio, sirene, sensores, teclado) no Atlas Connect antes de aprovar a viagem. Qualquer sensor reprovado é registrado em observação para acompanhamento.",
-          source: "Manual de Check list (procedimento interno da Central)",
-        },
-        {
-          type: "checklist",
-          title: "Sinais trabalhados no treinamento de Malícia",
-          items: [
-            "Mudança perceptível no tom de voz do motorista durante a ligação.",
-            "Uso da senha de coação combinada previamente.",
-            "Respostas evasivas ou fora do padrão a perguntas de rotina.",
-            "Silêncio ou hesitação incomum em momentos que normalmente seriam rápidos de responder.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "gr-no-equipamento",
-      title: "A GR dentro do equipamento de rastreamento",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Nos portais dos fabricantes de rastreadores (como o portal Gerenciamento de Risco da Pósitron), cada veículo pode ser associado a uma ou mais Gerenciadoras de Risco, cada uma com um conjunto de permissões.",
-            ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "As 4 permissões de uma GR associada a um veículo",
-          items: [
-            "GR Principal — responsável pela configuração e gestão do equipamento (só uma GR pode ser a principal por veículo).",
-            "Comando Disponível — permite ou não que a GR envie comandos para o veículo.",
-            "Ação Embarcada Disponível — permite ou não que a GR embarque regras de segurança, macros, cercas e perfil de temperatura.",
-            "Alerta Compartilhado — permite que outras GRs associadas ao mesmo veículo também recebam os alertas gerados pelo equipamento.",
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            { q: "Uma placa pode ter mais de uma Gerenciadora de Risco associada?", a: "Sim. É possível associar mais de uma GR a um mesmo veículo, mas apenas uma pode ser marcada como GR Principal." },
-            { q: "O que acontece se eu não marcar 'Ação Embarcada Disponível'?", a: "A GR não conseguirá embarcar regras de segurança, macros, cercas ou perfil de temperatura naquele veículo." },
-            { q: "Qual a diferença entre tratar um alerta 'com SM' e 'sem SM'?", a: "SM identifica uma viagem sob monitoramento ativo no Connect; o PGR do cliente define regras específicas para alertas dentro e fora de uma SM em andamento." },
+            { label: "Minuto 0", text: "Veículo de Alto Valor desvia da rota padrão e rastreador principal perde sinal." },
+            { label: "Minuto 2", text: "Operador aciona bloqueio de combustível preventivo e liga no celular." },
+            { label: "Minuto 5", text: "Celular desligado. Sem resposta de redundância. Operador aciona a CIA imediatamente." },
+            { label: "Minuto 6", text: "CIA assume o alvo. Aciona 190. Libera equipe tática de Pronta Resposta." },
           ],
         },
       ],
     },
   ],
   summary: [
-    "Gerenciar risco é reduzir a chance e o impacto de roubo, furto, acidente ou desvio durante uma viagem.",
-    "O PGR traduz o gerenciamento de risco em regras operacionais concretas para a Central seguir.",
-    "A apólice (frequentemente RCF-DC) define o LMI geral; o sublimite é o teto para uma cobertura específica.",
-    "Um PGR real divide responsabilidades entre transportadora (cadastro de motoristas, escolta, senha de voz) e Central (macros, regras de monitoramento, escalation list).",
-    "O caminho típico é: Implantação cria o PGR → checklist valida o veículo → monitoramento acompanha a viagem → Malícia identifica coação → CIA aciona autoridades/pronta resposta → relatório de sinistro em até 48h.",
-    "No portal do fabricante do rastreador, cada veículo é associado a uma GR com 4 permissões: GR Principal, Comando Disponível, Ação Embarcada Disponível e Alerta Compartilhado.",
+    "O GR foca em prevenção. A Apólice foca em compensação financeira.",
+    "O PGR é o livro de regras que a AtlasGR precisa fazer cumprir.",
+    "Roubo (violência) é diferente de furto (sem violência) - a precisão dos relatórios é vital.",
+    "A CIA atua quando a prevenção falha ou há ameaça iminente; a Torre atua na prevenção diária.",
   ],
   finalChecklist: [
-    "Sei explicar o que é um PGR e quem o cria.",
-    "Sei o que é responsabilidade da transportadora e o que é responsabilidade da Central dentro de um PGR.",
-    "Sei diferenciar apólice, sinistro e sublimite.",
-    "Consigo descrever o procedimento de checklist de sensores e atuadores.",
-    "Reconheço pelo menos 3 sinais trabalhados no treinamento de Malícia.",
-    "Sei explicar as 4 permissões de uma GR associada a um veículo.",
+    "Diferencio Apólice de PGR sem problemas.",
+    "Sei exatamente a diferença entre roubo, furto e avaria.",
+    "Consigo explicar qual é o gatilho para chamar a CIA.",
+    "Entendo que minha digitação nos relatórios tem impacto jurídico nas seguradoras.",
   ],
   mindMap: {
     root: "Gerenciamento de Risco",
     branches: [
-      { label: "Conceito", items: ["Reduzir chance e impacto de sinistro", "PGR traduz risco em regra operacional"] },
-      { label: "Estrutura do PGR", items: ["Quadro sinóptico", "Responsabilidade da transportadora", "Responsabilidade da Central"] },
-      { label: "Seguro", items: ["Apólice / LMI", "RCF-DC", "Sublimite", "Sinistro"] },
-      { label: "Fluxo operacional", items: ["Implantação cria PGR", "Checklist", "Monitoramento", "Malícia", "CIA", "Relatório em 48h"] },
-      { label: "GR no equipamento", items: ["GR Principal", "Comando Disponível", "Ação Embarcada Disponível", "Alerta Compartilhado"] },
+      { label: "Regras", items: ["Apólice", "PGR", "Seguradora"] },
+      { label: "Eventos Reais", items: ["Roubo (com violência)", "Furto (sem violência)", "Avaria (dano)", "Perda de Sinal"] },
+      { label: "O Resgate", items: ["CIA", "Pronta Resposta", "Polícia", "Recuperação"] },
     ],
   },
   scenario:
-    "Você está monitorando uma carga avaliada em R$ 1,5 milhão. O painel aponta um desvio de rota 15 km fora da área permitida pelo PGR. O motorista não atende. O que o Gerenciamento de Risco ensina sobre os próximos passos?",
+    "Motorista avisa: 'Pararam do meu lado no posto enquanto eu estava na lanchonete e levaram duas caixas de trás do baú. Ninguém viu, nem eu.' Você reporta isso para a CIA como Roubo ou Furto? E por que?",
   diagram: {
-    title: "Do PGR ao relatório de sinistro",
-    chart: "graph LR\n  A[PGR definido] --> B[Checklist valida veiculo]\n  B --> C[Monitoramento]\n  C --> D[CIA]\n  D --> E[Relatorio em 48h]",
+    title: "O Ciclo da Proteção",
+    chart: "graph TD\n  A[Seguradora exige PGR] --> B[AtlasGR cadastra regras]\n  B --> C[Torre de Controle Monitora]\n  C -- Regra Quebrada --> D{Gravidade}\n  D -- Leve --> E[Contato com Motorista]\n  D -- Grave/Sem Contato --> F[CIA/Pronta Resposta]",
   },
 };
