@@ -7,156 +7,166 @@ export const module11: ModuleContentFull = {
   ...meta,
   sources: [
     "Apostila de Treinamento Inicial (v. 4.0) — Procedimentos Atlas GR",
-    "Treinamento Connect — Níveis de prioridade de alerta",
-    "Treinamento Operacional 2022 (SLA, Paradas, Erros)",
+    "Treinamento Connect — Tratando Eventos Críticos",
     "Manual de Check list Central",
   ],
   objectives: [
-    "Descrever a rotina de execução na Torre de Controle de Monitoramento 24h.",
-    "Diferenciar Monitoramento Ativo, Rastreador Passivo e atuação por Alertas.",
-    "Aplicar o SLA real de tratativa: 10 minutos para iniciar, 45 minutos para resolver.",
-    "Reconhecer os erros operacionais críticos que levam a quebra de confiança do cliente.",
+    "Entender a pressão e o fluxo de trabalho de um turno na Torre de Controle 24h.",
+    "Interiorizar a diferença de postura entre um 'Rastreador' e um 'Monitorador Ativo'.",
+    "Decorar e aplicar as réguas de tempo (SLA) de tratativa e escalonamento.",
+    "Internalizar a cultura de NUNCA encerrar um alerta por intuição ou pena do motorista.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: Bem-vindo à Linha de Frente",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "O Coração da AtlasGR",
           paragraphs: [
             [
-              "A teoria acabou. Este módulo é a prática crua do que acontece na Central 24 horas (O Coração da AtlasGR). Se você vai atuar na Operação, estas são as regras de ouro do seu dia a dia.",
+              "Todos os módulos anteriores construíram a base teórica. Agora você está sentado na cadeira, o fone de ouvido no ouvido, e a tela do Atlas Connect piscando em vermelho. Bem-vindo à Operação 24 horas.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Avançado (Operacional)",
-            "Pré-requisitos: Módulo 03 e Módulo 05",
-            "Tempo estimado: 45 minutos",
-            "Competências desenvolvidas: Execução Sob Pressão, Multitarefas, Tomada de Decisão",
-            "Gamificação: +1000 XP, Badge 'Operador Tático', Missão 'O Turno Perfeito'",
+            [
+              "Na Torre de Controle, 5 minutos de distração podem custar vidas, cargas milionárias e contratos gigantescos. A eficiência não vem de improviso, vem da obediência cega ao processo.",
+            ],
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Alerta de SLA",
+          title: "SLA - A Máxima Absoluta",
           text: [
-            "10 Minutos. Esse é o SLA limite para você iniciar a tratativa de um alerta que cai na sua tela. Passou disso, a segurança da carga está severamente comprometida.",
+            "Não existe tempo de pensar. Quando um alerta cai, você tem **10 Minutos** cravados para agir. E até **45 minutos** para resolver tudo ou passar para a CIA.",
           ],
         },
       ],
     },
     {
-      id: "monitoramento-vs-rastreamento",
-      title: "O Paradigma Operacional",
+      id: "capitulo-1-ativo-passivo",
+      title: "Capítulo 1: O Fim do Rastreio Passivo",
       blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Qualquer um pode comprar um ",
-              { term: "tms" },
-              " e rastrear um caminhão passivamente no mapa. A AtlasGR vende MONITORAMENTO. Isso significa atuação humana e sistêmica sobre exceções.",
-            ],
-          ],
-        },
         {
           type: "comparison",
-          title: "A Diferença",
+          title: "Rastrear vs Monitorar",
           left: {
-            label: "Rastreamento",
-            points: ["Saber ONDE o caminhão está.", "Olhar mapas passivamente.", "Só agir quando o cliente liga perguntando."],
+            label: "O Rastreador (Amador)",
+            points: ["Fica olhando bolinhas no mapa.", "Só age quando o motorista ou cliente liga.", "Não previne, apenas constata a tragédia depois de ocorrida."],
           },
           right: {
-            label: "Monitoramento Ativo (AtlasGR)",
-            points: ["Saber O QUE ele está fazendo.", "Tratar alertas gerados pelo motor de regras.", "Agir preventivamente antes do cliente notar o erro."],
+            label: "O Monitorador (AtlasGR)",
+            points: ["Confia no Motor de Regras.", "Trata implacavelmente a Fila de Alertas do Connect.", "Age quando a IA avisa que o motorista errou, ANTES do roubo."],
           },
         },
       ],
     },
     {
-      id: "rotina-e-sla",
-      title: "O Ciclo do Alerta e o Relógio",
+      id: "capitulo-2-fluxo",
+      title: "Capítulo 2: O Passo a Passo de um Alerta",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Um evento piscou vermelho (Ex: Parada Indevida de Carreta de Alto Valor). O cronômetro começa a rodar. A sua ação define o sucesso.",
+              "A tela piscou: 'Parada Indevida de Alto Risco'. O que você faz nos próximos minutos?",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "O SLA de Tratativa (A Regra de Ouro)",
+          title: "A Execução Tática",
           items: [
-            { label: "0 a 10 minutos", text: "Você DEVE iniciar o atendimento (clicar no alerta e disparar primeira macro/ligação)." },
-            { label: "10 a 30 minutos", text: "Fase de investigação. Contato com motorista via rádio, envio de comando de sirene, tentativa no celular." },
-            { label: "Em até 45 minutos", text: "O alerta DEVE estar resolvido (Falso Positivo baixado, ou Escalonado para a CIA como Evento Crítico)." },
-          ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Parada Eventual x Parada Longa",
-          text: [
-            "Não existe 'dar um pulinho no posto'. O PGR define paradas. Se a carreta parar onde não devia, aos 5 minutos o sistema alerta Parada Eventual. Passou de 15 minutos, vira Parada Longa (Nível Crítico).",
+            { label: "01 min", text: "Clique no alerta. Você trava o alerta no seu nome, parando o relógio do SLA inicial de 10 min." },
+            { label: "02 min", text: "Você dispara bloqueio de baú preventivo (macrô) para que o motorista não consiga descarregar no posto." },
+            { label: "03 min", text: "Liga via rádio satelital ou celular para o motorista." },
+            { label: "05 min", text: "Motorista atende. VOCÊ EXIGE A CONTRA-SENHA DO DIA." },
+            { label: "06 min", text: "Contra-senha correta (Justificativa aprovada = Fim do Alerta). Contra-senha Errada/Sem Sinal = Botão de Pânico acionado e Escalonado para a CIA imediatamente." },
           ],
         },
       ],
     },
     {
-      id: "erros-fatais",
-      title: "Erros que Quebram a Confiança",
+      id: "capitulo-3-erros",
+      title: "Capítulo 3: Os Pecados Capitais da Torre",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Na Torre de Controle, o descuido custa caro.",
+              "Abaixo os erros que geram demissão imediata (Justa Causa Técnica).",
             ],
           ],
         },
         {
-          type: "faq",
+          type: "checklist",
+          title: "Os 3 Pecados Operacionais",
           items: [
-            { q: "Qual o maior erro de comunicação?", a: "Desativar um alerta Nível 1 baseado APENAS na palavra do motorista por telefone sem exigir contra-senha de segurança. Ele pode estar sob ameaça no painel do caminhão." },
-            { q: "O que é 'Enforcar o Alerta'?", a: "Deixar o alerta no seu nome por mais de 45 minutos sem resolução nem escalonamento, enquanto você vai tomar café. A carga fica vulnerável e a SLA do cliente é estourada." },
-            { q: "Posso dar dica da senha para o motorista?", a: "NUNCA. Se ele esqueceu a senha de viagem/coação, ele deve fazer o recadastramento seguindo o processo. Dar dica anula a utilidade da senha anti-sequestro." },
+            "Enforcar o Alerta: Você clica nele (travando no seu nome), mas vai almoçar e esquece de tratá-lo por horas.",
+            "Subverter a Fila: Tratar alertas fáceis (Nível 6) ignorando um Alerta de Pânico Crítico (Nível 1) que está no topo piscando.",
+            "Acreditar na Voz: Achar que a voz do motorista estava calma e encerrar o alerta crítico sem exigir a CONTRA-SENHA OBRIGATÓRIA (Ele poderia estar com uma arma na nuca fingindo calma).",
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Pressão Psicológica",
+      blocks: [
+        {
+          type: "case",
+          title: "O Pneu Furado e o Ladrão",
+          text: "Um caso verídico e cruel: O motorista parou de madrugada em rodovia isolada. A torre apitou Alerta Crítico. O operador ligou, e ouviu uma voz desesperada: 'Cara, meu pneu estourou na serra, quase capotei, me ajuda, chama o resgate, libera o baú que vou colocar a chave de roda'. O Operador de Torre, movido pela empatia, não pediu a contra-senha, liberou o baú remoto e encerrou a chamada para ligar pro resgate. Na verdade, quem estava falando ao rádio era um criminoso altamente articulado. A carga de R$ 800 mil foi saqueada do baú destravado. A empatia burra no gerenciamento de risco é uma arma que os bandidos usam. Sem contra-senha, presuma coação e trave tudo.",
+          source: "Arquivos de Treinamento DHO",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Você não treina no vácuo. Nos seus primeiros dias você operará o Connect no 'Modo Simulação' (Shadowing) assistido por um Líder Operacional sênior.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Fechamento da Trilha 4",
+          items: [
+            "Responda ao Quiz Final do módulo com concentração.",
+            "Siga para a Trilha Final 05 (Compliance, IA e Casos Reais) para fechar o seu treinamento rumo à prova de Certificação.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "Monitorar é agir sobre alertas; rastrear é apenas olhar o mapa.",
-    "SLA de Trativa: Começar em menos de 10 min, resolver em até 45 min.",
-    "Nunca encerre um alerta crítico sem validar contra-senhas; o motorista pode estar sob coação.",
-    "Atrasar tratativas ('enforcar alertas') quebra o PGR do cliente e expõe a AtlasGR a multas ou processos em caso de roubo.",
+    "A Torre opera 100% focada em Alertas, e nunca rastreando visualmente pontos passivos.",
+    "O SLA não perdoa: Aja em 10 minutos ou a operação já começa falida.",
+    "A contra-senha é a única prova tecnológica de que o motorista está livre de coação.",
+    "Enforcar alertas ou ignorar a ordem de prioridade (Nível 1 > Nível 4) gera catástrofe.",
   ],
   finalChecklist: [
-    "Diferencio perfeitamente rastreamento (passivo) de monitoramento (ativo).",
-    "Sei de cor os tempos de SLA: 10m inicial, 45m final.",
-    "Conheço a regra da contra-senha para motoristas.",
+    "Sei de cor os SLAs operacionais (10m e 45m).",
+    "Compreendo a importância absoluta da contra-senha diária.",
+    "Consigo explicar por que empatia sem método é um perigo fatal.",
   ],
   mindMap: {
-    root: "Operação na Torre",
+    root: "Torre de Controle",
     branches: [
-      { label: "Filosofia", items: ["Monitoramento Ativo", "Gestão por Alertas", "Velocidade"] },
-      { label: "SLA", items: ["<10min Início", "<45min Fim", "Escalonamento"] },
-      { label: "Segurança", items: ["Contra-senha", "Coação", "Bloqueios"] },
+      { label: "Filosofia", items: ["Atuação em Alerta", "Ação Imediata", "Velocidade SLA"] },
+      { label: "Execução", items: ["Travar Alerta", "Comandos Remotos", "Contato e Senha"] },
+      { label: "Erros Mortais", items: ["Acreditar na voz", "Subverter Fila", "Enforcamento"] },
     ],
   },
   scenario:
-    "Alerta: Parada Não Programada. Você liga para o motorista. A voz dele está trêmula, ele diz 'Parei para verificar o pneu'. Você pede a contra-senha. Ele diz 'Esqueci, cara, libera aí que tá tudo certo'. O que o protocolo manda você fazer imediatamente?",
+    "Cenário Prático: O motorista liga para o 0800 da Torre muito alterado, diz que esqueceu a contra-senha, que tá chovendo e ele precisa abastecer fora de rota. O sistema indica Zona Vermelha. Qual o seu procedimento rígido?",
   diagram: {
-    title: "Escalonamento Rápido",
-    chart: "graph TD\n  A[Alerta na Tela] --> B{Contato com Motorista}\n  B -- Responde com Senha --> C[Baixa Alerta]\n  B -- Sem Senha/Nervoso --> D[Bloqueio + CIA 190]\n  B -- Sem Sinal --> D",
+    title: "O Loop de Tratativa Rápida",
+    chart: "graph TD\n  A[Alerta Nível Crítico] --> B{Operador Inicia em 10m?}\n  B -- Não --> Falha[SLA Fura / Prejuízo Cresce]\n  B -- Sim --> C[Bloqueio Preventivo]\n  C --> D{Motorista diz Contra-Senha?}\n  D -- Sim --> E[Validação Segura / Baixa]\n  D -- Não / Gagueja --> F[Escalona para CIA / 190]",
   },
 };

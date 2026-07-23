@@ -6,40 +6,34 @@ const meta = getModuleMeta("03-gerenciamento-risco")!;
 export const module03: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
+    "Outline consolidado (content/modules/meta.ts)",
     "Apólice de Seguro de Transporte e RCTR-C",
     "Manual de Estruturação de PGR",
     "Protocolos de CIA - Central de Inteligência Atlas",
   ],
   objectives: [
-    "Definir o que é Gerenciamento de Risco, Apólice e PGR.",
-    "Entender a diferença jurídica e operacional entre Roubo, Furto, Sinistro e Avaria.",
-    "Descrever o papel vital da CIA em eventos críticos.",
-    "Entender a estrutura básica de um PGR e como ele dita o comportamento da Torre de Controle.",
+    "Definir tecnicamente Gerenciamento de Risco, Apólice Securitária e PGR.",
+    "Diferenciar de forma jurídica as categorias de sinistro: Roubo, Furto, Sinistro e Avaria.",
+    "Descrever o papel de 'Força Tática' da CIA em eventos críticos.",
+    "Entender a anatomia de um PGR e como ele parametriza as automações da Torre de Controle.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Coração do Negócio",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "A Guerra Contra a Perda",
           paragraphs: [
             [
-              "Este é o núcleo da nossa existência. O Gerenciamento de Risco (GR) é o que fazemos. Aqui você aprenderá as regras do jogo: como seguradoras ditam normas, como o PGR as traduz, e como a nossa CIA executa a proteção final.",
+              "O Brasil perde bilhões anualmente com roubos de carga e acidentes. O Gerenciamento de Risco (GR) não é um 'adicional de segurança', é a espinha dorsal que mantém o ecossistema logístico respirando.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Intermediário",
-            "Pré-requisitos: Módulo 01 e Módulo 02",
-            "Tempo estimado: 55 minutos",
-            "Competências desenvolvidas: Análise de Risco, Compreensão Jurídica Básica, Gestão de Crises",
-            "Gamificação: +800 XP, Badge 'Guardião da Carga', Missão 'Leitor de PGR'",
+            [
+              "Sem GR forte, as seguradoras não emitem apólices. Sem apólice, o embarcador não contrata a transportadora. Neste módulo, você vai entender as engrenagens desse sistema: como as seguradoras ditam as regras, como o PGR as traduz, e como a nossa ",
+              { term: "cia" },
+              " entra em campo como a proteção final.",
+            ],
           ],
         },
         {
@@ -47,53 +41,50 @@ export const module03: ModuleContentFull = {
           variant: "warning",
           title: "Desafio de Aprendizagem",
           text: [
-            "O termo 'PGR' vai aparecer dezenas de vezes. Toda vez que lê-lo, traduza na sua mente para: 'O Livro de Regras do Jogo daquele caminhão específico'.",
+            "O termo 'PGR' vai aparecer dezenas de vezes. Toda vez que lê-lo, traduza na sua mente para: 'O Livro de Regras do Jogo daquele caminhão específico, ditado por quem paga o prejuízo'.",
           ],
         },
       ],
     },
     {
-      id: "apolice-e-pgr",
-      title: "Apólice e PGR: As Regras do Jogo",
+      id: "capitulo-1-apolice",
+      title: "Capítulo 1: A Tríade (Apólice, Seguradora e PGR)",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "A transportadora compra um seguro (a Apólice). Para esse seguro ter validade, a seguradora exige que a transportadora siga um conjunto estrito de regras de segurança. Esse manual de regras é o ",
-              { term: "pgr" },
-              " (Plano de Gerenciamento de Risco).",
-            ],
-            [
-              "O papel da AtlasGR não é ser a seguradora, e sim ser a auditora e executora em tempo real. Nós usamos a tecnologia e nossos operadores para garantir que o caminhão não quebre o PGR.",
-            ],
-          ],
-        },
-        {
           type: "comparison",
-          title: "Apólice x PGR",
+          title: "Quem Paga vs Quem Previne",
           left: {
             label: "Apólice de Seguro",
             points: [
-              "É o contrato comercial e financeiro.",
-              "Diz QUANTO vai ser pago em caso de perda.",
-              "Gerido pela Corretora/Seguradora.",
+              "É o contrato financeiro assinado entre Transportadora/Embarcador e a Seguradora.",
+              "Diz QUANTO vai ser pago em caso de perda total ou parcial.",
+              "Possui 'Condicionantes': Só paga se o PGR for cumprido à risca.",
             ],
           },
           right: {
             label: "PGR (Plano de Gerenciamento de Risco)",
             points: [
               "É o manual tático e operacional.",
-              "Diz O QUE TEM QUE SER FEITO para evitar a perda.",
-              "Gerido pela AtlasGR.",
+              "Diz O QUE TEM QUE SER FEITO (tecnologias, paradas permitidas, horários) para evitar a perda.",
+              "Gerido e executado pela AtlasGR.",
             ],
           },
+        },
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "O papel da AtlasGR não é ser a seguradora, e sim ser a auditora imparcial e executora rigorosa. Nós garantimos que o caminhão não quebre o ",
+              { term: "pgr" },
+              ", garantindo assim a cobertura da Apólice.",
+            ],
+          ],
         },
       ],
     },
     {
-      id: "sinistros-e-tipos",
-      title: "Quando o pior acontece: Sinistros",
+      id: "capitulo-2-sinistros",
+      title: "Capítulo 2: Anatomia do Sinistro",
       blocks: [
         {
           type: "text",
@@ -101,18 +92,19 @@ export const module03: ModuleContentFull = {
             [
               "Um ",
               { term: "sinistro" },
-              " é a materialização do risco. É o momento em que o pior acontece. No mercado, existem terminologias muito estritas para isso.",
+              " é a materialização do risco. O mercado exige precisão absoluta nas nomenclaturas, pois elas definem as cláusulas de indenização.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Termos Técnicos Obrigatórios",
+          title: "Glossário de Ocorrências",
           items: [
-            "Roubo: Subtração da carga mediante violência ou grave ameaça (ex: assalto armado).",
-            "Furto: Subtração da carga sem violência (ex: carga levada enquanto o motorista dormia).",
-            "Avaria: Dano físico à carga (ex: tombamento do caminhão quebrou os produtos).",
-            "Perda de Sinal: O rastreador parou de comunicar (pode ser área de sombra ou uso de Jammer).",
+            "Roubo: Subtração da carga mediante violência ou grave ameaça (assalto armado, retenção de motorista).",
+            "Furto Simples: Subtração da carga sem uso de violência (carga levada enquanto o motorista tomava banho).",
+            "Furto Qualificado: Subtração sem violência contra a pessoa, mas com quebra de barreira (ex: arrombamento de baú).",
+            "Avaria: Dano físico à carga (tombamento do caminhão que quebrou os produtos).",
+            "Apropriação Indébita: Quando o próprio motorista contratado some com a carga.",
           ],
         },
         {
@@ -120,65 +112,93 @@ export const module03: ModuleContentFull = {
           variant: "info",
           title: "A Importância Jurídica",
           text: [
-            "Para a AtlasGR, usar a palavra certa nos relatórios muda tudo. Uma Apólice pode ter cobertura para Roubo mas não para Furto Simples. Nunca escreva 'Roubo' em um evento se não houver confirmação de violência; use termos neutros como 'ocorrência' ou 'suspeita' até a confirmação policial.",
+            "Escrever 'Roubo' quando foi um 'Furto Simples' pode caracterizar fraude securitária. Use termos neutros como 'Suspeita' ou 'Ocorrência' nos relatórios da Torre até que o Boletim de Ocorrência (BO) policial tipifique o crime.",
           ],
         },
       ],
     },
     {
-      id: "o-papel-da-cia",
-      title: "A Central de Inteligência Atlas (CIA)",
+      id: "capitulo-3-cia",
+      title: "Capítulo 3: A CIA e a Intervenção de Crise",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Quando a Torre de Controle (o operador padrão) detecta uma quebra de PGR gravíssima ou uma suspeita real de roubo, o evento sai do atendimento normal e é escalonado para a ",
-              { term: "cia" },
-              ".",
-            ],
-            [
-              "A CIA é a nossa 'tropa de elite'. São especialistas treinados para falar com a polícia, acionar pronta resposta armada (se contratado), e iniciar a recuperação de carga.",
+              "A Torre de Controle faz a prevenção primária. Mas quando a prevenção falha — um botão de pânico é apertado, ou o sinal de satélite é derrubado na Dutra — a ocorrência é escalonada em segundos para a Central de Inteligência Atlas (CIA).",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "Cronologia de um Escalonamento para a CIA",
+          title: "Cronologia de um Escalonamento",
           items: [
-            { label: "Minuto 0", text: "Veículo de Alto Valor desvia da rota padrão e rastreador principal perde sinal." },
-            { label: "Minuto 2", text: "Operador aciona bloqueio de combustível preventivo e liga no celular." },
-            { label: "Minuto 5", text: "Celular desligado. Sem resposta de redundância. Operador aciona a CIA imediatamente." },
-            { label: "Minuto 6", text: "CIA assume o alvo. Aciona 190. Libera equipe tática de Pronta Resposta." },
+            { label: "Minuto 0", text: "Alerta Nível 1: Caminhão de medicamentos perde sinal em área vermelha." },
+            { label: "Minuto 2", text: "Torre aciona bloqueio remoto e tenta contato com o motorista e as iscas móveis." },
+            { label: "Minuto 5", text: "Sem contato, com desvio confirmado pela isca. Torre aciona a CIA imediatamente." },
+            { label: "Minuto 6", text: "A CIA assume: Aciona a Pronta Resposta armada, contata o 190 da região com as coordenadas precisas da isca e informa o comitê de crise do cliente." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Falha de Enquadramento",
+      blocks: [
+        {
+          type: "case",
+          title: "A Diferença de 1 Milhão de Reais",
+          text: "Um cliente sofreu a perda total de uma carga de defensivos agrícolas. No painel do Atlas Connect, o operador marcou o evento como 'Furto Qualificado' porque o baú estava arrombado, mas não havia sinal do motorista. A apólice do cliente cobria Roubo, mas tinha exclusão para Furto em postos não credenciados. A Seguradora negou o pagamento baseada no apontamento primário. Após investigação da CIA e depoimento do motorista na delegacia, provou-se que o motorista foi rendido com arma de fogo no pátio, configurando Roubo. A seguradora pagou o prêmio, mas a lição ficou: Nomenclatura no calor do momento requer neutralidade.",
+          source: "Arquivo de Auditoria Forense AtlasGR",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Conclusão",
+      blocks: [
+        {
+          type: "checklist",
+          title: "Recursos Adicionais",
+          items: [
+            "Consulte o 'Guia Rápido de Sinistros' na biblioteca digital para ver exemplos de B.O. reais.",
+            "Assista ao vídeo 'A CIA em Ação: Interceptação na Dutra'.",
+          ],
+        },
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Avance para o simulador de conhecimento (Quiz) para fixar a base teórica antes de conhecermos, no Módulo 4, os produtos de software que executam todas essas regras.",
+            ],
           ],
         },
       ],
     },
   ],
   summary: [
-    "O GR foca em prevenção. A Apólice foca em compensação financeira.",
-    "O PGR é o livro de regras que a AtlasGR precisa fazer cumprir.",
-    "Roubo (violência) é diferente de furto (sem violência) - a precisão dos relatórios é vital.",
-    "A CIA atua quando a prevenção falha ou há ameaça iminente; a Torre atua na prevenção diária.",
+    "GR foca em prevenção absoluta. A Apólice foca em compensação financeira.",
+    "O PGR é o livro de regras mandatório ditado pela apólice.",
+    "Categorizar crimes corretamente (Roubo vs Furto) tem peso jurídico e financeiro.",
+    "A Torre de Controle previne e monitora; a CIA atua taticamente na recuperação e contingência grave.",
   ],
   finalChecklist: [
-    "Diferencio Apólice de PGR sem problemas.",
-    "Sei exatamente a diferença entre roubo, furto e avaria.",
-    "Consigo explicar qual é o gatilho para chamar a CIA.",
-    "Entendo que minha digitação nos relatórios tem impacto jurídico nas seguradoras.",
+    "Diferencio tecnicamente Apólice e PGR.",
+    "Sei a diferença exata entre roubo, furto, avaria e apropriação indébita.",
+    "Consigo explicar qual é o gatilho de tempo/gravidade para chamar a CIA.",
   ],
   mindMap: {
     root: "Gerenciamento de Risco",
     branches: [
-      { label: "Regras", items: ["Apólice", "PGR", "Seguradora"] },
-      { label: "Eventos Reais", items: ["Roubo (com violência)", "Furto (sem violência)", "Avaria (dano)", "Perda de Sinal"] },
-      { label: "O Resgate", items: ["CIA", "Pronta Resposta", "Polícia", "Recuperação"] },
+      { label: "O Contrato", items: ["Apólice", "Seguradora", "Indenização"] },
+      { label: "A Execução", items: ["PGR", "Torre de Controle", "Auditoria"] },
+      { label: "A Crise", items: ["Roubo", "Furto", "CIA", "Pronta Resposta"] },
     ],
   },
   scenario:
-    "Motorista avisa: 'Pararam do meu lado no posto enquanto eu estava na lanchonete e levaram duas caixas de trás do baú. Ninguém viu, nem eu.' Você reporta isso para a CIA como Roubo ou Furto? E por que?",
+    "Cenário Prático: A transportadora pede que você 'ignore' um desvio de rota para que o caminhão fuja de um congestionamento, mas o PGR proíbe saída da via principal. O que você responde considerando o risco securitário?",
   diagram: {
-    title: "O Ciclo da Proteção",
-    chart: "graph TD\n  A[Seguradora exige PGR] --> B[AtlasGR cadastra regras]\n  B --> C[Torre de Controle Monitora]\n  C -- Regra Quebrada --> D{Gravidade}\n  D -- Leve --> E[Contato com Motorista]\n  D -- Grave/Sem Contato --> F[CIA/Pronta Resposta]",
+    title: "Ciclo de Risco",
+    chart: "graph TD\n  Apólice --> PGR\n  PGR --> Monitoramento[Torre de Controle]\n  Monitoramento -- Alerta Crítico --> CIA\n  CIA --> Recuperacao[Sucesso: Recuperação / Falha: Sinistro]",
   },
 };

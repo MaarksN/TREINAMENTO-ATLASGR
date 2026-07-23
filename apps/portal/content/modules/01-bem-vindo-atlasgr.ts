@@ -6,240 +6,187 @@ const meta = getModuleMeta("01-bem-vindo-atlasgr")!;
 export const module01: ModuleContentFull = {
   ...meta,
   sources: [
-    "Política Organizacional e Ética (v2.1) — seções 1 a 3, 9 e 11",
-    "CARGOS.pdf — Estrutura Organizacional, Estrutura de Recursos Humanos, Estrutura Operacional",
-    "Apresentação Institucional AtlasGR 2026",
-    "Jornada do Colaborador AtlasGR",
+    "Política Organizacional e Ética (v2.1)",
+    "CARGOS.pdf — Organograma",
+    "Apresentação Institucional AtlasGR",
+    "Jornada do Colaborador",
   ],
   objectives: [
-    "Explicar a origem, o propósito e os valores da ATLASGR com suas próprias palavras.",
-    "Reconhecer as 5 grandes áreas da Diretoria e a função de cada uma.",
-    "Descrever a cadeia operacional da Central, do Gerente ao Operador.",
-    "Aplicar as regras essenciais de conduta, ética, compliance e sigilo no dia a dia.",
-    "Saber quando e por que os treinamentos de reciclagem e a Universidade Corporativa acontecem.",
+    "Compreender profundamente a origem, o propósito e os valores inegociáveis da ATLASGR.",
+    "Mapear mentalmente a estrutura organizacional e a cadeia de comando.",
+    "Assimilar as políticas rígidas de compliance e ética empresarial.",
+    "Conhecer a trilha de desenvolvimento e a Universidade Corporativa.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Propósito da AtlasGR",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "A Gênese da Inteligência Logística",
           paragraphs: [
             [
-              "Bem-vindo ao primeiro passo da sua jornada na AtlasGR. Este módulo foi desenhado para apresentar a fundação da nossa empresa, preparando você com o conhecimento cultural, histórico e organizacional necessário para operar com excelência.",
+              "Antes da AtlasGR, o mercado brasileiro sofria com um modelo de segurança ultrapassado e puramente reativo. A fundação da empresa, em 2004, teve um objetivo claro: parar de apenas 'rastrear o que já foi roubado' e passar a 'antecipar o risco antes que ele se materialize'.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Iniciante (Fundação)",
-            "Pré-requisitos: Nenhum",
-            "Tempo estimado: 40 minutos",
-            "Competências desenvolvidas: Inteligência Cultural, Ética Corporativa, Visão Sistêmica",
-            "Gamificação: +500 XP, Badge 'Sangue Laranja', Conquista 'Primeiros Passos'",
+            [
+              "Nosso propósito não mudou: ",
+              { term: "gr" },
+              " — 'Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação'. A tecnologia, por si só, é fria. É a equipe humana, qualificada por esta Universidade Corporativa, que transforma dados em decisões de alto impacto.",
+            ],
           ],
         },
         {
           type: "callout",
-          variant: "info",
-          title: "IA Educacional — Seu Assistente Virtual",
+          variant: "success",
+          title: "Sua Missão Aqui",
           text: [
-            "Ao longo deste e de outros módulos, nosso Assistente de IA estará disponível para resumir conteúdos complexos, gerar exemplos extras de cultura organizacional ou tirar dúvidas sobre o organograma. Use-o sempre que precisar aprofundar um tema.",
+            "Ao longo das Trilhas de Aprendizagem, você passará de iniciante a Especialista Enterprise. O Onboarding é a fundação. Absorva cada regra como se fosse operar a Torre de Controle amanhã.",
           ],
         },
       ],
     },
     {
-      id: "quem-e-a-atlasgr",
-      title: "Nossa História e Propósito",
+      id: "capitulo-1-historia",
+      title: "Capítulo 1: Linha do Tempo e Evolução",
       blocks: [
-        {
-          type: "text",
-          heading: "Uma empresa nascida para revolucionar o gerenciamento de risco",
-          paragraphs: [
-            [
-              "A Atlas Segurança e Inteligência Logística surgiu em 2004, em um cenário logístico que era puramente reativo. Desde o primeiro dia, nosso objetivo não era apenas rastrear veículos, mas gerenciar riscos de forma preditiva e inteligente.",
-            ],
-            [
-              "O propósito declarado da empresa é: ",
-              { term: "gr" },
-              " — \"Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação\". Esse propósito guia cada produto, cada atendimento e cada linha de código escrita na AtlasGR.",
-            ],
-          ],
-        },
-        {
-          type: "quote",
-          text: "Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação.",
-          author: "Propósito institucional da ATLASGR",
-        },
         {
           type: "timeline",
-          title: "Nossa Trajetória (2004 - 2026)",
+          title: "Da Fundação à Era da IA",
           items: [
-            { label: "2004", text: "Fundação da Atlas, focada em gestão de risco convencional." },
-            { label: "2010", text: "Expansão nacional e primeira central própria de monitoramento 24h." },
-            { label: "2018", text: "Lançamento do primeiro motor de regras preditivo e automações." },
-            { label: "2024", text: "Consolidação dos quatro pilares: Profile, Connect, GR e Analytics." },
-            { label: "2026", text: "Lançamento da Universidade Corporativa Enterprise e Inteligência Artificial." },
+            { label: "2004", text: "A semente: Fundação da AtlasGR com foco em processos rigorosos de PGR." },
+            { label: "2010", text: "Expansão nacional: Abertura da Torre de Controle Operacional." },
+            { label: "2018", text: "Inovação tecnológica: Desenvolvimento interno do sistema preditivo e integração de APIs." },
+            { label: "2024", text: "Maturidade do Portfólio: Consolidação dos 4 pilares (Profile, Connect, GR, Analytics)." },
+            { label: "2026", text: "A Revolução do Conhecimento: Lançamento do AtlasGR Enterprise Learning com tutoria via IA." },
           ],
         },
       ],
     },
     {
-      id: "cultura-e-valores",
-      title: "Cultura e Valores",
+      id: "capitulo-2-cultura",
+      title: "Capítulo 2: Cultura e Valores na Prática",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Na AtlasGR, valores não são quadros na parede, são ferramentas de tomada de decisão. Quando houver dúvida sobre qual caminho seguir, nossos valores indicam a direção.",
+              "Valores são as regras de conduta para quando o manual acaba. Se o sistema cair e o telefone tocar, é nos valores da AtlasGR que você se apoiará para tomar a decisão correta.",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "Os 5 Valores Inegociáveis",
+          title: "Os 5 Pilares de Conduta",
           left: {
-            label: "O Valor",
-            points: [
-              "Perseverança",
-              "Transparência",
-              "Simplicidade",
-              "Atitude de Dono",
-              "Inovação",
-            ],
+            label: "Valores Essenciais",
+            points: ["Perseverança", "Transparência", "Simplicidade", "Atitude de Dono", "Inovação"],
           },
           right: {
-            label: "Na prática (O que significa)",
+            label: "Comportamento Esperado",
             points: [
-              "Insistir nas soluções certas, não nas mais fáceis.",
-              "Comunicação clara, assumindo erros sem esconder problemas.",
-              "Fazer o complexo parecer fácil para o cliente e para a operação.",
-              "Tratar o negócio e o cliente como se fossem seus.",
-              "Desafiar o status quo diariamente com novas ideias.",
+              "Não aceitar a primeira desculpa em uma investigação de desvio.",
+              "Comunicação direta, sem omitir erros do cliente ou do time.",
+              "Descomplicar processos burocráticos sem perder a segurança.",
+              "Cuidar do contrato de R$ 10 milhões como se fosse sua própria empresa.",
+              "Sugerir melhorias ativamente para a Diretoria.",
             ],
           },
-        },
-        {
-          type: "case",
-          title: "Estudo de Caso Cultural",
-          text: "Em 2023, durante uma crise em um grande embarcador de combustível, o operador notou que o protocolo padrão não cobriria a falha. Pela 'Atitude de Dono', ele escalonou o evento imediatamente, evitando um roubo de 2 milhões de reais, mesmo que aquilo exigisse sair do script. Isso é a cultura AtlasGR em ação.",
-          source: "Arquivo de Operações AtlasGR",
         },
       ],
     },
     {
-      id: "estrutura-organizacional",
-      title: "Nossa Estrutura Organizacional",
+      id: "capitulo-3-estrutura",
+      title: "Capítulo 3: Estrutura Organizacional",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Para entregar inteligência com agilidade, a AtlasGR é dividida em 5 grandes áreas da Diretoria, operando como uma engrenagem.",
+              "A empresa opera como um organismo vivo, dividido em 5 grandes Diretorias que se alimentam mutuamente. O Comercial vende a inteligência que a TI constrói, que o DHO treina, e que as Operações executam.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "As 5 áreas da Diretoria",
+          title: "As Engrenagens da AtlasGR",
           items: [
-            "TI (Tecnologia da Informação) — Garante a estabilidade da infraestrutura, desenvolve o Connect e mantém a segurança cibernética.",
-            "DHO (Desenvolvimento Humano e Organizacional) — Recruta, treina (Universidade Corporativa), retém talentos e cuida da cultura.",
-            "Comercial / Administrativo-Financeiro — Traz novos negócios, garante a saúde financeira e precifica nossos serviços.",
-            "Relações Institucionais — Mantém conexões com órgãos de segurança, entidades de classe e parceiros estratégicos.",
-            "Operações (O Coração) — Onde o gerenciamento de risco acontece em tempo real 24/7.",
+            "TI (Tecnologia da Informação): Engenharia do Connect, IA e infraestrutura de servidores.",
+            "DHO (Desenvolvimento Humano e Organizacional): O guardião da cultura, dono da Universidade Corporativa e responsável por PDI.",
+            "Comercial / Administrativo: O pulmão financeiro, negociação de contratos e faturamento.",
+            "Relações Institucionais: Diplomacia com polícias civis, militares, PRF e ANTT.",
+            "Operações (A Torre e CIA): Execução do monitoramento de milhares de viagens simultâneas, 24 horas por dia.",
           ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: Atitude de Dono Salvando Cargas",
+      blocks: [
+        {
+          type: "case",
+          title: "O Operador que Quebrou a Regra (para salvar o cliente)",
+          text: "Caso real de 2023: Um operador notou que o PGR de um embarcador de pneus não exigia escolta armada em um trecho específico, mas o operador sabia, por experiência, que aquela rodovia estava sob ataque nos últimos 3 dias. Usando a 'Atitude de Dono', ele parou a carreta no posto anterior, chamou o supervisor e escalonou. A transportadora aprovou a escolta emergencial. O caminhão que vinha logo atrás (de outra empresa) foi roubado no mesmo trecho. A Atlas salvou R$ 2.5 Milhões agindo preventivamente.",
+          source: "Repositório de Cases AtlasGR",
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Desafio Prático (Role Play)",
+          title: "Lição Aprendida",
           text: [
-            "Imagine que um cliente exige uma mudança contratual e um novo tipo de relatório no Atlas Connect. Com quais áreas você precisará interagir? (Resposta: Comercial para o contrato, TI para o sistema, Operações para a execução).",
+            "Seguir o processo é vital, mas o processo serve ao propósito de segurança. Se o contexto exige, o escalonamento proativo demonstra a inteligência humana sobrepondo a máquina.",
           ],
         },
       ],
     },
     {
-      id: "etica-e-compliance",
-      title: "Ética e Compliance",
-      blocks: [
-        {
-          type: "text",
-          heading: "Integridade é nosso alicerce",
-          paragraphs: [
-            [
-              "Temos acesso a informações extremamente sensíveis: rotas, cargas milionárias, dados pessoais e estratégias de clientes. Por isso, as políticas de segurança da informação, LGPD e código de ética são tratadas com tolerância zero para desvios.",
-            ],
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            { q: "Posso tirar foto da tela da operação?", a: "Nunca. Isso viola a LGPD, os acordos de confidencialidade com os clientes e a política de segurança da AtlasGR, sendo passível de demissão por justa causa." },
-            { q: "O que é tolerância zero na AtlasGR?", a: "Casos de assédio, fraude, vazamento de dados intencional e quebra de sigilo operacional. A empresa possui canais de denúncia anônima para garantir a segurança de todos." },
-            { q: "Como uso os recursos da empresa?", a: "Softwares, e-mails, internet e equipamentos devem ser usados estritamente para atividades profissionais. O uso de IA generativa externa com dados da empresa é proibido, use o Assistente AtlasGR." },
-          ],
-        },
-      ],
-    },
-    {
-      id: "jornada-e-beneficios",
-      title: "A Jornada do Colaborador",
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A entrada na AtlasGR (Onboarding) é apenas o primeiro passo. A empresa investe no desenvolvimento contínuo por meio da nossa Universidade Corporativa e reciclagens regulares.",
+              "Para aprofundar sua imersão, recomendamos a leitura do Código de Ética completo no portal interno.",
             ],
           ],
         },
         {
-          type: "timeline",
-          title: "Seus Primeiros Passos",
+          type: "checklist",
+          title: "O que vem a seguir?",
           items: [
-            { label: "Semana 1", text: "Integração institucional, cultura, compliance e plataforma de treinamento." },
-            { label: "Mês 1", text: "Imersão nos Módulos de Operação, Produtos e simulações na Torre de Controle." },
-            { label: "Mês 3", text: "Avaliação de performance (90 dias), feedbacks, e definição de PDI (Plano de Desenvolvimento Individual)." },
-            { label: "Anual", text: "Treinamentos de reciclagem técnica e avaliação de competências para promoção." },
+            "Finalize este módulo com sucesso no Simulador de Decisão.",
+            "Avance para a Trilha 01 - Módulo 02 para entender o Mercado.",
+            "Acompanhe sua barra de XP e Conquistas Gamificadas no dashboard.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A AtlasGR nasceu em 2004 para gerenciar risco logístico através da conexão entre pessoas e tecnologia (propósito).",
-    "Os 5 valores são Perseverança, Transparência, Simplicidade, Atitude de Dono e Inovação.",
-    "A estrutura é composta por TI, DHO, Comercial/Financeiro, Relações Institucionais e Operações (o coração).",
-    "O sigilo da informação (LGPD, rotas de clientes) é absoluto, sendo terminantemente proibido fotografar telas.",
-    "O desenvolvimento é contínuo, iniciando neste onboarding e avançando para Planos de Desenvolvimento Individual (PDI).",
+    "A AtlasGR foca na predição de risco logístico.",
+    "Os 5 valores guiam a conduta e decisões críticas.",
+    "As 5 diretorias funcionam integradas para o cliente final.",
+    "Atitude de Dono significa pró-atividade na prevenção de sinistros.",
   ],
   finalChecklist: [
     "Compreendo perfeitamente o propósito e os valores da AtlasGR.",
-    "Sei a quem recorrer dependendo do tipo de problema (TI, DHO, Operações, etc).",
-    "Entendi as regras restritas de sigilo e as consequências da quebra de compliance.",
-    "Conheço as etapas da minha jornada de desenvolvimento (30, 60 e 90 dias).",
+    "Sei as funções de TI, DHO, Comercial, Relações Institucionais e Operações.",
+    "Entendi o Estudo de Caso de 'Atitude de Dono'.",
   ],
   mindMap: {
     root: "Bem-vindo à AtlasGR",
     branches: [
-      { label: "Nossa Essência", items: ["Fundação: 2004", "Propósito", "5 Valores Inegociáveis"] },
-      { label: "Estrutura", items: ["TI e DHO", "Comercial e Financeiro", "Relações Institucionais", "Operações"] },
-      { label: "Ética e Sigilo", items: ["LGPD", "Sem fotos de tela", "Tolerância Zero", "Canais de Denúncia"] },
-      { label: "Sua Jornada", items: ["Onboarding", "Avaliação 90 dias", "PDI", "Reciclagem anual"] },
+      { label: "Identidade", items: ["Propósito", "5 Valores"] },
+      { label: "Estrutura", items: ["TI", "DHO", "Operações", "Comercial"] },
+      { label: "Comportamento", items: ["Atitude de Dono", "Estudo de Caso"] },
     ],
   },
   scenario:
-    "Você está no seu primeiro mês e percebe que um colega, com boa intenção, tirou uma foto da tela do Connect e enviou no WhatsApp do grupo da equipe para 'mostrar um evento interessante'. O que você faz, baseado nos valores e no compliance da AtlasGR?",
+    "Cenário Prático: Um cliente sugere uma mudança tecnológica que viola nossos princípios de segurança. Com qual área você deve debater internamente antes de responder?",
   diagram: {
-    title: "A Engrenagem da AtlasGR",
-    chart: "graph LR\n  DHO --> Operacoes\n  TI --> Operacoes\n  Comercial --> Operacoes\n  RelacoesInstitucionais --> Operacoes\n  Operacoes --> Cliente",
+    title: "Diretorias",
+    chart: "graph TD\n  AtlasGR --> TI\n  AtlasGR --> DHO\n  AtlasGR --> Operacoes\n  AtlasGR --> Comercial",
   },
 };

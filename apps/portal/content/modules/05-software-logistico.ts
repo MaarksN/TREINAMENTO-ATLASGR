@@ -6,164 +6,166 @@ const meta = getModuleMeta("05-software-logistico")!;
 export const module05: ModuleContentFull = {
   ...meta,
   sources: [
-    "Treinamento Operacional 2022 — Atlas Connect",
-    "Manuais de Navegação do Sistema Atlas Connect",
+    "Manuais de Operação Atlas Connect",
+    "Torre de Controle - Guias Práticos",
   ],
   objectives: [
-    "Reconhecer as telas principais do Atlas Connect e suas funções.",
-    "Explicar o fluxo de criação de uma viagem no sistema.",
-    "Entender como os alertas são priorizados na tela do operador.",
-    "Compreender a integração do Connect com rastreadores físicos.",
+    "Dominar a arquitetura visual e a hierarquia da tela do Atlas Connect.",
+    "Explicar a dinâmica de criação, rastreamento e baixa de uma SM (Solicitação de Monitoramento).",
+    "Compreender a mecânica do Motor de Regras e a priorização de níveis de alerta.",
+    "Entender a diferença operacional entre Grade Passiva e Fila Ativa de Alertas.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Cockpit de Comando",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "A Orquestração do Risco",
           paragraphs: [
             [
-              "O Atlas Connect é o seu 'cockpit'. É através desta tela que milhares de veículos são monitorados simultaneamente. Este módulo fará você entender a lógica por trás da interface do nosso sistema.",
+              "Bem-vindo ao Atlas Connect. Se o PGR é a lei, o Connect é a delegacia, o juiz e o camburão, tudo em um sistema só. É nesta tela que milhares de veículos são acompanhados e onde a inteligência artificial da Atlas separa o que é rotina do que é tragédia.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Intermediário (Sistema)",
-            "Pré-requisitos: Módulo 04",
-            "Tempo estimado: 50 minutos",
-            "Competências desenvolvidas: Operação de Software, Gestão Visual de Alertas",
-            "Gamificação: +800 XP, Badge 'Piloto de Connect'",
+            [
+              "Seu objetivo aqui não é decorar onde fica o botão de 'Salvar'. É entender o FLUXO DA INFORMAÇÃO: como uma viagem nasce, como o sistema vigia e como os alertas são priorizados.",
+            ],
           ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "Ambiente de Simulação",
+          title: "Dica do Assistente IA",
           text: [
-            "Não se preocupe em decorar botões. Foque em entender o 'Fluxo da Informação'. Ao final do treinamento, você passará por um simulador hands-on da tela de alertas.",
+            "Não se preocupe com telas mudando de layout no futuro. A lógica (Grade vs Alertas) nunca muda. Se você focar na lógica, o design se torna irrelevante.",
           ],
         },
       ],
     },
     {
-      id: "a-tela-principal",
-      title: "O Cockpit do Operador: Grade e Alertas",
+      id: "capitulo-1-interface",
+      title: "Capítulo 1: A Anatomia da Tela",
       blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "A tela principal do ",
-              { term: "connect" },
-              " é dividida em Grade (a lista de todos os veículos em viagem) e a Fila de Alertas (os problemas que precisam de resolução imediata).",
-            ],
-            [
-              "A regra número um da Torre de Controle é: a Fila de Alertas dita o seu trabalho. Você não fica 'olhando pontinhos no mapa', você trata os alertas que o sistema gera.",
-            ],
-          ],
-        },
         {
           type: "comparison",
-          title: "Grade x Alertas",
+          title: "Grade de Viagens x Fila de Alertas",
           left: {
-            label: "Grade de Viagens",
-            points: ["Mostra status geral.", "Usada para consultas passivas.", "Exibe o nível de bateria e ETA."],
+            label: "A Grade de Viagens (Passiva)",
+            points: [
+              "É a lista de TODOS os caminhões atualmente em rota.",
+              "Serve para consultas (Ex: Cliente liga pedindo o ETA de um caminhão específico).",
+              "Não exige ação imediata do operador.",
+            ],
           },
           right: {
-            label: "Fila de Alertas",
-            points: ["Exige ação imediata.", "Piscando e com alarme sonoro.", "Fila ordenada por prioridade do PGR."],
+            label: "A Fila de Alertas (Ativa)",
+            points: [
+              "O coração pulsante. Aqui caem apenas as EXCEÇÕES (violações do PGR).",
+              "Pisca, faz barulho e exige AÇÃO IMEDIATA (SLA).",
+              "Ordenada por Níveis de Prioridade (do 1 ao 7).",
+            ],
           },
         },
       ],
     },
     {
-      id: "criacao-de-viagem",
-      title: "A Criação da Viagem (O SM)",
+      id: "capitulo-2-a-viagem",
+      title: "Capítulo 2: O Ciclo de Vida da Viagem (SM)",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "Uma viagem no Connect é chamada de SM (Solicitação de Monitoramento). Ela pode ser criada manualmente pelo operador ou, preferencialmente, ser injetada automaticamente via ",
-              { term: "api" },
-              " pelo sistema do cliente.",
-            ],
-          ],
-        },
-        {
           type: "timeline",
-          title: "O Nascimento de um SM",
+          title: "A Jornada do SM (Solicitação de Monitoramento)",
           items: [
-            { label: "1. Veículo e Motorista", text: "O sistema valida se ambos estão aprovados no Atlas Profile." },
-            { label: "2. Rota e PGR", text: "O sistema atrela a viagem ao PGR correto (ex: exige escolta?)." },
-            { label: "3. Comunicação", text: "O Connect testa ('pinga') o rastreador físico do caminhão para ver se ele responde." },
-            { label: "4. Início de Viagem", text: "O SM é ativado. A partir daqui, qualquer desvio gera um alerta." },
+            { label: "Nascimento (Criação)", text: "Gerada via integração com o TMS do cliente. O Connect atrela automaticamente o veículo, o motorista (já validado no Profile) e o PGR correspondente à carga." },
+            { label: "Ativação (Ping)", text: "O sistema testa a comunicação com o hardware (Rastreador e Isca). Se ambos responderem, a viagem fica 'Em Trânsito'." },
+            { label: "Execução (Rastreio)", text: "Cercas virtuais, macros de teclado e posições de GPS são gravadas a cada minuto." },
+            { label: "Morte (Encerramento)", text: "O caminhão entra na cerca eletrônica do destino final. O operador (ou o sistema via Automação) dá baixa na SM, liberando o veículo para novo frete." },
           ],
         },
       ],
     },
     {
-      id: "niveis-de-alerta",
-      title: "Sistemática de Alertas e Níveis",
+      id: "capitulo-3-motor",
+      title: "Capítulo 3: O Motor de Regras e Níveis",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O Atlas Connect classifica os eventos em 7 Níveis de Prioridade. Um Alerta de Nível 1 (Desvio de Rota em Carga de Alto Valor) vai pular na frente de um Alerta de Nível 6 (Atraso Logístico).",
+              "O Operador não caça problemas; o Motor de Regras os traz até ele. O Motor é o cérebro da AtlasGR. Ele lê o PGR e classifica a gravidade do que acabou de acontecer.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Exemplos de Níveis",
+          title: "Escala de Gravidade",
           items: [
-            "Nível 1 (Crítico): Botão de Pânico acionado. (Ação Imediata: Ligar CIA).",
-            "Nível 2 (Alto): Perda de sinal por mais de 10 minutos em área de risco.",
-            "Nível 4 (Médio): Desvio de rota simples.",
-            "Nível 7 (Baixo): Bateria do rastreador isca abaixo de 20%.",
+            "Nível 1 (CRÍTICO EXTREMO): Acionamento do botão de pânico. Violação de painel. (SLA: Ação em 1 min. CIA imediata).",
+            "Nível 2 (ALTO RISCO): Perda de sinal (Jammer) em área de risco mapeada. Desvio de rota em carga de altíssimo valor.",
+            "Nível 4 (RISCO MODERADO): Parada não programada por 15 minutos fora de local seguro.",
+            "Nível 7 (INFORMATIVO/LOGÍSTICO): Bateria da isca atingiu 20%.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Ordem dos Fatores Altera a Vida",
+      blocks: [
+        {
+          type: "case",
+          title: "O Operador que Escolheu o Mais Fácil",
+          text: "Um caso clássico usado em reciclagens: Um operador iniciante viu sua Fila de Alertas subir. No topo, piscava em vermelho um Alerta Nível 1 (Pânico). Embaixo, piscava em amarelo um Alerta Nível 4 (Parada não programada). Como ele já conhecia o motorista do Nível 4, resolveu atender o Nível 4 primeiro para 'limpar a tela rápido'. Ele gastou 5 minutos nessa ligação. Quando abriu o Nível 1, a carreta já havia sumido no mapa (Jammer ativado). O Nível 1 era um sequestro real. Regra de Ouro: Nunca subverta a priorização do sistema. Ele sabe mais de risco do que você.",
+          source: "Manual de Falhas Comuns - DHO AtlasGR",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Próximos Passos",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Leia o 'Manual de Telas' no sistema de Base de Conhecimento interno para ver capturas de tela atualizadas do cockpit.",
+            ],
           ],
         },
         {
-          type: "callout",
-          variant: "warning",
-          title: "O Erro Fatal",
-          text: [
-            "O maior erro que um operador pode cometer é tratar um Alerta Nível 4 antes de um Nível 1 só porque o Nível 4 'é mais fácil de resolver'. O sistema já ordena o risco para você. Confie na máquina.",
+          type: "checklist",
+          title: "O que vem a seguir",
+          items: [
+            "Você passará por uma semana de 'Treinamento Sombra' (ouvindo ligações reais).",
+            "Seu próximo módulo será focado na etapa ANTERIOR ao Connect: O Atlas Profile.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "O Atlas Connect separa o monitoramento em 'Grade' (passivo) e 'Alertas' (ativo).",
-    "A criação de um SM (Solicitação de Monitoramento) valida motorista, rota e tecnologia antes da partida.",
-    "Alertas são priorizados em 7 níveis, do crítico (Pânico) ao logístico (Bateria).",
-    "O operador não 'caça problemas no mapa', ele responde à inteligência preditiva do sistema.",
+    "O Connect orquestra toda a viagem, da validação inicial até o encerramento no destino.",
+    "A Grade é passiva; A Fila de Alertas é ativa e dita a ordem de trabalho do Operador.",
+    "Um SM (Solicitação de Monitoramento) centraliza caminhão, motorista, carga e regras.",
+    "O Motor de Regras usa 7 níveis de prioridade para impedir que o Operador escolha o que tratar primeiro.",
   ],
   finalChecklist: [
-    "Entendo a diferença entre a Grade de Viagens e a Fila de Alertas.",
-    "Sei o que é um SM e os 4 passos de criação.",
-    "Compreendo a lógica dos 7 Níveis de Prioridade.",
-    "Entendo por que devo sempre tratar o alerta que está no topo da fila.",
+    "Entendo a função da Fila de Alertas vs Grade.",
+    "Consigo elencar os 4 estágios de vida de um SM.",
+    "Sei a consequência fatal de subverter a ordem de Níveis de Prioridade.",
   ],
   mindMap: {
     root: "Atlas Connect",
     branches: [
-      { label: "Interface", items: ["Grade (Passiva)", "Fila de Alertas (Ativa)", "Mapa Integrado"] },
-      { label: "SM (Viagem)", items: ["Validação Profile", "Teste Rastreador", "Ativação PGR"] },
-      { label: "Priorização", items: ["7 Níveis", "Pânico (N1)", "Logístico (N7)"] },
+      { label: "Visões", items: ["Grade", "Fila de Alertas", "Mapa Virtual"] },
+      { label: "Jornada", items: ["SM", "Ping", "Trânsito", "Baixa"] },
+      { label: "Regras", items: ["Nível 1 (Pânico)", "Nível 7 (Bateria)"] },
     ],
   },
   scenario:
-    "A tela pisca vermelho. Você tem dois alertas: (A) Botão de pânico acionado [Nível 1] e (B) Perda de sinal há 30 min [Nível 2]. O (B) chegou 5 minutos antes. Qual você atende primeiro e por quê?",
+    "Cenário Prático: A energia cai na sua central, mas o sistema de nobreak segura os computadores. A fila tem 50 alertas acumulados. O que você (e o sistema) fazem para voltar ao controle sem perder uma carga crítica?",
   diagram: {
-    title: "Fluxo de Alerta",
-    chart: "graph LR\n  A[Rastreador] -->|Pânico| B[Motor de Regras Connect]\n  B -->|Classifica Nível 1| C[Topo da Fila do Operador]\n  C -->|Operador Clica| D[Protocolo de Atendimento]",
+    title: "Triagem de Alertas",
+    chart: "graph TD\n  Evento[Caminhão Desvia Rota] --> Motor[Motor de Regras]\n  Motor --> Classifica[Classifica como Nível 2]\n  Classifica --> Fila[Topo da Fila do Operador]\n  Fila --> Acao[Operador Age]",
   },
 };

@@ -6,114 +6,162 @@ const meta = getModuleMeta("15-preparacao-final")!;
 export const module15: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulos 1 a 14 — revisão consolidada de toda a trilha",
+    "Revisão Consolidada Módulos 01 a 14",
+    "Diretrizes do Exame de Certificação AtlasGR",
   ],
   objectives: [
-    "Revisar, em uma visão executiva única, todos os pilares ensinados no Onboarding.",
-    "Identificar lacunas de conhecimento antes da Prova Final de Certificação.",
-    "Sintetizar o papel estratégico de cada colaborador dentro da AtlasGR.",
+    "Revisar de forma sistêmica e interligada todo o conteúdo do Onboarding.",
+    "Identificar as lacunas mentais individuais antes de iniciar o simulador final.",
+    "Explicar a dinâmica da prova final (corte de 70% e cenários táticos).",
+    "Consolidar a responsabilidade corporativa adquirida com o conhecimento.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Fim do Início",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "A Sua Formatura",
           paragraphs: [
             [
-              "Este é o seu momento de concentração final. Você passou pela fundação cultural da AtlasGR, entendeu o mercado, mergulhou nos softwares e operou a Torre de Controle. Este módulo não traz informações novas, ele amarra todos os fios soltos para a sua Certificação.",
+              "Você absorveu a história, a cultura, as entranhas do mercado, os sistemas, as integrações, os crimes e os cases reais. O volume de informações foi brutal, e isso foi intencional.",
+            ],
+            [
+              "Na AtlasGR, nós não entregamos tarefas simples; nós entregamos responsabilidade sobre a espinha dorsal logística do Brasil. Este módulo é a amarração de tudo o que foi ensinado para garantir a sua Certificação.",
+            ],
+          ],
+        },
+        {
+          type: "callout",
+          variant: "success",
+          title: "Parabéns pela Jornada",
+          text: [
+            "Chegar até aqui atesta a sua resiliência e foco, alinhando-se perfeitamente ao nosso valor de Perseverança. Respire fundo, revise o conteúdo, a prova começa em breve.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-1-revisao-cultura",
+      title: "Capítulo 1: Revisão — A Base e o Mercado",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "No começo, vimos que a AtlasGR nasceu em 2004 para quebrar o modelo reativo. Nós vendemos Pessoas, Tecnologias e Processos (PGR).",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Ficha Técnica",
+          title: "Tópicos de Fogo (Cai na Prova)",
           items: [
-            "Nível de dificuldade: Revisão Executiva",
-            "Pré-requisitos: Módulos 01 ao 14 concluídos com aprovação",
-            "Tempo estimado: 30 minutos",
-            "Competências desenvolvidas: Consolidação do Conhecimento, Preparação para Avaliação",
-            "Gamificação: +200 XP, Badge 'A Caminho da Elite'",
+            "Os 5 Valores Inegociáveis (Perseverança, Transparência, Simplicidade, Atitude de Dono, Inovação).",
+            "A Diferença de Mercado: Embarcador (Dono da Carga/Visibilidade) e Transportadora (Executor/Seguro).",
+            "As regras restritas de Tolerância Zero da LGPD (Nunca fotografar telas, nunca compartilhar senhas).",
           ],
         },
       ],
     },
     {
-      id: "revisao-pilares",
-      title: "O Grande Resumo: Os Pilares da AtlasGR",
+      id: "capitulo-2-revisao-sistemas",
+      title: "Capítulo 2: Revisão — Softwares e Operação",
       blocks: [
         {
-          type: "timeline",
-          title: "O Ciclo Logístico Completo",
-          items: [
-            { label: "1. A Fundação (Mod 1 e 12)", text: "Agimos com Atitude de Dono, protegendo dados (LGPD) e seguindo as regras da casa." },
-            { label: "2. O Negócio (Mod 2, 8 e 9)", text: "Atendemos Transportadoras e Embarcadores. Resolvemos dores de roubos milionários ou ineficiência usando Integração e APIs (Mod 7)." },
-            { label: "3. O Manual do Jogo (Mod 3 e 10)", text: "A Seguradora manda na Apólice, e nós executamos a Proteção via PGR usando Termos Precisos." },
-            { label: "4. A Execução Tática (Mod 4, 5 e 6)", text: "Profile aprova motoristas. Connect orquestra a viagem. A Torre atua em cima dos Alertas." },
-            { label: "5. A Crise (Mod 11 e 14)", text: "Se o protocolo quebra e a coisa fica grave (sem SLA furado), escalonamos para a CIA intervir imediatamente." },
-            { label: "6. O Futuro (Mod 13)", text: "O Analytics e os Sensores de Fadiga (IA) param de olhar para trás e começam a prever e prevenir acidentes antes de acontecerem." },
-          ],
+          type: "comparison",
+          title: "O Portfólio Blindado",
+          left: {
+            label: "As Ferramentas",
+            points: [
+              "Atlas Profile: Filtro da portaria, bloqueia biometria falsa (Falsidade Ideológica).",
+              "Atlas Connect: O Cockpit. Fila de Alertas e Integrações API.",
+              "Atlas Analytics: A visão do CEO para corrigir gargalos logísticos crônicos.",
+            ],
+          },
+          right: {
+            label: "As Pessoas",
+            points: [
+              "Torre de Controle: Age no Alerta. O SLA é sagrado (10m e 45m).",
+              "Central de Inteligência (CIA): Escalona e lida com o combate real, polícia e pronta resposta quando há suspeita forte ou ruptura total do PGR.",
+              "Comercial B2B: Ataca dores específicas com o diferencial de 'Custo Oculto Evitado'.",
+            ],
+          },
         },
       ],
     },
     {
-      id: "pre-prova",
-      title: "Como a Prova Final Funciona",
+      id: "capitulo-3-prova",
+      title: "Capítulo 3: Dinâmica da Certificação",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A avaliação final (Simulador de Decisão Master) testa o seu julgamento. Você enfrentará 15 questões que exigem análise de cenário, não apenas decoreba de conceitos.",
+              "A prova não medirá apenas a sua memória; medirá o seu julgamento técnico sob pressão.",
             ],
           ],
         },
         {
           type: "faq",
           items: [
-            { q: "Qual a nota de corte?", a: "Você precisa de 70% de acertos para ser certificado e emitir o seu diploma digital na AtlasGR Training Platform." },
-            { q: "Se eu falhar?", a: "Você poderá revisar o conteúdo e tentar novamente. O importante é o aprendizado." },
-            { q: "O que acontece depois da certificação?", a: "O seu Gestor e o DHO vão alinhar o seu Plano dos Primeiros 30 Dias (PDI Operacional) para atuação prática no seu setor." },
+            { q: "Quantas questões possui a prova?", a: "O banco global possui 150 questões. Você responderá a uma bateria focada que exige pontuação de corte." },
+            { q: "Qual a nota para ser certificado?", a: "Acima de 70%. Somente os aprovados recebem a chancela e avançam para a parte prática da trilha." },
+            { q: "Posso colar/consultar material?", a: "Você é um profissional de risco. A prova foca em raciocínio, não em decoreba cega. Se houver dúvida tática real, a Base de Conhecimento existe para ser usada na vida real." },
           ],
         },
       ],
     },
     {
-      id: "mensagem-final",
-      title: "Mensagem da Diretoria",
+      id: "estudo-de-caso",
+      title: "Sua Carreira: O PDI (Plano de Desenvolvimento)",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Após o clique final na prova, a teoria termina. O DHO desenhará o seu acompanhamento dos próximos 30, 60 e 90 dias, focando exclusivamente na aplicação real da sua área (TI, Comercial ou Operações). A teoria foi a fundação; a prática é a casa construída em cima dela.",
+            ],
+          ],
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Mensagem da Liderança e Partida",
       blocks: [
         {
           type: "quote",
-          text: "Vocês não operam botões ou vendem telas; vocês protegem motoristas, preservam o abastecimento do país e garantem que a nossa promessa ('Conectar pessoas e tecnologia gerando valor com segurança') seja cumprida diariamente.",
-          author: "Diretoria AtlasGR",
+          text: "A ignorância custa fortunas; a inteligência previne tragédias. Vocês agora são portadores da nossa inteligência tática. Honrem a camisa, cumpram os SLAs, e garantam a segurança do Brasil.",
+          author: "Diretoria e Fundação AtlasGR",
         },
       ],
     },
   ],
   summary: [
-    "Todos os 14 módulos formam um ecossistema único: o Comercial vende, a TI integra, o Profile filtra, a Torre monitora e a CIA age.",
-    "O seu certificado marca o fim da teoria base e o início da sua trilha de desenvolvimento prático na AtlasGR.",
+    "O ecossistema AtlasGR atua Antes, Durante, e Depois do risco.",
+    "As políticas de segurança corporativa (Tolerância Zero) acompanham você independente do setor.",
+    "A certificação final (70% de corte) não é o fim da linha, é o acesso ao acompanhamento prático.",
+    "Revisar o conceito dos pilares e do PGR é essencial para dominar as perguntas da prova.",
   ],
   finalChecklist: [
-    "Estou seguro sobre os conceitos de Profile, Connect, GR, Analytics, PGR e CIA.",
-    "Reconheço que falhas de conformidade (LGPD, Sigilo, SLA) são inegociáveis.",
-    "Estou pronto para a Prova de Certificação.",
+    "Sinto total confiança nos 4 pilares tecnológicos.",
+    "Sei a diferença entre a Torre e a CIA.",
+    "Estou mentalmente preparado para iniciar a avaliação final.",
   ],
   mindMap: {
-    root: "Preparação Final",
+    root: "Revisão Executiva",
     branches: [
-      { label: "Visão Macro", items: ["Cultura", "Produtos", "Mercado", "Tecnologia"] },
-      { label: "A Prova", items: ["15 Questões", "Cenários Táticos", "70% de Corte"] },
-      { label: "Próximos Passos", items: ["Certificação", "PDI", "Atuação Real"] },
+      { label: "A Base", items: ["Cultura, LGPD", "Embarcador vs Transportadora"] },
+      { label: "O Jogo", items: ["Profile, Connect, PGR", "Torre, CIA, Analytics"] },
+      { label: "A Prova", items: ["Corte de 70%", "Julgamento Tático", "Certificação"] },
     ],
   },
   scenario:
-    "Respire fundo. Revise mentalmente o diagrama do ecossistema AtlasGR. Se sentir qualquer dúvida (como 'Qual a diferença entre TMS e Connect?' ou 'Quem eu aciono no Nível 1?'), volte nos módulos. Se estiver confiante, boa sorte na Avaliação de Certificação.",
+    "Cenário Prático Final: Faça uma reflexão interna. Se você fosse o CEO da AtlasGR hoje, qual área da empresa você consideraria a mais vital para o sucesso das operações diárias? Reflita sobre o peso da Torre de Controle e inicie o exame.",
   diagram: {
-    title: "Sua Trilha de Evolução",
-    chart: "graph LR\n  A[Onboarding] --> B[Certificação Final]\n  B --> C[Planos 30-60-90 Dias]\n  C --> D[Operador Especialista]",
+    title: "O Ciclo do Colaborador",
+    chart: "graph TD\n  Teoria[Onboarding Universidade] --> Prova{Simulador Final 70%}\n  Prova -- Falha --> Reciclagem[Revisão de Conteúdo]\n  Prova -- Sucesso --> PDI[Treinamento Prático Setorial]\n  PDI --> Profissional[Especialista AtlasGR]",
   },
 };

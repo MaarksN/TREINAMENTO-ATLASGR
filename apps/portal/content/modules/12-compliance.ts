@@ -11,127 +11,150 @@ export const module12: ModuleContentFull = {
     "Normas de Segurança da Informação AtlasGR",
   ],
   objectives: [
-    "Compreender a gravidade da LGPD na operação logística.",
-    "Reconhecer ameaças de engenharia social focadas no roubo de cargas.",
-    "Aplicar as regras de ouro sobre compartilhamento de senhas e uso de sistemas corporativos.",
-    "Entender as consequências disciplinares e criminais do vazamento de informações.",
+    "Dominar as regras da LGPD e sua aplicação prática no dia a dia da Torre.",
+    "Identificar ataques de Engenharia Social (Falso Cliente / Ameaças).",
+    "Assumir a postura de tolerância zero com o vazamento de informações operacionais.",
+    "Compreender o uso restrito e monitorado dos ativos da empresa.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Fator Humano",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "A Maior Vulnerabilidade do Sistema",
           paragraphs: [
             [
-              "Segurança da Informação não é responsabilidade só do time de TI. Em um ambiente onde uma tela de sistema aponta a localização de bilhões de reais em cargas circulando pelo país, você é a principal linha de defesa (e a maior vulnerabilidade).",
+              "Os servidores da AtlasGR são protegidos por criptografia militar. Mas de nada adianta um cofre de titânio se o guarda da porta entrega a senha para o primeiro que liga gritando. Na segurança cibernética corporativa, o humano é sempre o elo mais fraco.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Básico (Fundação Obrigatória)",
-            "Pré-requisitos: Módulo 01",
-            "Tempo estimado: 30 minutos",
-            "Competências desenvolvidas: Consciência de Segurança Cibernética, Proteção de Dados, Sigilo Operacional",
-            "Gamificação: +300 XP, Badge 'Guardião Digital'",
+            [
+              "Este módulo foca na sua blindagem mental. O vazamento de dados não resulta apenas em cargas roubadas; resulta em multas milionárias da Agência Nacional de Proteção de Dados (ANPD) e demissão imediata por justa causa.",
+            ],
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Assunto Zero Tolerância",
+          title: "Tolerância Zero",
           text: [
-            "Violações aos protocolos deste módulo não geram 'advertência verbal'. Geram demissão por justa causa e, dependendo da gravidade, investigação por parte das autoridades policiais.",
+            "Não existe advertência verbal para quem compartilha a própria senha ou tira foto da tela da Torre de Controle. A resposta da empresa é a rescisão e, dependendo do caso, a abertura de inquérito policial.",
           ],
         },
       ],
     },
     {
-      id: "lgpd-na-pratica",
-      title: "A LGPD e o Nosso Negócio",
+      id: "capitulo-1-lgpd",
+      title: "Capítulo 1: A Lei Geral de Proteção de Dados",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Nós lidamos diariamente com dados como o CPF do motorista, a foto do seu rosto (Biometria Facial) e o endereço exato para onde uma carga milionária vai ser entregue. Isso torna a AtlasGR um alvo gigante para multas da ANPD (Agência Nacional de Proteção de Dados) caso haja vazamento.",
+              "Nós não monitoramos caminhões; nós tratamos dados. O CPF do motorista, a biometria facial, as rotas que ele faz. Tudo isso pertence a ELE, não à AtlasGR.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "A Regra da Necessidade",
+          items: [
+            "Você só pode acessar a ficha de um motorista se estiver ativamente gerenciando um alerta dele.",
+            "Você NUNCA deve repassar o histórico criminal de um motorista (dado sensível) para o dono da transportadora por WhatsApp.",
+            "O cliente recebe apenas o Status: 'Aprovado' ou 'Não Recomendado'. O motivo fica em sigilo no banco de dados.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-engenharia-social",
+      title: "Capítulo 2: Hackeando a Mente (Engenharia Social)",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "A Engenharia Social é o uso do convencimento, do medo ou da urgência para fazer você quebrar as regras de segurança.",
             ],
           ],
         },
         {
           type: "faq",
           items: [
-            { q: "Um despachante liga pedindo para confirmar a placa do caminhão X. Posso falar?", a: "NÃO. Somente as pessoas previamente cadastradas no sistema como 'Contatos Autorizados' daquele cliente podem receber informações. A confirmação de identidade é obrigatória." },
-            { q: "Posso mandar dados por WhatsApp?", a: "Apenas se for o WhatsApp Corporativo Oficial da AtlasGR e dentro das automações do sistema. O uso de WhatsApp pessoal para tratar qualquer dado de operação é terminantemente proibido." },
+            { q: "O Falso Diretor: 'Sou diretor do embarcador, a carga está parada, libere a senha agora ou cancelo o contrato!'", a: "Resposta: O protocolo exige dupla verificação com contatos previamente cadastrados. Nenhum diretor real pede para burlar regras de segurança. Negue a informação e reporte ao DHO." },
+            { q: "O Falso TI: 'Oi, sou da TI da Atlas, precisamos da sua senha para resetar o sistema'.", a: "A TI NUNCA pede a sua senha. Desligue imediatamente." },
           ],
         },
       ],
     },
     {
-      id: "engenharia-social",
-      title: "Engenharia Social: O 'Golpe da Ligação'",
+      id: "capitulo-3-senhas-telas",
+      title: "Capítulo 3: Bloqueio de Telas e Ativos",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "Quadrilhas de roubo de carga são extremamente sofisticadas. Elas não precisam hackear os servidores da Atlas se conseguirem hackear a sua mente. Engenharia Social é o uso da persuasão para enganar você a liberar uma senha ou uma informação.",
-            ],
-          ],
-        },
-        {
-          type: "case",
-          title: "Exemplo Real de Ataque",
-          text: "Um homem ligou para a Central fingindo ser o 'Diretor Comercial' de um grande cliente, gritando que precisava da senha de liberação de uma carreta presa no posto ou cancelaria o contrato. O operador, sob pressão e com medo do 'diretor', passou a senha sem confirmar o protocolo. A carreta foi roubada 10 minutos depois.",
-          source: "Treinamento de Malícia AtlasGR",
+          type: "comparison",
+          title: "Boas Práticas de Hardware",
+          left: {
+            label: "O Inaceitável",
+            points: ["Deixar o monitor destravado ao ir ao banheiro.", "Usar o PC da empresa para acessar e-mails pessoais e baixar arquivos.", "Emprestar a sua credencial do Connect para um colega 'ajudar na fila'."],
+          },
+          right: {
+            label: "O Padrão Ouro",
+            points: ["Atalho Windows + L sempre que levantar da cadeira.", "Ciente de que 100% da navegação web é auditada.", "O que você faz com o seu login é de sua exclusiva responsabilidade (Accountability)."],
+          },
         },
       ],
     },
     {
-      id: "regras-de-ouro",
-      title: "Regras de Ouro: Senhas e Telas",
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Foto Inocente que Custou Milhões",
+      blocks: [
+        {
+          type: "case",
+          title: "O Grupo de WhatsApp",
+          text: "Um operador da torre achou engraçado o formato da rota que um caminhão fez no mapa do sistema e tirou uma foto da tela com o celular para mandar no grupo de WhatsApp da equipe. Sem perceber, a foto mostrava também a placa do veículo, o nome do cliente e a lista dos 3 próximos locais de entrega na região de Campinas. Alguém do grupo encaminhou para fora. Dois dias depois, uma das cargas listadas foi abordada com precisão militar, pois a quadrilha sabia exatamente a sequência de paradas. O operador foi demitido, indiciado e a Atlas assumiu um prejuízo civil colossal.",
+          source: "Manual de Incidentes de Segurança da Informação",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
       blocks: [
         {
           type: "checklist",
-          title: "O que nunca fazer",
+          title: "Próximos Passos",
           items: [
-            "Nunca fotografe, grave a tela ou tire print do sistema para mandar em grupos (mesmo que internos/colegas).",
-            "Nunca compartilhe sua senha de login com o colega que 'esqueceu a dele e precisa atender uma ligação urgente'.",
-            "Sempre bloqueie a tela do computador (Windows + L) ao levantar da mesa.",
-            "Não clique em links de e-mails prometendo 'Prêmios', 'Bônus' ou com tons de 'Urgência Financeira'. Reporte à TI.",
+            "Assine digitalmente o Termo de Sigilo e Confidencialidade (NDA) no seu portal de RH.",
+            "Prepare-se para o Módulo 13: Onde veremos como a Inteligência Artificial defende os nossos sistemas contra fraudes.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A proteção dos dados (LGPD) é tão importante quanto a proteção da carga.",
-    "Engenharia social usa o medo, a urgência ou a autoridade para enganar você; confie apenas no processo do sistema.",
-    "A identidade do chamador precisa ser verificada sempre, independentemente da pressa.",
-    "O compartilhamento de senhas e a captura de telas são crimes corporativos com tolerância zero.",
+    "Você é a principal barreira contra invasões. Hackers atacam pessoas antes de atacar servidores.",
+    "A LGPD exige sigilo extremo sobre dados de motoristas, especialmente biometria e crimes (Dados Sensíveis).",
+    "Engenharia Social usa pressão e urgência para fazer você burlar o protocolo. Não ceda.",
+    "Fotografar a tela da operação é motivo para rescisão do contrato de trabalho.",
   ],
   finalChecklist: [
-    "Sei como agir diante de ligações agressivas pedindo informações fora do padrão.",
-    "Nunca tiro fotos da tela do computador, sob hipótese alguma.",
-    "Sei que bloquear a tela ao levantar é obrigatório.",
+    "Entendo o risco da Engenharia Social e como reagir a ameaças telefônicas.",
+    "Sei que a minha senha é pessoal e o bloqueio da tela é obrigatório.",
+    "Sei que fotografar a tela é o maior pecado de compliance da empresa.",
   ],
   mindMap: {
     root: "Compliance e Sigilo",
     branches: [
-      { label: "LGPD", items: ["Dados Sensíveis", "Fotos/FaceID", "Sem Compartilhamento"] },
-      { label: "Ataques", items: ["Engenharia Social", "Phishing", "Falso Diretor"] },
-      { label: "Obrigatório", items: ["Senhas Pessoais", "Bloqueio de Tela", "Autenticação"] },
+      { label: "LGPD", items: ["Dados Sensíveis", "Status vs Ficha Criminal", "Privacidade"] },
+      { label: "Engenharia Social", items: ["Falso Diretor", "Pressão Urgente", "Negação Positiva"] },
+      { label: "Regras Físicas", items: ["Zero Fotos", "Windows+L", "Senha Pessoal"] },
     ],
   },
   scenario:
-    "Alguém liga chorando muito, diz ser esposa do motorista X e que precisa saber exatamente a localização atual do caminhão porque o filho dele sofreu um acidente grave. Qual o procedimento correto (que você não passa a localização)?",
+    "Cenário Prático: Um colega entra correndo e diz que esqueceu a senha e precisa que você logue na máquina dele rapidamente para ele não estourar o SLA de um alerta. O que você faz?",
   diagram: {
-    title: "Validação de Identidade",
-    chart: "graph LR\n  A[Ligação Externa] --> B{Pessoa está no Cadastro?}\n  B -- Não --> C[Negar Informação / Cortar]\n  B -- Sim --> D{Sabe Senha de Contato?}\n  D -- Não --> E[Pedir validação / Não liberar]\n  D -- Sim --> F[Proceder com Cautela]",
+    title: "O Firewall Humano",
+    chart: "graph LR\n  Ataque[Ligação: 'Sou o Diretor'] --> Operador{Operador Validou no Sistema?}\n  Operador -- Sim --> Sucesso[Acesso Liberado]\n  Operador -- Não Validou --> Falha[Engenharia Social Bem Sucedida / Vazamento]",
   },
 };

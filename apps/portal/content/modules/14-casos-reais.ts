@@ -6,150 +6,176 @@ const meta = getModuleMeta("14-casos-reais")!;
 export const module14: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Cases de Recuperação e Relatórios de Sinistro",
-    "Estudos de Casos Comerciais",
+    "Arquivo Confidencial: Auditorias Forenses de Sinistros (2020-2025)",
+    "Repositório de Cases Comerciais de Sucesso",
   ],
   objectives: [
-    "Analisar ocorrências reais (sinistros e recuperações) para conectar teoria e prática.",
-    "Identificar os fatores críticos de sucesso (SLA, CIA) e de falha (Enforcamento) em um evento.",
-    "Consolidar a percepção de valor que entregamos aos grandes embarcadores.",
+    "Sintetizar o conhecimento de todos os módulos na análise de crises e sucessos reais.",
+    "Mapear a causa-raiz (Erro Sistêmico vs Erro Humano) em eventos de grande prejuízo.",
+    "Consolidar a argumentação do 'Preço do Fracasso' para justificar a rigidez do PGR.",
+    "Validar a prontidão tática antes do módulo final de certificação.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Laboratório da Realidade",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "A Teoria Encontra o Asfalto",
           paragraphs: [
             [
-              "A guerra logística é ganha nos detalhes. Este módulo não ensina novos conceitos; ele mostra como tudo o que você aprendeu nos módulos anteriores foi usado para salvar milhões em cargas ou onde as coisas deram errado.",
+              "Até aqui, você estudou manuais, diretrizes de IA e regras da Seguradora. Neste módulo, vamos colocar a teoria na sala de autópsia.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Avançado (Laboratório Prático)",
-            "Pré-requisitos: Módulo 11 (Operação)",
-            "Tempo estimado: 30 minutos",
-            "Competências desenvolvidas: Análise de Causa Raiz, Pensamento Tático, Resolução Crítica",
-            "Gamificação: +500 XP, Badge 'Investigador'",
-          ],
-        },
-      ],
-    },
-    {
-      id: "sucesso-recuperacao",
-      title: "O Sucesso: Operação Carga Viva",
-      blocks: [
-        {
-          type: "text",
-          heading: "O Cenário",
-          paragraphs: [
             [
-              "Caminhão transportando eletroeletrônicos (Valor: R$ 1.5M). Viagem de São Paulo para Curitiba. Às 03:15 da manhã, o Connect aciona Alerta Nível 1: 'Perda do Rastreador Principal'. O motorista não atende o celular.",
+              "Analisaremos o maior case de sucesso financeiro da AtlasGR e a maior tragédia operacional gerada por uma quebra de protocolo, comprovando que o processo não existe para engessar o trabalho, mas para evitar o colapso.",
             ],
-          ],
-        },
-        {
-          type: "timeline",
-          title: "Cronologia da Recuperação",
-          items: [
-            { label: "03:15", text: "Alerta cai na tela. Operador inicia tratativa imediatamente (Dentro do SLA de 10 min)." },
-            { label: "03:18", text: "Macro de bloqueio e sirene enviados. Celular do motorista desligado. Operador não hesita e passa para a CIA." },
-            { label: "03:22", text: "CIA rastreia a ISCA móvel (que não foi achada pelos bandidos). Posição aponta um galpão abandonado a 10km da Dutra." },
-            { label: "03:25", text: "CIA aciona viaturas da PM mais próximas via rádio direto e aciona Pronta Resposta." },
-            { label: "03:45", text: "PM intercepta a carreta no galpão. Carga intacta. Motorista liberado." },
-          ],
-        },
-        {
-          type: "callout",
-          variant: "success",
-          title: "O Ponto de Virada",
-          text: [
-            "O Sucesso ocorreu porque o Operador NÃO demorou para acionar a CIA. Se ele esperasse 20 minutos 'tentando o celular', o caminhão teria entrado em um local onde a Isca também perderia o sinal.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "falha-enforcamento",
-      title: "A Falha: O Preço do 'Enforcamento'",
-      blocks: [
-        {
-          type: "text",
-          heading: "O Cenário (O Que Não Fazer)",
-          paragraphs: [
-            [
-              "Carga de defensivos agrícolas (R$ 800k). Alerta gerado: 'Parada Indevida' no interior de MG. Nível de prioridade Alto.",
-            ],
-          ],
-        },
-        {
-          type: "timeline",
-          title: "Cronologia da Falha",
-          items: [
-            { label: "14:00", text: "Alerta gerado no Connect." },
-            { label: "14:15", text: "Operador inicia a tratativa (Fora do SLA de 10 min). Liga para o motorista." },
-            { label: "14:18", text: "Motorista atende calmo e diz: 'Parei para almoçar, tô voltando já'. Operador confia na voz e encerra a tratativa SEM pedir a contra-senha." },
-            { label: "17:00", text: "Cliente liga perguntando por que o caminhão sumiu do mapa há 2 horas. A carga foi 100% roubada. O motorista estava rendido com uma arma nas costas durante a ligação das 14:18." },
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "A Causa Raiz",
+          title: "Mentalidade de Investigador",
           text: [
-            "O Operador 'Burlou' o processo. Deixou a empatia ou a preguiça vencer o PGR. Não validar a contra-senha é um erro fatal que custou R$ 800 mil à seguradora (e manchou a imagem da Atlas).",
+            "Não julgue os operadores dos casos passados. A pressão e a engenharia social atuam no cérebro de formas complexas. Seu trabalho é identificar 'em qual minuto do SLA a regra foi quebrada'.",
           ],
         },
       ],
     },
     {
-      id: "cases-macro",
-      title: "Resultados Macro (O Valor para o Diretoria)",
+      id: "capitulo-1-sucesso",
+      title: "Capítulo 1: O Triunfo Operacional (Carga Viva)",
       blocks: [
         {
-          type: "case",
-          title: "95 Milhões Economizados",
-          text: "Um cliente de combustíveis mudou totalmente sua cultura. Adotando Atlas Profile rígido + Atlas GR implacável, o número de roubos caiu de 40 no ano para ZERO em dois anos seguidos. Isso representa R$ 95 Milhões em perdas diretas evitadas.",
-          source: "Case Comercial Combustíveis (2024)",
+          type: "text",
+          paragraphs: [
+            [
+              "Este é o case matriz de como a integração entre Sistema, Torre e CIA salva fortunas na madrugada.",
+            ],
+          ],
         },
         {
-          type: "case",
-          title: "-26% em Tempo de Pátio",
-          text: "O cliente de sucos não tinha problemas de roubo. O problema era que motoristas dormiam no pátio da fazenda. Usando a cerca eletrônica do Connect e os dashboards do Analytics, o cliente provou para a fazenda que eles eram lentos. O tempo de carregamento caiu 26%, aumentando os lucros da transportadora brutalmente.",
-          source: "Case Comercial Sucos (2025)",
+          type: "timeline",
+          title: "Cronologia: A Recuperação de Eletrônicos (R$ 1.5M)",
+          items: [
+            { label: "03:15 (O Alerta)", text: "Connect acusa Perda do Rastreador Principal na Fernão Dias. O Operador age no minuto 1." },
+            { label: "03:17 (A Ação)", text: "Macro de bloqueio e sirene enviados sem sucesso. Celular desligado. Sem hesitar e sem tentar ligar infinitamente, a CIA é acionada." },
+            { label: "03:22 (A Inteligência)", text: "A CIA isola o sinal da Isca Móvel (que estava viva). A posição apontava 5km fora da rodovia, em direção a um galpão." },
+            { label: "03:30 (O Resgate)", text: "CIA aciona viaturas da PM local com a latitude/longitude precisa da Isca. A Polícia entra no galpão, liberta o motorista ileso e recupera 100% dos celulares." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-falha",
+      title: "Capítulo 2: O Fracasso Humano (O Enforcamento)",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "A máquina agiu certo. A IA funcionou. Mas a empatia cega do humano quebrou a defesa. O caso da carga de defensivos agrícolas (R$ 800 mil) é o nosso alerta máximo.",
+            ],
+          ],
+        },
+        {
+          type: "timeline",
+          title: "Cronologia: O Preço da Confiança (R$ 800k)",
+          items: [
+            { label: "14:00 (O Alerta)", text: "Connect acusa Parada Indevida (Alto Risco)." },
+            { label: "14:15 (Furo de SLA)", text: "Operador só inicia tratativa 15 min depois, já com o SLA primário estourado." },
+            { label: "14:18 (O Erro Fatal)", text: "Operador liga para o motorista, que diz: 'Parei para verificar a lona, a chuva tá forte'. O Operador acredita na voz calma e, COM PREGUIÇA, não pede a contra-senha. Dá baixa no alerta." },
+            { label: "17:00 (O Colapso)", text: "O cliente liga em desespero. A carga sumiu. O motorista estava refém com arma na cabeça na ligação das 14:18." },
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "A Conclusão Forense",
+          text: [
+            "O operador 'burlou' o processo. Deixou a pressa sobrepor a segurança. A Seguradora negou o pagamento por culpa exclusiva do mau gerenciamento de risco da Torre.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-3-casos-macro",
+      title: "Capítulo 3: Os Grandes Cases Comerciais",
+      blocks: [
+        {
+          type: "comparison",
+          title: "Prevenção vs Eficiência",
+          left: {
+            label: "Case Combustíveis (Roubo Zero)",
+            points: [
+              "Problema Original: 40 roubos e desvios ao ano (Prejuízos constantes).",
+              "Solução: Implantação massiva do Atlas Profile + Bloqueios Agressivos e regras restritas.",
+              "Resultado Final: ZERO roubos por 24 meses seguidos. Economia contábil de R$ 95 Milhões.",
+            ],
+          },
+          right: {
+            label: "Case Sucos (Otimização Extrema)",
+            points: [
+              "Problema Original: Zero roubos, mas os caminhões passavam dias em filas nas fazendas.",
+              "Solução: Cercas Virtuais do Connect ligadas ao Atlas Analytics para medição de pátio.",
+              "Resultado Final: Redução de 26% no tempo ocioso. Aumento bruto na margem de lucro da transportadora.",
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Síntese Prática",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Todos os casos acima possuem o mesmo fio condutor: O respeito à regra gera lucro e segurança; a quebra da regra (seja pela dor, pela preguiça ou pela desatenção) gera caos.",
+            ],
+          ],
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "checklist",
+          title: "O Penúltimo Passo",
+          items: [
+            "Falta pouco. Reflita sobre o erro da 'falta de contra-senha'. Prometa a si mesmo que isso não ocorrerá no seu turno.",
+            "Acesse o último módulo da Trilha. A Preparação Final para a Prova de Certificação.",
+          ],
         },
       ],
     },
   ],
   summary: [
-    "A velocidade no SLA de primeira ação (10 minutos) é a diferença entre sucesso e fracasso no acionamento policial.",
-    "Regras processuais (como pedir contra-senha) não podem ser puladas baseado na 'entonação de voz' do motorista.",
-    "O valor entregue pela Atlas se traduz em grandes cases focados na anulação do roubo (combustível) ou ganho de eficiência (sucos).",
+    "A precisão do SLA (agir em minutos) foi a diferença vital para recuperar 1.5M em eletrônicos usando a Isca Móvel.",
+    "A empatia sem método e a 'preguiça' de pedir contra-senha causaram a perda de 800k de defensivos.",
+    "Nenhum operador pode assumir o risco da intuição contrária à tela do Connect.",
+    "O discurso comercial real é balizado pelos cases de economia de R$ 95M (contra roubo) e -26% de tempo (eficiência).",
   ],
   finalChecklist: [
-    "Entendo o peso real de seguir o PGR sob pressão.",
-    "Sei os fatores que salvaram a carga de eletrônicos.",
-    "Entendo o erro crítico que causou a perda da carga de defensivos.",
+    "Sei a causa-raiz do fracasso no evento de roubo de defensivos (falta de contra-senha e SLA).",
+    "Compreendo o papel da Isca e da CIA na recuperação tática.",
+    "Sei como argumentar valor baseado nos cases macro (Combustível e Sucos).",
   ],
   mindMap: {
-    root: "Laboratório de Casos",
+    root: "Laboratório Forense",
     branches: [
-      { label: "Fatores de Sucesso", items: ["SLA Rápido", "Acionamento CIA", "Isca Móvel"] },
-      { label: "Erros Fatais", items: ["Enforcar Alertas", "Ignorar Contra-senha", "Fugir do PGR"] },
-      { label: "Cases Macro", items: ["R$ 95M Combustíveis", "-26% Pátio de Sucos"] },
+      { label: "O Triunfo", items: ["SLA Rápido", "Acionamento da CIA", "Uso da Isca Móvel"] },
+      { label: "O Fracasso", items: ["Enforcar Alerta", "Acreditar na Voz", "Omitir Contra-Senha"] },
+      { label: "O Valor", items: ["95 Milhões (Combustível)", "Redução Pátio (Sucos)"] },
     ],
   },
   scenario:
-    "Analisando o case do roubo dos defensivos, se você fosse o supervisor desse operador, o que diria a ele na reunião de feedback pós-incidente sobre a importância das regras engessadas em momentos de crise?",
+    "Cenário Prático: A carreta para fora de hora. Você liga, o motorista passa a contra-senha CORRETA, mas você ouve tiros ao fundo da ligação. A contra-senha diz que está tudo bem, o ambiente diz o contrário. Você dá baixa ou aciona a CIA por Anomalia Externa?",
   diagram: {
-    title: "O Ponto de Decisão",
-    chart: "graph TD\n  A[Alerta na Tela] --> B{Operador segue PGR?}\n  B -- Sim --> C[Velocidade, CIA, Recuperação]\n  B -- Não --> D[Quebra de SLA, Confiança Cega, Roubo Total]",
+    title: "O Peso da Decisão",
+    chart: "graph TD\n  Inicio[Alerta Crítico] --> Decisao{Decisão do Operador}\n  Decisao -- Foco no PGR --> A[Valida Contra-Senha]\n  A --> Sucesso[Recupera Carga / Garante Seguro]\n  Decisao -- Empatia Cega / Preguiça --> B[Ignora Contra-Senha]\n  B --> Falha[Roubo com Culpa Operacional / Seguro Negado]",
   },
 };

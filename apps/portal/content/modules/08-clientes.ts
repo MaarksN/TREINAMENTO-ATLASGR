@@ -6,136 +6,155 @@ const meta = getModuleMeta("08-clientes")!;
 export const module08: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulo 2 — Mercado de Logística (embarcador x transportadora)",
-    "Cases de cliente apresentados nos showcases de produto do portal",
+    "Outline consolidado (content/modules/meta.ts)",
+    "Módulo 2 — Mercado de Logística (Revisão)",
+    "Showcases de Casos de Sucesso Comerciais",
   ],
   objectives: [
-    "Reconhecer os três principais perfis de cliente atendidos pela Atlas.",
-    "Explicar como a dor de cada perfil muda o que a Atlas entrega e como argumentar.",
-    "Relacionar cada perfil de cliente a exemplos reais de resultado operacional (cases).",
-    "Compreender a dinâmica de poder entre Embarcador e Transportadora.",
+    "Reconhecer os três grandes perfis de cliente atendidos pela AtlasGR.",
+    "Mapear a 'dor' específica de cada perfil.",
+    "Traduzir essas dores para os produtos do nosso portfólio (A solução).",
+    "Compreender a dinâmica de poder entre Embarcador, Seguradora e Transportadora.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: A Lente do Cliente",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "Falando a Língua Certa",
           paragraphs: [
             [
-              "Não existe um 'cliente padrão'. Quem liga para a Atlas pode ser o dono de uma transportadora buscando cumprir a apólice ou o diretor de um embarcador multinacional buscando dados táticos. Você precisa saber com quem está falando.",
+              "Um erro clássico é vender 'segurança' para quem está preocupado com 'prazo de entrega'. Na AtlasGR, você precisa calibrar o seu discurso dependendo de quem está do outro lado da linha.",
+            ],
+            [
+              "Para um embarcador de bebidas, perder 10 caminhões de refrigerante no roubo é ruim, mas perder 50 caminhões parados em uma doca por ineficiência é muito pior para a margem de lucro. Neste módulo, vamos aprender a ler mentes corporativas.",
+            ],
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Dica do Assistente IA",
+          text: [
+            "Use o assistente virtual para gerar simulações de diálogos. Peça a ele: 'Haja como um Diretor de Transportadora furioso por causa de uma multa da apólice, e eu tentarei acalmá-lo usando o argumento do Atlas GR'.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-1-transportadora",
+      title: "Capítulo 1: A Dor da Transportadora",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "A transportadora é o executor do frete. A maior dor dela é ter um caminhão roubado e a Seguradora se recusar a pagar a indenização porque o motorista quebrou a regra do ",
+              { term: "pgr" },
+              ".",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Ficha Técnica",
+          title: "O que a Transportadora quer de nós:",
           items: [
-            "Nível de dificuldade: Intermediário (Negócios)",
-            "Pré-requisitos: Módulo 02 e Módulo 04",
-            "Tempo estimado: 30 minutos",
-            "Competências desenvolvidas: Inteligência de Mercado, Empatia Comercial, Perfilamento",
-            "Gamificação: +400 XP, Badge 'Analista de Perfis'",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "success",
-          title: "Dica de Ouro",
-          text: [
-            "A linguagem muda o jogo. Ao falar com Transportadoras, fale em 'Prejuízo Evitado' e 'Conformidade de Apólice'. Ao falar com Embarcadores, fale em 'SLA de Entrega', 'Visibilidade' e 'Eficiência'.",
+            "Garantia Absoluta: Ela quer que a AtlasGR obrigue o motorista a seguir as regras, para que a apólice pague em caso de sinistro.",
+            "Custo Evitado: Se o motorista tentar desviar a rota, ela quer que a Atlas bloqueie o caminhão IMEDIATAMENTE.",
+            "Produto Alvo: O Atlas GR (Processo e Torre) e o Atlas Profile (Para não contratar o motorista errado).",
           ],
         },
       ],
     },
     {
-      id: "perfis-de-cliente",
-      title: "Quem contrata a AtlasGR?",
+      id: "capitulo-2-embarcador",
+      title: "Capítulo 2: A Dor do Embarcador",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A Atlas atende três grandes perfis, cada um com uma dor principal muito específica.",
+              "O Embarcador é o dono da carga (Ex: Samsung, Ambev). A transportadora é terceirizada dele. A dor do Embarcador é a cegueira. Quando a carga sai da fábrica na carreta do terceiro, ele não sabe onde ela está.",
             ],
           ],
         },
         {
-          type: "comparison",
-          title: "As Dores Diferentes",
-          left: {
-            label: "A Transportadora",
-            points: [
-              "Foco: Custos Diretos e Apólice.",
-              "Dor: O seguro não vai pagar o roubo se o PGR não for cumprido.",
-              "Precisa de: Atlas Profile para evitar motoristas ruins e Atlas GR para cumprir a regra.",
-            ],
-          },
-          right: {
-            label: "O Embarcador (Dono da Carga)",
-            points: [
-              "Foco: Prazo de Entrega e Custo Oculto.",
-              "Dor: A transportadora terceirizada perdeu a carga ou atrasou a entrega.",
-              "Precisa de: Atlas Connect para ver todos os terceirizados na mesma tela e Analytics para medir quem é melhor.",
-            ],
-          },
+          type: "checklist",
+          title: "O que o Embarcador quer de nós:",
+          items: [
+            "Visibilidade Total: Ver todos os transportadores terceirizados na mesma tela.",
+            "Eficiência (SLA): Medir qual transportadora entrega no prazo e qual atrasa.",
+            "Produto Alvo: Atlas Connect (Para ver o GPS em tempo real) e o Atlas Analytics (Para ver os gráficos de performance no fim do mês).",
+          ],
         },
+      ],
+    },
+    {
+      id: "capitulo-3-operador",
+      title: "Capítulo 3: O Operador Logístico",
+      blocks: [
         {
           type: "text",
-          heading: "O Terceiro Jogador: Operador Logístico",
           paragraphs: [
             [
-              "O operador logístico (como uma DHL ou Julio Simões) não é nem o dono da carga nem, muitas vezes, o dono do caminhão. Ele organiza o jogo. Para ele, a dor é a gestão gigantesca. Eles são os maiores consumidores do Atlas Analytics.",
+              "O Operador Logístico (Ex: DHL) faz o meio de campo. Ele aluga o galpão, contrata a transportadora e atende o embarcador. Ele precisa da 'Visão de Deus' sobre toda a cadeia.",
             ],
           ],
         },
       ],
     },
     {
-      id: "dores-reais",
-      title: "As Dores Traduzidas em Números",
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: Vendendo o Produto Certo para a Dor Certa",
       blocks: [
         {
           type: "case",
-          title: "Case Embarcador de Combustível (A Dor do Roubo)",
-          text: "Um grande embarcador focado na distribuição de combustíveis sofria com desvios em rodovias remotas. A implantação do Atlas GR aliado a sensores de abertura de válvula impediu R$ 95 milhões em perdas em 2 anos.",
-          source: "Arquivo Comercial AtlasGR",
+          title: "A Venda de R$ 95 Milhões vs A Venda de 26%",
+          text: "Dois cases reais da Atlas: Para um embarcador de combustíveis (alto índice de roubo e desvio), vendemos o Atlas GR pesado. Bloqueio automático de válvulas, CIA atuando fortemente e escoltas. Resultado: R$ 95 Milhões economizados em cargas roubadas. Para um embarcador de sucos (zero roubo), o discurso de segurança de válvula não serviria de nada. O foco foi o tempo. Vendemos o Atlas Connect e o Analytics para criar Cercas Eletrônicas em fazendas de laranja. O cliente diminuiu em 26% o tempo de fila de seus caminhões. É a mesma plataforma, vendida de formas completamente diferentes dependendo de quem escuta.",
+          source: "Playbook Comercial AtlasGR",
         },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
         {
-          type: "case",
-          title: "Case Embarcador de Suco (A Dor da Ineficiência)",
-          text: "Neste caso, não havia roubo. A dor era o tempo. O cliente descobriu via Atlas Analytics que os caminhões ficavam dias parados nas fazendas de laranja aguardando carregamento. A Atlas reduziu o tempo de pátio em 26%.",
-          source: "Arquivo Comercial AtlasGR",
+          type: "checklist",
+          title: "Aprofunde-se",
+          items: [
+            "Assista ao vídeo 'Pitch de Vendas para Transportadoras' na biblioteca.",
+            "No próximo módulo, Módulo 09, vamos entender o passo a passo de como o setor Comercial captura esses clientes.",
+          ],
         },
       ],
     },
   ],
   summary: [
-    "Identificar se o cliente é Transportadora, Embarcador ou Operador muda a sua abordagem e linguagem.",
-    "A Transportadora quer cumprir o seguro. O Embarcador quer gerir prazos e visão global.",
-    "O mesmo portfólio de produtos Atlas resolve ambas as dores, se a argumentação for ajustada.",
-    "Resultados práticos (Cases) são a melhor forma de tangibilizar o valor do nosso serviço.",
+    "Transportadoras compram AtlasGR para garantir o pagamento do seguro e evitar multas.",
+    "Embarcadores compram AtlasGR para enxergar cargas terceirizadas e medir a eficiência da logística.",
+    "Operadores Logísticos usam a AtlasGR para gerir toda a cadeia simultaneamente.",
+    "O discurso comercial deve ancorar o produto na dor específica (Segurança vs Eficiência).",
   ],
   finalChecklist: [
-    "Diferencio Transportadora de Embarcador com base em dores operacionais.",
-    "Entendo qual produto oferecer baseado na dor inicial do cliente.",
-    "Consigo explicar pelo menos um case real de sucesso (Combustível ou Suco).",
+    "Diferencio a dor de uma transportadora da dor de um embarcador.",
+    "Sei qual produto oferecer (GR ou Analytics) baseado na queixa do cliente.",
+    "Compreendo o case de sucesso do Combustível vs Suco.",
   ],
   mindMap: {
     root: "Perfis de Cliente",
     branches: [
-      { label: "Transportadora", items: ["Seguro", "Prejuízo", "GR e Profile"] },
-      { label: "Embarcador", items: ["Visibilidade", "Tempo de Pátio", "Connect e Analytics"] },
-      { label: "Operador Logístico", items: ["Gestão Macro", "SLA", "Analytics"] },
+      { label: "Transportadora", items: ["Dor: Seguro e PGR", "Solução: GR e Profile"] },
+      { label: "Embarcador", items: ["Dor: Cegueira e SLA", "Solução: Connect e Analytics"] },
+      { label: "O Argumento", items: ["Perdas (Combustível)", "Tempo (Sucos)"] },
     ],
   },
   scenario:
-    "Você atende a ligação de um diretor da Coca-Cola (Embarcador). Ele diz que está perdendo cargas porque as transportadoras dele são ineficientes. Você vai focar em vender a Apólice (GR) ou a Visibilidade (Connect)? Por quê?",
+    "Cenário Prático: O cliente é a Nike (Embarcador). Eles terceirizam 100% da frota. Eles reclamam que a transportadora sempre diz que 'está chegando', mas os tênis chegam 2 dias atrasados. Qual é o produto AtlasGR ideal para resolver isso e por quê?",
   diagram: {
-    title: "Mapeamento de Valor",
-    chart: "graph LR\n  A[Transportadora] -->|Busca Proteção| B[Atlas GR / Profile]\n  C[Embarcador] -->|Busca Visão Geral| D[Atlas Connect / Analytics]",
+    title: "Mapeamento Dores vs Soluções",
+    chart: "graph TD\n  Trans[Transportadora] --> DorT[Não perder Seguro]\n  Emb[Embarcador] --> DorE[Quero Eficiência/Visibilidade]\n  DorT --> SolT[Venda: Atlas GR]\n  DorE --> SolE[Venda: Atlas Connect / Analytics]",
   },
 };

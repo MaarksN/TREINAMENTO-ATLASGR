@@ -7,137 +7,155 @@ export const module10: ModuleContentFull = {
   ...meta,
   sources: [
     "Glossário Oficial AtlasGR",
-    "Manuais Operacionais",
-    "Treinamentos de Implantação",
+    "Documentação da ANTT e SEFAZ",
+    "Manuais de Operação",
   ],
   objectives: [
-    "Dominar a linguagem técnica e as siglas usadas internamente e pelo mercado logístico.",
-    "Prevenir erros operacionais causados por má interpretação de termos técnicos (ex: Jammer vs Sombra).",
-    "Garantir a uniformidade da comunicação com clientes, seguradoras e forças policiais.",
+    "Dominar a sopa de letrinhas (siglas) usadas nas rodovias e escritórios brasileiros.",
+    "Evitar relatórios incorretos que disparam ações letais (Ex: Jammer vs Área de Sombra).",
+    "Diferenciar claramente documentos fiscais (NF-e) de documentos logísticos (CT-e).",
+    "Compreender métricas vitais como SLA e ETA.",
   ],
   sections: [
     {
-      id: "guia-do-modulo",
-      title: "Guia Estratégico do Módulo",
+      id: "introducao",
+      title: "Introdução: O Idioma da Logística",
       blocks: [
         {
           type: "text",
-          heading: "Visão Geral",
+          heading: "Por que as palavras importam?",
           paragraphs: [
             [
-              "Bem-vindo ao Dicionário AtlasGR. Você não pode jogar o jogo se não souber o nome das peças. O linguajar logístico e de risco é cheio de siglas que, se confundidas, podem atrasar a CIA ou irritar o cliente.",
+              "Na Torre de Controle, você tem 10 minutos para agir. Se você gritar 'Roubo!' ao invés de 'Avaria', você acionará a Polícia Militar com cães farejadores para atender um caminhão que apenas furou o pneu e quebrou a carga.",
             ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Ficha Técnica",
-          items: [
-            "Nível de dificuldade: Básico (Referência)",
-            "Pré-requisitos: Nenhum",
-            "Tempo estimado: 30 minutos",
-            "Competências desenvolvidas: Comunicação Corporativa, Precisão Técnica",
-            "Gamificação: +300 XP, Badge 'Tradutor'",
+            [
+              "Este módulo é o seu dicionário de sobrevivência. Precisão técnica evita histeria, falsos positivos e garante que a CIA saiba exatamente qual ferramenta usar no combate.",
+            ],
           ],
         },
         {
           type: "callout",
-          variant: "info",
-          title: "O Glossário Digital",
+          variant: "success",
+          title: "Funcionalidade do Portal",
           text: [
-            "Sempre que você vir uma palavra sublinhada ao longo da Universidade Corporativa, basta passar o mouse (ou clicar) para ver a definição imediata.",
+            "Não precisa decorar tudo hoje. O portal da AtlasGR possui o sublinhado em termos-chave. Passou o mouse por cima do termo, a explicação aparece.",
           ],
         },
       ],
     },
     {
-      id: "tecnologia-e-rastreamento",
-      title: "Siglas de Tecnologia e Equipamentos",
+      id: "capitulo-1-hardwares",
+      title: "Capítulo 1: Hardware e Equipamentos Táticos",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A torre lida o tempo todo com hardware embarcado. É essencial distinguir as tecnologias.",
+              "O caminhão é uma fortaleza móvel cheia de tecnologia embutida.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Hardwares Comuns",
+          title: "Tecnologias Físicas",
           items: [
-            "VSR (Veículo Sem Rastreador): Caminhão que opera 'às cegas' no sistema principal, dependendo de iscas.",
-            "Isca (Rastreador Móvel): Dispositivo autônomo a bateria, geralmente escondido dentro da carga, indetectável no painel do caminhão.",
-            "Jammer (Chupa-Cabra): Aparelho usado por quadrilhas para derrubar o sinal GSM/GPS do rastreador.",
-            "Área de Sombra: Região de rodovia onde o sinal cai naturalmente (buraco de cobertura de celular), não devendo ser confundido com ação de Jammer.",
+            "Rastreador Primário (Hardware Fixo): Fica embutido no painel do caminhão e acionado pela bateria do veículo. Cortam o fio, ele apaga.",
+            "Isca Móvel: Uma pequena caixa (rastreador secundário) escondida dentro de uma caixa de papelão no meio da carga, com bateria própria. Se a quadrilha arrancar o painel do caminhão, a isca dedura a posição do galpão de desmanche.",
+            "Jammer (Chupa-Cabra): Equipamento de rádio-frequência usado por bandidos para 'cegar' os rastreadores. Derruba o satélite e o celular do caminhão.",
           ],
         },
       ],
     },
     {
-      id: "processos-e-documentos",
-      title: "Documentação Logística",
+      id: "capitulo-2-documentos",
+      title: "Capítulo 2: A Burocracia Governamental",
       blocks: [
         {
           type: "comparison",
-          title: "Conhecimentos e Notas",
+          title: "NF-e vs CT-e",
           left: {
-            label: "CT-e (Conhecimento de Transporte Eletrônico)",
-            points: ["O documento do FRETE.", "Emitido pela transportadora.", "Relaciona quem transporta e qual a placa."],
+            label: "NF-e (Nota Fiscal)",
+            points: ["O imposto sobre o PRODUTO.", "Gerado por quem vende (Embarcador).", "Mede o 'Valor da Carga' (Ex: 1 Milhão de Reais). Essencial para a Apólice."],
           },
           right: {
-            label: "NF-e (Nota Fiscal Eletrônica)",
-            points: ["O documento do PRODUTO.", "Emitido pelo vendedor/embarcador.", "Relaciona valor, quantidade e tipo de carga."],
+            label: "CT-e (Conhecimento de Transporte)",
+            points: ["O imposto sobre o FRETE.", "Gerado por quem transporta (Transportadora).", "Mede o serviço logístico. Se não for emitido, a ANTT apreende a carga na balança fiscal."],
           },
         },
+      ],
+    },
+    {
+      id: "capitulo-3-metricas",
+      title: "Capítulo 3: Indicadores e Métricas (KPIs)",
+      blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Você não bloqueia um caminhão por erro de NF-e, mas a ausência do valor correto da nota pode violar a Apólice.",
+              "Você será cobrado por performance. Conheça as réguas de medição.",
             ],
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            { q: "O que é SLA?", a: "Service Level Agreement (Acordo de Nível de Serviço). É o prazo máximo permitido em contrato. SLA da Torre para tratar alerta crítico: 10 minutos." },
+            { q: "O que é ETA?", a: "Estimated Time of Arrival (Estimativa de Chegada). A inteligência do Connect calculando se a viagem vai atrasar ou não." },
+            { q: "O que é OTD?", a: "On-Time Delivery. Uma métrica do Embarcador que mede a porcentagem de caminhões que chegaram no prazo." },
           ],
         },
       ],
     },
     {
-      id: "indicadores-de-desempenho",
-      title: "As Métricas (KPIs)",
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: Sombra vs Jammer",
       blocks: [
         {
-          type: "faq",
+          type: "case",
+          title: "O Pânico na Serra",
+          text: "Caso Clássico: O caminhão entra na Rodovia Regis Bittencourt, num trecho de serra profundo. O sinal some. O operador inexperiente clica no relatório e escreve 'Perda de Sinal por Ação de Jammer'. Dispara o protocolo da CIA e a Polícia fecha a rodovia com helicóptero. O caminhão passa o túnel, o sinal volta. Foi apenas uma 'Área de Sombra' (sem cobertura de celular natural). O uso da palavra errada gera danos incalculáveis de desperdício de recursos policiais.",
+          source: "Manual de Falhas - AtlasGR DHO",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "checklist",
+          title: "Consolidação",
           items: [
-            { q: "O que é SLA?", a: "Service Level Agreement (Acordo de Nível de Serviço). O tempo máximo que temos para fazer algo. Ex: SLA de Atendimento de Alerta Crítico é de 10 minutos." },
-            { q: "O que é ETA?", a: "Estimated Time of Arrival (Tempo Estimado de Chegada). A inteligência artificial calculando que horas o caminhão vai entregar a carga." },
-            { q: "O que é OTD?", a: "On-Time Delivery. O indicador do cliente de quantas entregas chegaram no prazo." },
+            "Acesse o Glossário Geral da AtlasGR no rodapé da página para mais de 300 termos mapeados.",
+            "Vá para o Módulo 11 para ver tudo isso sendo usado sob extrema pressão na operação diária.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A comunicação precisa evita falsos positivos (ex: reportar um Jammer quando era só uma Área de Sombra).",
-    "Iscas são equipamentos autônomos dentro da carga, essenciais se o rastreador principal for destruído.",
-    "CT-e é o imposto do frete, NF-e é o imposto do produto. O valor total da carga em risco vem da NF-e.",
-    "KPIs como SLA e ETA são as métricas pelas quais o mercado avalia a eficiência da AtlasGR e da transportadora.",
+    "Isca móvel e Rastreador principal não são a mesma coisa; um é contingência vital do outro.",
+    "Jammer é um ataque criminoso; Sombra é falha de infraestrutura de telecom.",
+    "O Valor exposto ao risco que importa para o Seguro está na NF-e.",
+    "SLA e ETA são os medidores da sua velocidade e da velocidade do caminhão.",
   ],
   finalChecklist: [
-    "Sei a diferença entre ação de Jammer e Área de Sombra.",
-    "Consigo explicar para um cliente a diferença entre Rastreador Principal e Isca Móvel.",
-    "Sei o significado de SLA.",
+    "Diferencio perfeitamente Sombra de Jammer.",
+    "Sei a diferença entre a nota fiscal da TV e o imposto de transporte da TV.",
+    "Compreendo o significado de SLA e sua importância.",
   ],
   mindMap: {
     root: "Termos Técnicos",
     branches: [
-      { label: "Equipamentos", items: ["Jammer", "Sombra", "Isca", "VSR"] },
-      { label: "Documentos", items: ["NF-e", "CT-e", "PGR"] },
-      { label: "Métricas", items: ["SLA", "ETA", "OTD"] },
+      { label: "Hardware Físico", items: ["Jammer", "Isca", "Rastreador", "Sombra"] },
+      { label: "Papelada", items: ["NF-e (Valor)", "CT-e (Frete)"] },
+      { label: "As Métricas", items: ["SLA", "ETA", "OTD"] },
     ],
   },
   scenario:
-    "O motorista entra em uma serra famosa por não ter torre de celular e o sinal cai. O sistema alerta. Você anota no relatório 'Suspeita de Uso de Jammer'. Por que isso é um erro gravíssimo de nomenclatura?",
+    "Cenário Prático: A carreta para em um local ermo, e o rastreador principal emite que a bateria foi cortada subitamente (corte de fio), mas há 100% de cobertura de celular na região. Isso é Área de Sombra ou possível ação humana?",
   diagram: {
-    title: "Relação de Documentos",
-    chart: "graph LR\n  A[Embarcador] -->|Emite| B[NF-e (Valor da Carga)]\n  C[Transportadora] -->|Emite| D[CT-e (Valor do Frete)]\n  B --> E[Sistema Atlas]\n  D --> E",
+    title: "Documentação de Risco",
+    chart: "graph LR\n  Cliente(Embarcador) --> NFE[NF-e : Valor Alto]\n  NFE --> PGR{PGR Exige Isca?}\n  PGR -- Sim --> Torre(Atlas Connect)\n  PGR -- Não --> VSR(Viagem de Baixo Risco)",
   },
 };
