@@ -7,7 +7,6 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { ArrowLeft, ArrowRight, Brain, CheckCircle2, ClipboardList, Wrench, PlayCircle } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { ContentBlockView } from "@/components/module/ContentBlockView";
 import { QuizRunner } from "@/components/quiz/QuizRunner";
 import { moduleMetas, getModuleMeta, getModuleContent } from "@/content/modules";
@@ -32,6 +31,7 @@ export function ModulePageClient() {
   const quiz = getQuizForModule(params.slug);
   const modProgress = progress[params.slug];
   const idx = moduleMetas.findIndex((m) => m.slug === params.slug);
+  const previousReady = moduleMetas.slice(0, idx).reverse().find((m) => m.status === "ready");
   const nextReady = moduleMetas.slice(idx + 1).find((m) => m.status === "ready");
 
   if (!ready || !registration || !meta) return null;
@@ -259,13 +259,29 @@ export function ModulePageClient() {
           </div>
         </motion.div>
 
-        {modProgress?.passed && nextReady && (
-          <motion.div className="mt-16 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-            <Link href={`/trilha/${nextReady.slug}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-sm font-bold text-white hover:bg-white/10 transition-colors group">
-              Avançar para: {nextReady.title} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
-        )}
+        <motion.nav
+          className="atlas-module-navigation"
+          aria-label="Navegação entre módulos"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <Link href={previousReady ? `/trilha/${previousReady.slug}` : "/trilha"} className="atlas-module-nav-link">
+            <ArrowLeft size={19} aria-hidden="true" />
+            <span>
+              <small>{previousReady ? "Módulo anterior" : "Voltar"}</small>
+              <strong>{previousReady?.title ?? "Trilha de aprendizagem"}</strong>
+            </span>
+          </Link>
+
+          <Link href={nextReady ? `/trilha/${nextReady.slug}` : "/prova-final"} className="atlas-module-nav-link is-next">
+            <span>
+              <small>{nextReady ? "Próximo módulo" : "Próxima etapa"}</small>
+              <strong>{nextReady?.title ?? "Prova final"}</strong>
+            </span>
+            <ArrowRight size={19} aria-hidden="true" />
+          </Link>
+        </motion.nav>
       </main>
     </div>
   );

@@ -39,19 +39,21 @@ export const module10: ModuleContentFull = {
       title: "Termos de risco e seguro",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "Do universo de gerenciamento de risco e seguro: ",
-              { term: "pgr" },
-              ", ",
-              { term: "sinistro" },
-              ", ",
-              { term: "sublimite" },
-              " e ",
-              { term: "rcf-dc" },
-              " — todos vistos em detalhe no Módulo 3.",
-            ],
+          type: "checklist",
+          title: "Vocabulário que orienta a decisão",
+          items: [
+            "PGR — conjunto de regras e procedimentos que define como o risco de cada operação será tratado.",
+            "Sinistro — ocorrência coberta pela apólice que pode gerar perda, dano ou indenização.",
+            "Sublimite — limite específico de cobertura dentro do valor total previsto na apólice.",
+            "RCF-DC — seguro de responsabilidade civil por desaparecimento de carga.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "O termo só faz sentido dentro do contexto",
+          text: [
+            "Antes de agir, identifique se a expressão está sendo usada como regra do PGR, condição da apólice ou registro operacional. Essa leitura evita decisões baseadas apenas na sigla.",
           ],
         },
       ],
@@ -61,29 +63,13 @@ export const module10: ModuleContentFull = {
       title: "Termos operacionais da Central",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "Do dia a dia da Central: ",
-              { term: "connect" },
-              ", ",
-              { term: "torre-de-controle" },
-              ", ",
-              { term: "sm" },
-              ", ",
-              { term: "checklist" },
-              ", ",
-              { term: "sensores-atuadores" },
-              ", ",
-              { term: "botao-de-panico" },
-              ", ",
-              { term: "macro" },
-              ", ",
-              { term: "malicia" },
-              " e ",
-              { term: "cia" },
-              ".",
-            ],
+          type: "timeline",
+          title: "Da preparação ao tratamento do alerta",
+          items: [
+            { label: "Preparar", text: "SM, checklist e regras do PGR organizam a viagem antes do início." },
+            { label: "Monitorar", text: "Atlas Connect, Torre de Controle e sensores mostram o contexto da operação." },
+            { label: "Intervir", text: "Macro, botão de pânico e atuadores apoiam a resposta ao evento." },
+            { label: "Registrar", text: "CIA e códigos do Grid preservam o histórico para a continuidade do atendimento." },
           ],
         },
       ],
@@ -132,26 +118,16 @@ export const module10: ModuleContentFull = {
       title: "Termos de mercado e tecnologia",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "Termos de uso mais amplo no mercado de logística e tecnologia: ",
-              { term: "tms" },
-              ", ",
-              { term: "erp" },
-              ", ",
-              { term: "api" },
-              ", ",
-              { term: "eta" },
-              ", ",
-              { term: "kpi" },
-              ", ",
-              { term: "sla" },
-              " e ",
-              { term: "geofencing" },
-              ".",
-            ],
-          ],
+          type: "comparison",
+          title: "Linguagem interna e linguagem de mercado",
+          left: {
+            label: "Contexto ATLASGR",
+            points: ["PGR, SM e CIA organizam regras e rotinas internas.", "Connect e Torre de Controle sustentam o acompanhamento operacional."],
+          },
+          right: {
+            label: "Mercado e tecnologia",
+            points: ["TMS, ERP e API conectam dados e sistemas.", "ETA, KPI, SLA e geofencing medem e orientam a operação."],
+          },
         },
       ],
     },

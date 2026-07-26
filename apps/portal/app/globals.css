@@ -1554,6 +1554,83 @@ button {
   }
 }
 
+.atlas-module-navigation {
+  display: grid;
+  gap: 1rem;
+  max-width: 64rem;
+  margin: 5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--lesson-border);
+}
+
+.atlas-module-nav-link {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--lesson-border);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent),
+    rgba(27, 28, 32, 0.9);
+  color: #fff;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.atlas-module-nav-link:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 110, 52, 0.42);
+  background:
+    linear-gradient(145deg, rgba(255, 86, 24, 0.1), transparent),
+    rgba(27, 28, 32, 0.94);
+}
+
+.atlas-module-nav-link > svg {
+  flex: 0 0 auto;
+  color: #ff7544;
+  transition: transform 180ms ease;
+}
+
+.atlas-module-nav-link:hover > svg {
+  transform: translateX(-4px);
+}
+
+.atlas-module-nav-link.is-next {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.atlas-module-nav-link.is-next:hover > svg {
+  transform: translateX(4px);
+}
+
+.atlas-module-nav-link small {
+  display: block;
+  color: #8f929b;
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.atlas-module-nav-link strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 720px) {
+  .atlas-module-navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 768px) {
   .atlas-command-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1572,5 +1649,497 @@ button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Trilha integrada e Academia ATLAS IA */
+.atlas-title-logo img {
+  width: clamp(180px, 32vw, 360px);
+  height: auto;
+}
+
+.atlas-central-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8rem;
+}
+
+.atlas-central-logo img {
+  width: clamp(170px, 26vw, 280px);
+  height: auto;
+}
+
+.atlas-text-button.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.atlas-page-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.atlas-page-footer > :last-child {
+  justify-self: end;
+}
+
+.atlas-command-grid {
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.atlas-trail-foundations {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.atlas-foundation-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--atlas-orange) 13%, transparent), transparent 34%),
+    var(--surface);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  text-align: left;
+}
+
+.atlas-foundation-card::after {
+  position: absolute;
+  right: -5rem;
+  bottom: -6rem;
+  width: 14rem;
+  height: 14rem;
+  border: 1px solid color-mix(in srgb, var(--foreground) 7%, transparent);
+  border-radius: 999px;
+  content: "";
+}
+
+.atlas-foundation-knowledge {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.atlas-foundation-knowledge:hover {
+  border-color: color-mix(in srgb, var(--atlas-orange) 55%, var(--border));
+  box-shadow:
+    var(--shadow-card),
+    0 20px 48px rgba(255, 86, 24, 0.13);
+}
+
+.atlas-foundation-heading {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.atlas-foundation-heading p,
+.atlas-section-divider p {
+  color: var(--atlas-orange);
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.atlas-foundation-heading h3 {
+  margin-top: 0.2rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.atlas-foundation-order {
+  color: color-mix(in srgb, var(--foreground) 14%, transparent);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.atlas-foundation-year {
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+  color: var(--foreground);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: clamp(3.8rem, 8vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+
+.atlas-foundation-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 36rem;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.atlas-foundation-quote {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.2rem;
+  border-left: 4px solid var(--atlas-orange);
+  border-radius: 0 16px 16px 0;
+  background: color-mix(in srgb, var(--atlas-orange) 8%, transparent);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.atlas-knowledge-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.65rem;
+}
+
+.atlas-knowledge-tags span {
+  padding: 0.58rem 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--foreground);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.atlas-knowledge-groups {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.3rem;
+}
+
+.atlas-knowledge-groups > span {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--surface-2) 88%, transparent);
+}
+
+.atlas-knowledge-groups small {
+  grid-row: span 2;
+  align-self: center;
+  margin-right: 0.8rem;
+  color: var(--atlas-orange);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.atlas-knowledge-groups strong {
+  color: var(--foreground);
+  font-size: 0.8rem;
+}
+
+.atlas-knowledge-groups em {
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-style: normal;
+}
+
+.atlas-section-divider {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.atlas-section-divider h3 {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.35rem);
+  font-weight: 850;
+  letter-spacing: -0.035em;
+}
+
+.atlas-section-divider > span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.atlas-academy-hero {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.atlas-academy-signal {
+  display: flex;
+  min-width: 260px;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.atlas-academy-signal > span,
+.atlas-academy-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 119, 65, 0.28);
+  border-radius: 15px;
+  background: rgba(255, 86, 24, 0.12);
+  color: var(--atlas-orange);
+}
+
+.atlas-academy-signal p,
+.atlas-academy-area {
+  color: var(--atlas-orange);
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.atlas-academy-signal strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.atlas-academy-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.7rem;
+}
+
+.atlas-academy-card {
+  position: relative;
+  display: flex;
+  min-height: 390px;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 27px;
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--atlas-orange) 7%, transparent), transparent 52%),
+    var(--surface);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.atlas-academy-card::after {
+  position: absolute;
+  top: -7rem;
+  right: -7rem;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--atlas-orange) 11%, transparent);
+  filter: blur(35px);
+  content: "";
+}
+
+.atlas-academy-card:hover {
+  border-color: rgba(255, 110, 52, 0.42);
+  box-shadow:
+    var(--shadow-card),
+    0 22px 48px rgba(255, 86, 24, 0.12);
+}
+
+.atlas-academy-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.atlas-academy-number {
+  color: color-mix(in srgb, var(--foreground) 14%, transparent);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.atlas-academy-area {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.7rem;
+}
+
+.atlas-academy-card h3 {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.45rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+}
+
+.atlas-academy-description {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.68;
+}
+
+.atlas-academy-capabilities {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+}
+
+.atlas-academy-capabilities span {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--foreground);
+  font-size: 0.75rem;
+  font-weight: 680;
+}
+
+.atlas-academy-capabilities svg {
+  color: var(--atlas-orange);
+}
+
+.atlas-academy-status {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.atlas-academy-status > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--atlas-orange);
+  box-shadow: 0 0 0 5px rgba(255, 86, 24, 0.1);
+}
+
+.atlas-academy-roadmap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.4rem;
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 38%, var(--border));
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 95% 20%, color-mix(in srgb, var(--atlas-orange) 14%, transparent), transparent 38%),
+    var(--surface-2);
+}
+
+.atlas-academy-roadmap > span {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--atlas-orange);
+  color: #fff;
+}
+
+.atlas-academy-roadmap p {
+  color: var(--atlas-orange);
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.atlas-academy-roadmap h3 {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 780;
+}
+
+@media (min-width: 768px) {
+  .atlas-command-grid,
+  .atlas-trail-foundations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .atlas-academy-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .atlas-academy-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .atlas-page-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .atlas-page-footer > span {
+    display: none;
+  }
+
+  .atlas-academy-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .atlas-academy-signal {
+    min-width: 0;
+  }
+
+  .atlas-section-divider {
+    align-items: start;
+    flex-direction: column;
   }
 }
