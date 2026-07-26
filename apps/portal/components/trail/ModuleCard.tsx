@@ -7,6 +7,7 @@ import type { ModuleMeta } from "@/lib/types";
 import { useOnboardingStore } from "@/lib/store";
 import { moduleIcons } from "@/lib/moduleIcons";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/brand/Logo";
 
 // Paleta de "pôsteres" em tons da marca ATLASGR (laranja + grafite) — cicla
 // por módulo para dar identidade visual sem sair da paleta oficial.
@@ -28,7 +29,7 @@ export function ModuleCard({ meta, index }: { meta: ModuleMeta; index: number })
   const content = (
     <div
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#15171b] transition-all duration-300",
+        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-300",
         isBuilding
           ? "opacity-60 grayscale"
           : "hover:-translate-y-1.5 hover:border-atlas-orange/60 hover:shadow-[0_12px_40px_-8px_rgba(255,86,24,0.35)]"
@@ -61,6 +62,11 @@ export function ModuleCard({ meta, index }: { meta: ModuleMeta; index: number })
         {/* selo de módulo */}
         <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
           Módulo {String(meta.number).padStart(2, "0")}
+        </span>
+
+        {/* marca ATLASGR */}
+        <span className="absolute bottom-3 right-3 inline-flex items-center justify-center rounded-full border border-white/15 bg-white/90 p-1.5 backdrop-blur-sm">
+          <Logo withWordmark={false} />
         </span>
 
         {/* status */}
@@ -112,12 +118,12 @@ export function ModuleCard({ meta, index }: { meta: ModuleMeta; index: number })
 
       {/* Conteúdo */}
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <h3 className="font-display text-base font-semibold leading-snug text-white">{meta.title}</h3>
-        <p className="line-clamp-2 flex-1 text-sm text-gray-400">{meta.shortDescription}</p>
-        <div className="mt-1 flex items-center gap-1.5 text-xs font-medium text-gray-500">
+        <h3 className="font-display text-base font-semibold leading-snug text-foreground">{meta.title}</h3>
+        <p className="line-clamp-2 flex-1 text-sm text-muted">{meta.shortDescription}</p>
+        <div className="mt-1 flex items-center gap-1.5 text-xs font-medium text-muted">
           <Clock size={13} />
           <span>{meta.durationMinutes} min</span>
-          {isBuilding && <span className="ml-auto text-gray-500">conteúdo completo em breve</span>}
+          {isBuilding && <span className="ml-auto text-muted">conteúdo completo em breve</span>}
         </div>
       </div>
     </div>

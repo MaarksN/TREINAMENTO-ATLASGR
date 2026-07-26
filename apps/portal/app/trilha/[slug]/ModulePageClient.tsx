@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { ArrowLeft, ArrowRight, Brain, CheckCircle2, ClipboardList, Wrench, PlayCircle } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ContentBlockView } from "@/components/module/ContentBlockView";
@@ -65,14 +64,14 @@ export function ModulePageClient() {
   }
 
   return (
-    <div className="min-h-screen bg-[#131417] text-white selection:bg-atlas-orange selection:text-white pb-20">
+    <div className="atlas-module-content min-h-screen bg-[#131417] text-white selection:bg-atlas-orange selection:text-white pb-20">
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-atlas-orange origin-left z-50 shadow-[0_0_10px_rgba(255,86,24,0.8)]" style={{ scaleX }} />
       <SiteHeader />
 
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
           <Link href="/trilha" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-atlas-orange transition-colors group">
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Voltar para o Cockpit de Treinamento
+            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Voltar para a Central de Treinamento
           </Link>
         </motion.div>
 
@@ -92,20 +91,64 @@ export function ModulePageClient() {
           <ImmersiveStory story={content.scenario} />
         </motion.div>
 
+        <motion.section
+          className="atlas-objectives-panel"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-90px" }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="atlas-objectives-heading">
+            <span>
+              <Brain size={22} aria-hidden="true" />
+            </span>
+            <div>
+              <p>Mapa deste módulo</p>
+              <h2>O que você vai dominar</h2>
+            </div>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-70px" }}
+            variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }}
+            className="atlas-objectives-grid"
+          >
+            {content.objectives.map((objective, index) => (
+              <motion.article
+                key={objective}
+                variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.42 }}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{objective}</p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </motion.section>
+
         {/* 3. Theoretical Concept */}
-        <div className="mt-20 space-y-16 max-w-3xl mx-auto">
+        <div className="mt-20 space-y-16 max-w-4xl mx-auto">
           {content.sections.map((section, index) => (
             <motion.section
               key={section.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: Math.min(index * 0.08, 0.24), ease: [0.16, 1, 0.3, 1] }}
+              className="atlas-lesson-section"
             >
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-8 border-b border-white/10 pb-4">{section.title}</h2>
-              <div className="mt-4 space-y-6 text-gray-300 text-lg leading-relaxed">
+              <div className="atlas-lesson-heading">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <p>Capítulo do módulo</p>
+                  <h2>{section.title}</h2>
+                </div>
+              </div>
+              <div className="atlas-block-stack">
                 {section.blocks.map((b, i) => (
-                  <ContentBlockView key={i} block={b} />
+                  <ContentBlockView key={i} block={b} index={i} />
                 ))}
               </div>
             </motion.section>
@@ -113,19 +156,58 @@ export function ModulePageClient() {
         </div>
 
         {content.summary?.length > 0 && (
-          <motion.div className="mt-20 max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <Card className="p-6">
-              <div className="mb-4 flex items-center gap-2">
-                <ClipboardList size={18} className="text-atlas-orange" />
-                <p className="font-display font-semibold">Resumo do módulo</p>
+          <motion.section className="atlas-summary-card mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }}>
+            <div className="atlas-summary-heading">
+              <span>
+                <ClipboardList size={22} aria-hidden="true" />
+              </span>
+              <div>
+                <p>Fixação rápida</p>
+                <h2>Resumo do módulo</h2>
               </div>
-              <ul className="space-y-2 text-sm text-muted">
+            </div>
+              <motion.ul
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{ visible: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } }}
+              >
                 {content.summary.map((s, i) => (
-                  <li key={i} className="flex gap-2"><span className="text-atlas-orange">✓</span>{s}</li>
+                  <motion.li key={i} variants={{ hidden: { opacity: 0, x: -14 }, visible: { opacity: 1, x: 0 } }}>
+                    <CheckCircle2 size={18} aria-hidden="true" />
+                    <span>{s}</span>
+                  </motion.li>
                 ))}
-              </ul>
-            </Card>
-          </motion.div>
+              </motion.ul>
+          </motion.section>
+        )}
+
+        {content.finalChecklist?.length > 0 && (
+          <motion.section
+            className="atlas-final-checklist mt-8 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <p className="atlas-content-kicker">Antes de avançar</p>
+            <h2>Checklist de domínio</h2>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{ visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
+            >
+              {content.finalChecklist.map((item, index) => (
+                <motion.p
+                  key={item}
+                  variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  {item}
+                </motion.p>
+              ))}
+            </motion.div>
+          </motion.section>
         )}
 
         {/* 4. Video Placeholder */}
@@ -134,7 +216,7 @@ export function ModulePageClient() {
             <div className="absolute inset-0 bg-gradient-to-tr from-atlas-orange/20 to-transparent opacity-50" />
             <div className="z-10 flex flex-col items-center gap-4 transition-transform group-hover:scale-105">
               <PlayCircle className="w-16 h-16 text-atlas-orange drop-shadow-lg" />
-              <p className="font-bold tracking-widest text-sm uppercase">Assistir Briefing Tático</p>
+              <p className="font-bold tracking-widest text-sm uppercase">Assistir briefing operacional</p>
             </div>
           </div>
         </motion.div>
@@ -150,7 +232,7 @@ export function ModulePageClient() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-atlas-orange/20 blur-[100px] pointer-events-none" />
 
             <h2 className="text-3xl font-display font-bold mb-4 relative z-10">Simulador de Decisão</h2>
-            <p className="text-gray-400 mb-10 text-lg max-w-xl mx-auto relative z-10">Prove que você absorveu o conhecimento tático deste módulo. Você precisa de 70% de precisão para avançar de patente.</p>
+            <p className="text-gray-400 mb-10 text-lg max-w-xl mx-auto relative z-10">Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.</p>
 
             {!showQuiz && (
               <button

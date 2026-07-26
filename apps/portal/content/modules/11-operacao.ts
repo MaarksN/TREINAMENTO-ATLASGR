@@ -8,11 +8,12 @@ export const module11: ModuleContentFull = {
   sources: [
     "Apostila de Treinamento Inicial (v. 4.0) — Procedimentos padronizados Atlas GR, script de atendimento e nomenclatura de grade",
     "Treinamento Connect — Tratando Eventos (níveis de prioridade de alerta)",
-    "Treinamento Tratativa de Alertas — Desvio de Rota (sobreposição de níveis)",
+    "Treinamento Tratativa de Alertas — Desvio de Rota (sobreposição de níveis, linha vermelha da rota, bloqueio automático por transportadora)",
     "Desenvolvimento Profissional em Atendimento ao Cliente e Motorista (script, regra dos 90%, regras de desbloqueio)",
     "Treinamento de Malícia (senha de voz, itens de atenção antes da viagem)",
     "Treinamento Operacional 2022 (rastreamento x monitoramento, parada eventual x longa, erros de atendimento)",
-    "Treinamento Tratativa de Alertas — Perda de Sinal (posto de combustível, escalonamento à CIA em 2h)",
+    "Treinamento Tratativa de Alertas — Perda de Sinal (posto de combustível, escalonamento à CIA em 2h, alvo x área segura)",
+    "Treinamento Tratativa de Alertas — Fim de Viagem Fora do Alvo (rotas de retorno, autorização da transportadora)",
     "Manual de Check list Central",
     "Módulo 3 — Gerenciamento de Risco (fluxo de checklist e acionamento da CIA)",
     "Módulo 5 — Software Logístico (Atlas Connect)",
@@ -212,6 +213,31 @@ export const module11: ModuleContentFull = {
             ],
           ],
         },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Desvio de Rota: o mapa pode enganar",
+          text: [
+            "Se o veículo estiver dentro do alvo cadastrado, mas fora da linha vermelha da rota, sair do alvo sozinho não gera o evento de Desvio de Rota — só a saída da linha vermelha gera. Por isso vale notificar mesmo quando o sistema não sobe o alerta sozinho. Além disso, um evento de Desvio de Rota já baixado não retorna automaticamente: se o veículo voltar à rota e sair de novo, é preciso abrir o caso outra vez.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Perda de Sinal: 'dentro do alvo' não é sinônimo de 'lugar seguro'",
+          text: [
+            "Antes de finalizar um alerta de perda de sinal como 'veículo dentro de local autorizado', o operador confirma que o alvo realmente corresponde a uma área segura — o raio cadastrado pode abranger estacionamento aberto, rua, marginal ou um posto que não é seguro ou já está fechado. 'Estar dentro do alvo' no sistema não substitui esse julgamento.",
+          ],
+        },
+        {
+          type: "text",
+          heading: "Fim de viagem informado fora do alvo",
+          paragraphs: [
+            [
+              "Quando a macro de Fim de Viagem chega com o veículo fora do alvo cadastrado, o operador primeiro verifica se a SM já está finalizada; se não estiver, confere no mapa se o veículo já deixou o local de destino. Um caso frequente é a rota de retorno, onde início e fim ficam no mesmo local: o motorista pode informar Fim ainda no alvo de descarga e depois seguir viagem de volta — nesse caso a SM não é finalizada até a chegada real no destino. Se o motorista confirmar que a descarga terminou fora do alvo, a SM só é finalizada com autorização da transportadora, corrigindo o alvo da rota se necessário.",
+            ],
+          ],
+        },
       ],
     },
     {
@@ -235,6 +261,24 @@ export const module11: ModuleContentFull = {
           title: "Duas tentativas, e não mais que isso",
           text: [
             "Após 2 tentativas erradas de senha de voz, o operador comunica a supervisão, repassa o caso para a transportadora e não prossegue com nenhuma informação — nem de rota, nem de localização, nem de status da viagem.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Pausas e comportamento estranho também são um sinal",
+          text: [
+            "Senha de voz correta não encerra a atenção: hesitação incomum, pausas longas ou um comportamento diferente do habitual do motorista também justificam acionar a supervisão, mesmo sem nenhum alarme de coação disparado automaticamente pelo sistema.",
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Perguntas de apoio ao avaliar uma parada",
+          items: [
+            "\"Está em local seguro?\"",
+            "\"Me confirma o local que está, por favor.\"",
+            "\"A parada foi necessária por qual motivo?\"",
+            "Durante a consulta ao sistema, manter o motorista informado: \"Estou analisando sua situação aqui no sistema, só um momento, por favor.\"",
           ],
         },
         {
@@ -333,10 +377,14 @@ export const module11: ModuleContentFull = {
     "O SLA real é iniciar a tratativa em até 10 minutos e concluí-la em até 45 minutos.",
     "O roteiro padrão de escalonamento vai de mensagem ao motorista até o acionamento de pronta resposta, em 8 passos sequenciais.",
     "Após 2 tentativas erradas de senha de voz, o atendimento é encerrado e escalado à supervisão; e em ~90% dos casos com bloqueio sistêmico ativo, o desbloqueio não é autorizado.",
+    "Senha de voz correta não encerra a atenção: hesitação ou comportamento diferente do habitual do motorista também justificam acionar a supervisão.",
     "Rastreamento é acompanhamento passivo (sem SM); monitoramento é acompanhamento ativo (com SM). Parada eventual dura até 1 hora; parada longa, até 11 horas.",
     "Solicitações como reset, cancelamento de SM ou autorização de desvio só podem ser feitas pelo responsável da frota, nunca pelo motorista, e sempre com registro.",
     "Uma queda brusca de velocidade em rodovia (zerada ou travada de forma abrupta) é indício mais forte de acidente do que uma redução gradual, e exige o procedimento padrão completo.",
     "A grade de veículos usa uma nomenclatura padronizada (#CONF, #AUT, @Porta, ****, entre outras) para registrar tratativas de forma ágil.",
+    "Desvio de Rota só é gerado quando o veículo cruza a linha vermelha da rota, não apenas ao sair do alvo; e um evento já baixado não retorna sozinho se o veículo sair de novo.",
+    "Estar 'dentro do alvo' não garante que o local é seguro — o raio cadastrado pode abranger estacionamento aberto, rua ou marginal, e isso deve ser avaliado antes de finalizar um alerta de perda de sinal.",
+    "Fim de viagem informado fora do alvo exige atenção redobrada em rotas de retorno (início e fim no mesmo local): a SM só é finalizada com a chegada real ou com autorização da transportadora.",
   ],
   finalChecklist: [
     "Sei por que a senha de voz é solicitada em toda ligação, e o que fazer após 2 tentativas erradas.",
@@ -347,6 +395,7 @@ export const module11: ModuleContentFull = {
     "Sei quando um desbloqueio pode ser feito diretamente e quando exige autorização da transportadora.",
     "Reconheço pelo menos 3 erros comuns de atendimento e como evitá-los.",
     "Reconheço pelo menos 3 códigos padronizados usados na grade de veículos.",
+    "Sei por que 'dentro do alvo' não é sinônimo de local seguro, e por que Desvio de Rota depende da linha vermelha, não só do alvo.",
   ],
   mindMap: {
     root: "Operação",
@@ -356,6 +405,7 @@ export const module11: ModuleContentFull = {
       { label: "SLA", items: ["Início em até 10 min", "Conclusão em até 45 min"] },
       { label: "Escalonamento", items: ["Mensagem → Contato → Sirene → Bloqueio → Polícia → Pronta Resposta"] },
       { label: "Nuances", items: ["Rastreamento x Monitoramento", "Parada Eventual x Longa", "Perda de sinal em posto", "Autorizações exclusivas da frota"] },
+      { label: "Armadilhas por evento", items: ["Desvio de Rota — linha vermelha", "Perda de Sinal — alvo x área segura", "Fim fora do alvo — rota de retorno"] },
       { label: "Atendimento e bloqueio", items: ["Script de identificação", "Erros comuns", "2 tentativas de senha", "Regra dos 90%"] },
       { label: "Grade de veículos", items: ["#CONF", "#AUT", "@Porta/@Painel/@Baú", "*SM ATIVA"] },
     ],

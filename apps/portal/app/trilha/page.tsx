@@ -25,17 +25,17 @@ export default function TrilhaPage() {
   const NextIcon = nextModule ? moduleIcons[nextModule.slug] : undefined;
 
   return (
-    <div className="min-h-screen bg-[#0b0c0e] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-atlas-orange">
             Olá, {registration.nomeCompleto.split(" ")[0]}
           </p>
-          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Trilha de Onboarding
           </h1>
-          <p className="mt-2 max-w-2xl text-gray-400">
+          <p className="mt-2 max-w-2xl text-muted">
             15 módulos compõem a trilha completa, todos com conteúdo, quiz e certificação totalmente funcionais.
           </p>
         </motion.div>
@@ -45,35 +45,35 @@ export default function TrilhaPage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1c1e22] via-[#1c1e22] to-[#2a1712] p-6 sm:p-8"
+          className="relative mt-8 overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-surface-2 via-surface-2 to-[color-mix(in_srgb,var(--atlas-orange)_16%,var(--surface-2))] p-6 sm:p-8"
         >
           <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-atlas-orange/20 blur-3xl" />
           {NextIcon && (
-            <NextIcon className="pointer-events-none absolute -bottom-6 -right-6 h-40 w-40 text-white/5" aria-hidden />
+            <NextIcon className="pointer-events-none absolute -bottom-6 -right-6 h-40 w-40 text-foreground/5" aria-hidden />
           )}
 
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-xl">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-gray-300">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-muted">
                 <Sparkles size={12} className="text-atlas-orange" />
                 {allReadyDone ? "Trilha concluída" : "Continue de onde parou"}
               </span>
 
               {allReadyDone ? (
                 <>
-                  <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
+                  <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
                     Todos os módulos disponíveis foram concluídos 🎉
                   </h2>
-                  <p className="mt-2 text-gray-400">
+                  <p className="mt-2 text-muted">
                     Você está pronto para a avaliação final e emissão do certificado oficial ATLASGR.
                   </p>
                 </>
               ) : (
                 <>
-                  <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
+                  <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
                     {nextModule?.title}
                   </h2>
-                  <p className="mt-2 text-gray-400">{nextModule?.shortDescription}</p>
+                  <p className="mt-2 text-muted">{nextModule?.shortDescription}</p>
                 </>
               )}
 
@@ -94,12 +94,12 @@ export default function TrilhaPage() {
               </div>
             </div>
 
-            <div className="w-full max-w-sm shrink-0 rounded-2xl border border-white/10 bg-black/30 p-5 backdrop-blur-sm">
+            <div className="w-full max-w-sm shrink-0 rounded-2xl border border-border bg-surface p-5 backdrop-blur-sm">
               <div className="flex items-center justify-between text-sm">
-                <span className="font-medium text-gray-300">Progresso da trilha</span>
+                <span className="font-medium text-muted">Progresso da trilha</span>
                 <span className="font-display font-bold text-atlas-orange">{pct}%</span>
               </div>
-              <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+              <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-surface-2">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-atlas-orange to-atlas-orange-2"
                   initial={{ width: 0 }}
@@ -107,7 +107,7 @@ export default function TrilhaPage() {
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
               </div>
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 text-xs text-muted">
                 {completedReady} de {readyModuleSlugs.length} módulos disponíveis concluídos
               </p>
             </div>
@@ -116,7 +116,7 @@ export default function TrilhaPage() {
 
         {/* Grade de módulos */}
         <div className="mt-12">
-          <h2 className="font-display text-lg font-semibold tracking-tight text-white">Todos os módulos</h2>
+          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">Todos os módulos</h2>
           <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {moduleMetas.map((m, i) => (
               <ModuleCard key={m.slug} meta={m} index={i} />
