@@ -108,18 +108,18 @@ export function QuizRunner({
   }
 
   return (
-    <div className="w-full rounded-2xl overflow-hidden border border-red-500/20 bg-black shadow-[0_0_50px_rgba(239,68,68,0.1)] relative">
+    <div className="w-full rounded-2xl overflow-hidden border border-red-500/25 bg-surface shadow-[0_0_50px_rgba(239,68,68,0.08)] relative">
       {/* Pulso de fundo para transmitir urgência quando o tempo está acabando */}
       <div className={`absolute inset-0 pointer-events-none transition-colors duration-1000 ${urgent ? "bg-red-500/10 animate-pulse" : ""}`} />
 
       {/* Header / Timer */}
-      <div className="bg-[#0d1117] p-4 flex justify-between items-center border-b border-white/5 relative z-10">
+      <div className="bg-surface-2 p-4 flex justify-between items-center border-b border-border relative z-10">
         <div className="flex items-center gap-3">
           <AlertTriangle className="w-5 h-5 text-red-500" />
-          <span className="text-white font-bold tracking-widest uppercase text-sm">{title}</span>
+          <span className="text-foreground font-bold tracking-widest uppercase text-sm">{title}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-muted">
             {step + 1} / {ordered.length}
           </span>
           {!!timeLimitSeconds && (
@@ -139,23 +139,23 @@ export function QuizRunner({
         <AnimatePresence mode="wait">
           {!answered ? (
             <motion.div key={q.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
-              <p className="font-display text-xl sm:text-2xl font-bold leading-snug text-white">{q.question}</p>
+              <p className="font-display text-xl sm:text-2xl font-bold leading-snug text-foreground">{q.question}</p>
 
               <div className="mt-6 space-y-3">
                 {q.options.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => selectOption(i)}
-                    className="w-full text-left p-4 sm:p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group flex gap-4 items-center"
+                    className="w-full text-left p-4 sm:p-5 rounded-xl border border-border bg-surface-2 hover:border-atlas-orange/50 transition-all group flex gap-4 items-center"
                   >
-                    <div className="w-8 h-8 shrink-0 rounded bg-black flex items-center justify-center text-gray-500 font-mono text-sm group-hover:text-atlas-orange border border-white/10 group-hover:border-atlas-orange/50">
+                    <div className="w-8 h-8 shrink-0 rounded bg-surface flex items-center justify-center text-muted font-mono text-sm group-hover:text-atlas-orange border border-border group-hover:border-atlas-orange/50">
                       {i + 1}
                     </div>
-                    <span className="text-gray-200">{opt}</span>
+                    <span className="text-foreground">{opt}</span>
                   </button>
                 ))}
               </div>
-              <p className="text-center text-gray-500 text-xs mt-6">
+              <p className="text-center text-muted text-xs mt-6">
                 Pressione as teclas numéricas para selecionar rapidamente.
               </p>
             </motion.div>
@@ -172,14 +172,14 @@ export function QuizRunner({
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <TerminalSquare className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-400 text-xs font-mono font-bold uppercase">Atlas Mentor AI</span>
+                    <TerminalSquare className="w-4 h-4 text-muted" />
+                    <span className="text-muted text-xs font-mono font-bold uppercase">Atlas Mentor AI</span>
                   </div>
-                  <h3 className={`text-xl font-bold mb-3 ${isCorrect ? "text-green-400" : "text-red-400"}`}>
+                  <h3 className={`text-xl font-bold mb-3 ${isCorrect ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
                     {isCorrect ? "Protocolo Executado com Sucesso" : "Falha Crítica na Operação"}
                   </h3>
-                  <p className="text-white leading-relaxed">{q.explanation}</p>
-                  <p className="mt-3 text-xs text-gray-500">Revise: {q.reference}</p>
+                  <p className="text-foreground leading-relaxed">{q.explanation}</p>
+                  <p className="mt-3 text-xs text-muted">Revise: {q.reference}</p>
                   <Button className="mt-6" onClick={next}>
                     {isLast ? "Finalizar Simulação" : "Próximo Cenário"}
                   </Button>

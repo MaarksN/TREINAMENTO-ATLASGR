@@ -23,7 +23,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Portal de Onboarding ATLASGR",
-  description: "Trilha de onboarding e treinamento corporativo da ATLASGR — protótipo de frontend.",
+  description: "Uma jornada de onboarding e treinamento corporativo da ATLASGR.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

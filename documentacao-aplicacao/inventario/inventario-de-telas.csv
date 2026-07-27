@@ -1,0 +1,12 @@
+Nº,Tela,Módulo,Finalidade,Recursos presentes,Arquivo da imagem
+1,Início,Portal,Apresentação da plataforma e acesso inicial,"Menu, Seções informativas, Modal de Acesso",01-acesso/01-inicio.png
+2,Dashboard,Onboarding Logado,Painel central do usuário,"Métricas (XP, Nível), Atalhos de Módulos, Heatmap de atividade",02-dashboard/01-dashboard.png
+3,Módulo da Trilha,Trilha de Aprendizagem,Conteúdo educacional,"Textos imersivos, Cards, Quiz Integrado, Navegação Paginada",03-modulos/01-trilha-modulo.png
+4,Prova Final,Trilha de Aprendizagem,Avaliação de Conhecimento,"Questionário de múltipla escolha, Timer, Sumário de Resultados",03-modulos/02-prova-final.png
+5,Produto - Profile,Showcase,Exibição da solução ATLAS Profile,"Layout premium, Cards de métrica, Descrição do fluxo",03-modulos/03-produtos-profile.png
+6,Produto - Connect,Showcase,Exibição da solução ATLAS Connect,"Torre de controle demonstrativa, Visualização de eventos",03-modulos/04-produtos-connect.png
+7,Produto - GR,Showcase,Exibição da solução ATLAS GR,"Arquitetura de Gerenciamento de Risco, Alertas",03-modulos/05-produtos-gr.png
+8,Produto - Analytics,Showcase,Exibição da solução ATLAS Analytics,"Dashboard interativo, Mapas de Calor, Gráficos",03-modulos/06-produtos-analytics.png
+9,Glossário,Apoio / Relatórios,Consulta de termos logísticos,"Lista estruturada, Filtros/Busca de termos",05-relatorios/01-glossario.png
+10,Certificado,Apoio / Relatórios,Reconhecimento,"Layout do Certificado, Opções de Download",05-relatorios/02-certificado.png
+11,Administração,Configurações,Gestão do sistema,"Visualização de turmas, progresso de colaboradores (em construção)",06-configuracoes/01-admin.png
