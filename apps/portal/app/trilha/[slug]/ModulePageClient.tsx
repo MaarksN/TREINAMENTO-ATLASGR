@@ -38,24 +38,24 @@ export function ModulePageClient() {
 
   if (meta.status === "building" || !content) {
     return (
-      <div className="min-h-screen bg-atlas-dark text-white">
+      <div className="min-h-screen bg-background text-foreground">
         <SiteHeader />
         <main className="mx-auto max-w-4xl px-4 py-12">
-          <Link href="/trilha" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-atlas-orange transition-colors">
+          <Link href="/trilha" className="inline-flex items-center gap-2 text-sm text-muted hover:text-atlas-orange transition-colors">
             <ArrowLeft size={16} /> Voltar para a trilha
           </Link>
           <div className="mt-8 flex items-center gap-3">
-            <Badge variant="muted" className="gap-2 bg-white/10 text-white border-white/20 px-3 py-1"><Wrench size={14} /> Em construção</Badge>
+            <Badge variant="muted" className="gap-2 bg-surface-2 text-foreground border-border px-3 py-1"><Wrench size={14} /> Em construção</Badge>
             <span className="text-sm font-semibold tracking-widest text-atlas-orange uppercase">Módulo {String(meta.number).padStart(2, "0")}</span>
           </div>
           <h1 className="mt-6 font-display text-4xl md:text-5xl font-bold">{meta.title}</h1>
-          <p className="mt-4 text-lg text-gray-400 max-w-2xl leading-relaxed">{meta.shortDescription}</p>
+          <p className="mt-4 text-lg text-muted max-w-2xl leading-relaxed">{meta.shortDescription}</p>
 
           {meta.outline && (
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
-              <div className="glass p-6 rounded-2xl border border-white/10"><p className="text-xs font-bold text-atlas-orange tracking-widest uppercase mb-3">O que é</p><p className="text-sm text-gray-300 leading-relaxed">{meta.outline.what}</p></div>
-              <div className="glass p-6 rounded-2xl border border-white/10"><p className="text-xs font-bold text-atlas-orange tracking-widest uppercase mb-3">Por que existe</p><p className="text-sm text-gray-300 leading-relaxed">{meta.outline.why}</p></div>
-              <div className="glass p-6 rounded-2xl border border-white/10"><p className="text-xs font-bold text-atlas-orange tracking-widest uppercase mb-3">Como será construído</p><p className="text-sm text-gray-300 leading-relaxed">{meta.outline.how}</p></div>
+              <div className="glass p-6 rounded-2xl border border-border"><p className="text-xs font-bold text-atlas-orange tracking-widest uppercase mb-3">O que é</p><p className="text-sm text-muted leading-relaxed">{meta.outline.what}</p></div>
+              <div className="glass p-6 rounded-2xl border border-border"><p className="text-xs font-bold text-atlas-orange tracking-widest uppercase mb-3">Por que existe</p><p className="text-sm text-muted leading-relaxed">{meta.outline.why}</p></div>
+              <div className="glass p-6 rounded-2xl border border-border"><p className="text-xs font-bold text-atlas-orange tracking-widest uppercase mb-3">Como será construído</p><p className="text-sm text-muted leading-relaxed">{meta.outline.how}</p></div>
             </div>
           )}
         </main>
@@ -64,26 +64,26 @@ export function ModulePageClient() {
   }
 
   return (
-    <div className="atlas-module-content min-h-screen bg-[#131417] text-white selection:bg-atlas-orange selection:text-white pb-20">
+    <div className="atlas-module-content min-h-screen bg-background text-foreground selection:bg-atlas-orange selection:text-white pb-20">
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-atlas-orange origin-left z-50 shadow-[0_0_10px_rgba(255,86,24,0.8)]" style={{ scaleX }} />
       <SiteHeader />
 
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-          <Link href="/trilha" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-atlas-orange transition-colors group">
+          <Link href="/trilha" className="inline-flex items-center gap-2 text-sm text-muted hover:text-atlas-orange transition-colors group">
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Voltar para a Central de Treinamento
           </Link>
         </motion.div>
 
         {/* 1. Cover / Header */}
-        <motion.div className="mt-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <div className="flex items-center gap-3">
+        <motion.div className="mt-8 flex flex-col items-center text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <span className="px-3 py-1 bg-atlas-orange/20 border border-atlas-orange/50 text-atlas-orange text-xs font-bold rounded uppercase tracking-widest">Módulo {String(meta.number).padStart(2, "0")}</span>
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{meta.durationMinutes} min</span>
+            <span className="text-xs font-bold text-muted uppercase tracking-widest">{meta.durationMinutes} min</span>
             {modProgress?.passed && <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-xs font-bold rounded uppercase tracking-widest flex items-center gap-1"><CheckCircle2 size={12} /> Concluído</span>}
           </div>
-          <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold tracking-tight leading-tight">{content.title}</h1>
-          <p className="mt-4 text-xl text-gray-400 max-w-3xl leading-relaxed">{meta.shortDescription}</p>
+          <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold tracking-tight leading-tight text-balance">{content.title}</h1>
+          <p className="mt-4 text-xl text-muted max-w-3xl leading-relaxed mx-auto">{meta.shortDescription}</p>
         </motion.div>
 
         {/* 2. Critical Situation (Immersive Story) */}
@@ -212,7 +212,7 @@ export function ModulePageClient() {
 
         {/* 4. Video Placeholder */}
         <motion.div className="mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-          <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-white/10 flex items-center justify-center group cursor-pointer">
+          <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-border flex items-center justify-center group cursor-pointer">
             <div className="absolute inset-0 bg-gradient-to-tr from-atlas-orange/20 to-transparent opacity-50" />
             <div className="z-10 flex flex-col items-center gap-4 transition-transform group-hover:scale-105">
               <PlayCircle className="w-16 h-16 text-atlas-orange drop-shadow-lg" />
@@ -228,11 +228,11 @@ export function ModulePageClient() {
 
         {/* 6. Decision/Quiz */}
         <motion.div className="mt-24 max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className="glass p-8 md:p-12 rounded-3xl border border-white/10 text-center relative overflow-hidden">
+          <div className="glass p-8 md:p-12 rounded-3xl border border-border text-center relative overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-atlas-orange/20 blur-[100px] pointer-events-none" />
 
             <h2 className="text-3xl font-display font-bold mb-4 relative z-10">Simulador de Decisão</h2>
-            <p className="text-gray-400 mb-10 text-lg max-w-xl mx-auto relative z-10">Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.</p>
+            <p className="text-muted mb-10 text-lg max-w-xl mx-auto relative z-10">Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.</p>
 
             {!showQuiz && (
               <button

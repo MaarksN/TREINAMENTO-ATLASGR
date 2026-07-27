@@ -762,11 +762,11 @@ button {
 }
 
 .atlas-module-content {
-  --lesson-card: rgba(29, 30, 35, 0.92);
-  --lesson-card-soft: rgba(255, 255, 255, 0.035);
-  --lesson-border: rgba(255, 255, 255, 0.1);
-  --lesson-muted: #aeb1ba;
-  --lesson-copy: #e1e2e6;
+  --lesson-card: var(--surface);
+  --lesson-card-soft: var(--surface-2);
+  --lesson-border: var(--border);
+  --lesson-muted: var(--muted);
+  --lesson-copy: var(--foreground);
 }
 
 .atlas-objectives-panel,
@@ -777,10 +777,9 @@ button {
   overflow: hidden;
   border: 1px solid var(--lesson-border);
   background:
-    radial-gradient(circle at 92% 8%, rgba(255, 86, 24, 0.13), transparent 29%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 55%),
-    rgba(22, 23, 27, 0.92);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.24);
+    radial-gradient(circle at 92% 8%, color-mix(in srgb, var(--atlas-orange) 10%, transparent), transparent 29%),
+    var(--lesson-card);
+  box-shadow: var(--shadow-card);
 }
 
 .atlas-objectives-panel {
@@ -802,27 +801,29 @@ button {
 .atlas-objectives-heading,
 .atlas-summary-heading {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.7rem;
+  text-align: center;
 }
 
 .atlas-objectives-heading > span,
 .atlas-summary-heading > span {
   display: grid;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(255, 115, 59, 0.3);
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 30%, transparent);
   border-radius: 16px;
-  background: rgba(255, 86, 24, 0.13);
-  color: #ff7948;
+  background: color-mix(in srgb, var(--atlas-orange) 13%, transparent);
+  color: var(--atlas-orange);
 }
 
 .atlas-objectives-heading p,
 .atlas-summary-heading p {
-  color: #ff7948;
-  font-size: 0.68rem;
+  color: var(--atlas-orange);
+  font-size: 0.74rem;
   font-weight: 850;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -831,11 +832,12 @@ button {
 .atlas-objectives-heading h2,
 .atlas-summary-heading h2 {
   margin-top: 0.2rem;
-  color: #fff;
+  color: var(--foreground);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-size: clamp(1.55rem, 3.4vw, 2.05rem);
   font-weight: 800;
   letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .atlas-objectives-grid {
@@ -861,21 +863,21 @@ button {
 
 .atlas-objectives-grid article:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 105, 47, 0.4);
-  background: rgba(255, 86, 24, 0.07);
+  border-color: color-mix(in srgb, var(--atlas-orange) 45%, transparent);
+  background: color-mix(in srgb, var(--atlas-orange) 8%, var(--lesson-card-soft));
 }
 
 .atlas-objectives-grid article > span {
-  color: #ff7240;
+  color: var(--atlas-orange);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.08em;
 }
 
 .atlas-objectives-grid article p {
   color: var(--lesson-copy);
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   line-height: 1.65;
 }
 
@@ -888,14 +890,16 @@ button {
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--lesson-border);
+  text-align: center;
 }
 
 .atlas-lesson-heading > span {
-  color: rgba(255, 255, 255, 0.16);
+  color: color-mix(in srgb, var(--atlas-orange) 22%, transparent);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
@@ -904,8 +908,8 @@ button {
 }
 
 .atlas-lesson-heading p {
-  color: #ff7544;
-  font-size: 0.67rem;
+  color: var(--atlas-orange);
+  font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -913,12 +917,13 @@ button {
 
 .atlas-lesson-heading h2 {
   margin-top: 0.35rem;
-  color: #fff;
+  color: var(--foreground);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: clamp(1.45rem, 4vw, 2.15rem);
+  font-size: clamp(1.65rem, 4vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .atlas-block-stack {
@@ -934,9 +939,9 @@ button {
   border: 1px solid var(--lesson-border);
   border-radius: 24px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent),
+    linear-gradient(145deg, color-mix(in srgb, var(--atlas-orange) 3%, transparent), transparent),
     var(--lesson-card);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-card);
 }
 
 .atlas-content-card {
@@ -949,32 +954,33 @@ button {
 
 .atlas-content-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(255, 111, 53, 0.3);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.24);
+  border-color: color-mix(in srgb, var(--atlas-orange) 38%, transparent);
 }
 
 .atlas-content-card-heading {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.6rem;
+  text-align: center;
 }
 
 .atlas-content-card-icon {
   display: grid;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(255, 118, 67, 0.3);
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 30%, transparent);
   border-radius: 14px;
-  background: rgba(255, 86, 24, 0.12);
-  color: #ff7544;
+  background: color-mix(in srgb, var(--atlas-orange) 12%, transparent);
+  color: var(--atlas-orange);
 }
 
 .atlas-content-kicker {
   display: block;
-  color: #ff7544;
-  font-size: 0.64rem;
+  color: var(--atlas-orange);
+  font-size: 0.7rem;
   font-weight: 850;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -982,23 +988,27 @@ button {
 
 .atlas-content-card-heading h4 {
   margin-top: 0.25rem;
-  color: #fff;
+  color: var(--foreground);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 1.08rem;
+  font-size: 1.2rem;
   font-weight: 750;
   letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 .atlas-rich-copy-stack {
   display: grid;
-  gap: 1rem;
-  margin-top: 1.35rem;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
 }
 
 .atlas-rich-copy {
   color: var(--lesson-copy);
-  font-size: 0.98rem;
+  font-size: 1.08rem;
   line-height: 1.85;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .atlas-callout {
@@ -1035,15 +1045,15 @@ button {
   height: 48px;
   place-items: center;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
+  background: var(--lesson-card-soft);
+  color: var(--foreground);
 }
 
 .atlas-callout-title {
   margin-top: 0.25rem;
-  color: #fff;
+  color: var(--foreground);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 1.12rem;
+  font-size: 1.2rem;
   font-weight: 800;
 }
 
@@ -1051,34 +1061,46 @@ button {
   margin-top: 0.65rem;
 }
 
+.atlas-callout-copy .atlas-rich-copy {
+  text-align: left;
+}
+
 .atlas-checklist {
   display: grid;
   gap: 0.7rem;
-  margin-top: 1.35rem;
+  margin-top: 1.5rem;
 }
 
 .atlas-checklist li {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.85rem 0.95rem;
+  gap: 0.85rem;
+  padding: 0.95rem 1.1rem;
   border: 1px solid var(--lesson-border);
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--lesson-card-soft);
   color: var(--lesson-copy);
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   line-height: 1.55;
 }
 
+.atlas-checklist li::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--atlas-orange);
+  content: "";
+}
+
 .atlas-checklist li > svg {
-  color: #ff7544;
+  color: var(--atlas-orange);
 }
 
 .atlas-check-number {
-  color: rgba(255, 255, 255, 0.28);
+  color: color-mix(in srgb, var(--foreground) 35%, transparent);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 900;
 }
 
@@ -1099,14 +1121,14 @@ button {
   border: 1px solid var(--lesson-border);
   border-top: 4px solid var(--atlas-orange);
   border-radius: 19px;
-  background: rgba(255, 255, 255, 0.035);
+  background: var(--lesson-card-soft);
 }
 
 .atlas-comparison-index {
   position: absolute;
   top: 0.8rem;
   right: 1rem;
-  color: rgba(255, 255, 255, 0.12);
+  color: color-mix(in srgb, var(--foreground) 12%, transparent);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
   font-size: 2.1rem;
   font-weight: 900;
@@ -1114,33 +1136,33 @@ button {
 
 .atlas-comparison-card > p {
   max-width: calc(100% - 2.5rem);
-  color: #fff;
+  color: var(--foreground);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 800;
 }
 
 .atlas-comparison-card ul {
   display: grid;
-  gap: 0.65rem;
-  margin-top: 1rem;
+  gap: 0.7rem;
+  margin-top: 1.1rem;
 }
 
 .atlas-comparison-card li {
   display: flex;
   gap: 0.6rem;
   color: var(--lesson-muted);
-  font-size: 0.83rem;
-  line-height: 1.55;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .atlas-comparison-card li > span {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   flex: 0 0 auto;
-  margin-top: 0.45rem;
+  margin-top: 0.5rem;
   border-radius: 999px;
-  background: #ff7544;
+  background: var(--atlas-orange);
 }
 
 .atlas-timeline {
@@ -1174,73 +1196,78 @@ button {
   width: 48px;
   height: 48px;
   place-items: center;
-  border: 1px solid rgba(255, 115, 59, 0.35);
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 35%, transparent);
   border-radius: 15px;
-  background: #24252a;
-  color: #ff7544;
-  font-size: 0.7rem;
+  background: var(--lesson-card-soft);
+  color: var(--atlas-orange);
+  font-size: 0.74rem;
   font-weight: 900;
 }
 
 .atlas-timeline li > div {
-  padding: 0.8rem 0.95rem;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--lesson-border);
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--lesson-card-soft);
 }
 
 .atlas-timeline li p {
-  color: #fff;
-  font-size: 0.9rem;
+  color: var(--foreground);
+  font-size: 0.98rem;
   font-weight: 750;
 }
 
 .atlas-timeline li div > span {
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.35rem;
   color: var(--lesson-muted);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .atlas-case-card {
   border-left: 7px solid var(--atlas-orange);
   background:
-    radial-gradient(circle at 100% 0, rgba(255, 86, 24, 0.14), transparent 32%),
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--atlas-orange) 11%, transparent), transparent 32%),
     var(--lesson-card);
 }
 
 .atlas-case-copy {
   margin-top: 1.2rem;
   color: var(--lesson-copy);
-  font-size: 0.94rem;
-  line-height: 1.8;
+  font-size: 1.04rem;
+  line-height: 1.85;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .atlas-case-source {
   margin-top: 1rem;
-  color: #858892;
-  font-size: 0.7rem;
+  color: var(--lesson-muted);
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .atlas-faq-list {
-  margin-top: 1.2rem;
+  margin-top: 1.3rem;
   border-top: 1px solid var(--lesson-border);
 }
 
 .atlas-faq-list button {
-  color: #fff;
+  color: var(--foreground);
+  font-size: 1.02rem;
 }
 
 .atlas-faq-list [data-state="open"] {
-  color: #ff7544;
+  color: var(--atlas-orange);
 }
 
 .atlas-faq-list [data-radix-accordion-content] {
   color: var(--lesson-muted);
+  font-size: 0.96rem;
 }
 
 .atlas-stat-grid {
@@ -1257,28 +1284,30 @@ button {
   border-top: 4px solid var(--atlas-orange);
   border-radius: 21px;
   background:
-    radial-gradient(circle at 90% 10%, rgba(255, 86, 24, 0.17), transparent 35%),
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--atlas-orange) 15%, transparent), transparent 35%),
     var(--lesson-card);
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-card);
+  text-align: center;
 }
 
 .atlas-stat-icon {
   display: grid;
   width: 38px;
   height: 38px;
+  margin: 0 auto;
   place-items: center;
   border-radius: 12px;
-  background: rgba(255, 86, 24, 0.13);
-  color: #ff7544;
+  background: color-mix(in srgb, var(--atlas-orange) 13%, transparent);
+  color: var(--atlas-orange);
 }
 
 .atlas-stat-card > p {
   margin-top: 1.25rem;
-  background: linear-gradient(120deg, #fff, #ff7645);
+  background: linear-gradient(120deg, var(--foreground), var(--atlas-orange));
   background-clip: text;
   color: transparent;
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: clamp(1.8rem, 5vw, 2.65rem);
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
   font-weight: 900;
   letter-spacing: -0.05em;
 }
@@ -1287,7 +1316,7 @@ button {
   display: block;
   margin-top: 0.35rem;
   color: var(--lesson-muted);
-  font-size: 0.76rem;
+  font-size: 0.85rem;
   line-height: 1.5;
 }
 
@@ -1311,7 +1340,7 @@ button {
 .atlas-quote-card > p {
   margin-top: 1rem;
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.65rem);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
   font-weight: 750;
   letter-spacing: -0.02em;
   line-height: 1.45;
@@ -1337,61 +1366,67 @@ button {
 .atlas-summary-card li {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.8rem 0.9rem;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
   border: 1px solid var(--lesson-border);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--lesson-card-soft);
   color: var(--lesson-copy);
-  font-size: 0.86rem;
-  line-height: 1.55;
+  font-size: 0.96rem;
+  line-height: 1.6;
 }
 
 .atlas-summary-card li svg {
   flex: 0 0 auto;
   margin-top: 0.1rem;
-  color: #ff7544;
+  color: var(--atlas-orange);
 }
 
 .atlas-final-checklist {
   padding: clamp(1.4rem, 4vw, 2.2rem);
   border-radius: 28px;
-  border-color: rgba(255, 105, 48, 0.35);
+  border-color: color-mix(in srgb, var(--atlas-orange) 35%, var(--lesson-border));
+  text-align: center;
 }
 
 .atlas-final-checklist > h2 {
   margin-top: 0.35rem;
-  color: #fff;
+  color: var(--foreground);
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 1.55rem;
+  font-size: 1.7rem;
   font-weight: 800;
 }
 
 .atlas-final-checklist > div {
   display: grid;
-  gap: 0.7rem;
-  margin-top: 1.35rem;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+  text-align: left;
 }
 
 .atlas-final-checklist > div > p {
   display: flex;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 0.85rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--lesson-border);
+  border-radius: 13px;
+  background: var(--lesson-card-soft);
   color: var(--lesson-copy);
-  font-size: 0.88rem;
+  font-size: 0.97rem;
   line-height: 1.6;
 }
 
 .atlas-final-checklist > div > p > span {
   display: grid;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   flex: 0 0 auto;
   place-items: center;
   border-radius: 10px;
-  background: rgba(255, 86, 24, 0.13);
-  color: #ff7544;
-  font-size: 0.66rem;
+  background: color-mix(in srgb, var(--atlas-orange) 13%, transparent);
+  color: var(--atlas-orange);
+  font-size: 0.7rem;
   font-weight: 900;
 }
 
@@ -1572,9 +1607,9 @@ button {
   border: 1px solid var(--lesson-border);
   border-radius: 20px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent),
-    rgba(27, 28, 32, 0.9);
-  color: #fff;
+    linear-gradient(145deg, color-mix(in srgb, var(--atlas-orange) 3%, transparent), transparent),
+    var(--surface);
+  color: var(--foreground);
   transition:
     transform 200ms ease,
     border-color 200ms ease,
@@ -1583,15 +1618,15 @@ button {
 
 .atlas-module-nav-link:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 110, 52, 0.42);
+  border-color: color-mix(in srgb, var(--atlas-orange) 42%, transparent);
   background:
-    linear-gradient(145deg, rgba(255, 86, 24, 0.1), transparent),
-    rgba(27, 28, 32, 0.94);
+    linear-gradient(145deg, color-mix(in srgb, var(--atlas-orange) 10%, transparent), transparent),
+    var(--surface);
 }
 
 .atlas-module-nav-link > svg {
   flex: 0 0 auto;
-  color: #ff7544;
+  color: var(--atlas-orange);
   transition: transform 180ms ease;
 }
 
@@ -1610,8 +1645,8 @@ button {
 
 .atlas-module-nav-link small {
   display: block;
-  color: #8f929b;
-  font-size: 0.63rem;
+  color: var(--muted);
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -1621,7 +1656,7 @@ button {
   display: block;
   margin-top: 0.3rem;
   font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.35;
 }
 
