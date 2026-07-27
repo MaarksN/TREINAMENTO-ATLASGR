@@ -82,6 +82,31 @@ export const module10: ModuleContentFull = {
             points: ["O imposto sobre o FRETE.", "Gerado por quem transporta (Transportadora).", "Mede o serviço logístico. Se não for emitido, a ANTT apreende a carga na balança fiscal."],
           },
         },
+        {
+          type: "checklist",
+          title: "Principais códigos",
+          items: [
+            "#CONF — confirmação com motorista ou responsável, sempre com data, hora, meio de contato (telefone ou WhatsApp) e a informação confirmada.",
+            "#AUT — autorização do responsável para reset, desengate ou desativação de sensor, com data, hora e prazo.",
+            "@Conf — marca que uma confirmação foi registrada; @@@ separa veículos diferentes dentro da mesma grade.",
+            "? Pa / ? Local / ? Pa-Local — motivo da parada, local da parada, ou os dois, cobrados do motorista via mensagem.",
+            "GPS / Reset-Script / Setas-Sirene — ações remotas enviadas ao veículo (reset de GPS, reset acompanhado de script, ativação de setas e sirene).",
+            "**** — mensagem enviada ao veículo por perda de sinal ou de comunicação.",
+            "@ Porta / @ Painel / @ Baú / @ Desengate / @ Âncora / @ BP — alarmes por tipo de sensor (porta, painel, baú, desengate, âncora, botão de pânico).",
+            "Abast / WC / HP / Ref / Manifesto — motivo de parada informado pelo motorista (abastecimento, banheiro, higiene pessoal, refeição, manifesto).",
+            "Pel / Pmec — problema elétrico ou mecânico relatado pelo motorista.",
+            "Pe / Re — pernoite / previsão de reinício da viagem.",
+            "CR — indica que, ao final da viagem, uma nova rota precisa ser cadastrada no sistema.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          title: "Decodificando uma linha do Grid",
+          text: [
+            "\"@ Porta [Cidade A]=>[Cidade B]\" significa que o veículo, em trânsito entre essas duas cidades, gerou um alarme de porta. \"? Pa Local [Cidade A]=>[Cidade B]\" significa que o operador cobrou do motorista o motivo e o local da parada. Toda manutenção, parada fora do autorizado ou circulação fora do horário permitido deve ser confirmada com o cliente antes de ser liberada.",
+          ],
+        },
       ],
     },
     {

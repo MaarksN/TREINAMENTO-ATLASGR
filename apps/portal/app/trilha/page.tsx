@@ -1,127 +1,178 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PlayCircle, Sparkles, Trophy } from "lucide-react";
+import { PlayCircle, Sparkles, Trophy, BookOpen, Clock, Target } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ModuleCard } from "@/components/trail/ModuleCard";
 import { moduleMetas } from "@/content/modules";
-import { readyModuleSlugs } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { Button } from "@/components/ui/Button";
-import { moduleIcons } from "@/lib/moduleIcons";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
 import Link from "next/link";
 
 export default function TrilhaPage() {
-  const { ready, registration } = useRequireRegistration();
-  const progress = useOnboardingStore((s) => s.progress);
+  const isRegistered = useRequireRegistration();
+  const { registration, progress } = useOnboardingStore();
 
-  if (!ready || !registration) return null;
+  if (!isRegistered || !registration) return null;
 
-  const completedReady = readyModuleSlugs.filter((slug) => progress[slug]?.passed).length;
+  const readyModuleSlugs = moduleMetas.filter(m => m.status === "ready").map(m => m.slug);
+  const completedReady = readyModuleSlugs.filter(slug => progress[slug]?.passed).length;
   const pct = Math.round((completedReady / readyModuleSlugs.length) * 100);
   const allReadyDone = completedReady === readyModuleSlugs.length;
-  const nextModule = moduleMetas.find((m) => readyModuleSlugs.includes(m.slug) && !progress[m.slug]?.passed);
-  const NextIcon = nextModule ? moduleIcons[nextModule.slug] : undefined;
+
+  const unfinishedModules = moduleMetas.filter((m) => readyModuleSlugs.includes(m.slug) && !progress[m.slug]?.completed);
+  const nextModule = unfinishedModules.length > 0 ? unfinishedModules[0] : null;
+
+  // Agrupamento por categoria (índice superior com scroll suave)
+  const categories = Array.from(new Set(moduleMetas.map(m => m.category || "Outros")));
+
+  const scrollToCategory = (category: string) => {
+    const el = document.getElementById(`category-${category.replace(/\s+/g, '-').toLowerCase()}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-[#0b0c0e] text-white">
+    <div className="min-h-screen bg-background text-foreground pb-20 selection:bg-atlas-orange selection:text-white">
       <SiteHeader />
-      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-atlas-orange">
-            Olá, {registration.nomeCompleto.split(" ")[0]}
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Trilha de Onboarding
-          </h1>
-          <p className="mt-2 max-w-2xl text-gray-400">
-            15 módulos compõem a trilha completa, todos com conteúdo, quiz e certificação totalmente funcionais.
-          </p>
-        </motion.div>
 
-        {/* Banner "continuar assistindo" / progresso — estilo Netflix */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="relative mt-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1c1e22] via-[#1c1e22] to-[#2a1712] p-6 sm:p-8"
-        >
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-atlas-orange/20 blur-3xl" />
-          {NextIcon && (
-            <NextIcon className="pointer-events-none absolute -bottom-6 -right-6 h-40 w-40 text-white/5" aria-hidden />
-          )}
+      {/* Banner "continuar assistindo" / progresso — Estilo SaaS Premium */}
+      <section className="relative overflow-hidden bg-surface-2 pt-12 pb-16 border-b border-border/50">
+        <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-5 pointer-events-none" />
+        <div className="absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-atlas-orange/10 blur-[100px] pointer-events-none" />
 
-          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-xl">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-gray-300">
-                <Sparkles size={12} className="text-atlas-orange" />
-                {allReadyDone ? "Trilha concluída" : "Continue de onde parou"}
-              </span>
+        <div className="mx-auto max-w-7xl px-6 relative z-10">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
+            <Badge variant="orange" className="mb-4">Operador: {registration.nomeCompleto.split(" ")[0]}</Badge>
+            <h1 className="font-display text-4xl sm:text-5xl font-black tracking-tight mb-4">
+              Missões Operacionais
+            </h1>
+            <p className="max-w-2xl text-lg text-muted font-medium">
+              Acesse as trilhas corporativas. Do propósito da empresa aos sistemas avançados. Avance estrategicamente no seu plano de carreira.
+            </p>
+          </motion.div>
 
-              {allReadyDone ? (
-                <>
-                  <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
-                    Todos os módulos disponíveis foram concluídos 🎉
-                  </h2>
-                  <p className="mt-2 text-gray-400">
-                    Você está pronto para a avaliação final e emissão do certificado oficial ATLASGR.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
-                    {nextModule?.title}
-                  </h2>
-                  <p className="mt-2 text-gray-400">{nextModule?.shortDescription}</p>
-                </>
-              )}
+          <Card variant="elevated" className="overflow-hidden bg-background">
+            <div className="absolute inset-0 bg-gradient-to-r from-atlas-orange/5 to-transparent pointer-events-none" />
 
-              <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="p-8 md:p-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 relative z-10">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2 rounded-full border border-atlas-orange/30 bg-atlas-orange/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-atlas-orange mb-4">
+                  <Sparkles size={14} className="animate-pulse" />
+                  {allReadyDone ? "Operação Concluída" : "Próxima Missão"}
+                </span>
+
                 {allReadyDone ? (
-                  <Link href="/prova-final">
-                    <Button size="lg" leftIcon={<Trophy size={18} />}>
-                      Ir para a Prova Final
-                    </Button>
-                  </Link>
+                  <>
+                    <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl leading-tight mb-4">
+                      Todos os módulos técnicos concluídos! 🎉
+                    </h2>
+                    <p className="text-lg text-muted">
+                      Você demonstrou preparo logístico e tecnológico ímpar.
+                    </p>
+                  </>
                 ) : (
-                  <Link href={`/trilha/${nextModule?.slug}`}>
-                    <Button size="lg" leftIcon={<PlayCircle size={18} />}>
-                      Continuar módulo
-                    </Button>
-                  </Link>
+                  <>
+                    <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl leading-tight mb-4">
+                      {nextModule?.title}
+                    </h2>
+                    <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-muted mb-6">
+                       <span className="flex items-center gap-1.5"><BookOpen size={16}/> {nextModule?.category}</span>
+                       <span className="flex items-center gap-1.5"><Clock size={16}/> {nextModule?.durationMinutes} min</span>
+                       <span className="flex items-center gap-1.5"><Target size={16}/> Dificuldade Média</span>
+                    </div>
+                  </>
                 )}
+
+                <div className="mt-2 flex flex-wrap items-center gap-4">
+                  {allReadyDone ? (
+                    <Link href="/certificado">
+                      <Button size="lg" variant="primary" leftIcon={<Trophy size={18} />}>
+                        Resgatar Certificado Oficial
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link href={`/trilha/${nextModule?.slug}`}>
+                      <Button size="lg" variant="primary" leftIcon={<PlayCircle size={18} />}>
+                        Iniciar Procedimento
+                      </Button>
+                    </Link>
+                  )}
+                </div>
+              </div>
+
+              <div className="w-full max-w-md shrink-0">
+                <div className="glass-card rounded-2xl p-6 border border-border/50 bg-surface-2/50 backdrop-blur-md">
+                  <div className="flex items-center justify-between text-sm mb-4">
+                    <span className="font-bold text-foreground">Progresso Global</span>
+                    <span className="font-display font-black text-2xl text-gradient-atlas">{pct}%</span>
+                  </div>
+                  <div className="h-3 w-full overflow-hidden rounded-full bg-border shadow-inner">
+                    <motion.div
+                      className="h-full rounded-full bg-gradient-atlas shadow-[0_0_10px_rgba(255,86,24,0.5)]"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${pct}%` }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                    />
+                  </div>
+                  <p className="mt-4 text-xs font-semibold text-muted uppercase tracking-wider text-center">
+                    {completedReady} de {readyModuleSlugs.length} módulos superados
+                  </p>
+                </div>
               </div>
             </div>
+          </Card>
+        </div>
+      </section>
 
-            <div className="w-full max-w-sm shrink-0 rounded-2xl border border-white/10 bg-black/30 p-5 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-medium text-gray-300">Progresso da trilha</span>
-                <span className="font-display font-bold text-atlas-orange">{pct}%</span>
-              </div>
-              <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-white/10">
-                <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-atlas-orange to-atlas-orange-2"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${pct}%` }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                />
-              </div>
-              <p className="mt-2 text-xs text-gray-500">
-                {completedReady} de {readyModuleSlugs.length} módulos disponíveis concluídos
-              </p>
-            </div>
-          </div>
-        </motion.div>
+      <main className="mx-auto max-w-7xl px-6 py-12">
+        {/* Índice de Navegação (Scroll Suave) */}
+        <div className="sticky top-20 z-40 bg-background/80 backdrop-blur-xl border-b border-border/50 pb-4 pt-2 mb-12 -mx-6 px-6 overflow-x-auto no-scrollbar">
+           <div className="flex items-center gap-2">
+             <span className="text-xs font-bold text-muted uppercase tracking-widest mr-4 shrink-0">Índice:</span>
+             {categories.map((cat) => (
+               <button
+                 key={cat}
+                 onClick={() => scrollToCategory(cat || "")}
+                 className="px-4 py-2 rounded-full bg-surface-2 border border-border/50 text-sm font-semibold hover:border-atlas-orange hover:text-atlas-orange transition-all whitespace-nowrap"
+               >
+                 {cat}
+               </button>
+             ))}
+           </div>
+        </div>
 
-        {/* Grade de módulos */}
-        <div className="mt-12">
-          <h2 className="font-display text-lg font-semibold tracking-tight text-white">Todos os módulos</h2>
-          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {moduleMetas.map((m, i) => (
-              <ModuleCard key={m.slug} meta={m} index={i} />
-            ))}
-          </div>
+        {/* Grade de módulos agrupados por Categoria: Responsive (1 Mobile, 2 Tablet, 3 Desktop) */}
+        <div className="space-y-24">
+          {categories.map(cat => {
+            const mods = moduleMetas.filter(m => (m.category || "Outros") === cat);
+            return (
+              <section key={cat} id={`category-${cat.replace(/\s+/g, '-').toLowerCase()}`} className="scroll-mt-40">
+                <div className="flex items-center gap-4 mb-8">
+                   <h2 className="font-display text-2xl font-bold tracking-tight text-foreground">{cat}</h2>
+                   <div className="h-px bg-border/50 flex-1" />
+                </div>
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                  {mods.map((m) => {
+                     // Passamos explicitamente as props necessárias para o card redesenhado.
+                     const isCompleted = !!progress[m.slug]?.completed;
+                     return (
+                        <ModuleCard
+                          key={m.slug}
+                          meta={m}
+                          index={moduleMetas.findIndex(meta => meta.slug === m.slug)}
+                          isCompleted={isCompleted}
+                        />
+                     );
+                  })}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </main>
     </div>

@@ -3,7 +3,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { CertificateInfo, EnrolledColaborador, ExamResult, ModuleProgress, RegistrationData } from "./types";
-import { BADGES, XP_CERTIFICATE, XP_PER_EXAM_PASS, XP_PER_MODULE, XP_PER_QUIZ_PASS } from "./gamification";
+import type { AgentBlueprint } from "./agentEngine";
+import {
+  BADGES,
+  XP_CERTIFICATE,
+  XP_PER_ACADEMY_TOOL,
+  XP_PER_AGENT_CREATED,
+  XP_PER_EXAM_PASS,
+  XP_PER_MODULE,
+  XP_PER_QUIZ_PASS,
+} from "./gamification";
 import { genId } from "./utils";
 
 interface OnboardingState {
@@ -15,6 +24,8 @@ interface OnboardingState {
   streakDays: string[];
   examResult: ExamResult | null;
   certificate: CertificateInfo | null;
+  exploredAcademyTools: string[];
+  createdAgents: AgentBlueprint[];
   hasHydrated: boolean;
   onboardingCompleted: boolean;
 
@@ -29,6 +40,8 @@ interface OnboardingState {
   setExamResult: (result: ExamResult) => void;
   issueCertificate: (cert: CertificateInfo) => void;
   addBadge: (id: string) => void;
+  exploreAcademyTool: (id: string) => void;
+  saveCreatedAgent: (agent: AgentBlueprint) => void;
   resetAll: () => void;
 }
 
@@ -51,6 +64,8 @@ export const useOnboardingStore = create<OnboardingState>()(
       streakDays: [],
       examResult: null,
       certificate: null,
+      exploredAcademyTools: [],
+      createdAgents: [],
       hasHydrated: false,
       onboardingCompleted: false,
 
@@ -138,6 +153,25 @@ export const useOnboardingStore = create<OnboardingState>()(
         set((s) => (s.badges.includes(id) ? s : { badges: [...s.badges, id] }));
       },
 
+      exploreAcademyTool: (id) => {
+        if (get().exploredAcademyTools.includes(id)) return;
+        set((s) => ({
+          exploredAcademyTools: [...s.exploredAcademyTools, id],
+          xp: s.xp + XP_PER_ACADEMY_TOOL,
+        }));
+        if (get().exploredAcademyTools.length >= 3) get().addBadge("explorador-ia");
+      },
+
+      saveCreatedAgent: (agent) => {
+        if (get().createdAgents.some((item) => item.id === agent.id)) return;
+        const isFirstAgent = get().createdAgents.length === 0;
+        set((s) => ({
+          createdAgents: [agent, ...s.createdAgents].slice(0, 12),
+          xp: s.xp + XP_PER_AGENT_CREATED,
+        }));
+        if (isFirstAgent) get().addBadge("arquiteto-agentes");
+      },
+
       resetAll: () =>
         set({
           registration: null,
@@ -147,6 +181,8 @@ export const useOnboardingStore = create<OnboardingState>()(
           streakDays: [],
           examResult: null,
           certificate: null,
+          exploredAcademyTools: [],
+          createdAgents: [],
           onboardingCompleted: false,
         }),
     }),

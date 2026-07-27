@@ -91,6 +91,24 @@ export const module11: ModuleContentFull = {
       title: "Capítulo 3: Os Pecados Capitais da Torre",
       blocks: [
         {
+          type: "callout",
+          variant: "warning",
+          title: "Pausas e comportamento estranho também são um sinal",
+          text: [
+            "Senha de voz correta não encerra a atenção: hesitação incomum, pausas longas ou um comportamento diferente do habitual do motorista também justificam acionar a supervisão, mesmo sem nenhum alarme de coação disparado automaticamente pelo sistema.",
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Perguntas de apoio ao avaliar uma parada",
+          items: [
+            "\"Está em local seguro?\"",
+            "\"Me confirma o local que está, por favor.\"",
+            "\"A parada foi necessária por qual motivo?\"",
+            "Durante a consulta ao sistema, manter o motorista informado: \"Estou analisando sua situação aqui no sistema, só um momento, por favor.\"",
+          ],
+        },
+        {
           type: "text",
           paragraphs: [
             [
