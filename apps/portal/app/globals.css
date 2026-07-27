@@ -1631,6 +1631,1751 @@ button {
   }
 }
 
+/* Portal dinâmico: índices, progressão e academia de IA */
+.portal-dynamic-home {
+  min-height: calc(100vh - 64px);
+  background:
+    radial-gradient(circle at 96% 3%, color-mix(in srgb, var(--atlas-orange) 15%, transparent), transparent 25rem),
+    linear-gradient(165deg, var(--surface-2), var(--background) 42rem);
+}
+
+.portal-index-switcher {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.portal-index-switcher-inner {
+  display: grid;
+  gap: 0.55rem;
+  padding-block: 0.65rem;
+}
+
+.portal-index-switcher button {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 56px;
+  padding: 0.58rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  color: var(--muted);
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.portal-index-switcher button:hover {
+  transform: translateY(-1px);
+  color: var(--foreground);
+  background: var(--surface-2);
+}
+
+.portal-index-switcher button.is-active {
+  border-color: color-mix(in srgb, var(--atlas-orange) 40%, var(--border));
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--atlas-orange) 11%, transparent), transparent),
+    var(--surface);
+  color: var(--foreground);
+  box-shadow: 0 8px 26px rgba(255, 86, 24, 0.08);
+}
+
+.portal-index-switcher button > svg:not(.portal-index-arrow) {
+  color: var(--atlas-orange);
+}
+
+.portal-index-number {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--foreground) 6%, transparent);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.portal-index-switcher .is-active .portal-index-number {
+  background: var(--atlas-orange);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(255, 86, 24, 0.22);
+}
+
+.portal-index-switcher button small,
+.portal-index-switcher button strong {
+  display: block;
+}
+
+.portal-index-switcher button small {
+  font-size: 0.58rem;
+  font-weight: 820;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.portal-index-switcher button strong {
+  margin-top: 0.15rem;
+  font-size: 0.76rem;
+}
+
+.portal-index-arrow {
+  opacity: 0.45;
+  transition: transform 180ms ease;
+}
+
+.portal-index-switcher button:hover .portal-index-arrow {
+  transform: translateX(3px);
+}
+
+.portal-gamebar {
+  display: grid;
+  gap: 0.7rem;
+  padding-top: 1rem;
+}
+
+.portal-level-card,
+.portal-game-stat {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  box-shadow: var(--shadow-card);
+}
+
+.portal-level-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.72rem 0.85rem;
+  border-radius: 18px;
+}
+
+.portal-level-icon {
+  display: grid;
+  width: 41px;
+  height: 41px;
+  grid-row: span 2;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(255, 86, 24, 0.12);
+  color: var(--atlas-orange);
+}
+
+.portal-level-card p {
+  color: var(--atlas-orange);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portal-level-card strong {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.78rem;
+}
+
+.portal-level-card > small {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 850;
+}
+
+.portal-level-progress {
+  grid-column: 2 / -1;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.portal-level-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--atlas-orange), var(--atlas-orange-2));
+  box-shadow: 0 0 12px rgba(255, 86, 24, 0.32);
+  transition: width 500ms ease;
+}
+
+.portal-game-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem;
+  border-radius: 16px;
+  color: var(--atlas-orange);
+}
+
+.portal-game-stat span {
+  color: var(--muted);
+  font-size: 0.63rem;
+  line-height: 1.25;
+}
+
+.portal-game-stat strong {
+  display: block;
+  color: var(--foreground);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 0.82rem;
+}
+
+.portal-index-page {
+  padding: 1.35rem 0 3rem;
+}
+
+.portal-index-hero {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  overflow: hidden;
+  padding: clamp(1.5rem, 5vw, 3.3rem);
+  border: 1px solid var(--border);
+  border-radius: clamp(27px, 4vw, 38px);
+  background:
+    radial-gradient(circle at 90% 16%, color-mix(in srgb, var(--atlas-orange) 20%, transparent), transparent 35%),
+    linear-gradient(145deg, color-mix(in srgb, var(--atlas-orange) 6%, transparent), transparent 48%),
+    var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.portal-index-hero::after {
+  position: absolute;
+  right: -9rem;
+  bottom: -13rem;
+  width: 27rem;
+  height: 27rem;
+  border: 1px solid color-mix(in srgb, var(--foreground) 6%, transparent);
+  border-radius: 999px;
+  content: "";
+}
+
+.portal-index-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.portal-index-hero h1 {
+  max-width: 850px;
+  margin-top: 1.35rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: clamp(2.45rem, 7vw, 5.7rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.portal-index-hero h1 > span:not(.portal-hero-logo) {
+  color: var(--atlas-orange);
+}
+
+.portal-hero-logo {
+  display: flex;
+  margin-top: 0.65rem;
+}
+
+.portal-hero-logo img {
+  width: clamp(185px, 36vw, 355px);
+  height: auto;
+}
+
+.portal-index-hero > div > p {
+  max-width: 690px;
+  margin-top: 1.2rem;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 2vw, 1.2rem);
+  font-weight: 520;
+  line-height: 1.72;
+}
+
+.portal-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.7rem;
+}
+
+.portal-hero-actions > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.portal-hero-actions > span svg {
+  color: var(--atlas-orange);
+}
+
+.portal-progress-orbit,
+.portal-academy-score {
+  align-self: stretch;
+  padding: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 25%, var(--border));
+  border-radius: 26px;
+  background: color-mix(in srgb, var(--surface-2) 88%, transparent);
+}
+
+.portal-progress-orbit {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.portal-progress-ring {
+  display: grid;
+  width: 134px;
+  height: 134px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 999px;
+  background: conic-gradient(var(--atlas-orange) var(--progress), color-mix(in srgb, var(--foreground) 8%, transparent) 0);
+  box-shadow: 0 15px 35px rgba(255, 86, 24, 0.15);
+}
+
+.portal-progress-ring::before {
+  position: absolute;
+  width: 108px;
+  height: 108px;
+  border-radius: inherit;
+  background: var(--surface);
+  content: "";
+}
+
+.portal-progress-ring > span {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+  font-size: 0.62rem;
+  text-align: center;
+}
+
+.portal-progress-ring strong {
+  display: block;
+  color: var(--foreground);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.7rem;
+}
+
+.portal-progress-orbit > div:last-child p,
+.portal-academy-score p {
+  color: var(--atlas-orange);
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portal-progress-orbit > div:last-child strong,
+.portal-progress-orbit > div:last-child small,
+.portal-academy-score strong,
+.portal-academy-score small {
+  display: block;
+}
+
+.portal-progress-orbit > div:last-child strong,
+.portal-academy-score strong {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.portal-progress-orbit > div:last-child small,
+.portal-academy-score small {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.portal-foundation-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.portal-foundation-card {
+  position: relative;
+  display: flex;
+  min-height: 310px;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.45rem;
+  border: 1px solid var(--border);
+  border-radius: 27px;
+  background:
+    linear-gradient(150deg, color-mix(in srgb, var(--atlas-orange) 6%, transparent), transparent 55%),
+    var(--surface);
+  box-shadow: var(--shadow-card);
+  color: var(--foreground);
+  text-align: left;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.portal-foundation-card:hover,
+.portal-foundation-card.is-open {
+  border-color: color-mix(in srgb, var(--atlas-orange) 45%, var(--border));
+  box-shadow:
+    var(--shadow-card),
+    0 20px 45px rgba(255, 86, 24, 0.1);
+}
+
+.portal-foundation-icon,
+.portal-tool-icon,
+.portal-engine-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 111, 52, 0.26);
+  border-radius: 15px;
+  background: rgba(255, 86, 24, 0.11);
+  color: var(--atlas-orange);
+}
+
+.portal-foundation-card > p,
+.portal-section-heading p {
+  margin-top: 1.4rem;
+  color: var(--atlas-orange);
+  font-size: 0.63rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.portal-foundation-card h2 {
+  margin-top: 0.38rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+}
+
+.portal-foundation-card > span:not(.portal-foundation-icon) {
+  max-width: 34rem;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.portal-values,
+.portal-terms-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.15rem;
+}
+
+.portal-values em,
+.portal-terms-cloud em {
+  padding: 0.48rem 0.62rem;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface-2);
+  color: var(--foreground);
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 760;
+}
+
+.portal-foundation-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 1.3rem;
+  font-size: 0.72rem;
+}
+
+.portal-foundation-action svg {
+  color: var(--atlas-orange);
+  transition: transform 180ms ease;
+}
+
+.portal-foundation-card:hover .portal-foundation-action svg {
+  transform: translateX(4px);
+}
+
+.portal-module-index,
+.portal-tools-section,
+.portal-agent-library {
+  margin-top: 3.2rem;
+}
+
+.portal-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.portal-section-heading p {
+  margin-top: 0;
+}
+
+.portal-section-heading h2 {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 880;
+  letter-spacing: -0.045em;
+}
+
+.portal-section-heading > span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 760;
+}
+
+.portal-module-controls {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  padding: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+
+.portal-module-controls > label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--background);
+  color: var(--muted);
+}
+
+.portal-module-controls input {
+  min-width: 0;
+  flex: 1;
+  outline: none;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 0.78rem;
+}
+
+.portal-module-controls > div {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.portal-module-controls > div::-webkit-scrollbar {
+  display: none;
+}
+
+.portal-module-controls > div button {
+  flex: 0 0 auto;
+  padding: 0.63rem 0.72rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.portal-module-controls > div button:hover,
+.portal-module-controls > div button.is-active {
+  border-color: color-mix(in srgb, var(--atlas-orange) 35%, var(--border));
+  background: rgba(255, 86, 24, 0.09);
+  color: var(--foreground);
+}
+
+.portal-module-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.15rem;
+}
+
+.portal-module-card {
+  position: relative;
+  display: flex;
+  min-height: 315px;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 95% 0, color-mix(in srgb, var(--atlas-orange) 11%, transparent), transparent 35%),
+    var(--surface);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.portal-module-card:hover {
+  border-color: rgba(255, 106, 45, 0.4);
+  box-shadow:
+    var(--shadow-card),
+    0 18px 40px rgba(255, 86, 24, 0.1);
+}
+
+.portal-module-card.is-complete {
+  border-color: color-mix(in srgb, #34d399 40%, var(--border));
+}
+
+.portal-module-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.portal-module-card-top > span {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 86, 24, 0.11);
+  color: var(--atlas-orange);
+}
+
+.portal-module-card-top > strong {
+  color: color-mix(in srgb, var(--foreground) 14%, transparent);
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+}
+
+.portal-module-card > p {
+  margin-top: 1.45rem;
+  color: var(--atlas-orange);
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portal-module-card > h3 {
+  margin-top: 0.45rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 820;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.portal-module-card > span {
+  display: -webkit-box;
+  margin-top: 0.65rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.77rem;
+  line-height: 1.58;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.portal-module-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.portal-module-meta em,
+.portal-module-meta strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  font-style: normal;
+}
+
+.portal-module-meta em {
+  color: var(--muted);
+}
+
+.portal-module-meta strong {
+  color: var(--foreground);
+}
+
+.portal-module-meta strong svg {
+  color: var(--atlas-orange);
+}
+
+.portal-missions-panel,
+.portal-badges-showcase {
+  display: grid;
+  gap: 1.3rem;
+  margin-top: 2rem;
+  padding: clamp(1.35rem, 4vw, 2.2rem);
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 28%, var(--border));
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--atlas-orange) 15%, transparent), transparent 32%),
+    var(--surface-2);
+}
+
+.portal-missions-panel > div:first-child p,
+.portal-badges-showcase > div:first-child p {
+  color: var(--atlas-orange);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.portal-missions-panel > div:first-child h2,
+.portal-badges-showcase > div:first-child h2 {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 840;
+  letter-spacing: -0.035em;
+}
+
+.portal-mission-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.portal-mission-list article {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+}
+
+.portal-mission-list article > span {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.portal-mission-list article.is-done > span {
+  background: rgba(52, 211, 153, 0.13);
+  color: #34d399;
+}
+
+.portal-mission-list p {
+  font-size: 0.76rem;
+  font-weight: 720;
+}
+
+.portal-mission-list strong {
+  color: var(--atlas-orange);
+  font-size: 0.65rem;
+}
+
+.portal-index-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+
+.portal-index-footer > span {
+  color: var(--muted);
+  font-size: 0.67rem;
+  font-weight: 720;
+}
+
+.portal-index-footer button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--foreground);
+  font-size: 0.72rem;
+  font-weight: 790;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.portal-index-footer button:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--atlas-orange) 45%, var(--border));
+}
+
+.portal-index-footer button svg {
+  color: var(--atlas-orange);
+}
+
+/* Academia */
+.portal-academy-index {
+  background:
+    radial-gradient(circle at 10% 12%, color-mix(in srgb, var(--atlas-orange) 10%, transparent), transparent 28rem),
+    transparent;
+}
+
+.portal-academy-hero h1 {
+  font-size: clamp(2.35rem, 6vw, 5.1rem);
+}
+
+.portal-academy-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.portal-academy-score > span {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  margin-bottom: 1rem;
+  place-items: center;
+  border-radius: 21px;
+  background: linear-gradient(145deg, var(--atlas-orange), #b8340c);
+  box-shadow: 0 18px 38px rgba(255, 86, 24, 0.24);
+  color: #fff;
+}
+
+.portal-engine-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+}
+
+.portal-engine-grid article {
+  display: flex;
+  min-height: 155px;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.portal-engine-grid article p {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #22c55e;
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.portal-engine-grid article p > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: #22c55e;
+  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.1);
+}
+
+.portal-engine-grid h2 {
+  margin-top: 0.45rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 820;
+}
+
+.portal-engine-grid small {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.portal-tool-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.portal-tool-grid > button {
+  position: relative;
+  display: flex;
+  min-height: 315px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.portal-tool-grid > button:hover,
+.portal-tool-grid > button.is-selected {
+  border-color: color-mix(in srgb, var(--atlas-orange) 55%, var(--border));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--atlas-orange) 8%, transparent), transparent 52%),
+    var(--surface);
+  box-shadow:
+    var(--shadow-card),
+    0 20px 44px rgba(255, 86, 24, 0.11);
+}
+
+.portal-tool-grid > button.is-explored::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 99px;
+  background: #34d399;
+  box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.1);
+  content: "";
+}
+
+.portal-tool-grid em {
+  margin-top: 1.35rem;
+  color: var(--atlas-orange);
+  font-size: 0.61rem;
+  font-style: normal;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portal-tool-grid h3 {
+  margin-top: 0.42rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.22rem;
+  font-weight: 840;
+  letter-spacing: -0.025em;
+}
+
+.portal-tool-grid p {
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.portal-tool-grid strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.69rem;
+}
+
+.portal-tool-grid strong svg {
+  color: var(--atlas-orange);
+}
+
+.portal-tool-workbench {
+  display: grid;
+  gap: 1.15rem;
+  margin-top: 1rem;
+  padding: clamp(1.3rem, 4vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 38%, var(--border));
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 96% 8%, color-mix(in srgb, var(--atlas-orange) 18%, transparent), transparent 32%),
+    var(--surface-2);
+}
+
+.portal-tool-workbench-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.portal-tool-workbench-heading > span {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--atlas-orange);
+  color: #fff;
+}
+
+.portal-tool-workbench-heading p,
+.portal-tool-prompt p {
+  color: var(--atlas-orange);
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portal-tool-workbench-heading h2 {
+  margin-top: 0.25rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 840;
+}
+
+.portal-tool-capabilities {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.portal-tool-capabilities span {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface);
+  font-size: 0.72rem;
+  font-weight: 720;
+}
+
+.portal-tool-capabilities small {
+  color: var(--atlas-orange);
+  font-size: 0.6rem;
+  font-weight: 900;
+}
+
+.portal-tool-prompt {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.portal-tool-prompt strong {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.65;
+}
+
+.portal-tool-prompt button {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.42rem;
+  margin-top: 0.9rem;
+  color: var(--foreground);
+  font-size: 0.68rem;
+  font-weight: 820;
+}
+
+.portal-tool-prompt button svg {
+  color: var(--atlas-orange);
+}
+
+/* Criador de agentes */
+.agent-builder-shell {
+  margin-top: 3.2rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--atlas-orange) 36%, var(--border));
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 90% 0, rgba(255, 86, 24, 0.2), transparent 28rem),
+    #16171b;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+  color: #fff;
+}
+
+.agent-builder-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(1.3rem, 4vw, 2rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.agent-builder-mark {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid rgba(255, 138, 91, 0.32);
+  border-radius: 18px;
+  background: rgba(255, 86, 24, 0.15);
+  color: #ff7544;
+}
+
+.agent-builder-heading p {
+  color: #ff7544;
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.agent-builder-heading h2 {
+  margin-top: 0.25rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  font-weight: 880;
+  letter-spacing: -0.04em;
+}
+
+.agent-builder-heading > div > span {
+  display: block;
+  max-width: 680px;
+  margin-top: 0.35rem;
+  color: #aeb1ba;
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.agent-builder-counter {
+  display: none;
+  text-align: right;
+}
+
+.agent-builder-counter strong,
+.agent-builder-counter span {
+  display: block;
+}
+
+.agent-builder-counter strong {
+  color: #ff7544;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 2rem;
+}
+
+.agent-builder-counter span {
+  color: #8e919a;
+  font-size: 0.62rem;
+}
+
+.agent-builder-grid {
+  display: grid;
+}
+
+.agent-builder-form,
+.agent-builder-output {
+  padding: clamp(1.3rem, 4vw, 2rem);
+}
+
+.agent-builder-form {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.agent-builder-guide {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 1.25rem;
+}
+
+.agent-builder-guide span {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #d9dae0;
+  font-size: 0.7rem;
+  font-weight: 680;
+}
+
+.agent-builder-guide small {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(255, 86, 24, 0.13);
+  color: #ff7544;
+  font-size: 0.61rem;
+  font-weight: 900;
+}
+
+.agent-builder-form > label {
+  position: relative;
+  display: block;
+  margin-top: 0.9rem;
+}
+
+.agent-builder-form > label > span {
+  display: block;
+  margin-bottom: 0.42rem;
+  color: #c9cbd1;
+  font-size: 0.68rem;
+  font-weight: 760;
+}
+
+.agent-builder-form input,
+.agent-builder-form select,
+.agent-builder-form textarea {
+  width: 100%;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #fff;
+  font-size: 0.78rem;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.agent-builder-form input,
+.agent-builder-form select {
+  height: 46px;
+  padding-inline: 0.8rem;
+}
+
+.agent-builder-form textarea {
+  min-height: 145px;
+  resize: vertical;
+  padding: 0.8rem;
+  line-height: 1.6;
+}
+
+.agent-builder-form select option {
+  background: #202126;
+}
+
+.agent-builder-form input:focus,
+.agent-builder-form select:focus,
+.agent-builder-form textarea:focus {
+  border-color: rgba(255, 113, 56, 0.6);
+  box-shadow: 0 0 0 4px rgba(255, 86, 24, 0.1);
+}
+
+.agent-builder-form label > small {
+  display: block;
+  margin-top: 0.35rem;
+  color: #777b84;
+  font-size: 0.58rem;
+  text-align: right;
+}
+
+.agent-builder-form label > small.is-ready {
+  color: #34d399;
+}
+
+.agent-prompt-ideas {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.agent-prompt-ideas p {
+  color: #8f929b;
+  font-size: 0.61rem;
+  font-weight: 760;
+}
+
+.agent-prompt-ideas button {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #b7bac2;
+  font-size: 0.65rem;
+  line-height: 1.45;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.agent-prompt-ideas button:hover {
+  border-color: rgba(255, 112, 53, 0.35);
+  background: rgba(255, 86, 24, 0.07);
+}
+
+.agent-prompt-ideas svg {
+  flex: 0 0 auto;
+  margin-top: 0.1rem;
+  color: #ff7544;
+}
+
+.agent-builder-submit {
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff5618, #d8400d);
+  box-shadow: 0 15px 34px rgba(255, 86, 24, 0.2);
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 850;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    opacity 180ms ease;
+}
+
+.agent-builder-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.agent-builder-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.agent-builder-output {
+  display: grid;
+  min-height: 460px;
+  place-items: stretch;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255, 86, 24, 0.1), transparent 36%),
+    rgba(0, 0, 0, 0.1);
+}
+
+.agent-output-empty,
+.agent-engine-running {
+  display: flex;
+  min-height: 390px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.agent-output-empty > span,
+.agent-engine-orbit {
+  display: grid;
+  width: 82px;
+  height: 82px;
+  place-items: center;
+  border: 1px solid rgba(255, 122, 68, 0.25);
+  border-radius: 27px;
+  background: rgba(255, 86, 24, 0.11);
+  color: #ff7544;
+  box-shadow: 0 20px 50px rgba(255, 86, 24, 0.12);
+}
+
+.agent-output-empty p,
+.agent-engine-running h3 {
+  margin-top: 1rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 820;
+}
+
+.agent-output-empty small {
+  max-width: 370px;
+  margin-top: 0.45rem;
+  color: #898c95;
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.agent-engine-orbit {
+  animation: agent-orbit 1.5s ease-in-out infinite;
+}
+
+.agent-engine-running p {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+  color: #b9bbc2;
+  font-size: 0.68rem;
+}
+
+.agent-engine-running p svg {
+  color: #34d399;
+}
+
+.agent-blueprint {
+  width: 100%;
+}
+
+.agent-blueprint-title {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.agent-blueprint-title > span {
+  display: grid;
+  width: 51px;
+  height: 51px;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #ff5618, #a9340d);
+  color: #fff;
+}
+
+.agent-blueprint-title p {
+  color: #34d399;
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.agent-blueprint-title h3 {
+  margin-top: 0.2rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+}
+
+.agent-blueprint-mission {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-left: 4px solid #ff5618;
+  border-radius: 0 13px 13px 0;
+  background: rgba(255, 86, 24, 0.08);
+  color: #d4d5da;
+  font-size: 0.73rem;
+  line-height: 1.62;
+}
+
+.agent-blueprint-sections {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.agent-blueprint-sections > div {
+  padding: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.agent-blueprint-sections h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+  color: #ff7544;
+  font-size: 0.65rem;
+  font-weight: 820;
+}
+
+.agent-blueprint-sections p {
+  position: relative;
+  margin-top: 0.35rem;
+  padding-left: 0.85rem;
+  color: #b8bac1;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+.agent-blueprint-sections p::before {
+  position: absolute;
+  top: 0.43rem;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: #ff7544;
+  content: "";
+}
+
+.agent-copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  padding: 0.68rem 0.8rem;
+  border: 1px solid rgba(255, 112, 54, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 86, 24, 0.08);
+  color: #fff;
+  font-size: 0.67rem;
+  font-weight: 820;
+}
+
+@keyframes agent-orbit {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+    box-shadow: 0 20px 50px rgba(255, 86, 24, 0.12);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+    box-shadow: 0 28px 60px rgba(255, 86, 24, 0.24);
+  }
+}
+
+.portal-agent-library > div:last-child {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.portal-agent-library article {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.portal-agent-library article > span {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 86, 24, 0.11);
+  color: var(--atlas-orange);
+}
+
+.portal-agent-library article p {
+  margin-top: 0.8rem;
+  color: var(--atlas-orange);
+  font-size: 0.59rem;
+  font-weight: 820;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.portal-agent-library article h3 {
+  margin-top: 0.3rem;
+  font-family: var(--font-display), "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 820;
+}
+
+.portal-agent-library article small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.portal-badges-showcase {
+  margin-top: 2rem;
+}
+
+.portal-badges-showcase > div:last-child {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.portal-badges-showcase article {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+  opacity: 0.55;
+}
+
+.portal-badges-showcase article.is-unlocked {
+  border-color: color-mix(in srgb, var(--atlas-orange) 35%, var(--border));
+  opacity: 1;
+}
+
+.portal-badges-showcase article > span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.portal-badges-showcase article.is-unlocked > span {
+  background: rgba(255, 86, 24, 0.12);
+  color: var(--atlas-orange);
+}
+
+.portal-badges-showcase article strong,
+.portal-badges-showcase article small {
+  display: block;
+}
+
+.portal-badges-showcase article strong {
+  font-size: 0.75rem;
+}
+
+.portal-badges-showcase article small {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.63rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .portal-gamebar {
+    grid-template-columns: minmax(250px, 1.7fr) repeat(3, minmax(0, 0.7fr));
+  }
+
+  .portal-module-grid,
+  .portal-tool-grid,
+  .portal-agent-library > div:last-child {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portal-tool-capabilities,
+  .portal-badges-showcase > div:last-child {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .portal-index-switcher-inner,
+  .portal-foundation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portal-index-switcher button strong {
+    font-size: 0.82rem;
+  }
+
+  .portal-missions-panel,
+  .portal-badges-showcase {
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+  }
+
+  .portal-engine-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portal-tool-workbench {
+    grid-template-columns: 0.85fr 1fr 1.2fr;
+    align-items: stretch;
+  }
+
+  .agent-builder-heading {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .agent-builder-counter {
+    display: block;
+  }
+
+  .agent-builder-guide {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .agent-blueprint-sections {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .portal-index-hero {
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.75fr);
+    align-items: center;
+  }
+
+  .portal-module-controls {
+    grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.25fr);
+    align-items: center;
+  }
+
+  .portal-module-grid,
+  .portal-tool-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .agent-builder-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .agent-builder-form {
+    border-right: 1px solid rgba(255, 255, 255, 0.09);
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 1180px) {
+  .portal-module-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .portal-gamebar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portal-level-card {
+    grid-column: 1 / -1;
+  }
+
+  .portal-game-stat {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .portal-game-stat > svg {
+    display: none;
+  }
+
+  .portal-progress-orbit {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .portal-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .portal-index-footer > span {
+    order: 2;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-engine-orbit {
+    animation: none;
+  }
+}
+
 @media (min-width: 768px) {
   .atlas-command-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

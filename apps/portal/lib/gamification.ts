@@ -2,6 +2,8 @@ export const XP_PER_MODULE = 100;
 export const XP_PER_QUIZ_PASS = 50;
 export const XP_PER_EXAM_PASS = 200;
 export const XP_CERTIFICATE = 150;
+export const XP_PER_ACADEMY_TOOL = 20;
+export const XP_PER_AGENT_CREATED = 80;
 
 export interface LevelInfo {
   level: number;
@@ -47,4 +49,6 @@ export const BADGES: BadgeDef[] = [
   { id: "nota-maxima", label: "Precisão Cirúrgica", description: "Gabaritou um simulador tático.", tier: "gold" },
   { id: "certificado", label: "Especialista Homologado", description: "Emitiu o certificado oficial AtlasGR.", tier: "holographic" },
   { id: "streak-3", label: "Vigilância Constante", description: "Acessou o Cockpit por 3 dias consecutivos.", tier: "silver" },
+  { id: "explorador-ia", label: "Explorador de IA", description: "Explorou três ferramentas da Academia ATLASGR.", tier: "silver" },
+  { id: "arquiteto-agentes", label: "Arquiteto de Agentes", description: "Criou o primeiro agente orientado por prompt.", tier: "gold" },
 ];
