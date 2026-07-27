@@ -35,6 +35,7 @@ export interface ModuleMeta {
   shortDescription: string;
   durationMinutes: number;
   status: ModuleStatus;
+  category?: string;
   outline?: { what: string; why: string; how: string };
 }
 

@@ -2,39 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Bot,
-  BookOpen,
-  BrainCircuit,
-  BriefcaseBusiness,
-  CheckCircle2,
-  Clock3,
-  Compass,
-  Database,
-  Flame,
-  Gamepad2,
-  GraduationCap,
-  Headphones,
-  Layers3,
-  LockKeyhole,
-  Rocket,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Trophy,
-  Users,
-} from "lucide-react";
-import { AgentBuilder } from "@/components/academy/AgentBuilder";
+import { motion } from "framer-motion";
+import { Building2, Compass, Heart, Sparkles, Target, Award, Rocket, ChevronRight } from "lucide-react";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Logo } from "@/components/brand/Logo";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { AccessModal } from "@/components/onboarding/AccessModal";
-import { moduleMetas, readyModuleSlugs } from "@/content/modules";
-import { BADGES, levelProgress } from "@/lib/gamification";
-import { moduleIcons } from "@/lib/moduleIcons";
+import { InstitutionalVideo } from "@/components/media/InstitutionalVideo";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { ModuleCard } from "@/components/trail/ModuleCard";
+import { moduleMetas } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
 
 const indexes = [
@@ -225,553 +204,159 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background selection:bg-atlas-orange selection:text-white pb-20">
       <SiteHeader />
 
-      <main className="portal-dynamic-home">
-        <nav className="portal-index-switcher" aria-label="Índices principais do portal">
-          <div className="atlas-container portal-index-switcher-inner">
-            {indexes.map((item, index) => {
-              const Icon = item.icon;
-              const isActive = activeIndex === index;
+      <main>
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-24 pb-20 sm:pt-32 sm:pb-28">
+          <div className="absolute inset-0 bg-gradient-atlas opacity-[0.03] pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-5" />
 
-              return (
-                <button
-                  key={item.number}
-                  type="button"
-                  onClick={() => changeIndex(index)}
-                  className={isActive ? "is-active" : ""}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span className="portal-index-number">{item.number}</span>
-                  <Icon size={18} aria-hidden="true" />
-                  <span>
-                    <small>{item.eyebrow}</small>
-                    <strong>{item.shortTitle}</strong>
-                  </span>
-                  <ArrowRight size={17} className="portal-index-arrow" aria-hidden="true" />
-                </button>
-              );
-            })}
+          <div className="absolute -top-40 right-[-10%] h-[600px] w-[600px] rounded-full bg-atlas-orange/10 blur-[120px] pointer-events-none" />
+          <div className="absolute top-40 left-[-10%] h-[400px] w-[400px] rounded-full bg-atlas-orange-2/10 blur-[100px] pointer-events-none" />
+
+          <div className="mx-auto max-w-4xl text-center px-6 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.4 }}
+              className="flex justify-center"
+            >
+              <Badge variant="premium" className="mb-8 px-4 py-1.5 shadow-xl shadow-atlas-orange/10 gap-2">
+                <Award size={14} /> Portal Enterprise AtlasGR
+              </Badge>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-4 font-display text-5xl font-black leading-tight tracking-tight text-foreground sm:text-7xl mb-6"
+            >
+              Bem-vindo à
+              <Logo withWordmark={false} className="h-10 w-auto sm:h-14 mt-1" />
+              <span className="text-gradient-atlas bg-clip-text">ATLASGR</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="mx-auto max-w-2xl text-lg font-medium text-muted sm:text-xl leading-relaxed"
+            >
+              Conectamos pessoas e tecnologia, gerando valor com <strong className="text-foreground">segurança</strong> e <strong className="text-foreground">inovação</strong>.
+              Sua evolução na logística inteligente começa agora.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <Button size="xl" onClick={handleStart} rightIcon={<Rocket className="w-5 h-5" />}>
+                {canContinue ? "Retomar minha missão" : "Iniciar Treinamento Corporativo"}
+              </Button>
+            </motion.div>
           </div>
-        </nav>
 
-        <section className="atlas-container portal-gamebar" aria-label="Sua progressão no portal">
-          <div className="portal-level-card">
-            <span className="portal-level-icon">
-              <Trophy size={21} aria-hidden="true" />
-            </span>
-            <div>
-              <p>Nível {level.current.level}</p>
-              <strong>{level.current.title}</strong>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="mx-auto mt-20 max-w-5xl px-6"
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/10 dark:shadow-black/40 ring-1 ring-border/50">
+              <InstitutionalVideo />
             </div>
-            <div className="portal-level-progress">
-              <span style={{ width: `${level.pct}%` }} />
+          </motion.div>
+        </section>
+
+        {/* Trilha de Conhecimento */}
+        <section className="bg-surface-2/50 border-y border-border/50 py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <Badge variant="orange" className="mb-4">Módulos de Formação</Badge>
+              <h2 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">Estrutura Operacional</h2>
+              <p className="text-lg text-muted">
+                Domine os pilares da AtlasGR. Do gerenciamento de riscos à tecnologia proprietária, tudo projetado para o seu sucesso na linha de frente.
+              </p>
             </div>
-            <small>{xp} XP</small>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {moduleMetas.slice(0, 6).map((m, i) => (
+                <ModuleCard key={m.slug} meta={m} index={i} />
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Button variant="outline" size="lg" onClick={() => router.push('/trilha')} rightIcon={<ChevronRight size={18} />}>
+                Ver todos os {moduleMetas.length} módulos
+              </Button>
+            </div>
           </div>
 
-          <div className="portal-game-stat">
-            <Flame size={18} aria-hidden="true" />
-            <span>
-              <strong>{streakDays.length}</strong>
-              dias ativos
-            </span>
-          </div>
-          <div className="portal-game-stat">
-            <ShieldCheck size={18} aria-hidden="true" />
-            <span>
-              <strong>{badges.length}</strong>
-              conquistas
-            </span>
-          </div>
-          <div className="portal-game-stat">
-            <Gamepad2 size={18} aria-hidden="true" />
-            <span>
-              <strong>{missions.filter((mission) => mission.done).length}/3</strong>
-              missões
-            </span>
+        {/* Indicadores Institucionais */}
+        <section className="mx-auto max-w-7xl px-6 py-24">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {[
+              { label: "Anos de Excelência", value: "20+" },
+              { label: "Central de Monitoramento", value: "24/7" },
+              { label: "Módulos Técnicos", value: "15" },
+            ].map((s, i) => (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                key={s.label}
+              >
+                <Card variant="elevated" className="p-8 text-center h-full flex flex-col justify-center">
+                  <p className="font-display text-5xl font-black text-gradient-atlas mb-2">{s.value}</p>
+                  <p className="font-semibold text-muted tracking-wide uppercase text-sm">{s.label}</p>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        <AnimatePresence mode="wait">
-          {activeIndex === 0 ? (
-            <motion.section
-              key="learning-index"
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -28 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="portal-index-page"
-            >
-              <div className="atlas-container">
-                <div className="portal-index-hero portal-trail-hero">
-                  <div>
-                    <motion.span
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="atlas-eyebrow"
-                    >
-                      <GraduationCap size={16} aria-hidden="true" />
-                      Índice 01 · Formação ATLASGR
-                    </motion.span>
-                    <motion.h1
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.06 }}
-                    >
-                      Trilha de Aprendizado
-                      <Logo className="portal-hero-logo" />
-                    </motion.h1>
-                    <motion.p
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.12 }}
-                    >
-                      Uma jornada dinâmica que conecta cultura, linguagem operacional, prática e certificação.
-                    </motion.p>
-                    <motion.div
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.18 }}
-                      className="portal-hero-actions"
-                    >
-                      <button type="button" onClick={handleStart} className="atlas-primary-button">
-                        {canContinue ? "Continuar minha jornada" : "Iniciar minha jornada"}
-                        <ArrowRight size={18} aria-hidden="true" />
-                      </button>
-                      <span>
-                        <CheckCircle2 size={18} aria-hidden="true" />
-                        {completedModules} de {readyModuleSlugs.length} módulos concluídos
-                      </span>
-                    </motion.div>
-                  </div>
+        {/* Manifesto */}
+        <section className="mx-auto max-w-7xl px-6 pb-24">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <Card variant="elevated" className="p-10" withGlow>
+              <Badge variant="orange" className="mb-6">Nosso DNA</Badge>
+              <h2 className="font-display text-3xl font-bold text-foreground mb-4">O Propósito AtlasGR</h2>
+              <blockquote className="text-xl font-medium text-muted leading-relaxed border-l-4 border-atlas-orange pl-6 py-2 my-6">
+                &quot;Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação constante para a logística.&quot;
+              </blockquote>
+              <p className="text-sm text-muted/80">
+                Uma cultura forjada na linha de frente, onde cada colaborador é fundamental para garantir que o fluxo logístico nacional nunca pare.
+              </p>
+            </Card>
 
-                  <motion.aside
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.12 }}
-                    className="portal-progress-orbit"
-                  >
-                    <div className="portal-progress-ring" style={{ "--progress": `${trailProgress * 3.6}deg` } as React.CSSProperties}>
-                      <span>
-                        <strong>{trailProgress}%</strong>
-                        da trilha
-                      </span>
+            <Card variant="elevated" className="p-10">
+              <h2 className="font-display text-2xl font-bold text-foreground mb-8">Nossos Valores Nucleares</h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {values.map((v) => (
+                  <li key={v.label} className="flex items-center gap-4 rounded-2xl bg-surface-2/50 border border-border/50 px-4 py-4 transition-colors hover:border-atlas-orange/30 group">
+                    <div className="bg-surface p-2 rounded-xl shadow-sm border border-border group-hover:bg-atlas-orange/10 transition-colors">
+                      <v.icon size={20} className="text-atlas-orange" />
                     </div>
-                    <div>
-                      <p>Próxima conquista</p>
-                      <strong>{completedModules === 0 ? "Operador de Base" : "Especialista Homologado"}</strong>
-                      <small>{completedModules === 0 ? "Conclua o primeiro módulo" : "Complete a trilha e a prova final"}</small>
-                    </div>
-                  </motion.aside>
-                </div>
+                    <span className="font-semibold">{v.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          </div>
+        </section>
 
-                <div className="portal-foundation-grid">
-                  <motion.button
-                    type="button"
-                    onClick={() => setIdentityOpen((current) => !current)}
-                    whileHover={{ y: -5 }}
-                    className={`portal-foundation-card ${identityOpen ? "is-open" : ""}`}
-                    aria-expanded={identityOpen}
-                  >
-                    <span className="portal-foundation-icon">
-                      <Compass size={23} aria-hidden="true" />
-                    </span>
-                    <p>Cultura e propósito</p>
-                    <h2>Nossa identidade</h2>
-                    <span>Desde 2004, pessoas e tecnologia conectadas para gerar valor com segurança e inovação.</span>
-                    <div className="portal-values">
-                      {values.map((value, index) => (
-                        <motion.em
-                          key={value}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: identityOpen ? 1 : 0.58, x: 0 }}
-                          transition={{ delay: index * 0.06 }}
-                        >
-                          {value}
-                        </motion.em>
-                      ))}
-                    </div>
-                    <strong className="portal-foundation-action">
-                      {identityOpen ? "Recolher identidade" : "Explorar identidade"}
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </strong>
-                  </motion.button>
-
-                  <motion.button
-                    type="button"
-                    onClick={() => router.push("/glossario")}
-                    whileHover={{ y: -5 }}
-                    className="portal-foundation-card"
-                  >
-                    <span className="portal-foundation-icon">
-                      <BookOpen size={23} aria-hidden="true" />
-                    </span>
-                    <p>Consulta durante a jornada</p>
-                    <h2>Base de conhecimento</h2>
-                    <span>Pesquise siglas, termos técnicos e conceitos sem perder o ponto da aprendizagem.</span>
-                    <div className="portal-terms-cloud">
-                      {["PGR", "SLA", "SM", "RCF-DC", "Connect", "LGPD"].map((term) => (
-                        <em key={term}>{term}</em>
-                      ))}
-                    </div>
-                    <strong className="portal-foundation-action">
-                      Abrir glossário
-                      <ArrowRight size={16} aria-hidden="true" />
-                    </strong>
-                  </motion.button>
-                </div>
-
-                <section className="portal-module-index">
-                  <div className="portal-section-heading">
-                    <div>
-                      <p>Mapa dinâmico da formação</p>
-                      <h2>Módulos de aprendizado</h2>
-                    </div>
-                    <span>{filteredModules.length} módulos visíveis</span>
-                  </div>
-
-                  <div className="portal-module-controls">
-                    <label>
-                      <Search size={17} aria-hidden="true" />
-                      <input
-                        value={moduleSearch}
-                        onChange={(event) => setModuleSearch(event.target.value)}
-                        placeholder="Buscar módulo ou assunto..."
-                      />
-                    </label>
-                    <div role="group" aria-label="Filtrar módulos por categoria">
-                      {moduleCategories.map((category) => (
-                        <button
-                          key={category}
-                          type="button"
-                          onClick={() => setModuleCategory(category)}
-                          className={moduleCategory === category ? "is-active" : ""}
-                        >
-                          {category}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <motion.div layout className="portal-module-grid">
-                    <AnimatePresence mode="popLayout">
-                      {filteredModules.map((module, index) => {
-                        const ModuleIcon = moduleIcons[module.slug] ?? GraduationCap;
-                        const completed = Boolean(progress[module.slug]?.passed);
-
-                        return (
-                          <motion.button
-                            layout
-                            key={module.slug}
-                            type="button"
-                            onClick={() => openModule(module.slug)}
-                            initial={{ opacity: 0, y: 18 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ delay: Math.min(index * 0.035, 0.28) }}
-                            whileHover={{ y: -6 }}
-                            className={`portal-module-card ${completed ? "is-complete" : ""}`}
-                          >
-                            <div className="portal-module-card-top">
-                              <span>
-                                <ModuleIcon size={22} aria-hidden="true" />
-                              </span>
-                              <strong>{String(module.number).padStart(2, "0")}</strong>
-                            </div>
-                            <p>{getModuleCategory(module.number)}</p>
-                            <h3>{module.title}</h3>
-                            <span>{module.shortDescription}</span>
-                            <div className="portal-module-meta">
-                              <em>
-                                <Clock3 size={14} aria-hidden="true" />
-                                {module.durationMinutes} min
-                              </em>
-                              <strong>
-                                {completed ? "Concluído" : "Abrir módulo"}
-                                {completed ? <CheckCircle2 size={15} aria-hidden="true" /> : <ArrowRight size={15} aria-hidden="true" />}
-                              </strong>
-                            </div>
-                          </motion.button>
-                        );
-                      })}
-                    </AnimatePresence>
-                  </motion.div>
-                </section>
-
-                <section className="portal-missions-panel">
-                  <div>
-                    <p>Missões da jornada</p>
-                    <h2>Aprenda, avance e desbloqueie conquistas</h2>
-                  </div>
-                  <div className="portal-mission-list">
-                    {missions.map((mission, index) => (
-                      <motion.article
-                        key={mission.label}
-                        initial={{ opacity: 0, x: 12 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.08 }}
-                        className={mission.done ? "is-done" : ""}
-                      >
-                        <span>{mission.done ? <CheckCircle2 size={18} /> : index + 1}</span>
-                        <p>{mission.label}</p>
-                        <strong>{mission.reward}</strong>
-                      </motion.article>
-                    ))}
-                  </div>
-                </section>
-
-                <div className="portal-index-footer">
-                  <span>Índice 01 · Trilha de Aprendizado ATLASGR</span>
-                  <button type="button" onClick={() => changeIndex(1)}>
-                    Academia de GR + IA
-                    <ArrowRight size={18} aria-hidden="true" />
-                  </button>
-                </div>
-              </div>
-            </motion.section>
-          ) : (
-            <motion.section
-              key="academy-index"
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -28 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="portal-index-page portal-academy-index"
-            >
-              <div className="atlas-container">
-                <div className="portal-index-hero portal-academy-hero">
-                  <div>
-                    <motion.span
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="atlas-eyebrow"
-                    >
-                      <Bot size={16} aria-hidden="true" />
-                      Índice 02 · Inteligência aplicada
-                    </motion.span>
-                    <motion.h1
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.06 }}
-                    >
-                      Academia de Gerenciamento de Risco <span>ATLASGR</span>
-                    </motion.h1>
-                    <motion.p
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.12 }}
-                    >
-                      Aprenda a trabalhar com IA, explore ferramentas por área e transforme uma necessidade em um
-                      agente orientado, seguro e reutilizável.
-                    </motion.p>
-                    <motion.div
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.18 }}
-                      className="portal-hero-actions"
-                    >
-                      <a href="#criador-de-agentes" className="atlas-primary-button">
-                        Criar um agente
-                        <Sparkles size={18} aria-hidden="true" />
-                      </a>
-                      <span>
-                        <ShieldCheck size={18} aria-hidden="true" />
-                        Decisão humana sempre no controle
-                      </span>
-                    </motion.div>
-                  </div>
-
-                  <motion.aside
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.12 }}
-                    className="portal-academy-score"
-                  >
-                    <span>
-                      <Bot size={30} aria-hidden="true" />
-                    </span>
-                    <p>Seu laboratório</p>
-                    <strong>{exploredTools.length}/{academyTools.length} ferramentas exploradas</strong>
-                    <small>{createdAgents.length} agentes criados e salvos neste dispositivo</small>
-                  </motion.aside>
-                </div>
-
-                <section className="portal-engine-grid" aria-label="Motores da Academia ATLASGR">
-                  {engines.map((engine, index) => (
-                    <motion.article
-                      key={engine.title}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.16 + index * 0.1 }}
-                    >
-                      <span className="portal-engine-icon">
-                        <engine.icon size={22} aria-hidden="true" />
-                      </span>
-                      <div>
-                        <p>
-                          <span /> Motor ativo
-                        </p>
-                        <h2>{engine.title}</h2>
-                        <small>{engine.description}</small>
-                      </div>
-                    </motion.article>
-                  ))}
-                </section>
-
-                <section className="portal-tools-section">
-                  <div className="portal-section-heading">
-                    <div>
-                      <p>Ferramentas por área e cargo</p>
-                      <h2>Escolha um copiloto para explorar</h2>
-                    </div>
-                    <span>+20 XP por nova ferramenta</span>
-                  </div>
-
-                  <div className="portal-tool-grid">
-                    {academyTools.map((tool, index) => {
-                      const isSelected = selectedTool.id === tool.id;
-                      const isExplored = exploredTools.includes(tool.id);
-
-                      return (
-                        <motion.button
-                          key={tool.id}
-                          type="button"
-                          onClick={() => selectTool(tool.id)}
-                          initial={{ opacity: 0, y: 18 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: Math.min(index * 0.07, 0.28) }}
-                          whileHover={{ y: -6 }}
-                          className={`${isSelected ? "is-selected" : ""} ${isExplored ? "is-explored" : ""}`}
-                        >
-                          <span className="portal-tool-icon">
-                            <tool.icon size={22} aria-hidden="true" />
-                          </span>
-                          <em>{tool.area}</em>
-                          <h3>{tool.title}</h3>
-                          <p>{tool.description}</p>
-                          <strong>
-                            {isExplored ? "Explorado" : "Explorar ferramenta"}
-                            {isExplored ? <CheckCircle2 size={15} /> : <ArrowRight size={15} />}
-                          </strong>
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-
-                  <AnimatePresence mode="wait">
-                    <motion.article
-                      key={selectedTool.id}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="portal-tool-workbench"
-                    >
-                      <div className="portal-tool-workbench-heading">
-                        <span>
-                          <selectedTool.icon size={25} aria-hidden="true" />
-                        </span>
-                        <div>
-                          <p>Ferramenta selecionada · {selectedTool.area}</p>
-                          <h2>{selectedTool.title}</h2>
-                        </div>
-                      </div>
-                      <div className="portal-tool-capabilities">
-                        {selectedTool.features.map((feature, index) => (
-                          <span key={feature}>
-                            <small>{String(index + 1).padStart(2, "0")}</small>
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="portal-tool-prompt">
-                        <p>Prompt de experimentação</p>
-                        <strong>“{selectedTool.prompt}”</strong>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const builder = document.querySelector<HTMLTextAreaElement>("#criador-de-agentes textarea");
-                            builder?.focus();
-                            builder?.scrollIntoView({ behavior: "smooth", block: "center" });
-                          }}
-                        >
-                          Adaptar no criador de agentes
-                          <ArrowRight size={16} aria-hidden="true" />
-                        </button>
-                      </div>
-                    </motion.article>
-                  </AnimatePresence>
-                </section>
-
-                <AgentBuilder />
-
-                {createdAgents.length > 0 && (
-                  <section className="portal-agent-library">
-                    <div className="portal-section-heading">
-                      <div>
-                        <p>Biblioteca pessoal</p>
-                        <h2>Agentes que você criou</h2>
-                      </div>
-                      <span>Salvos neste dispositivo</span>
-                    </div>
-                    <div>
-                      {createdAgents.slice(0, 4).map((agent, index) => (
-                        <motion.article
-                          key={agent.id}
-                          initial={{ opacity: 0, y: 14 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.08 }}
-                        >
-                          <span>
-                            <Bot size={19} aria-hidden="true" />
-                          </span>
-                          <p>{agent.area}</p>
-                          <h3>{agent.name}</h3>
-                          <small>{agent.role}</small>
-                        </motion.article>
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                <section className="portal-badges-showcase">
-                  <div>
-                    <p>Conquistas da Academia</p>
-                    <h2>Domine as ferramentas e evolua seu nível</h2>
-                  </div>
-                  <div>
-                    {BADGES.filter((badge) => ["explorador-ia", "arquiteto-agentes", "guardiao-risco"].includes(badge.id)).map(
-                      (badge) => {
-                        const unlocked = badges.includes(badge.id);
-                        return (
-                          <article key={badge.id} className={unlocked ? "is-unlocked" : ""}>
-                            <span>{unlocked ? <Trophy size={20} /> : <LockKeyhole size={20} />}</span>
-                            <div>
-                              <strong>{badge.label}</strong>
-                              <small>{badge.description}</small>
-                            </div>
-                          </article>
-                        );
-                      }
-                    )}
-                  </div>
-                </section>
-
-                <div className="portal-index-footer">
-                  <button type="button" onClick={() => changeIndex(0)}>
-                    <ArrowLeft size={18} aria-hidden="true" />
-                    Trilha de Aprendizado
-                  </button>
-                  <span>Índice 02 · Academia de Gerenciamento de Risco ATLASGR</span>
-                </div>
-              </div>
-            </motion.section>
-          )}
-        </AnimatePresence>
+        {/* Footer */}
+        <section className="mx-auto max-w-7xl px-6 pt-12 pb-8 border-t border-border/50 text-center">
+          <Logo className="mx-auto mb-8 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300" />
+          <SocialLinks className="justify-center mb-8" />
+          <ContactAddress className="text-sm" />
+        </section>
       </main>
 
       <AccessModal open={modalOpen} onOpenChange={setModalOpen} />
