@@ -17,17 +17,16 @@ export const PremiumCard = React.forwardRef<HTMLDivElement, PremiumCardProps>(
         transition={{ duration: 0.2 }}
         className={cn(
           "relative group overflow-hidden rounded-2xl glass transition-all duration-300",
-          "border border-white/10 dark:border-white/5",
           withGlow && "hover:shadow-[0_0_20px_rgba(255,86,24,0.3)]",
           className
         )}
         {...props}
       >
         {/* Subtle top border gradient */}
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
 
         {/* Reflection effect that follows mouse (simulated here via CSS hover) */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.08)_0%,transparent_60%)] transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_0%,color-mix(in_srgb,var(--atlas-orange)_8%,transparent)_0%,transparent_60%)] transition-opacity duration-500 pointer-events-none" />
 
         <div className="relative z-10">
           {children}

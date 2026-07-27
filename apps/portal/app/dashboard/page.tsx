@@ -38,21 +38,21 @@ export default function DashboardPage() {
   const nextModule = moduleMetas.find((m) => readyModuleSlugs.includes(m.slug) && !progress[m.slug]?.passed);
 
   return (
-    <div className="min-h-screen bg-[#131417] text-white selection:bg-atlas-orange">
+    <div className="min-h-screen bg-background text-foreground selection:bg-atlas-orange">
       <SiteHeader />
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
             <h1 className="font-display text-4xl font-bold mb-2">Cockpit Operacional</h1>
-            <p className="text-gray-400 flex items-center gap-2">
+            <p className="text-muted flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
               Agente Logístico: {registration.nomeCompleto.split(" ")[0]} ({registration.cargo})
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="glass px-6 py-3 rounded-full flex items-center gap-4">
-            <span className="text-sm font-semibold text-gray-400 uppercase tracking-widest">Patente Atual</span>
+            <span className="text-sm font-semibold text-muted uppercase tracking-widest">Patente Atual</span>
             <span className="text-atlas-orange font-bold font-display text-xl">{current.title}</span>
-            <div className="w-1 h-8 bg-white/10" />
+            <div className="w-1 h-8 bg-border" />
             <span className="text-sm font-bold">{xp} XP</span>
           </motion.div>
         </div>
@@ -95,9 +95,9 @@ export default function DashboardPage() {
                 <h3 className="font-display font-bold text-xl flex items-center gap-3">
                   <Award className="text-atlas-orange" /> Progressão de Carreira
                 </h3>
-                {next && <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{next.minXp - xp} XP para o próximo nível</span>}
+                {next && <span className="text-xs font-bold text-muted uppercase tracking-widest">{next.minXp - xp} XP para o próximo nível</span>}
               </div>
-              <div className="relative h-4 bg-white/5 rounded-full overflow-hidden border border-white/10 mb-4">
+              <div className="relative h-4 bg-surface-2 rounded-full overflow-hidden border border-border mb-4">
                 <motion.div
                   className="absolute top-0 left-0 h-full bg-gradient-to-r from-atlas-orange to-atlas-orange-2"
                   initial={{ width: 0 }}
@@ -108,8 +108,8 @@ export default function DashboardPage() {
                 </motion.div>
               </div>
               <div className="flex justify-between text-sm font-bold">
-                <span className="text-gray-300">{current.title}</span>
-                {next ? <span className="text-atlas-orange">{next.title}</span> : <span className="text-emerald-400">Patente Máxima Alcançada</span>}
+                <span className="text-foreground">{current.title}</span>
+                {next ? <span className="text-atlas-orange">{next.title}</span> : <span className="text-emerald-600 dark:text-emerald-400">Patente Máxima Alcançada</span>}
               </div>
             </PremiumCard>
 
@@ -120,17 +120,17 @@ export default function DashboardPage() {
                 </h3>
                 <div className="flex-1 flex items-center justify-center relative">
                   <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <div className="w-[80%] aspect-square rounded-full border border-white" />
-                    <div className="absolute w-[60%] aspect-square rounded-full border border-white" />
-                    <div className="absolute w-[40%] aspect-square rounded-full border border-white" />
-                    <div className="absolute w-full h-[1px] bg-white transform rotate-45" />
-                    <div className="absolute w-full h-[1px] bg-white transform -rotate-45" />
-                    <div className="absolute w-[1px] h-full bg-white" />
-                    <div className="absolute w-full h-[1px] bg-white" />
+                    <div className="w-[80%] aspect-square rounded-full border border-foreground" />
+                    <div className="absolute w-[60%] aspect-square rounded-full border border-foreground" />
+                    <div className="absolute w-[40%] aspect-square rounded-full border border-foreground" />
+                    <div className="absolute w-full h-[1px] bg-foreground transform rotate-45" />
+                    <div className="absolute w-full h-[1px] bg-foreground transform -rotate-45" />
+                    <div className="absolute w-[1px] h-full bg-foreground" />
+                    <div className="absolute w-full h-[1px] bg-foreground" />
                   </div>
                   <div className="z-10 text-center">
-                    <p className="text-gray-400 italic text-sm">(Gráfico Radar Parcial)</p>
-                    <p className="text-xs text-gray-500 mt-2">Gestão de Risco: 85% | SLA: 60%</p>
+                    <p className="text-muted italic text-sm">(Gráfico Radar Parcial)</p>
+                    <p className="text-xs text-muted mt-2">Gestão de Risco: 85% | SLA: 60%</p>
                   </div>
                 </div>
               </PremiumCard>
@@ -144,7 +144,7 @@ export default function DashboardPage() {
                     {heatmap.map((isActive, i) => (
                       <div
                         key={i}
-                        className={`w-4 h-4 rounded-sm ${isActive ? 'bg-atlas-orange' : 'bg-white/5 border border-white/10'}`}
+                        className={`w-4 h-4 rounded-sm ${isActive ? 'bg-atlas-orange' : 'bg-surface-2 border border-border'}`}
                       />
                     ))}
                   </div>
@@ -159,20 +159,20 @@ export default function DashboardPage() {
                 <Compass className="text-atlas-orange w-5 h-5" /> Missões Ativas
               </h3>
               {nextModule ? (
-                <div className="bg-black/40 border border-white/10 rounded-xl p-5 group relative overflow-hidden">
+                <div className="bg-surface-2 border border-border rounded-xl p-5 group relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-atlas-orange" />
                   <p className="text-xs text-atlas-orange font-bold uppercase tracking-widest mb-2">Próxima Triagem</p>
-                  <h4 className="font-bold text-lg mb-1">{nextModule.title}</h4>
-                  <p className="text-sm text-gray-400 mb-6">{nextModule.durationMinutes} min est. · Prioridade Alta</p>
-                  <Link href={`/trilha/${nextModule.slug}`} className="inline-flex items-center justify-between w-full bg-white/10 hover:bg-white/20 transition-colors px-4 py-3 rounded-lg text-sm font-bold">
+                  <h4 className="font-bold text-lg mb-1 text-foreground">{nextModule.title}</h4>
+                  <p className="text-sm text-muted mb-6">{nextModule.durationMinutes} min est. · Prioridade Alta</p>
+                  <Link href={`/trilha/${nextModule.slug}`} className="inline-flex items-center justify-between w-full bg-atlas-orange/10 hover:bg-atlas-orange/20 transition-colors px-4 py-3 rounded-lg text-sm font-bold text-foreground">
                     <span>Iniciar Missão</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               ) : (
-                 <div className="bg-black/40 border border-emerald-500/30 rounded-xl p-5 text-center">
-                   <p className="text-emerald-400 font-bold mb-2">Todas as missões concluídas!</p>
-                   <Link href="/certificado" className="inline-block mt-2 px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-bold hover:bg-emerald-500/30 transition-colors">
+                 <div className="bg-surface-2 border border-emerald-500/30 rounded-xl p-5 text-center">
+                   <p className="text-emerald-600 dark:text-emerald-400 font-bold mb-2">Todas as missões concluídas!</p>
+                   <Link href="/certificado" className="inline-block mt-2 px-4 py-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 rounded-lg text-sm font-bold hover:bg-emerald-500/25 transition-colors">
                      Acessar Certificado Oficial
                    </Link>
                  </div>
@@ -186,30 +186,30 @@ export default function DashboardPage() {
                 </h3>
               </div>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-surface-2 border border-border">
                   <div className="flex items-center gap-3">
-                    <span className="font-display font-bold text-gray-500">#1</span>
-                    <span className="text-sm font-bold">Carlos Silva</span>
+                    <span className="font-display font-bold text-muted">#1</span>
+                    <span className="text-sm font-bold text-foreground">Carlos Silva</span>
                   </div>
                   <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/10 px-2 py-1 rounded">2450 XP</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-atlas-orange/20 border border-atlas-orange/50 relative overflow-hidden shadow-[0_0_15px_rgba(255,86,24,0.15)]">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-atlas-orange/15 border border-atlas-orange/50 relative overflow-hidden shadow-[0_0_15px_rgba(255,86,24,0.15)]">
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-atlas-orange" />
                   <div className="flex items-center gap-3 pl-2">
                     <span className="font-display font-bold text-atlas-orange">#2</span>
-                    <span className="text-sm font-bold">{registration.nomeCompleto.split(" ")[0]} (Você)</span>
+                    <span className="text-sm font-bold text-foreground">{registration.nomeCompleto.split(" ")[0]} (Você)</span>
                   </div>
                   <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/20 px-2 py-1 rounded">{xp} XP</span>
                 </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-surface-2 border border-border">
                   <div className="flex items-center gap-3">
-                    <span className="font-display font-bold text-gray-500">#3</span>
-                    <span className="text-sm font-bold">Ana Pereira</span>
+                    <span className="font-display font-bold text-muted">#3</span>
+                    <span className="text-sm font-bold text-foreground">Ana Pereira</span>
                   </div>
-                  <span className="text-xs font-bold text-gray-400 bg-white/10 px-2 py-1 rounded">1820 XP</span>
+                  <span className="text-xs font-bold text-muted bg-surface px-2 py-1 rounded">1820 XP</span>
                 </div>
               </div>
-              <button className="w-full mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest hover:text-white transition-colors">Ver ranking completo</button>
+              <button className="w-full mt-4 text-xs font-bold text-muted uppercase tracking-widest hover:text-foreground transition-colors">Ver ranking completo</button>
             </PremiumCard>
           </div>
         </div>

@@ -20,7 +20,7 @@ export function MetricCard({ title, value, variance, icon: Icon, sparklineData, 
   return (
     <PremiumCard className={cn("p-5 flex flex-col justify-between min-h-[140px]", className)}>
       <div className="flex justify-between items-start mb-4">
-        <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">{title}</h4>
+        <h4 className="text-sm font-semibold text-muted uppercase tracking-wider">{title}</h4>
         {Icon && (
           <div className="p-2 rounded-lg bg-atlas-orange/10 border border-atlas-orange/20 shadow-[0_0_10px_rgba(255,86,24,0.2)]">
             <Icon className="w-4 h-4 text-atlas-orange" />
@@ -30,12 +30,12 @@ export function MetricCard({ title, value, variance, icon: Icon, sparklineData, 
 
       <div>
         <div className="flex items-end gap-3">
-          <span className="text-3xl font-display font-bold text-white">{value}</span>
+          <span className="text-3xl font-display font-bold text-foreground">{value}</span>
 
           {variance !== undefined && (
             <div className={cn(
               "flex items-center text-sm font-semibold mb-1",
-              isPositive ? "text-emerald-400" : isNegative ? "text-red-400" : "text-gray-400"
+              isPositive ? "text-emerald-600 dark:text-emerald-400" : isNegative ? "text-red-600 dark:text-red-400" : "text-muted"
             )}>
               {isPositive ? <TrendingUp className="w-4 h-4 mr-1" /> : isNegative ? <TrendingDown className="w-4 h-4 mr-1" /> : <Minus className="w-4 h-4 mr-1" />}
               {Math.abs(variance)}%
