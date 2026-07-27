@@ -6,192 +6,170 @@ const meta = getModuleMeta("07-integracoes")!;
 export const module07: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulo 5 — Software Logístico (tecnologias de rastreamento atendidas pela Atlas)",
-    "Módulo 2 — Mercado de Logística (TMS, ERP e API)",
-    "Treinamento Tratativa de Alertas — SM Iniciada (particularidades de ativação de sensores por tecnologia)",
-    "Manuais de checklist por tecnologia (Onix, Positron, Omnilink) — pré-requisitos e diferenças de leitura entre fabricantes",
+    "Documentação de Integração de API AtlasGR",
+    "Manuais de Tecnologias Embarcadas (Hardwares)",
   ],
   objectives: [
-    "Explicar por que o Atlas Connect precisa conversar com sistemas de terceiros.",
-    "Listar as principais tecnologias de rastreamento integradas à Atlas.",
-    "Diferenciar integração com rastreador de integração com TMS/ERP do cliente.",
-    "Reconhecer os pontos mais comuns de falha de integração e como isolá-los.",
-    "Reconhecer pré-requisitos que travam o checklist em tecnologias específicas antes de começar o teste.",
+    "Desmistificar o conceito técnico de APIs e integração de dados B2B.",
+    "Compreender como a Atlas atua como 'Tradutor Universal' de hardwares de terceiros.",
+    "Explicar o benefício comercial de 'zero digitação' proporcionado pela integração.",
+    "Dominar o conceito de comandos remotos bidirecionais (enviar e receber dados).",
   ],
   sections: [
     {
-      id: "por-que-integrar",
-      title: "Por que o Connect precisa conversar com outros sistemas",
+      id: "introducao",
+      title: "Introdução: O Hub Logístico",
+      blocks: [
+        {
+          type: "text",
+          heading: "Falando Todas as Línguas",
+          paragraphs: [
+            [
+              "Imagine uma sala cheia de pessoas de países diferentes. A transportadora fala Japonês (usando o sistema SSW), o embarcador fala Alemão (usando SAP), o rastreador da carreta fala Mandarim (Sascar) e a isca dentro da carga fala Árabe (Isca Gold). A AtlasGR é o Tradutor Simultâneo.",
+            ],
+            [
+              "A capacidade de conectar todos esses sistemas dispersos em uma única tela (O Connect) e fazê-los trabalhar juntos é o que nos torna essenciais. Sem nós, o cliente precisaria de 15 pessoas digitando dados o dia todo.",
+            ],
+          ],
+        },
+        {
+          type: "callout",
+          variant: "success",
+          title: "O Apelo Comercial",
+          text: [
+            "Integração é a nossa arma de vendas mais letal. Quando dizemos a um CEO que ele poderá demitir planilhas de Excel e erros de digitação, a venda é fechada.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-1-apis",
+      title: "Capítulo 1: A Magia das APIs",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A Atlas não fabrica o equipamento instalado no veículo — ela integra com rastreadores de diferentes fabricantes para captar posição, eventos e comandos, e organiza tudo isso dentro do ",
-              { term: "connect" },
-              ".",
-            ],
-            [
-              "Ao mesmo tempo, o cliente muitas vezes já tem um ",
-              { term: "tms" },
-              " ou um ",
-              { term: "erp" },
-              " rodando a operação dele. Quanto mais esses sistemas conversam entre si via ",
+              "Você não precisa ser programador para entender uma ",
               { term: "api" },
-              ", menos trabalho manual e menos chance de erro humano na troca de informação.",
+              ". A API (Interface de Programação de Aplicações) é um mensageiro.",
             ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "tecnologias-de-rastreamento",
-      title: "Tecnologias de rastreamento integradas",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
             [
-              "A Atlas atende clientes com diferentes marcas de equipamento instalado no veículo — cada fabricante tem seu próprio portal e sua própria forma de enviar comandos e receber eventos.",
+              "A transportadora fatura a Nota Fiscal no sistema financeiro dela. Imediatamente, a API da Atlas 'bate na porta' do sistema deles, copia a Nota Fiscal, traz para o Connect e CRIA a viagem automaticamente. Zero cliques humanos.",
             ],
           ],
         },
-        {
-          type: "checklist",
-          title: "Principais tecnologias atendidas",
-          items: [
-            "Sascar / Sighra",
-            "Onix / Omnilink",
-            "Pósitron / Autotrac",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Três competências por tecnologia",
-          text: [
-            "Para cada uma dessas tecnologias, o operador precisa dominar três competências: envio de comandos (bloqueio, sirene), desbloqueio manual em caso de falha, e leitura de relatórios de eventos — a lógica muda pouco de fabricante para fabricante, mas a tela e os nomes dos botões, sim.",
-          ],
-        },
-        {
-          type: "text",
-          heading: "Onde cada fabricante guarda a ativação de sensores",
-          paragraphs: [
-            [
-              "Um exemplo concreto de como a tela muda entre fabricantes: na Sighra, os sensores ficam agrupados em uma única lista (\"Sensores Ativos\"); na Onix, cada sensor é habilitado individualmente (porta do motorista, porta do carona, painel, desengate); no Pósitron, a ativação é feita item a item em \"Comandos\"; e no Autotrac, os sensores ficam distribuídos por níveis dentro do menu \"Geral\".",
-            ],
-          ],
-        },
-        {
-          type: "case",
-          title: "Habilitando sensores no Autotrac, na prática",
-          text:
-            "No menu Geral, o operador localiza o veículo pelo MCT/ID Primário (copiado do Connect) e envia o comando padrão: proibir carona, desengate e painel nível 3 — é essa combinação que faz o evento subir e bloquear o veículo em caso de violação. Depois de confirmar que a macro chegou ao sistema, o operador conclui a checagem em Históricos → Alertas OBC, conferindo na tabela se cada violação testada realmente gerou o alerta esperado antes de liberar o veículo.",
-          source: "Manual de Checklist Autotrac",
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          title: "\"Nível\" no Autotrac não é o mesmo \"nível\" do Atlas Connect",
-          text: [
-            "Cuidado com a coincidência de nomes: o \"nível 3\" de um comando do Autotrac é uma configuração interna do próprio rastreador (intensidade/tipo de bloqueio do sensor), e não tem relação com os 7 níveis de prioridade de alerta do Atlas Connect (Módulo 11). São duas escalas completamente diferentes que só coincidem no nome.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "pre-requisitos-e-armadilhas",
-      title: "Pré-requisitos e armadilhas por tecnologia",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Nem todo checklist começa direto no teste dos sensores. Algumas tecnologias têm um pré-requisito que precisa ser resolvido antes — ignorá-lo não trava só o checklist, trava a segurança da viagem inteira.",
-            ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "O que trava o início do checklist",
-          items: [
-            "Onix — Inteligência Embarcada (I.E.): sem I.E. cadastrada e vinculada a um CNPJ da Atlas (verificado no sistema Onix e no Onix Connect), o checklist não pode começar; o motorista é orientado a acionar a transportadora para providenciar o espelhamento.",
-            "Onix — macro genérica: se o veículo estiver rodando com a macro padrão \"Trucks Control\" (ou outra macro genérica da fabricante), ela precisa ser trocada pela macro correta antes do checklist — a macro genérica não tem ação de bloqueio, então uma violação real não bloquearia o veículo.",
-            "Omnilink — status EM TRÂNSITO: o motorista precisa informar saída pelo menu do próprio equipamento antes que o checklist seja liberado; sem esse status, o teste não roda.",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          title: "A mesma cor não significa a mesma coisa em todo sistema",
-          text: [
-            "No Onix, o Grid usa verde para sensor fechado/normal e vermelho para aberto/violação. No Positron a lógica é diferente: verde indica que o sensor está acusando violação (porta aberta, veículo desbloqueado ou desengatado), cinza indica ausência de violação, e azul sinaliza modo satélite — condição em que o checklist não deve ser realizado. Quem atende mais de uma tecnologia precisa checar a legenda de cada sistema antes de confiar só na cor.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "dois-tipos-de-integracao",
-      title: "Dois tipos de integração, dois tipos de risco",
-      blocks: [
         {
           type: "comparison",
-          title: "Integração com rastreador x Integração com TMS/ERP",
+          title: "O Antes e o Depois",
           left: {
-            label: "Rastreador (Sascar, Onix, Pósitron...)",
-            points: [
-              "Fonte primária de posição e eventos do veículo.",
-              "Falha aqui gera perda de sinal — evento tratado diretamente pela CIA conforme o PGR.",
-              "Cada fabricante tem seu próprio portal de comandos.",
-            ],
+            label: "Mundo Sem API (O Passado)",
+            points: ["Assistente imprime a NF no galpão.", "Lê os dados e redigita (e erra a placa) no sistema de rastreamento.", "Avisa o motorista por WhatsApp."],
           },
           right: {
-            label: "TMS / ERP do cliente",
-            points: [
-              "Recebe dados já processados pelo Connect (ex.: ETA, status de entrega).",
-              "Falha aqui não impede o monitoramento — só atrasa a visibilidade do cliente sobre o próprio sistema.",
-              "Integração via API, geralmente configurada uma vez pela Implantação.",
-            ],
+            label: "Mundo AtlasGR (O Presente)",
+            points: ["Botão de Faturar pressionado.", "Connect puxa os dados e cruza com a PGR e o Profile em 2 segundos.", "Torre assume o controle da viagem."],
           },
         },
+      ],
+    },
+    {
+      id: "capitulo-2-hardwares",
+      title: "Capítulo 2: O Tradutor de Hardwares (Agnosticismo)",
+      blocks: [
         {
-          type: "faq",
+          type: "text",
+          paragraphs: [
+            [
+              "A AtlasGR é 'Agnóstica de Hardware'. Isso significa que nós não obrigamos o cliente a jogar os rastreadores dele fora para comprar o nosso. Nós integramos todos eles.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Como funciona a centralização:",
           items: [
-            { q: "Se a integração com o TMS do cliente cair, a operação de risco para?", a: "Não. O monitoramento continua normalmente pelo Atlas Connect — só o reflexo automático de dados no TMS do cliente fica temporariamente indisponível." },
-            { q: "E se o rastreador perder sinal?", a: "Esse é um evento crítico, tratado dentro do próprio fluxo de gerenciamento de risco (perda de sinal por mais de 2 horas é escalada para a CIA II)." },
+            "Um cliente tem uma frota misturada: Caminhões novos com 'Sascar' e antigos com 'OnixSat'.",
+            "Para o cliente rastrear antes da Atlas, ele abria o site da Sascar no Monitor 1 e o site da Onixsat no Monitor 2.",
+            "O Atlas Connect recebe a longitude/latitude dos dois fornecedores e coloca TUDO NA MESMA TELA, no mesmo formato.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-3-bidirecionalidade",
+      title: "Capítulo 3: Comandos Bidirecionais",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "A integração não é uma rua de mão única (onde só recebemos dados). Ela é bidirecional. O Operador da Atlas pode, através da NOSSA tela, enviar comandos que vão bater no satélite e chegar no hardware do fabricante terceiro.",
+            ],
+          ],
+        },
+        {
+          type: "timeline",
+          title: "Exemplo Prático de Bloqueio",
+          items: [
+            { label: "Torre Atlas", text: "O operador aperta o botão 'Bloquear Combustível' no Atlas Connect." },
+            { label: "API Atlas", text: "O nosso sistema traduz o comando para a linguagem específica daquele fabricante (ex: Autotrac)." },
+            { label: "Satélite", text: "A rede da Autotrac envia o comando." },
+            { label: "Caminhão", text: "O motor do caminhão corta o diesel a milhares de quilômetros de distância." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Falha Humana Banida",
+      blocks: [
+        {
+          type: "case",
+          title: "O Fator Humano Removido",
+          text: "Em 2022, um grande cliente perdia em média 2 cargas por mês. O motivo? Os assistentes de logística esqueciam de vincular o equipamento 'Isca Móvel' à placa da carreta durante a correria da expedição. Se o rastreador principal fosse derrubado, a isca estava ligada, mas o sistema não sabia em qual carreta ela estava. A Atlas implantou a integração API pesada. A partir de então, a leitura do código de barras da caixa amarrava a Isca à NF e à Placa simultaneamente no Connect. Em 12 meses, os roubos caíram a zero. Retirar a digitação manual tira a principal fonte de erros da segurança.",
+          source: "Laboratório de Integração Tecnológica - TI Atlas",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Você não precisa aprender a programar integrações, mas precisa saber vender a ideia delas (o benefício do tempo economizado) com paixão e firmeza.",
+            ],
           ],
         },
       ],
     },
   ],
   summary: [
-    "O Atlas Connect integra com rastreadores de diferentes fabricantes (Sascar/Sighra, Onix/Omnilink, Pósitron/Autotrac) para captar posição, eventos e comandos.",
-    "O cliente pode ter TMS e ERP próprios; a integração via API evita retrabalho manual e erro humano.",
-    "Integração com rastreador é crítica para a operação de risco; integração com TMS/ERP do cliente é sobre visibilidade, não sobre segurança.",
-    "Falha de sinal do rastreador segue o fluxo normal de gerenciamento de risco; falha de integração com TMS/ERP não interrompe o monitoramento.",
-    "Algumas tecnologias têm pré-requisitos que travam o início do checklist (I.E. no Onix, macro genérica sem bloqueio, status EM TRÂNSITO no Omnilink) — e a cor de um sensor no Grid não significa a mesma coisa em todo sistema.",
+    "APIs conectam sistemas, removendo a necessidade de digitação humana.",
+    "Ser agnóstico significa aceitar e centralizar dados de qualquer hardware/rastreador do mercado no Atlas Connect.",
+    "Bidirecionalidade permite que a Torre Atlas gerencie bloqueios sem sair da própria ferramenta.",
+    "A maior causa de falha em PGRs é o erro humano na digitação/atribuição. A API mata esse erro.",
   ],
   finalChecklist: [
-    "Sei explicar por que o Connect integra com sistemas de terceiros.",
-    "Consigo nomear pelo menos 3 tecnologias de rastreamento atendidas pela Atlas.",
-    "Sei diferenciar o impacto de uma falha de integração com rastreador e com TMS/ERP.",
-    "Sei reconhecer os pré-requisitos que travam o checklist no Onix e no Omnilink antes de começar o teste.",
+    "Posso explicar o que é uma API para uma pessoa leiga.",
+    "Compreendo o valor comercial de ter uma frota com múltiplos rastreadores em uma só tela.",
+    "Entendo como funciona o envio de comandos remotos (sirene/bloqueio) via API.",
   ],
   mindMap: {
-    root: "Integrações",
+    root: "Integrações AtlasGR",
     branches: [
-      { label: "Por que integrar", items: ["Evitar retrabalho manual", "Reduzir erro humano", "API"] },
-      { label: "Rastreadores", items: ["Sascar/Sighra", "Onix/Omnilink", "Pósitron/Autotrac"] },
-      { label: "Pré-requisitos", items: ["I.E. (Onix)", "Macro genérica sem bloqueio (Onix)", "EM TRÂNSITO (Omnilink)"] },
-      { label: "Sistemas do cliente", items: ["TMS", "ERP", "ETA automático"] },
-      { label: "Risco de falha", items: ["Perda de sinal → CIA", "Falha de API → só visibilidade"] },
+      { label: "Softwares", items: ["APIs", "ERP (Nota Fiscal)", "TMS (Fretes)"] },
+      { label: "Hardwares", items: ["Agnóstico", "Fabricantes (Sascar/etc)"] },
+      { label: "Ações", items: ["Receber Posicionamento", "Enviar Bloqueio", "Zero Digitação"] },
     ],
   },
   scenario:
-    "Durante uma auditoria, o cliente reclama que o ETA não aparece no TMS dele. Antes de entrar em pânico, você precisa diagnosticar: o problema está no rastreador (crítico) ou na integração com o TMS (visibilidade)?",
+    "Cenário Prático: O cliente diz que o Operador dele prefere usar o sistema do rastreador direto do que o Connect. Explique a ele por que o sistema do rastreador não ajuda em nada quando a apólice de seguro entra na jogada.",
   diagram: {
-    title: "Onde a informação trafega",
-    chart: "graph LR\n  A[Rastreador] --> B[Atlas Connect]\n  B --> C[TMS / ERP do cliente]\n  B --> D[Torre de Controle]",
+    title: "O Hub Omnicanal",
+    chart: "graph TD\n  SistCliente[ERP/TMS Cliente] <-->|APIs de NF/Frete| Connect((Atlas Connect))\n  Rastreador1[Hardware Sascar] -->|Posição GPS| Connect\n  Rastreador2[Hardware Omnilink] -->|Posição GPS| Connect\n  Connect -->|Comandos de Bloqueio| Rastreador1",
   },
 };

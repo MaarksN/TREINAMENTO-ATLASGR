@@ -6,152 +6,168 @@ const meta = getModuleMeta("06-atlas-profile")!;
 export const module06: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulo 1 — Estrutura organizacional (setor de Perfil Securitário)",
-    "Showcase de produto Atlas Profile (/produtos/profile)",
-    "LGPD (Lei nº 13.709/2018)",
+    "Atlas Profile - Guia de Produto",
+    "Cartilha de LGPD (Lei nº 13.709/2018)",
   ],
   objectives: [
-    "Explicar o que o Atlas Profile verifica antes de aprovar um motorista ou veículo.",
-    "Descrever o papel da biometria facial (FaceID) na validação de identidade.",
-    "Reconhecer o que significa um cadastro classificado como \"Requer Atenção\".",
-    "Relacionar o Atlas Profile às exigências da LGPD no tratamento de dados pessoais.",
+    "Explicar a lógica financeira da prevenção antecipada de fraudes.",
+    "Detalhar o funcionamento técnico do reconhecimento facial e checagem de dados.",
+    "Relacionar a prática do Profile às exigências de anonimização e privacidade da LGPD.",
+    "Interpretar corretamente os status gerados pelo sistema.",
   ],
   sections: [
     {
-      id: "custo-invisivel",
-      title: "O custo invisível da contratação",
+      id: "introducao",
+      title: "Introdução: O Portão de Entrada",
       blocks: [
         {
           type: "text",
-          heading: "Um risco que não aparece na planilha",
+          heading: "A Fraude Começa Fora da Estrada",
           paragraphs: [
             [
-              "A maioria dos prejuízos graves de uma operação de transporte não vem de um caminhão quebrado — vem de uma contratação malfeita: um motorista com histórico de risco, documentação irregular, ou pior, um impostor dirigindo no lugar de quem foi de fato contratado.",
+              "Se você deixar um fraudador assumir a boleia do caminhão, o Atlas Connect e o Atlas GR terão que travar uma guerra para parar o veículo. A lógica do Atlas Profile é simples: nós não deixamos o inimigo entrar no caminhão.",
             ],
             [
-              "Esse é o \"custo invisível\": ele não aparece em nenhum relatório até o dia em que vira um sinistro grave, um acidente ou uma investigação. O Atlas Profile existe para tornar esse risco visível antes da viagem começar.",
+              "O Profile atua no 'Background Check' (Pesquisa de Antecedentes e Validação Documental), atuando como um filtro implacável que varre o histórico da frota e do condutor antes do frete ser aprovado.",
             ],
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Por que isso é tratado com urgência",
+          title: "Ponto Crítico de Compliance",
           text: [
-            "Colocar em rota um motorista ou veículo com pendência não tratada é o tipo de falha que o restante do gerenciamento de risco (PGR, monitoramento, CIA) não consegue compensar depois — por isso o Profile atua antes da viagem, não durante.",
+            "Por lidar com reconhecimento facial e dados criminais, o Profile exige adesão religiosa à Lei Geral de Proteção de Dados (LGPD). O menor erro de exposição de dados aqui custa milhões em processos e dano moral.",
           ],
         },
       ],
     },
     {
-      id: "o-que-verifica",
-      title: "O que o Atlas Profile verifica",
+      id: "capitulo-1-motor",
+      title: "Capítulo 1: O Motor de Checagem Rápida",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "No passado, despachantes passavam dias consultando sites de tribunais de justiça. Hoje, o Atlas Profile realiza milhares de requisições simultâneas via ",
+              { term: "api" },
+              ".",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Bases Varridas Automaticamente",
+          items: [
+            "Tribunais de Justiça Estaduais e Federais (Mandados de Prisão, Histórico de Furto, Roubo e Formação de Quadrilha).",
+            "Detran (Validade da CNH, Suspensões, Multas, IPVA atrasado).",
+            "ANTT (RNTRC do veículo ativo).",
+            "Receita Federal (Situação do CPF).",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-faceid",
+      title: "Capítulo 2: A Morte da Falsidade Ideológica (FaceID)",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Se um golpista rouba uma CNH real (física) de uma pessoa com ficha limpa, a consulta em banco de dados vai aprovar o documento. É aqui que entra o grande diferencial do produto: a biometria facial.",
+            ],
+          ],
+        },
+        {
+          type: "timeline",
+          title: "O Processo de Liveness",
+          items: [
+            { label: "1. SMS", text: "Motorista recebe um link seguro no celular na hora do carregamento." },
+            { label: "2. Prova de Vida", text: "O link abre a câmera frontal. Ele precisa sorrir ou piscar (Liveness) para provar que não está segurando uma foto impressa." },
+            { label: "3. Cruzamento", text: "A IA compara as medidas do rosto (biometria) com o banco de dados oficial do documento." },
+            { label: "4. Veredito", text: "Se o rosto não bater com a CNH informada, o status cai para Reprovado." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-3-pareceres",
+      title: "Capítulo 3: Os Pareceres e a LGPD",
+      blocks: [
+        {
+          type: "comparison",
+          title: "Entendendo as Respostas",
+          left: {
+            label: "O Que Aparece no Sistema",
+            points: ["Aprovado", "Não Recomendado", "Requer Atenção (Ex: CNH vencendo daqui 2 dias)"],
+          },
+          right: {
+            label: "O Que NUNCA Aparece",
+            points: ["A íntegra do mandado de prisão.", "O nome dos crimes cometidos.", "O CPF e Foto da pessoa aberta para consulta pública."],
+          },
+        },
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "A regra da LGPD é o Princípio da Necessidade. O nosso cliente (a Transportadora) só precisa saber se o motorista pode ou não transportar a carga (O Status). Ele NÃO precisa (e não pode) saber se o motorista teve um processo de divórcio litigioso ou foi preso por briga de trânsito em 1999.",
+            ],
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Prevenção do Assalto Interno",
+      blocks: [
+        {
+          type: "case",
+          title: "O Motorista Clonado",
+          text: "Caso Clássico (2024): Uma transportadora tentou cadastrar um motorista para uma carga de R$ 5 Milhões em notebooks. O banco de dados aprovou o CPF (o cara era ficha limpa). Mas na hora do FaceID, o sistema apontou 0% de similaridade facial. A CIA da AtlasGR foi acionada. Descobriu-se que o golpista achou os documentos reais do motorista perdido no chão de um posto de gasolina. Ele usou a CNH física para se candidatar ao frete, pretendendo desviar a carreta inteira para uma facção criminosa. O roubo de 5 milhões foi abortado por uma simples verificação facial na portaria.",
+          source: "Arquivo de Prevenção a Fraudes AtlasGR",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Próximos Passos",
       blocks: [
         {
           type: "checklist",
-          title: "Camadas de verificação de um cadastro",
+          title: "Checklist de Encerramento",
           items: [
-            "Documentação do motorista — CNH regular, categoria compatível com o veículo e a carga.",
-            "Histórico de processos — resumo de processos judiciais relevantes, quando aplicável.",
-            "Validação biométrica — confirmação de que a pessoa é quem diz ser, via FaceID.",
-            "Documentação do veículo — regularidade, categoria e compatibilidade com o tipo de carga (ex.: MOPP para cargas perigosas).",
-          ],
-        },
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "A validação por ",
-              { term: "faceid" },
-              " é o que fecha o ciclo: de nada adianta a documentação estar em ordem se a pessoa que vai dirigir não é a mesma que foi cadastrada e aprovada.",
-            ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "requer-atencao",
-      title: "Quando um cadastro é classificado como \"Requer Atenção\"",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Nem toda pendência bloqueia automaticamente a operação. O setor de ",
-              { term: "perfil-securitario" },
-              " analisa cada caso classificado como \"Requer Atenção\" — uma documentação vencida, um processo judicial que precisa de contexto — antes de decidir se libera, condiciona ou nega a aprovação.",
-            ],
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            { q: "\"Requer Atenção\" significa que o motorista está automaticamente reprovado?", a: "Não. Significa que um analista humano precisa avaliar o caso antes de qualquer decisão — o sistema sinaliza, mas não decide sozinho." },
-            { q: "O que acontece se a operação não esperar essa análise?", a: "É exatamente esse atalho que gera o tipo de risco que o Atlas Profile foi criado para eliminar — decisões tomadas sob pressão, sem checagem completa." },
-          ],
-        },
-        {
-          type: "case",
-          title: "Por que essa etapa não pode ser pulada",
-          text:
-            "Acidentes graves envolvendo veículos de carga em rodovias brasileiras frequentemente têm, na origem, uma falha de contratação que passou despercebida — documentação vencida, motorista sem o treinamento exigido para aquele tipo de carga, ou histórico que deveria ter sido investigado antes da liberação.",
-          source: "Contexto de mercado sobre acidentes rodoviários envolvendo veículos de carga",
-        },
-      ],
-    },
-    {
-      id: "lgpd-e-profile",
-      title: "Atlas Profile e a LGPD",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "O Atlas Profile lida com dados pessoais sensíveis — documentos, biometria, histórico de processos. Toda essa informação está sujeita à ",
-              { term: "lgpd" },
-              ": precisa de finalidade clara, consentimento quando aplicável, e cuidado redobrado no armazenamento e no acesso.",
-            ],
-          ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "SLA e confiança andam juntos",
-          text: [
-            "O compromisso de retorno em poucos minutos só tem valor se a análise for feita com rigor e dentro da lei — velocidade sem compliance vira risco jurídico, não vantagem competitiva.",
+            "Entender profundamente a Lei LGPD e seu artigo sobre dados sensíveis.",
+            "Visualizar no sistema de demonstração a diferença entre a visão do operador Atlas e a visão do cliente final.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "O Atlas Profile ataca o \"custo invisível\" da contratação: riscos que só aparecem depois de um problema grave.",
-    "A verificação combina documentação do motorista e do veículo, histórico de processos e validação biométrica (FaceID).",
-    "Um cadastro \"Requer Atenção\" precisa de análise humana do Perfil Securitário antes de qualquer decisão.",
-    "Falhas de contratação não tratadas estão na origem de muitos acidentes graves envolvendo cargas.",
-    "Todo o processo do Atlas Profile precisa respeitar a LGPD, já que lida com dados pessoais sensíveis.",
+    "Profile varre antecedentes criminais, documentação de trânsito e fraudes veiculares.",
+    "O FaceID é a única barreira funcional contra o crime de Falsidade Ideológica.",
+    "A entrega de status ('Não Recomendado') blinda o cliente e a Atlas de processos por dano moral (LGPD).",
+    "O Custo Invisível evitado pelo Profile é gigante: caminhões não são retidos no meio da estrada por documentação atrasada.",
   ],
   finalChecklist: [
-    "Sei explicar o que o Atlas Profile verifica antes de aprovar um cadastro.",
-    "Sei o papel do FaceID na validação de identidade.",
-    "Entendo o que significa um cadastro \"Requer Atenção\" e por que ele não é uma reprovação automática.",
-    "Relaciono o Atlas Profile às exigências da LGPD.",
+    "Compreendo como a IA combate a falsidade ideológica via FaceID.",
+    "Entendo o limite de informação que podemos compartilhar segundo a LGPD.",
+    "Sei os 3 tipos de pareceres gerados pela pesquisa.",
   ],
   mindMap: {
     root: "Atlas Profile",
     branches: [
-      { label: "Problema", items: ["Custo invisível da contratação", "Risco que não aparece na planilha"] },
-      { label: "Verificação", items: ["Documentação do motorista", "Histórico de processos", "FaceID", "Documentação do veículo"] },
-      { label: "Decisão", items: ["Aprovado", "Requer Atenção (análise humana)", "Reprovado"] },
-      { label: "Compliance", items: ["LGPD", "Consentimento", "Finalidade clara"] },
+      { label: "Bases", items: ["Tribunais", "ANTT", "Detran"] },
+      { label: "FaceID", items: ["Prova de Vida", "Biometria", "Anti-Falsidade"] },
+      { label: "LGPD", items: ["Sigilo do Crime", "Apenas o Parecer", "Consentimento"] },
     ],
   },
   scenario:
-    "Faltam 40 minutos para um motorista sair em viagem e o cadastro dele aparece como 'Requer Atenção' no Atlas Profile. A transportadora pressiona para liberar agora. O que a análise do Perfil Securitário — e não a pressão do cliente — deve decidir aqui?",
+    "Cenário Prático: Um despachante terceirizado liga furioso exigindo saber POR QUE o Atlas Profile reprovou um grande amigo dele. Como você bloqueia essa extração de dados usando a política de compliance?",
   diagram: {
-    title: "Da documentação à aprovação",
-    chart:
-      "graph LR\n  A[Documentacao e antecedentes] --> B[FaceID]\n  B --> C{Requer Atencao?}\n  C -->|Sim| D[Analise do Perfil Securitario]\n  C -->|Nao| E[Aprovado]\n  D --> E\n  D --> F[Reprovado]",
+    title: "O Funil de Contratação",
+    chart: "graph TD\n  Dados[Input Placa/CPF] --> CheckDoc[Bases Governamentais]\n  CheckDoc -- Limpo --> Selfie[SMS FaceID]\n  Selfie -- Rosto Confere --> Aprova[Viagem Liberada]\n  CheckDoc -- Crime --> Reprova[NÃO RECOMENDADO]\n  Selfie -- Rosto Falso --> Reprova",
   },
 };

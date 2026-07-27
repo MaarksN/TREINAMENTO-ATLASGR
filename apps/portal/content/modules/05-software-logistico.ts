@@ -6,185 +6,166 @@ const meta = getModuleMeta("05-software-logistico")!;
 export const module05: ModuleContentFull = {
   ...meta,
   sources: [
-    "Manual de Check list — telas do Atlas Connect (cadastro de veículo, checklist, menus)",
-    "Cronograma de Treinamentos 2º semestre — treinamentos de Atlas Connect e de tecnologias de rastreamento",
-    "Treinamento Connect — Acesso ao Atlas Connect (telas de Dashboard e cadastros gerais)",
+    "Manuais de Operação Atlas Connect",
+    "Torre de Controle - Guias Práticos",
   ],
   objectives: [
-    "Explicar para que serve o Atlas Connect no dia a dia da Central.",
-    "Localizar os principais menus do sistema e o que cada um faz.",
-    "Executar mentalmente o fluxo de solicitação e validação de um checklist.",
-    "Reconhecer que o Connect precisa se comunicar com diferentes tecnologias de rastreamento de terceiros.",
+    "Dominar a arquitetura visual e a hierarquia da tela do Atlas Connect.",
+    "Explicar a dinâmica de criação, rastreamento e baixa de uma SM (Solicitação de Monitoramento).",
+    "Compreender a mecânica do Motor de Regras e a priorização de níveis de alerta.",
+    "Entender a diferença operacional entre Grade Passiva e Fila Ativa de Alertas.",
   ],
   sections: [
     {
-      id: "o-que-e-o-connect",
-      title: "O que é o Atlas Connect",
+      id: "introducao",
+      title: "Introdução: O Cockpit de Comando",
       blocks: [
         {
           type: "text",
-          heading: "O sistema por trás da Central",
+          heading: "A Orquestração do Risco",
           paragraphs: [
             [
-              { term: "connect" },
-              " é a plataforma própria da Atlas usada para cadastrar clientes e veículos, configurar o ",
-              { term: "pgr" },
-              ", solicitar e validar ",
-              { term: "checklist" },
-              ", acompanhar a ",
-              { term: "torre-de-controle" },
-              " e registrar eventos e alertas — é a ferramenta que conecta todas as áreas operacionais estudadas no módulo 3.",
+              "Bem-vindo ao Atlas Connect. Se o PGR é a lei, o Connect é a delegacia, o juiz e o camburão, tudo em um sistema só. É nesta tela que milhares de veículos são acompanhados e onde a inteligência artificial da Atlas separa o que é rotina do que é tragédia.",
+            ],
+            [
+              "Seu objetivo aqui não é decorar onde fica o botão de 'Salvar'. É entender o FLUXO DA INFORMAÇÃO: como uma viagem nasce, como o sistema vigia e como os alertas são priorizados.",
             ],
           ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "Por que 'software logístico' e não só 'sistema de rastreamento'",
+          title: "Dica do Assistente IA",
           text: [
-            "O Connect não substitui o rastreador instalado no veículo — ele centraliza cadastros, regras (PGR), checklist, eventos e indicadores de várias tecnologias de rastreamento diferentes em um único fluxo de trabalho para a Central.",
+            "Não se preocupe com telas mudando de layout no futuro. A lógica (Grade vs Alertas) nunca muda. Se você focar na lógica, o design se torna irrelevante.",
           ],
         },
       ],
     },
     {
-      id: "tour-pelo-menu",
-      title: "Tour pelo menu principal",
+      id: "capitulo-1-interface",
+      title: "Capítulo 1: A Anatomia da Tela",
       blocks: [
         {
-          type: "checklist",
-          title: "Menus de primeiro nível",
+          type: "comparison",
+          title: "Grade de Viagens x Fila de Alertas",
+          left: {
+            label: "A Grade de Viagens (Passiva)",
+            points: [
+              "É a lista de TODOS os caminhões atualmente em rota.",
+              "Serve para consultas (Ex: Cliente liga pedindo o ETA de um caminhão específico).",
+              "Não exige ação imediata do operador.",
+            ],
+          },
+          right: {
+            label: "A Fila de Alertas (Ativa)",
+            points: [
+              "O coração pulsante. Aqui caem apenas as EXCEÇÕES (violações do PGR).",
+              "Pisca, faz barulho e exige AÇÃO IMEDIATA (SLA).",
+              "Ordenada por Níveis de Prioridade (do 1 ao 7).",
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-a-viagem",
+      title: "Capítulo 2: O Ciclo de Vida da Viagem (SM)",
+      blocks: [
+        {
+          type: "timeline",
+          title: "A Jornada do SM (Solicitação de Monitoramento)",
           items: [
-            "Dashboard — visão geral do que está acontecendo na operação.",
-            "Logística — informações relacionadas às operações de transporte cadastradas.",
-            "Torre de Controle — visão das viagens em andamento e eventos que exigem atenção.",
-            "Usuários do sistema — gestão dos usuários que acessam o Connect.",
-            "Cliente — cadastro e dados dos clientes atendidos pela Atlas.",
-            "Cadastros Gerais — cadastro de veículos, motoristas e demais objetos monitorados.",
-            "Localização — informações de posicionamento dos veículos.",
-            "P.G.R. — configuração do Plano de Gerenciamento de Risco de cada cliente.",
-          ],
-        },
-        {
-          type: "text",
-          heading: "As telas do Dashboard",
-          paragraphs: [
-            [
-              "O menu Dashboard reúne cinco telas: Painel de Viagens ODO (progressão de cada viagem, previsão de chegada e dispersão de quilometragem), BI de Pátio (veículos parados em pátio e o tempo de permanência), Panorâmica (visão geral de frotas, viagens em andamento, em atraso e checklists aprovados/reprovados), Mapa Gerencial (grid em tempo real com placa, frota, código da SM e última macro) e Requisição.",
-            ],
-          ],
-        },
-        {
-          type: "text",
-          heading: "O submenu de Monitoramento",
-          paragraphs: [
-            [
-              "Dentro de Monitoramento ficam as telas usadas todos os dias pela Operação e pela CIA: Evento ATLAS, Evento TECNOL (eventos gerados pela tecnologia do rastreador), Macro, Auditoria, Tela de Alerta, Operador CheckList e Consolidado SM.",
-            ],
-            [
-              "É nessa área que o operador solicita um checklist para uma placa específica, informando responsável e telefone de contato, e depois valida item por item cada sensor e atuador testado.",
-            ],
+            { label: "Nascimento (Criação)", text: "Gerada via integração com o TMS do cliente. O Connect atrela automaticamente o veículo, o motorista (já validado no Profile) e o PGR correspondente à carga." },
+            { label: "Ativação (Ping)", text: "O sistema testa a comunicação com o hardware (Rastreador e Isca). Se ambos responderem, a viagem fica 'Em Trânsito'." },
+            { label: "Execução (Rastreio)", text: "Cercas virtuais, macros de teclado e posições de GPS são gravadas a cada minuto." },
+            { label: "Morte (Encerramento)", text: "O caminhão entra na cerca eletrônica do destino final. O operador (ou o sistema via Automação) dá baixa na SM, liberando o veículo para novo frete." },
           ],
         },
       ],
     },
     {
-      id: "fluxo-checklist-connect",
-      title: "Fluxo de checklist no Connect",
+      id: "capitulo-3-motor",
+      title: "Capítulo 3: O Motor de Regras e Níveis",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "O Operador não caça problemas; o Motor de Regras os traz até ele. O Motor é o cérebro da AtlasGR. Ele lê o PGR e classifica a gravidade do que acabou de acontecer.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Escala de Gravidade",
+          items: [
+            "Nível 1 (CRÍTICO EXTREMO): Acionamento do botão de pânico. Violação de painel. (SLA: Ação em 1 min. CIA imediata).",
+            "Nível 2 (ALTO RISCO): Perda de sinal (Jammer) em área de risco mapeada. Desvio de rota em carga de altíssimo valor.",
+            "Nível 4 (RISCO MODERADO): Parada não programada por 15 minutos fora de local seguro.",
+            "Nível 7 (INFORMATIVO/LOGÍSTICO): Bateria da isca atingiu 20%.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Ordem dos Fatores Altera a Vida",
       blocks: [
         {
           type: "case",
-          title: "Do pedido à validação",
-          text:
-            "Em Cadastros Gerais → Veículo → Veículo, o operador localiza a placa desejada e clica em \"Solicitar CheckList\", informando responsável e telefone. Em seguida, em Monitoramento → Operador CheckList, a lista de checklists solicitados é exibida com cliente, operação, responsável e status. Ao abrir um registro, cada item testado — bloqueio, botão de pânico, pisca, sensor de desengate, sensor de painel, sensor de porta do carona/motorista, sirene, teclado — pode ser aprovado ou reprovado, com campo de observação para detalhar qualquer problema.",
-          source: "Manual de Check list (telas do Atlas Connect)",
-        },
-        {
-          type: "checklist",
-          title: "Itens tipicamente testados em um checklist",
-          items: [
-            "Bloqueio",
-            "Botão de Pânico",
-            "Pisca",
-            "Sensor de Desengate",
-            "Sensor de Painel",
-            "Sensor de Porta do Carona",
-            "Sensor de Porta do Motorista",
-            "Sirene",
-            "Teclado",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "success",
-          title: "O resultado nunca fica em aberto",
-          text: [
-            "Ao final da validação, o veículo é aprovado (\"Atlas GR deseja um excelente trabalho!\") ou reprovado, indo direto para manutenção. Se um sensor específico apresentar defeito (ex.: indicar porta aberta com a porta fechada), a placa é encaminhada à supervisão com um script de comunicação descrevendo objetivamente o problema identificado.",
-          ],
+          title: "O Operador que Escolheu o Mais Fácil",
+          text: "Um caso clássico usado em reciclagens: Um operador iniciante viu sua Fila de Alertas subir. No topo, piscava em vermelho um Alerta Nível 1 (Pânico). Embaixo, piscava em amarelo um Alerta Nível 4 (Parada não programada). Como ele já conhecia o motorista do Nível 4, resolveu atender o Nível 4 primeiro para 'limpar a tela rápido'. Ele gastou 5 minutos nessa ligação. Quando abriu o Nível 1, a carreta já havia sumido no mapa (Jammer ativado). O Nível 1 era um sequestro real. Regra de Ouro: Nunca subverta a priorização do sistema. Ele sabe mais de risco do que você.",
+          source: "Manual de Falhas Comuns - DHO AtlasGR",
         },
       ],
     },
     {
-      id: "integracao-tecnologias",
-      title: "Integração com tecnologias de rastreamento",
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Próximos Passos",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A Atlas atende veículos equipados com diferentes marcas de rastreador. Por isso, a Central é treinada especificamente em cada tecnologia — o Connect padroniza o fluxo de trabalho, mas o operador precisa saber operar o equipamento de cada fabricante.",
+              "Leia o 'Manual de Telas' no sistema de Base de Conhecimento interno para ver capturas de tela atualizadas do cockpit.",
             ],
           ],
         },
         {
-          type: "comparison",
-          title: "O que é treinado por tecnologia (comum às marcas atendidas)",
-          left: {
-            label: "Tecnologias cobertas",
-            points: ["Sascar e Sighra", "Onix e Omnilink", "Pósitron e Autotrac"],
-          },
-          right: {
-            label: "Competências treinadas em cada uma",
-            points: ["Envio de comandos", "Desbloqueio manual", "Análise de relatórios"],
-          },
-        },
-        {
-          type: "faq",
+          type: "checklist",
+          title: "O que vem a seguir",
           items: [
-            { q: "O Connect substitui o sistema do fabricante do rastreador (ex.: Pósitron, Sascar)?", a: "Não. O Connect centraliza cadastro, PGR, checklist e eventos; o operador também acessa o portal do fabricante para ações específicas do equipamento, como a associação de GR." },
-            { q: "Onde fica o histórico de um checklist já validado?", a: "Em Monitoramento → Operador CheckList, junto com data, cliente, operação, responsável e status de cada solicitação." },
-            { q: "O que é o 'Consolidado SM'?", a: "É a tela que reúne o fechamento das SMs (viagens monitoradas) já concluídas, usada pela liderança para conferência." },
+            "Você passará por uma semana de 'Treinamento Sombra' (ouvindo ligações reais).",
+            "Seu próximo módulo será focado na etapa ANTERIOR ao Connect: O Atlas Profile.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "O Atlas Connect centraliza cadastros, PGR, checklist, monitoramento e eventos de toda a operação.",
-    "Menus principais: Dashboard, Logística, Torre de Controle, Usuários do sistema, Cliente, Cadastros Gerais, Localização e P.G.R.",
-    "Monitoramento reúne as telas do dia a dia: Evento ATLAS, Evento TECNOL, Macro, Auditoria, Tela de Alerta, Operador CheckList e Consolidado SM.",
-    "O fluxo de checklist vai de 'Solicitar CheckList' no cadastro do veículo até a aprovação/reprovação item a item em Operador CheckList.",
-    "A Central é treinada tecnologia por tecnologia (Sascar/Sighra, Onix/Omnilink, Pósitron/Autotrac) em envio de comandos, desbloqueio manual e análise de relatórios.",
+    "O Connect orquestra toda a viagem, da validação inicial até o encerramento no destino.",
+    "A Grade é passiva; A Fila de Alertas é ativa e dita a ordem de trabalho do Operador.",
+    "Um SM (Solicitação de Monitoramento) centraliza caminhão, motorista, carga e regras.",
+    "O Motor de Regras usa 7 níveis de prioridade para impedir que o Operador escolha o que tratar primeiro.",
   ],
   finalChecklist: [
-    "Sei para que serve o Atlas Connect e por que ele não substitui o rastreador.",
-    "Consigo nomear pelo menos 5 menus principais do Connect.",
-    "Sei descrever o fluxo completo de um checklist, do pedido à validação.",
-    "Reconheço as 3 competências treinadas em cada tecnologia de rastreamento.",
+    "Entendo a função da Fila de Alertas vs Grade.",
+    "Consigo elencar os 4 estágios de vida de um SM.",
+    "Sei a consequência fatal de subverter a ordem de Níveis de Prioridade.",
   ],
   mindMap: {
     root: "Atlas Connect",
     branches: [
-      { label: "Propósito", items: ["Centraliza cadastro, PGR, checklist, eventos"] },
-      { label: "Menus principais", items: ["Dashboard", "Torre de Controle", "Cliente", "Cadastros Gerais", "P.G.R."] },
-      { label: "Monitoramento", items: ["Evento ATLAS/TECNOL", "Macro", "Auditoria", "Tela de Alerta", "Operador CheckList", "Consolidado SM"] },
-      { label: "Tecnologias integradas", items: ["Sascar / Sighra", "Onix / Omnilink", "Pósitron / Autotrac"] },
+      { label: "Visões", items: ["Grade", "Fila de Alertas", "Mapa Virtual"] },
+      { label: "Jornada", items: ["SM", "Ping", "Trânsito", "Baixa"] },
+      { label: "Regras", items: ["Nível 1 (Pânico)", "Nível 7 (Bateria)"] },
     ],
   },
   scenario:
-    "Um supervisor pede para você localizar rapidamente o histórico de checklist de uma placa específica, no meio de um turno cheio. Em qual menu do Atlas Connect essa informação está, e em quantos passos você chega até ela?",
+    "Cenário Prático: A energia cai na sua central, mas o sistema de nobreak segura os computadores. A fila tem 50 alertas acumulados. O que você (e o sistema) fazem para voltar ao controle sem perder uma carga crítica?",
   diagram: {
-    title: "Fluxo de um veículo dentro do Atlas Connect",
-    chart: "graph LR\n  A[Cadastros Gerais] --> B[Solicitar CheckList]\n  B --> C[Operador CheckList]\n  C --> D[SM Ativa]\n  D --> E[Consolidado SM]",
+    title: "Triagem de Alertas",
+    chart: "graph TD\n  Evento[Caminhão Desvia Rota] --> Motor[Motor de Regras]\n  Motor --> Classifica[Classifica como Nível 2]\n  Classifica --> Fila[Topo da Fila do Operador]\n  Fila --> Acao[Operador Age]",
   },
 };

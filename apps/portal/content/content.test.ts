@@ -47,10 +47,10 @@ describe("glossary references in module content", () => {
 });
 
 describe("quizzes", () => {
-  it("every ready module has exactly 5 questions with a valid correctIndex", () => {
+  it("every ready module has exactly 10 questions with a valid correctIndex", () => {
     for (const slug of readyModuleSlugs) {
       const questions = getQuizForModule(slug);
-      expect(questions, `Módulo ${slug} sem quiz`).toHaveLength(5);
+      expect(questions, `Módulo ${slug} sem quiz`).toHaveLength(10);
       for (const q of questions) {
         expect(q.options.length).toBeGreaterThanOrEqual(2);
         expect(q.correctIndex).toBeGreaterThanOrEqual(0);
@@ -60,8 +60,8 @@ describe("quizzes", () => {
     }
   });
 
-  it("the final exam pool has one set of questions per ready module (15 total for 3 modules)", () => {
-    expect(getAllBuiltQuestions()).toHaveLength(readyModuleSlugs.length * 5);
+  it("the final exam pool has one set of questions per ready module (150 total for 15 modules)", () => {
+    expect(getAllBuiltQuestions()).toHaveLength(readyModuleSlugs.length * 10);
   });
 
   it("has no duplicate question ids across the full pool", () => {

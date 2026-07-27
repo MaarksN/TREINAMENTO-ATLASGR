@@ -6,123 +6,154 @@ const meta = getModuleMeta("09-processo-comercial")!;
 export const module09: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulo 8 — Clientes (perfis de cliente atendidos)",
-    "Módulo 1 — Estrutura organizacional (área Comercial)",
+    "Playbook Comercial AtlasGR 2026",
+    "Módulo 8 — Clientes (Revisão)",
   ],
   objectives: [
-    "Explicar o conceito de ICP e como ele orienta a prospecção.",
-    "Reconhecer as dores mais comuns que levam um cliente a contratar a Atlas.",
-    "Identificar objeções comuns e como elas se relacionam ao valor entregue.",
-    "Entender por que todo colaborador — não só o time comercial — representa o discurso da marca.",
+    "Entender o ciclo de vendas B2B Complexas.",
+    "Definir e utilizar o conceito de ICP (Ideal Customer Profile).",
+    "Aprender a contornar as objeções financeiras e operacionais mais duras.",
+    "Compreender que o atendimento da Torre é o maior vendedor de renovação da empresa.",
   ],
   sections: [
     {
-      id: "icp-e-persona",
-      title: "ICP e persona: para quem a Atlas vende",
+      id: "introducao",
+      title: "Introdução: A Arte da Guerra B2B",
       blocks: [
         {
           type: "text",
+          heading: "Venda Complexa",
           paragraphs: [
             [
-              "Antes de vender, o time comercial precisa saber para quem vender. O ",
-              { term: "icp" },
-              " descreve o tipo de empresa ideal — porte, segmento, tipo de carga, maturidade em gestão de risco — e a persona descreve a pessoa dentro dessa empresa que toma ou influencia a decisão de compra.",
+              "Vender AtlasGR não é vender sapato no shopping. É uma venda B2B (Business to Business) complexa. Demora de 3 a 6 meses para fechar um contrato. Envolve o CEO, o Diretor de TI, o Gerente de Operações e o Sindicato dos Motoristas do cliente.",
             ],
             [
-              "Uma transportadora de cargas de alto valor com histórico recente de sinistro, por exemplo, tende a se encaixar melhor no ICP da Atlas do que uma empresa pequena sem exigência contratual de rastreamento.",
+              "Este módulo vai mapear o funil de vendas, desde o primeiro 'Alô' até a assinatura do contrato milionário.",
             ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "dores-e-argumentacao",
-      title: "Dores comuns e argumentação",
-      blocks: [
-        {
-          type: "checklist",
-          title: "Dores que costumam abrir a conversa comercial",
-          items: [
-            "Exigência contratual de rastreamento e PGR por parte do embarcador ou da seguradora.",
-            "Histórico recente de sinistro (roubo, furto ou acidente) que expôs uma lacuna na operação.",
-            "Falta de visibilidade sobre a carga durante o transporte, especialmente com terceiros.",
-            "Custo operacional invisível — tempo parado, retrabalho, decisões tomadas \"no escuro\".",
-          ],
-        },
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "A argumentação comercial eficaz conecta a dor específica do cliente a um dos quatro pilares do portfólio: uma dor de contratação leva a Atlas Profile, uma dor de aderência a apólice leva a Atlas GR, uma dor de visibilidade leva a Atlas Connect, e uma dor de indicadores leva a Atlas Analytics.",
-            ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "objecoes",
-      title: "Objeções mais comuns",
-      blocks: [
-        {
-          type: "faq",
-          items: [
-            { q: "\"Já temos rastreador, para que contratar a Atlas?\"", a: "Rastreador capta posição e eventos; a Atlas transforma isso em gerenciamento de risco — PGR, tratativa 24h, CIA, análise de tendência. O equipamento é só o ponto de partida." },
-            { q: "\"Isso não é um custo alto para o que já fazemos internamente?\"", a: "O custo de manter uma central própria 24h, com CIA treinada e processo de sinistro estruturado, costuma ser maior do que contratar um especialista — e o risco de uma central improvisada é maior ainda." },
-            { q: "\"Como sei que o investimento compensa?\"", a: "É por isso que cases reais (como economia de R$ 95M em perdas ou -26% em tempo parado) são usados na argumentação: eles tornam o retorno tangível, não teórico." },
           ],
         },
         {
           type: "callout",
-          variant: "info",
-          title: "Diferencial competitivo",
+          variant: "warning",
+          title: "O Vendedor Silencioso",
           text: [
-            "O diferencial da Atlas não é só tecnologia — é a combinação de tecnologia (Connect), pessoas especializadas (CIA) e processo estruturado (PGR). Concorrentes podem ter uma dessas partes; poucos têm as três, funcionando como um mesmo produto.",
+            "Não existe comercial bom o suficiente para segurar um cliente que é mal atendido pela Torre de Controle. A operação é a verdadeira área de vendas de renovação.",
           ],
         },
       ],
     },
     {
-      id: "todo-mundo-representa-a-marca",
-      title: "Todo colaborador representa a marca",
+      id: "capitulo-1-icp",
+      title: "Capítulo 1: ICP e Persona",
+      blocks: [
+        {
+          type: "comparison",
+          title: "O Alvo Comercial",
+          left: {
+            label: "O ICP (Perfil de Cliente Ideal)",
+            points: [
+              "Frotas acima de 50 caminhões ou embarcadores de alto volume.",
+              "Cargas de alto valor agregado com PGR complexo.",
+              "Empresas sofrendo pressão de seguradoras para melhorar a segurança.",
+            ],
+          },
+          right: {
+            label: "O Fora do ICP (Não Vender)",
+            points: [
+              "Caminhoneiro autônomo com apenas 1 caminhão.",
+              "Cargas locais de cimento sem exigência de apólice.",
+              "Empresas sem caixa para investir em tecnologia embarcada.",
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-gatilhos",
+      title: "Capítulo 2: Gatilhos e Dores",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Mesmo quem não trabalha no time Comercial acaba, em algum momento, conversando com um cliente — em uma ligação de tratativa, em um suporte, em uma visita técnica. Entender o discurso comercial evita contradições: um operador que promete algo que o contrato não cobre, por exemplo, cria um problema que o Comercial vai precisar resolver depois.",
+              "Empresas não compram software por diversão. Elas compram porque sentiram dor.",
             ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Os 3 Gatilhos Principais:",
+          items: [
+            "A Tragédia: Sofreram um assalto armado e perderam R$ 3 Milhões de carga em uma noite.",
+            "A Parede da Seguradora: A seguradora se recusou a renovar a apólice sem um gerenciador de risco homologado.",
+            "A Exigência do Gigante: A transportadora quer fechar contrato de frete com a Samsung, mas a Samsung exige APIs e Torre de Controle.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-3-objecoes",
+      title: "Capítulo 3: O Combate às Objeções",
+      blocks: [
+        {
+          type: "faq",
+          items: [
+            { q: "Objeção: 'Vocês são caros. O Zezinho do Rastreador me cobra 10 reais.'", a: "Defesa: 'O Zezinho não aciona a polícia de madrugada. Nós vendemos a certeza de que a seguradora vai pagar o seu prejuízo. Quanto custa o seu CNPJ quebrar amanhã por uma carga negada na apólice?'" },
+            { q: "Objeção: 'Eu já tenho o Connect, pra que pagar pelo Analytics?'", a: "Defesa: 'Porque com o Connect você apaga incêndios. Com o Analytics você vai descobrir quem está colocando fogo na sua casa e parar de perder dinheiro com horas extras.'" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: O Funil no CRM",
+      blocks: [
+        {
+          type: "case",
+          title: "Do SDR ao Closer",
+          text: "Um vendedor inicial (SDR) mapeia transportadoras de alto valor (ICP). Ele faz ligação fria e acha uma que perdeu o seguro (Gatilho). Ele qualifica o lead e passa para o Executivo de Contas (Closer). O Closer faz a demonstração do Atlas Connect e prova que a empresa será aceita pela seguradora novamente. Ele contorna a objeção de preço ('o barato sai caro'), envia o contrato e fecha o negócio no sistema (CRM). Todo esse processo deve ser registrado no Bitrix24/Hubspot de forma milimétrica.",
+          source: "Diretrizes Comerciais AtlasGR",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "checklist",
+          title: "Próximos Passos",
+          items: [
+            "Revise as metodologias SPIN Selling e BANT na intranet da AtlasGR.",
+            "Prepare-se para o Módulo 10, onde o foco deixará as vendas e focará puramente no 'tecniquês' da operação.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "ICP descreve o cliente ideal; persona descreve quem decide dentro dessa empresa.",
-    "As dores mais comuns são: exigência contratual, histórico de sinistro, falta de visibilidade e custo operacional invisível.",
-    "Cada dor se conecta a um pilar do portfólio: Profile, GR, Connect ou Analytics.",
-    "As objeções mais comuns giram em torno de \"já temos rastreador\" e \"isso é caro\" — respondidas com o diferencial de pessoas + processo + tecnologia.",
-    "Todo colaborador representa a marca perante o cliente, não só o time Comercial.",
+    "O ICP foca o tempo do time comercial onde há real probabilidade de conversão.",
+    "A venda nasce de gatilhos críticos (roubos, recusas de seguro).",
+    "Objeções de preço são rebatidas ancorando o valor na prevenção do prejuízo (o caminhão roubado).",
+    "A venda é dividida em etapas (SDR, Qualificação, Demo e Closer).",
   ],
   finalChecklist: [
-    "Sei explicar o que é ICP e persona.",
-    "Reconheço pelo menos 3 dores comuns que levam à contratação da Atlas.",
-    "Sei responder às duas objeções mais comuns.",
-    "Entendo por que o discurso comercial importa para todos os colaboradores.",
+    "Sei o que é ICP e como ele evita perda de tempo comercial.",
+    "Identifico a diferença entre Venda Transacional (sapato) e Venda B2B Complexa (Risco).",
+    "Posso contra-argumentar a objeção clássica 'vocês são muito caros'.",
   ],
   mindMap: {
-    root: "Processo Comercial",
+    root: "Comercial B2B",
     branches: [
-      { label: "Público-alvo", items: ["ICP", "Persona"] },
-      { label: "Dores", items: ["Exigência contratual", "Histórico de sinistro", "Falta de visibilidade", "Custo invisível"] },
-      { label: "Objeções", items: ["\"Já temos rastreador\"", "\"É caro\""] },
-      { label: "Diferencial", items: ["Tecnologia (Connect)", "Pessoas (CIA)", "Processo (PGR)"] },
+      { label: "Público", items: ["ICP", "Frotas +50", "Carga Alta Risco"] },
+      { label: "Jornada", items: ["Gatilhos", "SDR", "Demo", "CRM"] },
+      { label: "Defesa", items: ["Valor vs Preço", "Custo do Sinistro"] },
     ],
   },
   scenario:
-    "Um prospect responde: 'já temos rastreador instalado, não precisamos de mais nada'. Você tem 30 segundos para virar essa objeção em uma conversa real sobre risco — o que você diz primeiro?",
+    "Cenário: O dono de uma pequena frota de cimento (ICP fraco) implora por um desconto inviável. Você foca em reverter o desconto ou prefere gastar sua tarde ligando para uma frota de 100 caminhões de eletrônicos que sofreu um assalto ontem?",
   diagram: {
-    title: "Da dor ao fechamento",
-    chart: "graph LR\n  A[ICP e persona] --> B[Dor identificada]\n  B --> C[Pilar do portfolio]\n  C --> D[Objecao respondida]\n  D --> E[Fechamento]",
+    title: "O Funil de Conversão",
+    chart: "graph TD\n  Leads[Pesquisa Fria] --> SDR[SDR Qualifica a Dor]\n  SDR --> Demo[Closer Faz Demo]\n  Demo --> Contorno[Contorno de Objeções]\n  Contorno --> Fechamento[Assinatura B2B]",
   },
 };
