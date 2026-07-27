@@ -6,155 +6,182 @@ const meta = getModuleMeta("04-produtos-atlasgr")!;
 export const module04: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Módulo 3 — Gerenciamento de Risco (PGR, apólice, CIA)",
-    "Módulo 5 — Software Logístico (Atlas Connect)",
-    "Showcases de produto do portal (/produtos/profile, /produtos/connect, /produtos/gr, /produtos/analytics)",
+    "Outline consolidado (content/modules/meta.ts)",
+    "Showcases de produto do portal",
+    "Material Comercial Institucional AtlasGR",
   ],
   objectives: [
-    "Listar os quatro pilares do portfólio ATLASGR: Profile, GR, Connect e Analytics.",
-    "Explicar em uma frase o que cada produto resolve para o cliente.",
-    "Reconhecer como os produtos se conectam entre si no dia a dia da operação.",
-    "Identificar qual produto mencionar diante de uma dor específica do cliente.",
+    "Listar, descrever e conectar os quatro pilares do portfólio AtlasGR.",
+    "Entender a proposta de valor exclusiva do Atlas Profile e a redução de custos ocultos.",
+    "Explicar a orquestração tática em tempo real feita pelo Atlas Connect e GR.",
+    "Descrever como o Atlas Analytics transforma dados brutos em decisões executivas preditivas.",
   ],
   sections: [
     {
-      id: "quatro-pilares",
-      title: "Os quatro pilares do portfólio",
+      id: "introducao",
+      title: "Introdução: O Ecossistema de Soluções",
       blocks: [
         {
           type: "text",
+          heading: "Não Vendemos Software, Vendemos Inteligência",
           paragraphs: [
             [
-              "A ATLASGR entrega muito mais do que \"rastrear um caminhão\". O portfólio é organizado em quatro pilares que se complementam: quem vai dirigir (",
-              { term: "perfil-securitario" },
-              "), o que fazer se algo sair do combinado (",
-              { term: "gr" },
-              "), como a operação enxerga tudo isso em tempo real (",
-              { term: "connect" },
-              ") e o que os números da operação revelam depois (Analytics).",
+              "Muitas empresas no mercado oferecem um software de rastreamento e deixam a cargo do cliente o problema de gerenciar as crises. A AtlasGR escolheu um caminho mais complexo, mas infinitamente mais valioso.",
             ],
-          ],
-        },
-        {
-          type: "timeline",
-          title: "Como os quatro pilares aparecem na linha do tempo de uma viagem",
-          items: [
-            { label: "Antes da viagem", text: "Atlas Profile valida o motorista e o veículo (documentação, antecedentes, biometria)." },
-            { label: "Durante a viagem", text: "Atlas Connect acompanha a Torre de Controle e Atlas GR trata qualquer alerta conforme o PGR." },
-            { label: "Se algo sai do combinado", text: "A CIA, dentro do pilar GR, decide sobre acionamento de pronta resposta ou polícia." },
-            { label: "Depois da viagem", text: "Atlas Analytics consolida os indicadores da operação para a gestão do cliente." },
-          ],
-        },
-      ],
-    },
-    {
-      id: "atlas-profile",
-      title: "Atlas Profile — Background Check",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
             [
-              "Resolve o \"custo invisível\" da contratação: motoristas ou parceiros com pendências documentais ou histórico de risco que só aparecem depois de um problema grave. O Atlas Profile cruza dados documentais, processos e biometria (",
-              { term: "faceid" },
-              ") para aprovar — ou barrar — um cadastro antes da viagem começar.",
+              "O nosso portfólio é um ecossistema projetado para blindar a operação de ponta a ponta. Atuamos antes da viagem começar, gerenciamos o milissegundo em que ela acontece, atuamos brutalmente caso haja desvios, e estudamos os resultados mensais para melhorar o futuro.",
             ],
           ],
         },
         {
           type: "callout",
-          variant: "warning",
-          title: "Por que isso é tratado como prioridade",
+          variant: "success",
+          title: "O Ponto Chave",
           text: [
-            "Uma contratação irregular não tratada no Profile pode se transformar, semanas depois, em um sinistro grave — ou pior, em um acidente. É por isso que o time de ",
-            { term: "perfil-securitario" },
-            " trata pendências como \"Requer Atenção\" antes de liberar a operação.",
+            "Dominar este módulo é a diferença entre vender 'um site que mostra caminhãozinho no mapa' e vender 'Governança Operacional e Econômica'.",
           ],
         },
       ],
     },
     {
-      id: "atlas-gr",
-      title: "Atlas GR — Aderência à apólice e CIA",
+      id: "capitulo-1-profile",
+      title: "Capítulo 1: Atlas Profile (O Filtro Inicial)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "É o núcleo histórico da empresa: o pilar que garante que a operação segue o que foi combinado na apólice e no ",
-              { term: "pgr" },
-              ", e que qualquer desvio é tratado pela ",
-              { term: "cia" },
-              " com o protocolo correto — do primeiro alerta ao relatório final de sinistro.",
+              "A fraude mais eficiente não precisa de armas. Ela usa um terno falso e um documento clonado para roubar a carga antes mesmo do caminhão sair do pátio.",
+            ],
+            [
+              "O Atlas Profile realiza o 'Background Check' ou ",
+              { term: "perfil-securitario" },
+              ". Ele integra bases criminais, tribunais, listas restritivas e o banco de dados do Detran. Mais importante: ele usa biometria facial (",
+              { term: "faceid" },
+              ") para garantir que quem assina o papel é realmente a pessoa do documento, anulando a Falsidade Ideológica.",
             ],
           ],
         },
+        {
+          type: "checklist",
+          title: "O que o Profile Analisa",
+          items: [
+            "Validade de CNH, categorias permitidas e toxicológico.",
+            "Antecedentes criminais impeditivos e mandados de prisão abertos.",
+            "Licenciamento e documentação atrasada do veículo tracionador e carreta.",
+            "Divergência Biométrica (Liveness detection).",
+          ],
+        },
       ],
     },
     {
-      id: "atlas-connect-analytics",
-      title: "Atlas Connect e Atlas Analytics",
+      id: "capitulo-2-connect-gr",
+      title: "Capítulo 2: Atlas Connect & Atlas GR (A Execução)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O ",
+              "Com o motorista e caminhão aprovados, a viagem começa. É aqui que entram os nossos 'Gêmeos Operacionais': O ",
               { term: "connect" },
-              " é a Torre de Controle: onde a operação acontece em tempo real, evento a evento. O Atlas Analytics olha para trás — transforma o histórico de eventos, alertas e ",
-              { term: "sla" },
-              " em painéis executivos: mapa de risco por região, ranking de ofensores de safety, tempo de permanência em alvos.",
+              " (A Tecnologia) e o ",
+              { term: "gr" },
+              " (O Processo e as Pessoas).",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "Connect x Analytics",
+          title: "A Diferença na Prática",
           left: {
-            label: "Atlas Connect",
-            points: ["Tempo real", "Foco operacional (o que fazer agora)", "Usado por Operadores e CIA"],
+            label: "Atlas Connect (A Máquina)",
+            points: [
+              "Sistema Web onde a mágica acontece.",
+              "Agrega sinais de rastreadores, cria cercas virtuais, exibe mapas.",
+              "Motor de Regras Inteligente que gera os Alertas Críticos.",
+            ],
           },
           right: {
-            label: "Atlas Analytics",
-            points: ["Consolidado / histórico", "Foco executivo (o que aprender e decidir)", "Usado por gestão do cliente e liderança Atlas"],
+            label: "Atlas GR e CIA (O Humano)",
+            points: [
+              "Os operadores dentro da Torre que olham a tela do Connect.",
+              "A aplicação rígida do PGR exigido pela seguradora.",
+              "O acionamento tático policial e a tomada de decisão sob estresse extremo.",
+            ],
           },
         },
+      ],
+    },
+    {
+      id: "capitulo-3-analytics",
+      title: "Capítulo 3: Atlas Analytics (Visão Executiva)",
+      blocks: [
+        {
+          type: "text",
+          paragraphs: [
+            [
+              "Olhar o passado para prever o futuro. A Torre apaga o incêndio de hoje. O Analytics entende por que os incêndios estão acontecendo toda sexta-feira às 2 da manhã no mesmo quilômetro da Dutra.",
+            ],
+            [
+              "Transformamos milhões de eventos caóticos de GPS e Sensores de Telemetria/Fadiga em painéis executivos coloridos e acionáveis para o CEO e os Diretores dos nossos clientes.",
+            ],
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: Os Quatro Pilares Trabalhando Juntos",
+      blocks: [
         {
           type: "case",
-          title: "O impacto real dos quatro pilares combinados",
-          text:
-            "Clientes que combinam os quatro pilares relatam resultados como R$ 95M economizados em perdas (embarcador de combustível) e -26% no tempo de permanência em fazendas (embarcador de suco) — porque a decisão deixa de ser reativa (\"o que aconteceu?\") e passa a ser preventiva (\"o que está prestes a acontecer?\").",
-          source: "Cases de cliente apresentados nos showcases de produto do portal",
+          title: "Operação Risco Zero (Embarcador de Bebidas)",
+          text: "Um grande fabricante perdia sistematicamente cargas não para roubos armados, mas para 'sumiços' de caminhões terceirizados (apropriação indébita). A Atlas implantou os 4 pilares: 1. O Atlas Profile barrou 12% dos motoristas contratados por fraude documental já no 1º mês. 2. O Atlas Connect amarrou as viagens a APIs automáticas, zerando erros de digitação. 3. O GR atuou em 5 tentativas de desvio no trimestre, acionando a CIA que recuperou 100% da carga. 4. O Analytics provou para a diretoria do fabricante que 90% das tentativas de roubo ocorriam com apenas duas transportadoras específicas da base deles, permitindo o descredenciamento cirúrgico dos maus parceiros. Resultado: Economia de R$ 12 milhões em 6 meses.",
+          source: "Case Comercial Integrado AtlasGR",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Próximos Passos",
+      blocks: [
+        {
+          type: "checklist",
+          title: "Sua Missão agora:",
+          items: [
+            "Conseguir explicar a diferença entre vender rastreador e vender este ecossistema.",
+            "Fazer o teste de verificação abaixo com 10 questões rigorosas.",
+            "Avançar para o Módulo 05 para ver o Connect na prática.",
+          ],
         },
       ],
     },
   ],
   summary: [
-    "O portfólio ATLASGR tem quatro pilares: Profile (quem dirige), GR (o que fazer se sair do combinado), Connect (tempo real) e Analytics (histórico e indicadores).",
-    "Atlas Profile reduz o custo invisível da contratação irregular, validando documentação, antecedentes e biometria antes da viagem.",
-    "Atlas GR é o núcleo histórico: garante aderência ao PGR e à apólice, com a CIA tratando qualquer desvio.",
-    "Atlas Connect é operacional e em tempo real; Atlas Analytics é executivo e retrospectivo.",
-    "Os quatro pilares combinados transformam a operação de reativa em preventiva.",
+    "Atlas Profile age ANTES da viagem (Auditoria Documental e Biométrica).",
+    "Atlas Connect é o software de gestão em TEMPO REAL (Mapas, Alertas, APIs).",
+    "Atlas GR é a equipe e o processo humano que atua NA CRISE (Torre, CIA, PGR).",
+    "Atlas Analytics age DEPOIS, consolidando dados táticos em estratégias de longo prazo.",
+    "A união dos quatro pilares é o que torna a AtlasGR líder no conceito de prevenção logística.",
   ],
   finalChecklist: [
-    "Sei nomear os quatro pilares do portfólio ATLASGR.",
-    "Consigo explicar em uma frase o que cada pilar resolve.",
-    "Sei em qual pilar mencionar diante de uma dor específica do cliente (ex.: contratação, sinistro, visibilidade, indicadores).",
+    "Sei nominar e descrever cada um dos quatro produtos.",
+    "Compreendo que FaceID é crucial para barrar falsidade ideológica no Profile.",
+    "Posso articular comercialmente o benefício do ecossistema completo usando o Estudo de Caso.",
   ],
   mindMap: {
-    root: "Produtos ATLASGR",
+    root: "Produtos AtlasGR",
     branches: [
-      { label: "Atlas Profile", items: ["Background check", "FaceID", "Perfil Securitário"] },
-      { label: "Atlas GR", items: ["PGR", "Apólice", "CIA"] },
-      { label: "Atlas Connect", items: ["Torre de Controle", "Tempo real", "Checklist"] },
-      { label: "Atlas Analytics", items: ["Mapa de risco", "Ranking de ofensores", "SLA em alvos"] },
+      { label: "Profile", items: ["Biometria", "CNH/Detran", "Prevenção Original"] },
+      { label: "Connect", items: ["Software", "Alertas", "APIs"] },
+      { label: "GR / CIA", items: ["Pessoas", "Tratativa", "Polícia/Recuperação"] },
+      { label: "Analytics", items: ["Painéis", "Eficiência", "Estratégia"] },
     ],
   },
   scenario:
-    "Um cliente pergunta por que precisa de 'quatro produtos' em vez de um sistema só. Você tem que explicar, em poucas frases, o que cada pilar resolve — sem soar como se estivesse empurrando mais contrato do que o necessário.",
+    "Cenário Prático: O Diretor de Logística de um cliente diz: 'Já tenho o Connect e o GR rodando bem. Pra que eu preciso pagar pelo Analytics se eu mesmo posso baixar um relatório no Excel?' Como você defende o valor do Analytics focado em descobrir padrões complexos que o Excel humano jamais veria (como a correlação entre tempo de chuva, fadiga de motoristas e acidentes noturnos)?",
   diagram: {
-    title: "Os quatro pilares em uma viagem",
-    chart: "graph LR\n  A[Atlas Profile] --> B[Atlas GR]\n  B --> C[Atlas Connect]\n  C --> D[Atlas Analytics]",
+    title: "Integração do Portfólio",
+    chart: "graph LR\n  A[Profile] -->|Libera Condutor| B[Connect]\n  B -->|Exibe Alerta| C[GR / CIA]\n  B -->|Acumula Dados| D[Analytics]\n  C -->|Registra Ocorrência| D",
   },
 };

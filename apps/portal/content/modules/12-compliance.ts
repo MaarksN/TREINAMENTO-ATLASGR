@@ -6,174 +6,155 @@ const meta = getModuleMeta("12-compliance")!;
 export const module12: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Política Organizacional e Ética (sigilo, uso de e-mail/internet, redes sociais)",
+    "Política Organizacional e Ética (v2.1) — seções 9 a 12",
     "LGPD (Lei nº 13.709/2018)",
-    "Treinamento interno — Nova Lei de Seguros (Lei nº 14.599/2023 e MP nº 1.153)",
-    "Módulo 1 — Cultura, ética e conduta",
+    "Normas de Segurança da Informação AtlasGR",
   ],
   objectives: [
-    "Explicar por que compliance é responsabilidade de todo colaborador, não só de um setor.",
-    "Reconhecer os principais tipos de dado sensível tratados pela Atlas no dia a dia.",
-    "Aplicar boas práticas de sigilo, uso de e-mail/internet e redes sociais.",
-    "Relacionar falhas de compliance a riscos jurídicos e reputacionais concretos.",
-    "Explicar as mudanças trazidas pela Lei nº 14.599/2023 nos seguros obrigatórios de carga.",
+    "Dominar as regras da LGPD e sua aplicação prática no dia a dia da Torre.",
+    "Identificar ataques de Engenharia Social (Falso Cliente / Ameaças).",
+    "Assumir a postura de tolerância zero com o vazamento de informações operacionais.",
+    "Compreender o uso restrito e monitorado dos ativos da empresa.",
   ],
   sections: [
     {
-      id: "por-que-importa",
-      title: "Por que compliance importa na Atlas",
+      id: "introducao",
+      title: "Introdução: O Fator Humano",
       blocks: [
         {
           type: "text",
+          heading: "A Maior Vulnerabilidade do Sistema",
           paragraphs: [
             [
-              "A Atlas lida diariamente com dados sensíveis: localização de veículos e cargas, documentos e biometria de motoristas, informações de clientes e, em casos de sinistro, detalhes de investigações em andamento. Uma falha de compliance aqui não é um detalhe administrativo — é risco jurídico e reputacional real, tanto para a Atlas quanto para o cliente.",
+              "Os servidores da AtlasGR são protegidos por criptografia militar. Mas de nada adianta um cofre de titânio se o guarda da porta entrega a senha para o primeiro que liga gritando. Na segurança cibernética corporativa, o humano é sempre o elo mais fraco.",
+            ],
+            [
+              "Este módulo foca na sua blindagem mental. O vazamento de dados não resulta apenas em cargas roubadas; resulta em multas milionárias da Agência Nacional de Proteção de Dados (ANPD) e demissão imediata por justa causa.",
             ],
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Compliance é de todos, não só de um setor",
+          title: "Tolerância Zero",
           text: [
-            "Um operador que comenta detalhes de um sinistro fora do ambiente de trabalho, ou que compartilha uma tela do Connect em uma rede social, gera o mesmo tipo de risco que uma falha técnica de segurança da informação.",
+            "Não existe advertência verbal para quem compartilha a própria senha ou tira foto da tela da Torre de Controle. A resposta da empresa é a rescisão e, dependendo do caso, a abertura de inquérito policial.",
           ],
         },
       ],
     },
     {
-      id: "lgpd-na-pratica",
-      title: "LGPD no dia a dia da operação",
+      id: "capitulo-1-lgpd",
+      title: "Capítulo 1: A Lei Geral de Proteção de Dados",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A ",
-              { term: "lgpd" },
-              " exige finalidade clara e, em muitos casos, consentimento para o tratamento de dados pessoais. Na prática da Atlas, isso aparece em situações como: o cadastro de um colaborador (que pede consentimento explícito de LGPD, como neste próprio portal), a validação biométrica do Atlas Profile, e o armazenamento de dados de motoristas para o gerenciamento de risco.",
+              "Nós não monitoramos caminhões; nós tratamos dados. O CPF do motorista, a biometria facial, as rotas que ele faz. Tudo isso pertence a ELE, não à AtlasGR.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Boas práticas de proteção de dados no dia a dia",
+          title: "A Regra da Necessidade",
           items: [
-            "Acessar apenas os dados necessários para a própria função — nunca por curiosidade.",
-            "Nunca compartilhar telas de sistemas internos (Connect, Profile) fora do ambiente de trabalho.",
-            "Reportar imediatamente qualquer suspeita de vazamento ou acesso indevido.",
-            "Usar apenas os canais oficiais para tratar dados de clientes e motoristas.",
+            "Você só pode acessar a ficha de um motorista se estiver ativamente gerenciando um alerta dele.",
+            "Você NUNCA deve repassar o histórico criminal de um motorista (dado sensível) para o dono da transportadora por WhatsApp.",
+            "O cliente recebe apenas o Status: 'Aprovado' ou 'Não Recomendado'. O motivo fica em sigilo no banco de dados.",
           ],
         },
       ],
     },
     {
-      id: "nova-lei-de-seguros",
-      title: "A Lei nº 14.599/2023 e os seguros obrigatórios de carga",
+      id: "capitulo-2-engenharia-social",
+      title: "Capítulo 2: Hackeando a Mente (Engenharia Social)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Desde a Medida Provisória nº 1.153 (dezembro/2022), convertida na Lei nº 14.599/2023, o transportador rodoviário de cargas passou a ser obrigado a contratar três seguros — antes, a obrigação recaía apenas sobre o seguro de responsabilidade civil.",
-            ],
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Os três seguros agora obrigatórios",
-          items: [
-            "RCTR-C — cobre danos à carga por acidente do veículo (colisão, tombamento, capotagem, incêndio, explosão).",
-            "RC-DC — cobre roubo, furto, apropriação indébita, estelionato ou extorsão sofridos pela carga durante o transporte.",
-            "RC-V — cobre danos corporais e materiais causados a terceiros pelo veículo, com cobertura mínima de 35.000 DES para danos corporais e 20.000 DES para danos materiais.",
-          ],
-        },
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "As apólices de ",
-              { term: "rctr-c" },
-              " e ",
-              { term: "rc-dc" },
-              " são vinculadas ao ",
-              { term: "rntrc" },
-              " da transportadora e ao ",
-              { term: "pgr" },
-              " definido em conjunto com a seguradora — o que torna o PGR ainda mais central para a operação, já que passa a ser parte de uma exigência legal, não apenas contratual.",
-            ],
-          ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Por que isso importa para quem não é da área comercial",
-          text: [
-            "Um cliente pode perguntar sobre essas exigências legais durante a operação normal — reconhecer os três seguros e sua ligação com o PGR evita respostas incorretas, mesmo fora do time comercial ou jurídico.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "sigilo-e-conduta",
-      title: "Sigilo, e-mail, internet e redes sociais",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Além da LGPD, a Política Organizacional e Ética da Atlas trata do sigilo profissional: informações de clientes, sinistros e operações não devem ser comentadas fora do ambiente de trabalho — nem mesmo de forma genérica ou \"anônima\".",
+              "A Engenharia Social é o uso do convencimento, do medo ou da urgência para fazer você quebrar as regras de segurança.",
             ],
           ],
         },
         {
           type: "faq",
           items: [
-            { q: "Posso comentar em redes sociais sobre um caso interessante que atendi, sem citar nomes?", a: "Não. Mesmo sem nomes, detalhes de localização, data ou tipo de carga podem identificar o cliente ou o caso — a orientação é não comentar casos reais fora do ambiente de trabalho." },
-            { q: "Posso usar o e-mail corporativo para assuntos pessoais?", a: "O uso de e-mail e internet corporativos deve seguir a Política Organizacional e Ética da empresa, que orienta o uso profissional desses recursos." },
-            { q: "O que fazer se um cliente pedir informações de outro cliente?", a: "Recusar educadamente e escalar para a liderança — informações de um cliente nunca devem ser compartilhadas com outro." },
+            { q: "O Falso Diretor: 'Sou diretor do embarcador, a carga está parada, libere a senha agora ou cancelo o contrato!'", a: "Resposta: O protocolo exige dupla verificação com contatos previamente cadastrados. Nenhum diretor real pede para burlar regras de segurança. Negue a informação e reporte ao DHO." },
+            { q: "O Falso TI: 'Oi, sou da TI da Atlas, precisamos da sua senha para resetar o sistema'.", a: "A TI NUNCA pede a sua senha. Desligue imediatamente." },
           ],
         },
+      ],
+    },
+    {
+      id: "capitulo-3-senhas-telas",
+      title: "Capítulo 3: Bloqueio de Telas e Ativos",
+      blocks: [
+        {
+          type: "comparison",
+          title: "Boas Práticas de Hardware",
+          left: {
+            label: "O Inaceitável",
+            points: ["Deixar o monitor destravado ao ir ao banheiro.", "Usar o PC da empresa para acessar e-mails pessoais e baixar arquivos.", "Emprestar a sua credencial do Connect para um colega 'ajudar na fila'."],
+          },
+          right: {
+            label: "O Padrão Ouro",
+            points: ["Atalho Windows + L sempre que levantar da cadeira.", "Ciente de que 100% da navegação web é auditada.", "O que você faz com o seu login é de sua exclusiva responsabilidade (Accountability)."],
+          },
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: A Foto Inocente que Custou Milhões",
+      blocks: [
         {
           type: "case",
-          title: "O custo de uma falha de compliance",
-          text:
-            "Falhas de compliance — como um vazamento de dados de cliente ou o compartilhamento indevido de informações de um sinistro — podem gerar desde notificação à ANPD até rescisão contratual com o cliente afetado, além do dano à reputação da Atlas no mercado.",
-          source: "Contexto de mercado sobre consequências de falhas de compliance em operações de dados sensíveis",
+          title: "O Grupo de WhatsApp",
+          text: "Um operador da torre achou engraçado o formato da rota que um caminhão fez no mapa do sistema e tirou uma foto da tela com o celular para mandar no grupo de WhatsApp da equipe. Sem perceber, a foto mostrava também a placa do veículo, o nome do cliente e a lista dos 3 próximos locais de entrega na região de Campinas. Alguém do grupo encaminhou para fora. Dois dias depois, uma das cargas listadas foi abordada com precisão militar, pois a quadrilha sabia exatamente a sequência de paradas. O operador foi demitido, indiciado e a Atlas assumiu um prejuízo civil colossal.",
+          source: "Manual de Incidentes de Segurança da Informação",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "checklist",
+          title: "Próximos Passos",
+          items: [
+            "Assine digitalmente o Termo de Sigilo e Confidencialidade (NDA) no seu portal de RH.",
+            "Prepare-se para o Módulo 13: Onde veremos como a Inteligência Artificial defende os nossos sistemas contra fraudes.",
+          ],
         },
       ],
     },
   ],
   summary: [
-    "Compliance na Atlas envolve dados de localização, documentos, biometria e informações de sinistro — e é responsabilidade de todo colaborador.",
-    "A LGPD exige finalidade clara e, em muitos casos, consentimento para tratamento de dados pessoais.",
-    "Desde a Lei nº 14.599/2023, o transportador é obrigado a contratar 3 seguros: RCTR-C, RC-DC e RC-V, vinculados ao RNTRC e ao PGR.",
-    "Boas práticas incluem acessar só o necessário, nunca compartilhar telas de sistemas internos e reportar suspeitas de vazamento.",
-    "A Política Organizacional e Ética trata de sigilo, uso de e-mail/internet e redes sociais — casos reais não devem ser comentados fora do ambiente de trabalho, mesmo sem nomes.",
-    "Falhas de compliance geram risco jurídico (LGPD/ANPD) e reputacional real, não são um detalhe administrativo.",
+    "Você é a principal barreira contra invasões. Hackers atacam pessoas antes de atacar servidores.",
+    "A LGPD exige sigilo extremo sobre dados de motoristas, especialmente biometria e crimes (Dados Sensíveis).",
+    "Engenharia Social usa pressão e urgência para fazer você burlar o protocolo. Não ceda.",
+    "Fotografar a tela da operação é motivo para rescisão do contrato de trabalho.",
   ],
   finalChecklist: [
-    "Sei por que compliance é responsabilidade de todo colaborador.",
-    "Reconheço os principais tipos de dado sensível tratados pela Atlas.",
-    "Sei nomear os 3 seguros obrigatórios pela Lei nº 14.599/2023 e sua ligação com o PGR.",
-    "Sei aplicar boas práticas de sigilo, e-mail/internet e redes sociais.",
-    "Entendo as consequências possíveis de uma falha de compliance.",
+    "Entendo o risco da Engenharia Social e como reagir a ameaças telefônicas.",
+    "Sei que a minha senha é pessoal e o bloqueio da tela é obrigatório.",
+    "Sei que fotografar a tela é o maior pecado de compliance da empresa.",
   ],
   mindMap: {
-    root: "Compliance",
+    root: "Compliance e Sigilo",
     branches: [
-      { label: "Dados sensíveis", items: ["Localização", "Documentos e biometria", "Dados de sinistro"] },
-      { label: "LGPD", items: ["Finalidade clara", "Consentimento", "Boas práticas de acesso"] },
-      { label: "Lei nº 14.599/2023", items: ["RCTR-C", "RC-DC", "RC-V", "RNTRC", "Vínculo com o PGR"] },
-      { label: "Conduta", items: ["Sigilo profissional", "E-mail e internet", "Redes sociais"] },
-      { label: "Consequências", items: ["Risco jurídico (ANPD)", "Risco reputacional"] },
+      { label: "LGPD", items: ["Dados Sensíveis", "Status vs Ficha Criminal", "Privacidade"] },
+      { label: "Engenharia Social", items: ["Falso Diretor", "Pressão Urgente", "Negação Positiva"] },
+      { label: "Regras Físicas", items: ["Zero Fotos", "Windows+L", "Senha Pessoal"] },
     ],
   },
   scenario:
-    "Um colega comenta em um grupo de WhatsApp pessoal sobre um sinistro que atendeu hoje, 'sem citar nomes'. Ele acha que está tudo bem, já que não mencionou o cliente. O que pode identificar esse caso mesmo sem nomes — e o que isso tem a ver com a LGPD e a Lei nº 14.599/2023?",
+    "Cenário Prático: Um colega entra correndo e diz que esqueceu a senha e precisa que você logue na máquina dele rapidamente para ele não estourar o SLA de um alerta. O que você faz?",
   diagram: {
-    title: "Da informação sensível à conduta correta",
-    chart: "graph LR\n  A[Dado sensivel] --> B{LGPD / Lei 14599}\n  B --> C[Acesso restrito a funcao]\n  B --> D[Sem compartilhar fora do trabalho]",
+    title: "O Firewall Humano",
+    chart: "graph LR\n  Ataque[Ligação: 'Sou o Diretor'] --> Operador{Operador Validou no Sistema?}\n  Operador -- Sim --> Sucesso[Acesso Liberado]\n  Operador -- Não Validou --> Falha[Engenharia Social Bem Sucedida / Vazamento]",
   },
 };

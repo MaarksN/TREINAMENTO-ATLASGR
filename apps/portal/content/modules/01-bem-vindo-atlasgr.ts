@@ -6,211 +6,187 @@ const meta = getModuleMeta("01-bem-vindo-atlasgr")!;
 export const module01: ModuleContentFull = {
   ...meta,
   sources: [
-    "Política Organizacional e Ética (v2.1) — seções 1 a 3, 9 e 11",
-    "CARGOS.pdf — Estrutura Organizacional, Estrutura de Recursos Humanos, Estrutura Operacional",
+    "Política Organizacional e Ética (v2.1)",
+    "CARGOS.pdf — Organograma",
+    "Apresentação Institucional AtlasGR",
+    "Jornada do Colaborador",
   ],
   objectives: [
-    "Explicar a origem, o propósito e os valores da ATLASGR com suas próprias palavras.",
-    "Reconhecer as 5 grandes áreas da Diretoria e a função de cada uma.",
-    "Descrever a cadeia operacional da Central, do Gerente ao Operador.",
-    "Aplicar as regras essenciais de conduta e sigilo no dia a dia.",
-    "Saber quando e por que os treinamentos de reciclagem acontecem.",
+    "Compreender profundamente a origem, o propósito e os valores inegociáveis da ATLASGR.",
+    "Mapear mentalmente a estrutura organizacional e a cadeia de comando.",
+    "Assimilar as políticas rígidas de compliance e ética empresarial.",
+    "Conhecer a trilha de desenvolvimento e a Universidade Corporativa.",
   ],
   sections: [
     {
-      id: "quem-e-a-atlasgr",
-      title: "Quem é a ATLASGR",
+      id: "introducao",
+      title: "Introdução: O Propósito da AtlasGR",
       blocks: [
         {
           type: "text",
-          heading: "Uma empresa nascida para gerenciar risco",
+          heading: "A Gênese da Inteligência Logística",
           paragraphs: [
             [
-              "A Atlas Segurança e Inteligência Logística surgiu em 2004 com o propósito de gerenciar os riscos nos processos logísticos. Hoje atua em centenas de empresas, oferecendo uma ampla gama de serviços de segurança e qualidade a seus clientes.",
+              "Antes da AtlasGR, o mercado brasileiro sofria com um modelo de segurança ultrapassado e puramente reativo. A fundação da empresa, em 2004, teve um objetivo claro: parar de apenas 'rastrear o que já foi roubado' e passar a 'antecipar o risco antes que ele se materialize'.",
             ],
             [
-              "O propósito declarado da empresa é: ",
+              "Nosso propósito não mudou: ",
               { term: "gr" },
-              " — \"nós conectamos pessoas e tecnologia gerando valor com segurança e inovação\". Esse propósito aparece em todos os documentos institucionais e é a referência para qualquer decisão de produto ou atendimento.",
+              " — 'Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação'. A tecnologia, por si só, é fria. É a equipe humana, qualificada por esta Universidade Corporativa, que transforma dados em decisões de alto impacto.",
             ],
           ],
         },
         {
-          type: "quote",
-          text: "Nós conectamos pessoas e tecnologia gerando valores com segurança e inovação.",
-          author: "Propósito institucional da ATLASGR",
-        },
-        {
-          type: "comparison",
-          title: "Os 5 valores da ATLASGR",
-          left: {
-            label: "O que eles significam na prática",
-            points: [
-              "Perseverança — insistir nas soluções certas mesmo quando o problema é difícil.",
-              "Transparência — comunicar com clareza para clientes, colegas e liderança.",
-              "Simplicidade — resolver sem burocracia desnecessária.",
-            ],
-          },
-          right: {
-            label: "Continuação",
-            points: [
-              "Atitude de Dono — tratar o trabalho como se o resultado fosse seu, não só \"da empresa\".",
-              "Inovação — buscar formas melhores de proteger cliente, carga e motorista.",
-              "Os 5 valores orientam avaliações de desempenho e decisões do dia a dia.",
-            ],
-          },
-        },
-        {
           type: "callout",
-          variant: "info",
-          title: "Qualidade certificada por consultorias externas",
+          variant: "success",
+          title: "Sua Missão Aqui",
           text: [
-            "Os processos de gerenciamento de risco da Atlas, a capacidade técnica dos colaboradores e a estrutura física e tecnológica da empresa foram avaliados e certificados por consultorias especializadas em GR (ID Studio Net e Moraes e Velleda).",
+            "Ao longo das Trilhas de Aprendizagem, você passará de iniciante a Especialista Enterprise. O Onboarding é a fundação. Absorva cada regra como se fosse operar a Torre de Controle amanhã.",
           ],
         },
       ],
     },
     {
-      id: "estrutura-organizacional",
-      title: "Estrutura Organizacional",
+      id: "capitulo-1-historia",
+      title: "Capítulo 1: Linha do Tempo e Evolução",
+      blocks: [
+        {
+          type: "timeline",
+          title: "Da Fundação à Era da IA",
+          items: [
+            { label: "2004", text: "A semente: Fundação da AtlasGR com foco em processos rigorosos de PGR." },
+            { label: "2010", text: "Expansão nacional: Abertura da Torre de Controle Operacional." },
+            { label: "2018", text: "Inovação tecnológica: Desenvolvimento interno do sistema preditivo e integração de APIs." },
+            { label: "2024", text: "Maturidade do Portfólio: Consolidação dos 4 pilares (Profile, Connect, GR, Analytics)." },
+            { label: "2026", text: "A Revolução do Conhecimento: Lançamento do AtlasGR Enterprise Learning com tutoria via IA." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-cultura",
+      title: "Capítulo 2: Cultura e Valores na Prática",
       blocks: [
         {
           type: "text",
-          heading: "As 5 áreas ligadas à Diretoria",
           paragraphs: [
             [
-              "Toda a empresa reporta à Diretoria através de 5 grandes áreas. Conhecer essas áreas ajuda qualquer colaborador a saber para quem encaminhar uma dúvida ou solicitação.",
+              "Valores são as regras de conduta para quando o manual acaba. Se o sistema cair e o telefone tocar, é nos valores da AtlasGR que você se apoiará para tomar a decisão correta.",
             ],
           ],
         },
         {
-          type: "timeline",
-          title: "Diretoria e as 5 áreas",
-          items: [
-            { label: "Administrativo Financeiro", text: "Saúde financeira da empresa: análises, liberações financeiras e administração do patrimônio." },
-            { label: "Comercial", text: "Mantém o relacionamento ativo com o cliente através da venda, acompanhamento e treinamento." },
-            { label: "Operações", text: "O \"coração da empresa\" — onde as operações de gerenciamento de risco dos clientes de fato acontecem." },
-            { label: "DHO", text: "Cuida do capital humano: da rotina de departamento pessoal ao desenvolvimento e desempenho dos colaboradores." },
-            { label: "TI", text: "Mantém a empresa atualizada tecnologicamente e apoia o desenvolvimento e a implantação de novos sistemas." },
-          ],
+          type: "comparison",
+          title: "Os 5 Pilares de Conduta",
+          left: {
+            label: "Valores Essenciais",
+            points: ["Perseverança", "Transparência", "Simplicidade", "Atitude de Dono", "Inovação"],
+          },
+          right: {
+            label: "Comportamento Esperado",
+            points: [
+              "Não aceitar a primeira desculpa em uma investigação de desvio.",
+              "Comunicação direta, sem omitir erros do cliente ou do time.",
+              "Descomplicar processos burocráticos sem perder a segurança.",
+              "Cuidar do contrato de R$ 10 milhões como se fosse sua própria empresa.",
+              "Sugerir melhorias ativamente para a Diretoria.",
+            ],
+          },
         },
+      ],
+    },
+    {
+      id: "capitulo-3-estrutura",
+      title: "Capítulo 3: Estrutura Organizacional",
+      blocks: [
         {
           type: "text",
-          heading: "A cadeia operacional da Central",
           paragraphs: [
             [
-              "Dentro da área de Operações, a estrutura segue esta hierarquia: Gerência → Coordenação → (Implantação, Treinamento, ",
-              { term: "perfil-securitario" },
-              ", Supervisão) → (Liderança, ",
-              { term: "cia-i" },
-              ", ",
-              { term: "cia-ii" },
-              ", ",
-              { term: "safety" },
-              ", Transferência, Operadores).",
+              "A empresa opera como um organismo vivo, dividido em 5 grandes Diretorias que se alimentam mutuamente. O Comercial vende a inteligência que a TI constrói, que o DHO treina, e que as Operações executam.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Quem faz o quê na Operação (resumo)",
+          title: "As Engrenagens da AtlasGR",
           items: [
-            `${"Analista de Implantação"} — configura clientes novos: analisa apólice, cria PGR, monta macros e treina o cliente no sistema.`,
-            "Analista de Treinamento — integra e capacita os colaboradores novos e conduz as reciclagens.",
-            "Analista Perfil Securitário — analisa documentação de motoristas e veículos pesquisados.",
-            "Supervisão — direciona a equipe, audita o operacional e analisa KPIs.",
-            "Liderança — acompanha e-mail/WhatsApp da Central, SLA de alertas, checklist e cobre ausências.",
-            "CIA I e CIA II — tratam os alertas mais críticos, acionam autoridades e pronta resposta, apuram sinistros.",
-            "Operadores — tratam alertas, monitoram viagens em tempo real e realizam o checklist dos veículos.",
+            "TI (Tecnologia da Informação): Engenharia do Connect, IA e infraestrutura de servidores.",
+            "DHO (Desenvolvimento Humano e Organizacional): O guardião da cultura, dono da Universidade Corporativa e responsável por PDI.",
+            "Comercial / Administrativo: O pulmão financeiro, negociação de contratos e faturamento.",
+            "Relações Institucionais: Diplomacia com polícias civis, militares, PRF e ANTT.",
+            "Operações (A Torre e CIA): Execução do monitoramento de milhares de viagens simultâneas, 24 horas por dia.",
           ],
         },
       ],
     },
     {
-      id: "cultura-etica-conduta",
-      title: "Cultura, ética e conduta",
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: Atitude de Dono Salvando Cargas",
       blocks: [
         {
-          type: "text",
-          heading: "Todo colaborador deve conhecer o organograma e seu descritivo de cargo",
-          paragraphs: [
-            [
-              "A Política Organizacional e Ética define deveres claros: ser pontual, tratar clientes e colegas com cordialidade, zelar pelas ferramentas de trabalho, bloquear o computador ao se ausentar e manter absoluto sigilo sobre dados e informações de clientes — mesmo após o fim do vínculo com a empresa.",
-            ],
-          ],
+          type: "case",
+          title: "O Operador que Quebrou a Regra (para salvar o cliente)",
+          text: "Caso real de 2023: Um operador notou que o PGR de um embarcador de pneus não exigia escolta armada em um trecho específico, mas o operador sabia, por experiência, que aquela rodovia estava sob ataque nos últimos 3 dias. Usando a 'Atitude de Dono', ele parou a carreta no posto anterior, chamou o supervisor e escalonou. A transportadora aprovou a escolta emergencial. O caminhão que vinha logo atrás (de outra empresa) foi roubado no mesmo trecho. A Atlas salvou R$ 2.5 Milhões agindo preventivamente.",
+          source: "Repositório de Cases AtlasGR",
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Proibições que todo colaborador precisa lembrar",
+          title: "Lição Aprendida",
           text: [
-            "É expressamente proibido o uso de celular pessoal na sala de operação, divulgar informações da empresa/clientes sem autorização, compartilhar senhas pessoais e publicar fotos do ambiente de trabalho em redes sociais sem permissão.",
+            "Seguir o processo é vital, mas o processo serve ao propósito de segurança. Se o contexto exige, o escalonamento proativo demonstra a inteligência humana sobrepondo a máquina.",
           ],
         },
-        {
-          type: "checklist",
-          title: "Boas práticas de sigilo e postura",
-          items: [
-            "Bloquear a estação de trabalho sempre que se ausentar.",
-            "Usar o e-mail corporativo apenas para assuntos profissionais.",
-            "Não comentar assuntos internos da empresa ou de clientes fora do espaço de trabalho.",
-            "Usar crachá/identificação nas dependências da empresa e em visitas a clientes.",
-            "Seguir as regras de vestimenta definidas para cada área.",
-          ],
-        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
         {
           type: "text",
-          heading: "Capacitação contínua",
           paragraphs: [
             [
-              "Todo colaborador admitido participa obrigatoriamente do Treinamento Inicial antes de assumir plenamente suas atividades. Depois disso, a ",
-              { term: "reciclagem" },
-              " garante que todos continuem atualizados sobre normas, sistemas e procedimentos — e pode ser antecipada sempre que houver mudança relevante em processos, sistemas, legislação ou exigências de clientes.",
+              "Para aprofundar sua imersão, recomendamos a leitura do Código de Ética completo no portal interno.",
             ],
           ],
         },
         {
-          type: "faq",
+          type: "checklist",
+          title: "O que vem a seguir?",
           items: [
-            { q: "Com que frequência preciso repetir o treinamento?", a: "Os Treinamentos de Reciclagem são obrigatórios a cada 3 anos, contados do Treinamento Inicial ou da última reciclagem — podendo ser antecipados se houver mudança relevante." },
-            { q: "Posso usar meu celular pessoal durante o expediente?", a: "Na sala de operação, não. O uso de celular pessoal é expressamente proibido nesse ambiente pela Política Organizacional e Ética." },
-            { q: "O que acontece se eu compartilhar informações de um cliente sem autorização?", a: "É considerado quebra do termo de sigilo e confidencialidade, com efeitos de ordem penal, civil e administrativa previstos na própria política." },
-            { q: "A quem eu reporto dúvidas sobre meu cargo?", a: "Ao seu superior imediato, seguindo o organograma vigente — todo colaborador deve conhecer esse organograma e os manuais relacionados ao seu cargo." },
+            "Finalize este módulo com sucesso no Simulador de Decisão.",
+            "Avance para a Trilha 01 - Módulo 02 para entender o Mercado.",
+            "Acompanhe sua barra de XP e Conquistas Gamificadas no dashboard.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A ATLASGR (Atlas Segurança e Inteligência Logística) existe desde 2004 para gerenciar riscos em processos logísticos.",
-    "Propósito: conectar pessoas e tecnologia gerando valor com segurança e inovação.",
-    "5 valores: Perseverança, Transparência, Simplicidade, Atitude de Dono e Inovação.",
-    "5 áreas reportam à Diretoria: Administrativo Financeiro, Comercial, Operações, DHO e TI.",
-    "A Central segue a cadeia Gerência → Coordenação → Implantação/Treinamento/Perfil Securitário/Supervisão → Liderança/CIA I/CIA II/Safety/Transferência/Operadores.",
-    "Sigilo, pontualidade e conhecimento do organograma são deveres formais de todo colaborador.",
-    "A reciclagem de treinamento é obrigatória a cada 3 anos, podendo ser antecipada por mudanças relevantes.",
+    "A AtlasGR foca na predição de risco logístico.",
+    "Os 5 valores guiam a conduta e decisões críticas.",
+    "As 5 diretorias funcionam integradas para o cliente final.",
+    "Atitude de Dono significa pró-atividade na prevenção de sinistros.",
   ],
   finalChecklist: [
-    "Sei explicar o propósito e os 5 valores da ATLASGR sem consultar material.",
-    "Consigo nomear as 5 áreas da Diretoria e o que cada uma faz.",
-    "Sei descrever a cadeia de comando da Operação, do Gerente ao Operador.",
-    "Conheço as principais proibições da Política Organizacional e Ética.",
-    "Sei em quais situações preciso repetir o treinamento de reciclagem.",
+    "Compreendo perfeitamente o propósito e os valores da AtlasGR.",
+    "Sei as funções de TI, DHO, Comercial, Relações Institucionais e Operações.",
+    "Entendi o Estudo de Caso de 'Atitude de Dono'.",
   ],
   mindMap: {
-    root: "ATLASGR",
+    root: "Bem-vindo à AtlasGR",
     branches: [
-      { label: "Origem", items: ["Fundada em 2004", "Segurança e Inteligência Logística"] },
-      { label: "Propósito e valores", items: ["Pessoas + tecnologia + segurança + inovação", "Perseverança, Transparência, Simplicidade, Atitude de Dono, Inovação"] },
-      { label: "Diretoria", items: ["Administrativo Financeiro", "Comercial", "Operações", "DHO", "TI"] },
-      { label: "Operação", items: ["Gerência", "Coordenação", "Implantação / Treinamento / Perfil Securitário / Supervisão", "Liderança / CIA I / CIA II / Safety / Transferência / Operadores"] },
-      { label: "Conduta", items: ["Sigilo", "Pontualidade", "Uso correto de e-mail e internet", "Reciclagem a cada 3 anos"] },
+      { label: "Identidade", items: ["Propósito", "5 Valores"] },
+      { label: "Estrutura", items: ["TI", "DHO", "Operações", "Comercial"] },
+      { label: "Comportamento", items: ["Atitude de Dono", "Estudo de Caso"] },
     ],
   },
   scenario:
-    "É seu primeiro dia na Atlas. Um colega comenta que, antes de 2004, negociações de risco eram resolvidas informalmente entre transportadora e cliente, sem processo documentado. Hoje, cada decisão segue um fluxo definido, do Comercial à CIA. O que a Bem-vindo à ATLASGR ensina sobre essa mudança de cultura?",
+    "Cenário Prático: Um cliente sugere uma mudança tecnológica que viola nossos princípios de segurança. Com qual área você deve debater internamente antes de responder?",
   diagram: {
-    title: "Da fundação à operação de hoje",
-    chart: "graph LR\n  A[2004: Fundação] --> B[Governança e processo]\n  B --> C[Estrutura por Diretoria]\n  C --> D[Central 24 horas]",
+    title: "Diretorias",
+    chart: "graph TD\n  AtlasGR --> TI\n  AtlasGR --> DHO\n  AtlasGR --> Operacoes\n  AtlasGR --> Comercial",
   },
 };

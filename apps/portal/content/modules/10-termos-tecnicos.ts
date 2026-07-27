@@ -6,85 +6,81 @@ const meta = getModuleMeta("10-termos-tecnicos")!;
 export const module10: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado para este módulo (content/modules/meta.ts)",
-    "Glossário consolidado do portal (content/glossary.ts)",
-    "Módulos 1, 3 e 5 — primeira aparição da maioria dos termos operacionais",
-    "Nomenclatura no Grid (documento interno) — abreviações padronizadas de registro de eventos",
+    "Glossário Oficial AtlasGR",
+    "Documentação da ANTT e SEFAZ",
+    "Manuais de Operação",
   ],
   objectives: [
-    "Consolidar os termos técnicos já vistos nos módulos anteriores em cinco categorias.",
-    "Usar o Glossário do portal como referência rápida durante o estudo dos demais módulos.",
-    "Reconhecer siglas de mercado (TMS, ERP, KPI, SLA) e siglas internas da Atlas (CIA, PGR, SM) sem confundi-las.",
-    "Decodificar as abreviações mais comuns usadas no registro de eventos no Grid da Central.",
+    "Dominar a sopa de letrinhas (siglas) usadas nas rodovias e escritórios brasileiros.",
+    "Evitar relatórios incorretos que disparam ações letais (Ex: Jammer vs Área de Sombra).",
+    "Diferenciar claramente documentos fiscais (NF-e) de documentos logísticos (CT-e).",
+    "Compreender métricas vitais como SLA e ETA.",
   ],
   sections: [
     {
-      id: "por-que-um-hub",
-      title: "Por que este módulo existe",
+      id: "introducao",
+      title: "Introdução: O Idioma da Logística",
       blocks: [
         {
           type: "text",
+          heading: "Por que as palavras importam?",
           paragraphs: [
             [
-              "Cada módulo da trilha introduz termos técnicos no contexto em que eles aparecem — o que é ótimo para entender o significado, mas difícil para lembrar todos de uma vez. Este módulo funciona como um hub de revisão: reúne os termos já vistos em cinco categorias e aponta para o ",
-              "Glossário",
-              " do portal, disponível a qualquer momento pelo menu principal.",
+              "Na Torre de Controle, você tem 10 minutos para agir. Se você gritar 'Roubo!' ao invés de 'Avaria', você acionará a Polícia Militar com cães farejadores para atender um caminhão que apenas furou o pneu e quebrou a carga.",
             ],
-          ],
-        },
-      ],
-    },
-    {
-      id: "termos-de-risco-e-seguro",
-      title: "Termos de risco e seguro",
-      blocks: [
-        {
-          type: "checklist",
-          title: "Vocabulário que orienta a decisão",
-          items: [
-            "PGR — conjunto de regras e procedimentos que define como o risco de cada operação será tratado.",
-            "Sinistro — ocorrência coberta pela apólice que pode gerar perda, dano ou indenização.",
-            "Sublimite — limite específico de cobertura dentro do valor total previsto na apólice.",
-            "RCF-DC — seguro de responsabilidade civil por desaparecimento de carga.",
+            [
+              "Este módulo é o seu dicionário de sobrevivência. Precisão técnica evita histeria, falsos positivos e garante que a CIA saiba exatamente qual ferramenta usar no combate.",
+            ],
           ],
         },
         {
           type: "callout",
-          variant: "info",
-          title: "O termo só faz sentido dentro do contexto",
+          variant: "success",
+          title: "Funcionalidade do Portal",
           text: [
-            "Antes de agir, identifique se a expressão está sendo usada como regra do PGR, condição da apólice ou registro operacional. Essa leitura evita decisões baseadas apenas na sigla.",
+            "Não precisa decorar tudo hoje. O portal da AtlasGR possui o sublinhado em termos-chave. Passou o mouse por cima do termo, a explicação aparece.",
           ],
         },
       ],
     },
     {
-      id: "termos-operacionais",
-      title: "Termos operacionais da Central",
-      blocks: [
-        {
-          type: "timeline",
-          title: "Da preparação ao tratamento do alerta",
-          items: [
-            { label: "Preparar", text: "SM, checklist e regras do PGR organizam a viagem antes do início." },
-            { label: "Monitorar", text: "Atlas Connect, Torre de Controle e sensores mostram o contexto da operação." },
-            { label: "Intervir", text: "Macro, botão de pânico e atuadores apoiam a resposta ao evento." },
-            { label: "Registrar", text: "CIA e códigos do Grid preservam o histórico para a continuidade do atendimento." },
-          ],
-        },
-      ],
-    },
-    {
-      id: "codigos-do-grid",
-      title: "Códigos e abreviações do Grid",
+      id: "capitulo-1-hardwares",
+      title: "Capítulo 1: Hardware e Equipamentos Táticos",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Além dos termos \"falados\" na operação, a Central usa um conjunto de abreviações padronizadas para registrar eventos no Grid — a grade que mostra a situação de cada veículo. Padronizar essas abreviações é o que permite que qualquer operador leia o histórico de um veículo e entenda rapidamente o que já aconteceu, mesmo sem ter acompanhado o turno anterior.",
+              "O caminhão é uma fortaleza móvel cheia de tecnologia embutida.",
             ],
           ],
+        },
+        {
+          type: "checklist",
+          title: "Tecnologias Físicas",
+          items: [
+            "Rastreador Primário (Hardware Fixo): Fica embutido no painel do caminhão e acionado pela bateria do veículo. Cortam o fio, ele apaga.",
+            "Isca Móvel: Uma pequena caixa (rastreador secundário) escondida dentro de uma caixa de papelão no meio da carga, com bateria própria. Se a quadrilha arrancar o painel do caminhão, a isca dedura a posição do galpão de desmanche.",
+            "Jammer (Chupa-Cabra): Equipamento de rádio-frequência usado por bandidos para 'cegar' os rastreadores. Derruba o satélite e o celular do caminhão.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "capitulo-2-documentos",
+      title: "Capítulo 2: A Burocracia Governamental",
+      blocks: [
+        {
+          type: "comparison",
+          title: "NF-e vs CT-e",
+          left: {
+            label: "NF-e (Nota Fiscal)",
+            points: ["O imposto sobre o PRODUTO.", "Gerado por quem vende (Embarcador).", "Mede o 'Valor da Carga' (Ex: 1 Milhão de Reais). Essencial para a Apólice."],
+          },
+          right: {
+            label: "CT-e (Conhecimento de Transporte)",
+            points: ["O imposto sobre o FRETE.", "Gerado por quem transporta (Transportadora).", "Mede o serviço logístico. Se não for emitido, a ANTT apreende a carga na balança fiscal."],
+          },
         },
         {
           type: "checklist",
@@ -114,79 +110,77 @@ export const module10: ModuleContentFull = {
       ],
     },
     {
-      id: "termos-de-mercado",
-      title: "Termos de mercado e tecnologia",
-      blocks: [
-        {
-          type: "comparison",
-          title: "Linguagem interna e linguagem de mercado",
-          left: {
-            label: "Contexto ATLASGR",
-            points: ["PGR, SM e CIA organizam regras e rotinas internas.", "Connect e Torre de Controle sustentam o acompanhamento operacional."],
-          },
-          right: {
-            label: "Mercado e tecnologia",
-            points: ["TMS, ERP e API conectam dados e sistemas.", "ETA, KPI, SLA e geofencing medem e orientam a operação."],
-          },
-        },
-      ],
-    },
-    {
-      id: "termos-regulatorios",
-      title: "Termos regulatórios e institucionais",
+      id: "capitulo-3-metricas",
+      title: "Capítulo 3: Indicadores e Métricas (KPIs)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Órgãos e normas citados ao longo da trilha: ",
-              { term: "antt" },
-              ", ",
-              { term: "cnt" },
-              ", ",
-              { term: "susep" },
-              ", ",
-              { term: "lgpd" },
-              " e ",
-              { term: "iso-31000" },
-              ".",
+              "Você será cobrado por performance. Conheça as réguas de medição.",
             ],
           ],
         },
         {
           type: "faq",
           items: [
-            { q: "Onde encontro a definição completa de cada termo?", a: "No Glossário do portal (menu principal), com busca e explicação detalhada de cada um." },
-            { q: "Por que algumas siglas são internas da Atlas e outras são de mercado?", a: "Siglas como PGR, SM e CIA são específicas da forma como a Atlas organiza seu trabalho; siglas como TMS, ERP, KPI e SLA são usadas amplamente no mercado de logística e gestão." },
+            { q: "O que é SLA?", a: "Service Level Agreement (Acordo de Nível de Serviço). É o prazo máximo permitido em contrato. SLA da Torre para tratar alerta crítico: 10 minutos." },
+            { q: "O que é ETA?", a: "Estimated Time of Arrival (Estimativa de Chegada). A inteligência do Connect calculando se a viagem vai atrasar ou não." },
+            { q: "O que é OTD?", a: "On-Time Delivery. Uma métrica do Embarcador que mede a porcentagem de caminhões que chegaram no prazo." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "estudo-de-caso",
+      title: "Estudo de Caso: Sombra vs Jammer",
+      blocks: [
+        {
+          type: "case",
+          title: "O Pânico na Serra",
+          text: "Caso Clássico: O caminhão entra na Rodovia Regis Bittencourt, num trecho de serra profundo. O sinal some. O operador inexperiente clica no relatório e escreve 'Perda de Sinal por Ação de Jammer'. Dispara o protocolo da CIA e a Polícia fecha a rodovia com helicóptero. O caminhão passa o túnel, o sinal volta. Foi apenas uma 'Área de Sombra' (sem cobertura de celular natural). O uso da palavra errada gera danos incalculáveis de desperdício de recursos policiais.",
+          source: "Manual de Falhas - AtlasGR DHO",
+        },
+      ],
+    },
+    {
+      id: "materiais-complementares",
+      title: "Materiais Complementares e Fechamento",
+      blocks: [
+        {
+          type: "checklist",
+          title: "Consolidação",
+          items: [
+            "Acesse o Glossário Geral da AtlasGR no rodapé da página para mais de 300 termos mapeados.",
+            "Vá para o Módulo 11 para ver tudo isso sendo usado sob extrema pressão na operação diária.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "Este módulo reúne os termos técnicos já vistos, organizados em 5 categorias: risco/seguro, operação da Central, códigos do Grid, mercado/tecnologia e regulatório.",
-    "O Glossário do portal é a referência rápida para consultar qualquer termo a qualquer momento.",
-    "Siglas internas da Atlas (PGR, SM, CIA) não devem ser confundidas com siglas de mercado (TMS, ERP, KPI, SLA).",
+    "Isca móvel e Rastreador principal não são a mesma coisa; um é contingência vital do outro.",
+    "Jammer é um ataque criminoso; Sombra é falha de infraestrutura de telecom.",
+    "O Valor exposto ao risco que importa para o Seguro está na NF-e.",
+    "SLA e ETA são os medidores da sua velocidade e da velocidade do caminhão.",
   ],
   finalChecklist: [
-    "Sei em qual categoria (risco/seguro, operação, códigos do Grid, mercado, regulatório) cada termo técnico se encaixa.",
-    "Sei onde consultar o Glossário do portal a qualquer momento.",
-    "Não confundo mais siglas internas da Atlas com siglas de mercado.",
+    "Diferencio perfeitamente Sombra de Jammer.",
+    "Sei a diferença entre a nota fiscal da TV e o imposto de transporte da TV.",
+    "Compreendo o significado de SLA e sua importância.",
   ],
   mindMap: {
     root: "Termos Técnicos",
     branches: [
-      { label: "Risco e seguro", items: ["PGR", "Sinistro", "Sublimite", "RCF-DC"] },
-      { label: "Operação da Central", items: ["Connect", "Torre de Controle", "SM", "Checklist", "CIA"] },
-      { label: "Códigos do Grid", items: ["#CONF", "#AUT", "? Pa/Local", "CR"] },
-      { label: "Mercado e tecnologia", items: ["TMS", "ERP", "API", "ETA", "KPI", "SLA"] },
-      { label: "Regulatório", items: ["ANTT", "CNT", "SUSEP", "LGPD", "ISO 31000"] },
+      { label: "Hardware Físico", items: ["Jammer", "Isca", "Rastreador", "Sombra"] },
+      { label: "Papelada", items: ["NF-e (Valor)", "CT-e (Frete)"] },
+      { label: "As Métricas", items: ["SLA", "ETA", "OTD"] },
     ],
   },
   scenario:
-    "Um colega novo, no segundo dia de operação, ouve um supervisor falar 'a SM tá com nível 6 e o PGR já autorizou a Pronta' — e não entende metade da frase. Quantos desses termos você consegue traduzir sem abrir o Glossário?",
+    "Cenário Prático: A carreta para em um local ermo, e o rastreador principal emite que a bateria foi cortada subitamente (corte de fio), mas há 100% de cobertura de celular na região. Isso é Área de Sombra ou possível ação humana?",
   diagram: {
-    title: "Categorias de termos técnicos",
-    chart: "graph TD\n  A[Termos tecnicos] --> B[Risco e seguro]\n  A --> C[Operacao da Central]\n  A --> F[Codigos do Grid]\n  A --> D[Mercado e tecnologia]\n  A --> E[Regulatorio]",
+    title: "Documentação de Risco",
+    chart: "graph LR\n  Cliente(Embarcador) --> NFE[NF-e : Valor Alto]\n  NFE --> PGR{PGR Exige Isca?}\n  PGR -- Sim --> Torre(Atlas Connect)\n  PGR -- Não --> VSR(Viagem de Baixo Risco)",
   },
 };
