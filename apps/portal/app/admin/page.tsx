@@ -199,7 +199,25 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          <div className="overflow-x-auto">
+          <div className="md:hidden mt-4 space-y-4">
+            {filtered.map((r) => (
+              <div key={r.nome} className="rounded-xl border border-border bg-surface-2 p-4">
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <p className="font-medium">{r.nome}</p>
+                    <p className="text-xs text-muted">{r.cargo}</p>
+                  </div>
+                  <Badge variant={statusLabel[r.status].variant}>{statusLabel[r.status].label}</Badge>
+                </div>
+                <div className="flex justify-between items-center text-xs text-muted mt-3 pt-3 border-t border-border">
+                  <span>Progresso: {r.progresso}%</span>
+                  <span>Nota: {r.notaMedia}%</span>
+                  <span>Acesso: {r.ultimoAcesso}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
                 <tr className="border-b border-border text-xs text-muted">

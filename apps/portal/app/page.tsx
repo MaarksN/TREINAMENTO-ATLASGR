@@ -296,6 +296,7 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+        </section>
 
         {/* Indicadores Institucionais */}
         <section className="mx-auto max-w-7xl px-6 py-24">
@@ -354,8 +355,6 @@ export default function HomePage() {
         {/* Footer */}
         <section className="mx-auto max-w-7xl px-6 pt-12 pb-8 border-t border-border/50 text-center">
           <Logo className="mx-auto mb-8 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300" />
-          <SocialLinks className="justify-center mb-8" />
-          <ContactAddress className="text-sm" />
         </section>
       </main>
 
