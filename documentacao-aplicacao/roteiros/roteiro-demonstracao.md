@@ -1,9 +1,12 @@
-# Roteiro de Demonstração (Gravação)
+# Roteiro de Demonstração (Fluxos) - Portal de Onboarding ATLASGR
 
-1. **Acesso à Página Inicial:** Mostrar o layout principal do portal de Onboarding, com suas abas horizontais e estrutura das verticais.
-2. **Dashboard Operacional:** Exibir o painel, a barra de progresso, nível, streak e os cards disponíveis de acesso rápido.
-3. **Trilha de Aprendizagem:** Clicar para entrar em um módulo da trilha (ex: 01-bem-vindo-atlasgr) e percorrer sua estrutura de leitura, até o final.
-4. **Produtos ATLASGR:** Demonstrar a navegação para os showcases dos produtos (Profile, Connect, GR, Analytics).
-5. **Glossário:** Navegar até a página do glossário, e rolar para visualizar os termos listados.
-6. **Prova Final e Certificado:** Visitar a página da Prova Final (quando elegível) e, após aprovação, visualizar a página do Certificado emitido.
-7. **Fechamento:** Concluir na tela inicial, resumindo a experiência e organização visual e funcional.
+Este roteiro guia a navegação da gravação de demonstração.
+
+1.  **Acesso:** Na tela inicial, preencher o formulário para simular o acesso.
+2.  **Dashboard:** Após o acesso, navegar até a tela "Dashboard" e explorar brevemente as métricas de acompanhamento (XP, Nível).
+3.  **Trilha:** Clicar na Trilha de Conhecimento. Mostrar a organização das etapas.
+4.  **Módulo Detalhe:** Entrar no Módulo 01 (Bem-vindo). Navegar lentamente pelo conteúdo.
+5.  **Glossário:** Clicar no link de Glossário no menu superior e demonstrar a pesquisa ou listagem.
+6.  **Prova Final:** Acessar a página da Prova Final. (Apenas apresentar a tela de introdução).
+7.  **Certificado:** Acessar a tela do certificado (sem dados sensíveis).
+8.  **Admin:** Por fim, ir até a página de Administração para visualizar as tabelas e KPIs gerenciais.
