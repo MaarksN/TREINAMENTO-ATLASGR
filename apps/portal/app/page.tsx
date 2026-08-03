@@ -3,18 +3,38 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Building2, Compass, Heart, Sparkles, Target, Award, Rocket, ChevronRight } from "lucide-react";
+import {
+  Building2,
+  Compass,
+  Heart,
+  Sparkles,
+  Target,
+  Award,
+  Rocket,
+  ChevronRight,
+  GraduationCap,
+  Bot,
+  Headphones,
+  ShieldCheck,
+  BriefcaseBusiness,
+  Database,
+  Users,
+  BrainCircuit,
+  LockKeyhole,
+  Layers3,
+} from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Logo } from "@/components/brand/Logo";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SocialLinks, ContactAddress } from "@/components/brand/SocialLinks";
 import { AccessModal } from "@/components/onboarding/AccessModal";
 import { InstitutionalVideo } from "@/components/media/InstitutionalVideo";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ModuleCard } from "@/components/trail/ModuleCard";
-import { moduleMetas } from "@/content/modules";
+import { moduleMetas, readyModuleSlugs } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
+import { levelProgress } from "@/lib/gamification";
 
 const indexes = [
   {
@@ -35,7 +55,13 @@ const indexes = [
   },
 ];
 
-const values = ["Perseverança", "Transparência", "Simplicidade", "Atitude de Dono", "Inovação"];
+const values = [
+  { label: "Perseverança", icon: Building2 },
+  { label: "Transparência", icon: Compass },
+  { label: "Simplicidade", icon: Heart },
+  { label: "Atitude de Dono", icon: Sparkles },
+  { label: "Inovação", icon: Target },
+];
 
 const academyTools = [
   {
@@ -296,6 +322,7 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+        </section>
 
         {/* Indicadores Institucionais */}
         <section className="mx-auto max-w-7xl px-6 py-24">

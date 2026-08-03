@@ -4,9 +4,9 @@
     {
       "name": "atlasgr-portal",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "apps/portal", "--", "--webpack", "-p", "4123"],
-      "port": 4123,
-      "autoPort": true
+      "runtimeArgs": ["run", "dev", "--prefix", "apps/portal", "--", "--webpack", "-p", "3002"],
+      "port": 3002,
+      "autoPort": false
     }
   ]
 }
