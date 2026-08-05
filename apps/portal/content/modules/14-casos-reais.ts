@@ -14,6 +14,7 @@ export const module14: ModuleContentFull = {
     "Mapear a causa-raiz (Erro Sistêmico vs Erro Humano) em eventos de grande prejuízo.",
     "Consolidar a argumentação do 'Preço do Fracasso' para justificar a rigidez do PGR.",
     "Validar a prontidão tática antes do módulo final de certificação.",
+    "Identificar os fatores técnicos e humanos que garantem uma recuperação de carga bem-sucedida em tempo recorde.",
   ],
   sections: [
     {
@@ -139,6 +140,47 @@ export const module14: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-resgate-farma",
+      title: "Capítulo 4: O Resgate Relâmpago (Carga Farma)",
+      blocks: [
+        {
+          type: "case",
+          title: "O Caso da Carga Farma: Recuperação em 38 Minutos",
+          text:
+            "Uma carreta com insumos farmacêuticos avaliados em R$ 2,3 milhões saiu da rota programada na BR-381. O Connect disparou o alerta de desvio de trajeto no mesmo minuto. Em vez de confiar apenas na voz do motorista ao telefone — a mesma armadilha que custou R$ 800 mil no Capítulo 2 —, o operador acionou a checagem por vídeo (DMS) em tempo real e confirmou dois indivíduos não identificados na cabine. A CIA assumiu a ocorrência, ativou o bloqueio progressivo do motor (que reduz a velocidade sem travar o veículo de forma abrupta, preservando a integridade física do motorista) e compartilhou a geolocalização exata com a Polícia Rodoviária. A carga foi interceptada intacta antes de qualquer transferência para outro veículo.",
+          source: "Arquivo Confidencial: Auditorias Forenses de Sinistros (2020-2025)",
+        },
+        {
+          type: "timeline",
+          title: "Cronologia: Do Desvio à Recuperação Total",
+          items: [
+            { label: "09:41 (O Alerta)", text: "Connect acusa desvio de rota fora do corredor logístico autorizado no Atlas Profile." },
+            { label: "09:43 (A Verificação)", text: "Em vez de ligar e confiar na voz, o operador ativa o DMS e visualiza dois ocupantes estranhos na cabine. Contra-senha nem chega a ser solicitada: a evidência visual já basta." },
+            { label: "09:47 (A Ação)", text: "CIA assume a ocorrência e aciona o bloqueio progressivo do motor via Atlas Connect, evitando reação violenta dos criminosos." },
+            { label: "10:05 (A Interceptação)", text: "Coordenadas em tempo real são repassadas à Polícia Rodoviária. Veículo é abordado antes de alcançar o ponto de troca de carga." },
+            { label: "10:19 (O Fechamento)", text: "Motorista recuperado ileso, carga 100% intacta. Ocorrência encerrada sem acionamento de sinistro junto à Seguradora." },
+          ],
+        },
+        {
+          type: "stat",
+          items: [
+            { value: "38 min", label: "Do alerta à recuperação total" },
+            { value: "100%", label: "Da carga entregue sem avaria" },
+            { value: "R$ 2,3 mi", label: "Valor da mercadoria preservado" },
+            { value: "0", label: "Sinistros acionados junto à Seguradora" },
+          ],
+        },
+        {
+          type: "callout",
+          variant: "success",
+          title: "Os Três Fatores que Mudaram o Resultado",
+          text: [
+            "Verificação por vídeo (DMS) em vez de confiança cega na voz do motorista, bloqueio progressivo (segurança física antes de tudo) e compartilhamento imediato de geolocalização com a força policial. Nenhum herói isolado: um protocolo seguido à risca, do primeiro ao último minuto.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -167,7 +209,7 @@ export const module14: ModuleContentFull = {
   mindMap: {
     root: "Laboratório Forense",
     branches: [
-      { label: "O Triunfo", items: ["SLA Rápido", "Acionamento da CIA", "Uso da Isca Móvel"] },
+      { label: "O Triunfo", items: ["SLA Rápido", "Acionamento da CIA", "Uso da Isca Móvel", "Verificação por Vídeo (DMS) e Bloqueio Progressivo"] },
       { label: "O Fracasso", items: ["Enforcar Alerta", "Acreditar na Voz", "Omitir Contra-Senha"] },
       { label: "O Valor", items: ["95 Milhões (Combustível)", "Redução Pátio (Sucos)"] },
     ],

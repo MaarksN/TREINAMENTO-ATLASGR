@@ -15,6 +15,7 @@ export const module12: ModuleContentFull = {
     "Identificar ataques de Engenharia Social (Falso Cliente / Ameaças).",
     "Assumir a postura de tolerância zero com o vazamento de informações operacionais.",
     "Compreender o uso restrito e monitorado dos ativos da empresa.",
+    "Executar corretamente o protocolo de resposta a incidentes nas primeiras horas após a suspeita de um vazamento de dados.",
   ],
   sections: [
     {
@@ -118,6 +119,49 @@ export const module12: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-resposta-a-incidentes",
+      title: "Capítulo 4: Resposta a um Incidente de Vazamento de Dados",
+      blocks: [
+        {
+          type: "text",
+          heading: "As Primeiras Horas Decidem o Tamanho do Estrago",
+          paragraphs: [
+            [
+              "Suspeitou que um dado vazou? A partir desse segundo, você não é mais só operador: é a primeira linha de resposta. O que você faz (ou deixa de fazer) nas próximas horas define se o incidente vira um alerta controlado ou uma multa da ANPD estampada no jornal.",
+            ],
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Regra de Ouro: Não Apague Nada",
+          text: [
+            "Pânico faz gente apagar print, fechar chat, desinstalar programa 'pra não sobrar rastro'. Isso é o pior erro possível: destruir evidência dificulta a investigação, agrava a sua responsabilidade pessoal e pode ser interpretado como obstrução. Preserve tudo exatamente como está e acione o protocolo.",
+          ],
+        },
+        {
+          type: "timeline",
+          title: "Protocolo das Primeiras Horas",
+          items: [
+            { label: "Minuto 0", text: "Pare a ação que está causando ou expondo o vazamento, mas NÃO feche janelas, não apague logs, não desligue a máquina. Isole, não destrua." },
+            { label: "Até 15 min", text: "Acione simultaneamente o seu líder direto e a C.I.A (Célula de Inteligência Atlas) pelo canal de emergência. Descreva o que viu, quando e em que sistema." },
+            { label: "Até 1 hora", text: "O time de Segurança da Informação e o Encarregado de Dados (DPO) da AtlasGR precisam ser formalmente comunicados para abrir o registro interno de incidente e iniciar a contenção." },
+            { label: "Próximos dias", text: "Cabe ao DPO, junto à Jurídico, avaliar o risco ao titular dos dados e decidir se e quando a ANPD e os titulares afetados serão notificados, conforme exige a LGPD. Essa decisão não é sua — mas o seu relato preciso é o que a embasa." },
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Enquanto o Protocolo Roda, Você Deve",
+          items: [
+            "Anotar (em papel ou bloco de notas, sem printar telas sensíveis) o horário exato em que percebeu o problema.",
+            "Guardar prints e evidências apenas se solicitado formalmente pela Segurança da Informação, nunca por iniciativa própria enviando para grupos.",
+            "Não comentar o incidente com clientes, fornecedores ou nas redes sociais antes do time de Compliance liberar uma posição oficial.",
+            "Continuar disponível para esclarecimentos até o encerramento do registro de incidente.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -146,7 +190,7 @@ export const module12: ModuleContentFull = {
   mindMap: {
     root: "Compliance e Sigilo",
     branches: [
-      { label: "LGPD", items: ["Dados Sensíveis", "Status vs Ficha Criminal", "Privacidade"] },
+      { label: "LGPD", items: ["Dados Sensíveis", "Status vs Ficha Criminal", "Privacidade", "Resposta a Incidentes"] },
       { label: "Engenharia Social", items: ["Falso Diretor", "Pressão Urgente", "Negação Positiva"] },
       { label: "Regras Físicas", items: ["Zero Fotos", "Windows+L", "Senha Pessoal"] },
     ],

@@ -157,7 +157,7 @@ export function AgentBuilder() {
         </div>
 
         <div className="agent-builder-output" aria-live="polite">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {isBuilding ? (
               <motion.div
                 key="building"

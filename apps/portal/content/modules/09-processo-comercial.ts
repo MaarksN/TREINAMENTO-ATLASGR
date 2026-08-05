@@ -14,6 +14,7 @@ export const module09: ModuleContentFull = {
     "Definir e utilizar o conceito de ICP (Ideal Customer Profile).",
     "Aprender a contornar as objeções financeiras e operacionais mais duras.",
     "Compreender que o atendimento da Torre é o maior vendedor de renovação da empresa.",
+    "Reconhecer sinais de alerta de churn e agir antes que o cliente ameace cancelar o contrato.",
   ],
   sections: [
     {
@@ -117,6 +118,49 @@ export const module09: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-renovacao-churn",
+      title: "Capítulo 4: Renovação de Contrato e Prevenção de Churn",
+      blocks: [
+        {
+          type: "text",
+          heading: "A Venda Não Termina na Assinatura",
+          paragraphs: [
+            [
+              "O contrato assinado não é o fim da venda, é o começo do risco. Renovação não se negocia em uma ligação de 15 minutos no mês 11 — ela é construída (ou destruída) todos os dias, ticket a ticket, na Central de Monitoramento. Se a Torre atende mal, nenhum desconto de renovação segura o cliente.",
+            ],
+            [
+              "Por isso a taxa de renovação da AtlasGR depende muito mais da Central de Operações do que do time comercial: é lá que o cliente sente, todo santo dia, se a promessa vendida na demo virou realidade operacional.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Sinais de Alerta de Churn (aja nos primeiros dois)",
+          items: [
+            "O gestor do cliente para de responder e-mails de acompanhamento mensal.",
+            "Aumento repentino de chamados reclamando de lentidão ou falha no acionamento da Central 24/7.",
+            "O contato principal do cliente foi trocado e o novo gestor não conhece o histórico do contrato.",
+            "Concorrente foi visto fazendo prospecção ou visita técnica na base do cliente.",
+            "Cliente começou a questionar valores de sublimite e LMI 'só por questionar', sem sinistro recente.",
+          ],
+        },
+        {
+          type: "case",
+          title: "A Renovação que Quase Foi Perdida",
+          text: "Um cliente do ICP (frota de 80 caminhões) avisou no mês 10 que 'estava avaliando propostas concorrentes' porque, na visão dele, pagava caro por um serviço que só usava 'quando dava problema'. O Closer ligou em pânico, mas quem reverteu o cancelamento foi a Central de Operações: levantou o histórico e mostrou, em números, que a C.I.A. havia evitado 4 sinistros de grande porte naquele ano, com acionamento médio de 3 minutos. O cliente renovou com upgrade para o Atlas Analytics, porque viu prova operacional, não promessa comercial.",
+          source: "Diretrizes Comerciais AtlasGR",
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Cliente Ameaçando Cancelar? Faça Isto",
+          text: [
+            "Não empurre desconto na primeira ligação. Primeiro, puxe o histórico de acionamentos e SLA da Central junto ao time de operações, agende uma reunião de 'prestação de contas' mostrando sinistros evitados e, só então, negocie condições comerciais. Desconto sem prova de valor apenas adia o cancelamento.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -146,7 +190,7 @@ export const module09: ModuleContentFull = {
     root: "Comercial B2B",
     branches: [
       { label: "Público", items: ["ICP", "Frotas +50", "Carga Alta Risco"] },
-      { label: "Jornada", items: ["Gatilhos", "SDR", "Demo", "CRM"] },
+      { label: "Jornada", items: ["Gatilhos", "SDR", "Demo", "CRM", "Renovação"] },
       { label: "Defesa", items: ["Valor vs Preço", "Custo do Sinistro"] },
     ],
   },

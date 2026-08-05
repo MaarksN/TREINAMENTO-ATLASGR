@@ -32,19 +32,31 @@ const emptyForm = {
   estado: "",
 };
 
+function isValidCpf(value: string) {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length !== 11) return false;
+  if (/^(\d)\1{10}$/.test(digits)) return false; // todos os dígitos iguais
+  return true;
+}
+
 // Cadastro exclusivo do Administrador — o colaborador nunca preenche este
 // formulário; ele só faz o "primeiro acesso" (ver AccessModal).
 export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: (accessCode: string) => void }) {
   const enrollColaborador = useOnboardingStore((s) => s.enrollColaborador);
+  const enrolled = useOnboardingStore((s) => s.enrolled);
   const [form, setForm] = useState(emptyForm);
   const [submitted, setSubmitted] = useState(false);
   const [lastCode, setLastCode] = useState<string | null>(null);
 
   const missingRequired = fields.filter((f) => f.required && !form[f.key].trim());
+  const cpfInvalid = !!form.cpf.trim() && !isValidCpf(form.cpf);
+  const isDuplicateName =
+    !!form.nomeCompleto.trim() &&
+    enrolled.some((c) => c.nomeCompleto.trim().toLowerCase() === form.nomeCompleto.trim().toLowerCase());
 
   function handleSubmit() {
     setSubmitted(true);
-    if (missingRequired.length > 0) return;
+    if (missingRequired.length > 0 || cpfInvalid || isDuplicateName) return;
 
     const data: RegistrationData = {
       ...form,
@@ -79,6 +91,15 @@ export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: (accessCode
 
       {submitted && missingRequired.length > 0 && (
         <p className="mt-3 text-xs text-red-500">Preencha os campos obrigatórios: {missingRequired.map((f) => f.label).join(", ")}.</p>
+      )}
+      {submitted && cpfInvalid && (
+        <p className="mt-3 text-xs text-red-500">CPF inválido — informe os 11 dígitos (com ou sem pontuação).</p>
+      )}
+      {submitted && isDuplicateName && (
+        <p className="mt-3 text-xs text-red-500">
+          Já existe um colaborador cadastrado com esse nome. Use o nome completo para diferenciar (ex.: sobrenome do meio) —
+          a seleção de &ldquo;primeiro acesso&rdquo; é feita só pelo nome.
+        </p>
       )}
 
       {lastCode && (

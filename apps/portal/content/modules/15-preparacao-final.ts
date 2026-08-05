@@ -14,6 +14,7 @@ export const module15: ModuleContentFull = {
     "Identificar as lacunas mentais individuais antes de iniciar o simulador final.",
     "Explicar a dinâmica da prova final (corte de 70% e cenários táticos).",
     "Consolidar a responsabilidade corporativa adquirida com o conhecimento.",
+    "Aplicar uma estratégia eficiente de tempo e resposta durante as 150 questões da prova final.",
   ],
   sections: [
     {
@@ -128,6 +129,48 @@ export const module15: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-estrategia-prova",
+      title: "Capítulo 4: Estratégia de Prova — Tempo, Foco e Sangue-Frio",
+      blocks: [
+        {
+          type: "text",
+          heading: "150 Perguntas Não É Maratona, É Ritmo",
+          paragraphs: [
+            [
+              "Saber o conteúdo é metade do trabalho. A outra metade é administrar o relógio. Quem trava 8 minutos numa única questão sobre sublimite de apólice geralmente é o mesmo que entrega as últimas 20 perguntas em branco por falta de tempo.",
+            ],
+            [
+              "A prova é dividida em blocos por módulo (10 perguntas cada). Trate cada bloco como um pequeno checkpoint: se você não sabe a resposta em 40 ou 50 segundos, marque a mais provável, sinalize para revisão (se o sistema permitir) e siga em frente. Voltar no final com a cabeça mais leve resolve mais dúvidas do que insistir no calor do momento.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Checklist de Sobrevivência na Prova",
+          items: [
+            "Nunca deixe uma questão em branco: sem marcação, a chance de acerto é zero; com um chute educado, ainda existe chance.",
+            "Leia o enunciado duas vezes antes de olhar as alternativas — muita pegadinha está no 'não', no 'exceto' e no 'sempre'.",
+            "Elimine primeiro as alternativas absurdas (extremos como 'nunca' ou 'sempre' costumam ser as erradas).",
+            "Desconfie de si mesmo quando mudar uma resposta pela terceira vez seguida — geralmente a primeira leitura já estava certa.",
+            "Reserve os últimos 10 minutos exclusivamente para revisar as questões sinalizadas, não para revisar tudo de novo.",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            { q: "Errei mais de 30% e reprovei. E agora?", a: "Sem drama. Reprovar não é demissão, é feedback. Você revisa o conteúdo do próprio relatório de erros, foca nos módulos fracos e reagenda uma nova tentativa com o DHO." },
+            { q: "Qual é o erro mais comum de quem reprova?", a: "Confundir os pilares tecnológicos entre si (trocar a função do Atlas Connect pela do Atlas Analytics) e esquecer os prazos de SLA da Torre de Controle. São detalhes, mas a prova cobra precisão, não 'mais ou menos'." },
+            { q: "Vale a pena estudar até a última hora antes da prova?", a: "Revisão leve, sim. Decoreba de última hora sob ansiedade, não — ela mais atrapalha do que ajuda. Prefira reler o resumo executivo de cada módulo e descansar a cabeça." },
+          ],
+        },
+        {
+          type: "quote",
+          text: "Você não chegou até a questão 150 por sorte. Chegou porque estudou. Confie no processo, confie no que você aprendeu e responda com a calma de quem já sabe o caminho.",
+          author: "Equipe de DHO — AtlasGR",
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Mensagem da Liderança e Partida",
       blocks: [
@@ -155,7 +198,7 @@ export const module15: ModuleContentFull = {
     branches: [
       { label: "A Base", items: ["Cultura, LGPD", "Embarcador vs Transportadora"] },
       { label: "O Jogo", items: ["Profile, Connect, PGR", "Torre, CIA, Analytics"] },
-      { label: "A Prova", items: ["Corte de 70%", "Julgamento Tático", "Certificação"] },
+      { label: "A Prova", items: ["Corte de 70%", "Julgamento Tático", "Certificação", "Gestão de Tempo nas 150 Questões"] },
     ],
   },
   scenario:

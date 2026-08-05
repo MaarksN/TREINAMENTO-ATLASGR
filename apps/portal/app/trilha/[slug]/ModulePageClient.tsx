@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { ArrowLeft, ArrowRight, Brain, CheckCircle2, ClipboardList, Wrench, PlayCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Brain, CheckCircle2, ClipboardList, Wrench, Compass, Map as MapIcon } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Badge } from "@/components/ui/Badge";
 import { ContentBlockView } from "@/components/module/ContentBlockView";
@@ -15,6 +15,23 @@ import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { ImmersiveStory } from "@/components/module/ImmersiveStory";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
+import type { ModuleContentFull, ModuleSection } from "@/lib/types";
+
+type Screen =
+  | { kind: "cover" }
+  | { kind: "scenario" }
+  | { kind: "objectives" }
+  | { kind: "section"; section: ModuleSection; chapterIndex: number }
+  | { kind: "diagram" }
+  | { kind: "review" }
+  | { kind: "quiz" };
+
+function buildScreens(content: ModuleContentFull): Screen[] {
+  const screens: Screen[] = [{ kind: "cover" }, { kind: "scenario" }, { kind: "objectives" }];
+  content.sections.forEach((section, i) => screens.push({ kind: "section", section, chapterIndex: i }));
+  screens.push({ kind: "diagram" }, { kind: "review" }, { kind: "quiz" });
+  return screens;
+}
 
 export function ModulePageClient() {
   const params = useParams<{ slug: string }>();
@@ -23,8 +40,7 @@ export function ModulePageClient() {
   const progress = useOnboardingStore((s) => s.progress);
   const completeModuleQuiz = useOnboardingStore((s) => s.completeModuleQuiz);
   const [showQuiz, setShowQuiz] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const [screenIndex, setScreenIndex] = useState(0);
 
   const meta = getModuleMeta(params.slug);
   const content = getModuleContent(params.slug);
@@ -33,6 +49,28 @@ export function ModulePageClient() {
   const idx = moduleMetas.findIndex((m) => m.slug === params.slug);
   const previousReady = moduleMetas.slice(0, idx).reverse().find((m) => m.status === "ready");
   const nextReady = moduleMetas.slice(idx + 1).find((m) => m.status === "ready");
+
+  const screens = useMemo(() => (content ? buildScreens(content) : []), [content]);
+  const totalScreens = screens.length;
+  const screen = screens[Math.min(screenIndex, totalScreens - 1)];
+  const isFirstScreen = screenIndex === 0;
+  const isQuizScreen = screen?.kind === "quiz";
+
+  // Novo módulo -> volta pra primeira tela em vez de continuar de onde a
+  // navegação anterior parou.
+  useEffect(() => {
+    setScreenIndex(0);
+    setShowQuiz(false);
+  }, [params.slug]);
+
+  function goNext() {
+    setScreenIndex((i) => Math.min(i + 1, totalScreens - 1));
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }
+  function goPrev() {
+    setScreenIndex((i) => Math.max(i - 1, 0));
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }
 
   if (!ready || !registration || !meta) return null;
 
@@ -64,225 +102,214 @@ export function ModulePageClient() {
   }
 
   return (
-    <div className="atlas-module-content min-h-screen bg-background text-foreground selection:bg-atlas-orange selection:text-white pb-20">
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-atlas-orange origin-left z-50 shadow-[0_0_10px_rgba(255,86,24,0.8)]" style={{ scaleX }} />
+    <div className="atlas-module-content flex min-h-screen flex-col bg-background text-foreground selection:bg-atlas-orange selection:text-white">
       <SiteHeader />
 
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
-        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-          <Link href="/trilha" className="inline-flex items-center gap-2 text-sm text-muted hover:text-atlas-orange transition-colors group">
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Voltar para a Central de Treinamento
+      {/* Barra de progresso por tela (não por scroll) + navegação de saída.
+          Não é sticky: o SiteHeader já é sticky top-0, e empilhar dois
+          elementos sticky no mesmo top-0 faz um cobrir o outro. */}
+      <div className="border-b border-border/50 bg-background">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+          <Link href="/trilha" className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-muted transition-colors hover:text-atlas-orange">
+            <ArrowLeft size={14} /> <span className="hidden sm:inline">Central de Treinamento</span>
           </Link>
-        </motion.div>
-
-        {/* 1. Cover / Header */}
-        <motion.div className="mt-8 flex flex-col items-center text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <span className="px-3 py-1 bg-atlas-orange/20 border border-atlas-orange/50 text-atlas-orange text-xs font-bold rounded uppercase tracking-widest">Módulo {String(meta.number).padStart(2, "0")}</span>
-            <span className="text-xs font-bold text-muted uppercase tracking-widest">{meta.durationMinutes} min</span>
-            {modProgress?.passed && <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-xs font-bold rounded uppercase tracking-widest flex items-center gap-1"><CheckCircle2 size={12} /> Concluído</span>}
-          </div>
-          <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold tracking-tight leading-tight text-balance">{content.title}</h1>
-          <p className="mt-4 text-xl text-muted max-w-3xl leading-relaxed mx-auto">{meta.shortDescription}</p>
-        </motion.div>
-
-        {/* 2. Critical Situation (Immersive Story) */}
-        <motion.div className="mt-16" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }}>
-          <ImmersiveStory story={content.scenario} />
-        </motion.div>
-
-        <motion.section
-          className="atlas-objectives-panel"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-90px" }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="atlas-objectives-heading">
-            <span>
-              <Brain size={22} aria-hidden="true" />
-            </span>
-            <div>
-              <p>Mapa deste módulo</p>
-              <h2>O que você vai dominar</h2>
-            </div>
-          </div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-70px" }}
-            variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }}
-            className="atlas-objectives-grid"
-          >
-            {content.objectives.map((objective, index) => (
-              <motion.article
-                key={objective}
-                variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
-                transition={{ duration: 0.42 }}
-              >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{objective}</p>
-              </motion.article>
+          <div className="flex flex-1 items-center gap-1">
+            {screens.map((_, i) => (
+              <span
+                key={i}
+                className="h-1 flex-1 rounded-full transition-colors duration-300"
+                style={{ backgroundColor: i <= screenIndex ? "var(--atlas-orange)" : "var(--border)" }}
+              />
             ))}
-          </motion.div>
-        </motion.section>
+          </div>
+          <span className="shrink-0 text-xs font-bold tabular-nums text-muted">
+            {screenIndex + 1}/{totalScreens}
+          </span>
+        </div>
+      </div>
 
-        {/* 3. Theoretical Concept */}
-        <div className="mt-20 space-y-16 max-w-4xl mx-auto">
-          {content.sections.map((section, index) => (
-            <motion.section
-              key={section.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: Math.min(index * 0.08, 0.24), ease: [0.16, 1, 0.3, 1] }}
-              className="atlas-lesson-section"
-            >
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-10 sm:px-6">
+        <motion.div key={screenIndex} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }} className="flex-1">
+          {screen.kind === "cover" && (
+            <div className="flex flex-col items-center pt-6 text-center">
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <span className="rounded border border-atlas-orange/50 bg-atlas-orange/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-atlas-orange">
+                  Módulo {String(meta.number).padStart(2, "0")}
+                </span>
+                <span className="text-xs font-bold uppercase tracking-widest text-muted">{meta.durationMinutes} min</span>
+                {modProgress?.passed && (
+                  <span className="flex items-center gap-1 rounded border border-emerald-500/50 bg-emerald-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-emerald-400">
+                    <CheckCircle2 size={12} /> Concluído
+                  </span>
+                )}
+              </div>
+              <h1 className="mt-6 text-balance font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">{content.title}</h1>
+              <p className="mx-auto mt-4 max-w-3xl text-xl leading-relaxed text-muted">{meta.shortDescription}</p>
+              <div className="mt-10 flex items-center gap-2 text-xs font-semibold text-muted">
+                <Compass size={16} className="text-atlas-orange" />
+                Este módulo tem {totalScreens} telas: contexto, objetivos, {content.sections.length} capítulos, diagrama, revisão e simulador.
+              </div>
+            </div>
+          )}
+
+          {screen.kind === "scenario" && <ImmersiveStory story={content.scenario} className="mt-2" />}
+
+          {screen.kind === "objectives" && (
+            <section className="atlas-objectives-panel">
+              <div className="atlas-objectives-heading">
+                <span><Brain size={22} aria-hidden="true" /></span>
+                <div>
+                  <p>Mapa deste módulo</p>
+                  <h2>O que você vai dominar</h2>
+                </div>
+              </div>
+              <div className="atlas-objectives-grid">
+                {content.objectives.map((objective, index) => (
+                  <article key={objective}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <p>{objective}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {screen.kind === "section" && (
+            <section className="atlas-lesson-section">
               <div className="atlas-lesson-heading">
-                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>{String(screen.chapterIndex + 1).padStart(2, "0")}</span>
                 <div>
                   <p>Capítulo do módulo</p>
-                  <h2>{section.title}</h2>
+                  <h2>{screen.section.title}</h2>
                 </div>
               </div>
               <div className="atlas-block-stack">
-                {section.blocks.map((b, i) => (
+                {screen.section.blocks.map((b, i) => (
                   <ContentBlockView key={i} block={b} index={i} />
                 ))}
               </div>
-            </motion.section>
-          ))}
-        </div>
+            </section>
+          )}
 
-        {content.summary?.length > 0 && (
-          <motion.section className="atlas-summary-card mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }}>
-            <div className="atlas-summary-heading">
-              <span>
-                <ClipboardList size={22} aria-hidden="true" />
-              </span>
-              <div>
-                <p>Fixação rápida</p>
-                <h2>Resumo do módulo</h2>
+          {screen.kind === "diagram" && (
+            <div>
+              <div className="atlas-lesson-heading">
+                <span><MapIcon size={28} aria-hidden="true" /></span>
+                <div>
+                  <p>Visão geral</p>
+                  <h2>Fluxo do módulo</h2>
+                </div>
               </div>
+              <MermaidViewer title={content.diagram.title} chart={content.diagram.chart} />
             </div>
-              <motion.ul
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{ visible: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } }}
-              >
-                {content.summary.map((s, i) => (
-                  <motion.li key={i} variants={{ hidden: { opacity: 0, x: -14 }, visible: { opacity: 1, x: 0 } }}>
-                    <CheckCircle2 size={18} aria-hidden="true" />
-                    <span>{s}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-          </motion.section>
-        )}
+          )}
 
-        {content.finalChecklist?.length > 0 && (
-          <motion.section
-            className="atlas-final-checklist mt-8 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            <p className="atlas-content-kicker">Antes de avançar</p>
-            <h2>Checklist de domínio</h2>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{ visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
-            >
-              {content.finalChecklist.map((item, index) => (
-                <motion.p
-                  key={item}
-                  variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+          {screen.kind === "review" && (
+            <div className="space-y-8">
+              {content.summary?.length > 0 && (
+                <section className="atlas-summary-card">
+                  <div className="atlas-summary-heading">
+                    <span><ClipboardList size={22} aria-hidden="true" /></span>
+                    <div>
+                      <p>Fixação rápida</p>
+                      <h2>Resumo do módulo</h2>
+                    </div>
+                  </div>
+                  <ul>
+                    {content.summary.map((s, i) => (
+                      <li key={i}>
+                        <CheckCircle2 size={18} aria-hidden="true" />
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {content.finalChecklist?.length > 0 && (
+                <section className="atlas-final-checklist">
+                  <p className="atlas-content-kicker">Antes de avançar</p>
+                  <h2>Checklist de domínio</h2>
+                  {content.finalChecklist.map((item, index) => (
+                    <p key={item}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      {item}
+                    </p>
+                  ))}
+                </section>
+              )}
+            </div>
+          )}
+
+          {screen.kind === "quiz" && (
+            <div className="atlas-content-card mx-auto max-w-3xl text-center">
+              <h2 className="font-display text-2xl font-bold sm:text-3xl">Simulador de Decisão</h2>
+              <p className="mx-auto mb-2 mt-4 max-w-xl text-muted">
+                Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.
+              </p>
+
+              {!showQuiz && (
+                <button
+                  onClick={() => setShowQuiz(true)}
+                  className="relative z-10 mt-8 rounded-lg bg-atlas-orange px-8 py-4 font-bold uppercase tracking-wider text-white shadow-glow transition-all hover:scale-105 hover:bg-atlas-orange-2"
                 >
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  {item}
-                </motion.p>
-              ))}
-            </motion.div>
-          </motion.section>
-        )}
-
-        {/* 4. Video Placeholder */}
-        <motion.div className="mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-          <div className="relative aspect-video rounded-2xl overflow-hidden glass border border-border flex items-center justify-center group cursor-pointer">
-            <div className="absolute inset-0 bg-gradient-to-tr from-atlas-orange/20 to-transparent opacity-50" />
-            <div className="z-10 flex flex-col items-center gap-4 transition-transform group-hover:scale-105">
-              <PlayCircle className="w-16 h-16 text-atlas-orange drop-shadow-lg" />
-              <p className="font-bold tracking-widest text-sm uppercase">Assistir briefing operacional</p>
+                  {modProgress?.passed ? "Refazer Simulação" : "Iniciar Avaliação"}
+                </button>
+              )}
+              {showQuiz && (
+                <div className="relative z-10 mt-8 text-left">
+                  <QuizRunner
+                    questions={quiz}
+                    title={`Simulador — ${content.title}`}
+                    onFinish={({ score, passed }) => {
+                      completeModuleQuiz(params.slug, score);
+                      if (passed && nextReady) {
+                        setTimeout(() => router.push(`/trilha/${nextReady.slug}`), 1800);
+                      }
+                    }}
+                  />
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </motion.div>
-
-        {/* 5. Diagram */}
-        <motion.div className="mt-20 max-w-4xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <MermaidViewer title={content.diagram.title} chart={content.diagram.chart} />
-        </motion.div>
-
-        {/* 6. Decision/Quiz */}
-        <motion.div className="mt-24 max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className="glass p-8 md:p-12 rounded-3xl border border-border text-center relative overflow-hidden">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-atlas-orange/20 blur-[100px] pointer-events-none" />
-
-            <h2 className="text-3xl font-display font-bold mb-4 relative z-10">Simulador de Decisão</h2>
-            <p className="text-muted mb-10 text-lg max-w-xl mx-auto relative z-10">Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.</p>
-
-            {!showQuiz && (
-              <button
-                onClick={() => setShowQuiz(true)}
-                className="relative z-10 px-8 py-4 bg-atlas-orange text-white rounded-lg font-bold tracking-wider uppercase shadow-glow hover:bg-atlas-orange-2 hover:scale-105 transition-all"
-              >
-                {modProgress?.passed ? "Refazer Simulação" : "Iniciar Avaliação (5 Perguntas)"}
-              </button>
-            )}
-            {showQuiz && (
-              <div className="text-left relative z-10 mt-8">
-                <QuizRunner
-                  questions={quiz}
-                  title={`Simulador — ${content.title}`}
-                  onFinish={({ score, passed }) => {
-                    completeModuleQuiz(params.slug, score);
-                    if (passed && nextReady) {
-                      setTimeout(() => router.push(`/trilha/${nextReady.slug}`), 1800);
-                    }
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        </motion.div>
-
-        <motion.nav
-          className="atlas-module-navigation"
-          aria-label="Navegação entre módulos"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <Link href={previousReady ? `/trilha/${previousReady.slug}` : "/trilha"} className="atlas-module-nav-link">
-            <ArrowLeft size={19} aria-hidden="true" />
-            <span>
-              <small>{previousReady ? "Módulo anterior" : "Voltar"}</small>
-              <strong>{previousReady?.title ?? "Trilha de aprendizagem"}</strong>
-            </span>
-          </Link>
-
-          <Link href={nextReady ? `/trilha/${nextReady.slug}` : "/prova-final"} className="atlas-module-nav-link is-next">
-            <span>
-              <small>{nextReady ? "Próximo módulo" : "Próxima etapa"}</small>
-              <strong>{nextReady?.title ?? "Prova final"}</strong>
-            </span>
-            <ArrowRight size={19} aria-hidden="true" />
-          </Link>
-        </motion.nav>
       </main>
+
+      {/* Navegação entre telas: sempre visível, fixa na base do conteúdo */}
+      <div className="sticky bottom-0 z-30 border-t border-border/50 bg-background/90 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+          {isFirstScreen ? (
+            previousReady ? (
+              <Link href={`/trilha/${previousReady.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-atlas-orange">
+                <ArrowLeft size={16} /> {previousReady.title}
+              </Link>
+            ) : (
+              <span />
+            )
+          ) : (
+            <button onClick={goPrev} className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-2.5 text-sm font-bold text-foreground transition-colors hover:border-atlas-orange/50">
+              <ArrowLeft size={16} /> Anterior
+            </button>
+          )}
+
+          {!isQuizScreen ? (
+            <button
+              onClick={goNext}
+              className="inline-flex items-center gap-2 rounded-xl bg-atlas-orange px-6 py-2.5 text-sm font-bold text-white shadow-glow transition-all hover:bg-atlas-orange-2"
+            >
+              Continuar <ArrowRight size={16} />
+            </button>
+          ) : nextReady ? (
+            <Link href={`/trilha/${nextReady.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-atlas-orange">
+              {nextReady.title} <ArrowRight size={16} />
+            </Link>
+          ) : (
+            <Link href="/prova-final" className="inline-flex items-center gap-2 text-sm font-semibold text-atlas-orange">
+              Ir para a Prova Final <ArrowRight size={16} />
+            </Link>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -15,6 +15,7 @@ export const module11: ModuleContentFull = {
     "Interiorizar a diferença de postura entre um 'Rastreador' e um 'Monitorador Ativo'.",
     "Decorar e aplicar as réguas de tempo (SLA) de tratativa e escalonamento.",
     "Internalizar a cultura de NUNCA encerrar um alerta por intuição ou pena do motorista.",
+    "Executar a passagem de turno (handover) sem perder contexto de ocorrências em andamento.",
   ],
   sections: [
     {
@@ -140,6 +141,50 @@ export const module11: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-passagem-de-turno",
+      title: "Capítulo 4: A Passagem de Turno (Handover)",
+      blocks: [
+        {
+          type: "text",
+          heading: "A Ocorrência Não Bate o Ponto Junto com Você",
+          paragraphs: [
+            [
+              "Às 22h a sua carga horária acaba, mas o caminhão parado na zona de risco continua parado. O sinistro em investigação continua em investigação. Se o próximo operador sentar na cadeira sem saber o que já foi feito, a AtlasGR não perde só o SLA: perde a linha do tempo inteira de uma ocorrência, e isso é o que vira prova em uma auditoria ou em um processo de sinistro.",
+            ],
+            [
+              "Handover não é 'um oi, tchau, deixei anotado ali'. É um protocolo formal, com registro escrito no Connect, que garante que o turno seguinte assume a ocorrência no ponto exato em que você parou — não um passo antes, não um passo depois.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "O que entra obrigatoriamente no repasse de turno",
+          items: [
+            "Número do alerta/ocorrência e horário exato de abertura.",
+            "Status atual: em contato, aguardando retorno do motorista, escalonado para a CIA, aguardando policiamento.",
+            "Todas as tentativas de contato já feitas (horário, canal, resultado) — sem repetir ligação que já foi feita e já falhou.",
+            "Se a contra-senha já foi validada ou não, e por quem.",
+            "Qualquer comando remoto já disparado (bloqueio de baú, corte de combustível, etc.) e o horário.",
+            "Nome do operador que está entregando o turno, para quem qualquer dúvida deve ser direcionada mesmo fora de escala.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Handover verbal não vale nada",
+          text: [
+            "Um repasse 'de boca', no corredor ou no grupo de WhatsApp informal, some junto com a memória de quem falou. Se não está registrado no campo de anotações da ocorrência dentro do Connect, para fins de auditoria e de responsabilidade, **aquele repasse nunca aconteceu**.",
+          ],
+        },
+        {
+          type: "case",
+          title: "O Alerta que Trocou de Turno Três Vezes",
+          text: "Uma ocorrência de parada suspeita foi aberta às 19h40, faltando 20 minutos para a virada de turno. O operador do turno da tarde tratou o alerta, mas não escreveu nada no sistema — só avisou verbalmente ao colega que 'já estava sob controle'. O operador da noite, sem registro, entendeu que o alerta estava encerrado e não deu sequência ao acompanhamento. Passadas quatro horas, sem ninguém monitorando ativamente, a carga foi desviada de rota e o roubo só foi identificado pela geofence de destino, horas depois do previsto. A investigação interna concluiu que a falha não foi de nenhum operador individualmente: foi a ausência de um handover escrito que deixou a ocorrência sem dono.",
+          source: "Relatório de Não Conformidade — Central de Monitoramento",
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -177,7 +222,7 @@ export const module11: ModuleContentFull = {
     root: "Torre de Controle",
     branches: [
       { label: "Filosofia", items: ["Atuação em Alerta", "Ação Imediata", "Velocidade SLA"] },
-      { label: "Execução", items: ["Travar Alerta", "Comandos Remotos", "Contato e Senha"] },
+      { label: "Execução", items: ["Travar Alerta", "Comandos Remotos", "Contato e Senha", "Passagem de Turno Registrada"] },
       { label: "Erros Mortais", items: ["Acreditar na voz", "Subverter Fila", "Enforcamento"] },
     ],
   },

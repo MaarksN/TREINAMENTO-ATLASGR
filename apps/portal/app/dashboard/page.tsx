@@ -5,12 +5,23 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Award, Target, Trophy, Clock, Flame, ChevronRight, Activity, Zap, Compass, Star } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { MetricCard } from "../../../../packages/ui/src/MetricCard";
-import { PremiumCard } from "../../../../packages/ui/src/PremiumCard";
+import { MetricCard } from "@/components/ui/MetricCard";
+import { PremiumCard } from "@/components/ui/PremiumCard";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { moduleMetas, readyModuleSlugs } from "@/content/modules";
 import { levelProgress } from "@/lib/gamification";
+
+// Demo/seed apenas para ilustrar como o ranking ficaria com uma base maior de
+// colaboradores (não há backend nesta fase do protótipo). O usuário real é
+// inserido na posição correta por XP, não fixado num lugar.
+const LEADERBOARD_SEED = [
+  { name: "Carlos Silva", xp: 2450 },
+  { name: "Ana Pereira", xp: 1820 },
+  { name: "Bruno Costa", xp: 1340 },
+  { name: "Juliana Alves", xp: 960 },
+  { name: "Rafael Nunes", xp: 410 },
+];
 
 export default function DashboardPage() {
   const { ready, registration } = useRequireRegistration();
@@ -20,6 +31,7 @@ export default function DashboardPage() {
 
   const [mounted, setMounted] = useState(false);
   const [heatmap, setHeatmap] = useState<boolean[]>([]);
+  const [showFullLeaderboard, setShowFullLeaderboard] = useState(false);
 
   useEffect(() => {
     let isActive = true;
@@ -36,6 +48,28 @@ export default function DashboardPage() {
   const { current, next, pct } = levelProgress(xp);
   const completedReady = readyModuleSlugs.filter((slug) => progress[slug]?.passed).length;
   const nextModule = moduleMetas.find((m) => readyModuleSlugs.includes(m.slug) && !progress[m.slug]?.passed);
+
+  const firstName = registration.nomeCompleto.split(" ")[0];
+  const leaderboard = [...LEADERBOARD_SEED, { name: `${firstName} (Você)`, xp, isYou: true }]
+    .sort((a, b) => b.xp - a.xp)
+    .map((entry, i) => ({ ...entry, rank: i + 1 }));
+  const visibleLeaderboard = showFullLeaderboard ? leaderboard : leaderboard.slice(0, 3);
+  const youEntry = leaderboard.find((e) => "isYou" in e && e.isYou);
+  const youVisible = visibleLeaderboard.some((e) => "isYou" in e && e.isYou);
+
+  const studiedMinutes = readyModuleSlugs
+    .filter((slug) => progress[slug]?.passed)
+    .reduce((sum, slug) => sum + (moduleMetas.find((m) => m.slug === slug)?.durationMinutes ?? 0), 0);
+  const totalMinutes = readyModuleSlugs.reduce((sum, slug) => sum + (moduleMetas.find((m) => m.slug === slug)?.durationMinutes ?? 0), 0);
+  const studiedHours = (studiedMinutes / 60).toFixed(1);
+  const studiedPct = totalMinutes > 0 ? Math.round((studiedMinutes / totalMinutes) * 100) : 0;
+
+  const knowledgeCategories = Array.from(new Set(moduleMetas.map((m) => m.category || "Outros"))).map((cat) => {
+    const modsInCat = moduleMetas.filter((m) => (m.category || "Outros") === cat && readyModuleSlugs.includes(m.slug));
+    const doneInCat = modsInCat.filter((m) => progress[m.slug]?.passed).length;
+    const pctCat = modsInCat.length > 0 ? Math.round((doneInCat / modsInCat.length) * 100) : 0;
+    return { cat, pctCat };
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-atlas-orange">
@@ -80,10 +114,10 @@ export default function DashboardPage() {
             sparklineData={[10, 20, 30, 45, 60, 70, 75, 80, 95]}
           />
           <MetricCard
-            title="Horas de Simulador"
-            value="3.5"
+            title="Horas de Estudo"
+            value={`${studiedHours}h`}
             icon={Clock}
-            variance={12.5}
+            variance={studiedPct}
             sparklineData={[5, 15, 25, 45, 50, 45, 65, 85, 90]}
           />
         </div>
@@ -118,20 +152,18 @@ export default function DashboardPage() {
                 <h3 className="font-display font-bold text-lg mb-6 flex items-center gap-2">
                   <Activity className="text-atlas-orange w-5 h-5" /> Radar de Conhecimento
                 </h3>
-                <div className="flex-1 flex items-center justify-center relative">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <div className="w-[80%] aspect-square rounded-full border border-foreground" />
-                    <div className="absolute w-[60%] aspect-square rounded-full border border-foreground" />
-                    <div className="absolute w-[40%] aspect-square rounded-full border border-foreground" />
-                    <div className="absolute w-full h-[1px] bg-foreground transform rotate-45" />
-                    <div className="absolute w-full h-[1px] bg-foreground transform -rotate-45" />
-                    <div className="absolute w-[1px] h-full bg-foreground" />
-                    <div className="absolute w-full h-[1px] bg-foreground" />
-                  </div>
-                  <div className="z-10 text-center">
-                    <p className="text-muted italic text-sm">(Gráfico Radar Parcial)</p>
-                    <p className="text-xs text-muted mt-2">Gestão de Risco: 85% | SLA: 60%</p>
-                  </div>
+                <div className="flex-1 flex flex-col justify-center gap-4">
+                  {knowledgeCategories.map(({ cat, pctCat }) => (
+                    <div key={cat}>
+                      <div className="mb-1 flex justify-between text-xs font-semibold text-muted">
+                        <span>{cat}</span>
+                        <span>{pctCat}%</span>
+                      </div>
+                      <div className="h-2 rounded-full bg-surface-2 overflow-hidden">
+                        <div className="h-full rounded-full bg-gradient-atlas" style={{ width: `${pctCat}%` }} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </PremiumCard>
 
@@ -186,30 +218,47 @@ export default function DashboardPage() {
                 </h3>
               </div>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-lg bg-surface-2 border border-border">
-                  <div className="flex items-center gap-3">
-                    <span className="font-display font-bold text-muted">#1</span>
-                    <span className="text-sm font-bold text-foreground">Carlos Silva</span>
-                  </div>
-                  <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/10 px-2 py-1 rounded">2450 XP</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-atlas-orange/15 border border-atlas-orange/50 relative overflow-hidden shadow-[0_0_15px_rgba(255,86,24,0.15)]">
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-atlas-orange" />
-                  <div className="flex items-center gap-3 pl-2">
-                    <span className="font-display font-bold text-atlas-orange">#2</span>
-                    <span className="text-sm font-bold text-foreground">{registration.nomeCompleto.split(" ")[0]} (Você)</span>
-                  </div>
-                  <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/20 px-2 py-1 rounded">{xp} XP</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-surface-2 border border-border">
-                  <div className="flex items-center gap-3">
-                    <span className="font-display font-bold text-muted">#3</span>
-                    <span className="text-sm font-bold text-foreground">Ana Pereira</span>
-                  </div>
-                  <span className="text-xs font-bold text-muted bg-surface px-2 py-1 rounded">1820 XP</span>
-                </div>
+                {visibleLeaderboard.map((entry) => {
+                  const isYou = "isYou" in entry && entry.isYou;
+                  return (
+                    <div
+                      key={entry.name}
+                      className={
+                        isYou
+                          ? "flex items-center justify-between p-3 rounded-lg bg-atlas-orange/15 border border-atlas-orange/50 relative overflow-hidden shadow-[0_0_15px_rgba(255,86,24,0.15)]"
+                          : "flex items-center justify-between p-3 rounded-lg bg-surface-2 border border-border"
+                      }
+                    >
+                      {isYou && <div className="absolute left-0 top-0 bottom-0 w-1 bg-atlas-orange" />}
+                      <div className={`flex items-center gap-3 ${isYou ? "pl-2" : ""}`}>
+                        <span className={`font-display font-bold ${isYou ? "text-atlas-orange" : "text-muted"}`}>#{entry.rank}</span>
+                        <span className="text-sm font-bold text-foreground">{entry.name}</span>
+                      </div>
+                      <span className={`text-xs font-bold px-2 py-1 rounded ${isYou ? "text-atlas-orange bg-atlas-orange/20" : "text-muted bg-surface"}`}>{entry.xp} XP</span>
+                    </div>
+                  );
+                })}
+                {!youVisible && youEntry && (
+                  <>
+                    <p className="text-center text-xs text-muted">•••</p>
+                    <div className="flex items-center justify-between p-3 rounded-lg bg-atlas-orange/15 border border-atlas-orange/50 relative overflow-hidden shadow-[0_0_15px_rgba(255,86,24,0.15)]">
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-atlas-orange" />
+                      <div className="flex items-center gap-3 pl-2">
+                        <span className="font-display font-bold text-atlas-orange">#{youEntry.rank}</span>
+                        <span className="text-sm font-bold text-foreground">{youEntry.name}</span>
+                      </div>
+                      <span className="text-xs font-bold text-atlas-orange bg-atlas-orange/20 px-2 py-1 rounded">{youEntry.xp} XP</span>
+                    </div>
+                  </>
+                )}
               </div>
-              <button className="w-full mt-4 text-xs font-bold text-muted uppercase tracking-widest hover:text-foreground transition-colors">Ver ranking completo</button>
+              <p className="mt-3 text-center text-[11px] text-muted">Ranking com colegas de demonstração — apenas você é uma conta real.</p>
+              <button
+                onClick={() => setShowFullLeaderboard((v) => !v)}
+                className="w-full mt-2 text-xs font-bold text-muted uppercase tracking-widest hover:text-foreground transition-colors"
+              >
+                {showFullLeaderboard ? "Ver menos" : "Ver ranking completo"}
+              </button>
             </PremiumCard>
           </div>
         </div>

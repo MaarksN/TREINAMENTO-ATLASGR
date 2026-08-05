@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { EnrollColaboradorForm } from "@/components/onboarding/EnrollColaboradorForm";
+import { AdminGate } from "@/components/admin/AdminGate";
 import { useOnboardingStore } from "@/lib/store";
 import { seedCollaborators, demoKpis, type SeedCollaborator } from "@/content/seedDemo";
 
@@ -72,6 +73,7 @@ export default function AdminPage() {
   }
 
   return (
+    <AdminGate>
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
@@ -228,5 +230,6 @@ export default function AdminPage() {
         </Card>
       </main>
     </div>
+    </AdminGate>
   );
 }

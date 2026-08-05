@@ -15,6 +15,7 @@ export const module02: ModuleContentFull = {
     "Diferenciar perfeitamente Embarcador, Transportadora e Operador Logístico.",
     "Categorizar os tipos de carga e associá-los ao nível de atratividade criminal.",
     "Mapear as zonas de risco e os sistemas integradores da logística.",
+    "Comparar os modais de transporte do Brasil e entender como uma ruptura de cadeia (como uma greve de caminhoneiros) impacta diretamente a operação de gerenciamento de risco.",
   ],
   sections: [
     {
@@ -137,6 +138,68 @@ export const module02: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-modais-e-rupturas",
+      title: "Capítulo 4: Modais de Transporte e Rupturas na Cadeia",
+      blocks: [
+        {
+          type: "text",
+          heading: "Por Que Tudo Depende do Asfalto",
+          paragraphs: [
+            [
+              "O Brasil construiu sua matriz de transporte de carga nas décadas de 1950 e 1970, apostando quase todas as fichas na malha rodoviária. O resultado, décadas depois, é um país que movimenta a maior parte da sua produção industrial e agrícola dentro de uma carreta — e não dentro de um vagão.",
+            ],
+            [
+              "Para a gestão de risco, isso não é um detalhe técnico: é o motivo pelo qual a AtlasGR existe. Ferrovia tem trilho fixo, poucos pontos de acesso e vigilância concentrada. Rodovia tem milhares de quilômetros de acostamento, postos de combustível, balanças e paradas obrigatórias — ou seja, milhares de oportunidades de exposição.",
+            ],
+          ],
+        },
+        {
+          type: "stat",
+          items: [
+            { value: "~65%", label: "da carga nacional roda pelo modal rodoviário" },
+            { value: "~15%", label: "trafega pelo modal ferroviário" },
+            { value: "~20%", label: "divide-se entre cabotagem, dutoviário e aéreo" },
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Rodoviário vs. Ferroviário: Trade-offs de Risco",
+          left: {
+            label: "Rodoviário",
+            points: [
+              "Flexibilidade total: porta a porta, sem necessidade de baldeação.",
+              "Malha extensa e capilar, chega onde a ferrovia nunca vai chegar.",
+              "Exposição alta: motorista sozinho, rota aberta, múltiplos pontos de parada vulneráveis a assalto e desvio de rota.",
+              "É o motivo pelo qual o Atlas Connect existe: rastreamento contínuo compensa a exposição estrutural do modal.",
+            ],
+          },
+          right: {
+            label: "Ferroviário",
+            points: [
+              "Custo por tonelada mais baixo em grandes distâncias e cargas homogêneas (minério, grãos, combustível).",
+              "Risco de assalto armado praticamente irrelevante comparado à rodovia.",
+              "Baixíssima flexibilidade: depende de terminais fixos e integração rodoviária na ponta (o chamado 'último quilômetro').",
+              "Investimento e malha ainda muito aquém da demanda, o que trava a migração de carga para o modal.",
+            ],
+          },
+        },
+        {
+          type: "case",
+          title: "Maio de 2018: Quando o Brasil Parou",
+          text: "A greve dos caminhoneiros de 2018 paralisou o país em poucos dias porque não havia plano B: com quase dois terços da carga nacional dependente de estradas, o desabastecimento de combustível, remédios e alimentos se espalhou em tempo recorde. Para as operações de gerenciamento de risco, o episódio virou um divisor de águas — mostrou que um PGR não pode tratar apenas de roubo de carga. Ele precisa prever cenários de ruptura sistêmica: rotas alternativas mapeadas, protocolos de comunicação com o embarcador em tempo real e critérios claros para decidir quando um caminhão deve parar (arriscando saque de manifestantes) ou seguir viagem (arriscando bloqueios e acidentes). Quem já tinha esses cenários desenhados perdeu dias; quem não tinha, perdeu contratos inteiros.",
+          source: "Análise de Continuidade Operacional AtlasGR",
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "A Lição para o Analista de Risco",
+          text: [
+            "Dependência de modal único é, em si, um risco de gerenciamento de risco. Quando 65% do país se move por um único tipo de estrada, qualquer bloqueio, greve ou pedágio de facção vira um evento de escala nacional — não um incidente isolado que um único PGR resolve sozinho.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Zonas de Risco",
       blocks: [
@@ -173,7 +236,7 @@ export const module02: ModuleContentFull = {
   mindMap: {
     root: "Mercado Logístico",
     branches: [
-      { label: "Jogadores", items: ["Embarcador", "Transportadora", "Operador"] },
+      { label: "Jogadores", items: ["Embarcador", "Transportadora", "Operador", "Modal Rodoviário x Ferroviário"] },
       { label: "Tipos de Carga", items: ["Alto Valor", "Perecível", "Perigosa"] },
       { label: "Sistemas", items: ["TMS", "ERP", "Connect"] },
     ],

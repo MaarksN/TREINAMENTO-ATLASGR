@@ -136,7 +136,10 @@ export function QuizRunner({
       <div className="p-6 sm:p-8 relative z-10">
         <ProgressBar value={((step + (answered ? 1 : 0)) / ordered.length) * 100} className="mb-6" />
 
-        <AnimatePresence mode="wait">
+        {/* Sem mode="wait": ele atrasa a montagem da próxima pergunta/feedback até
+            a animação de saída da anterior terminar — se isso nunca dispara
+            (aba em segundo plano, reduced motion) o quiz trava sem avançar. */}
+        <AnimatePresence>
           {!answered ? (
             <motion.div key={q.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
               <p className="font-display text-xl sm:text-2xl font-bold leading-snug text-foreground">{q.question}</p>

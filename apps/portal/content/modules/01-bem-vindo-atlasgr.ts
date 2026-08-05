@@ -16,6 +16,7 @@ export const module01: ModuleContentFull = {
     "Mapear mentalmente a estrutura organizacional e a cadeia de comando.",
     "Assimilar as políticas rígidas de compliance e ética empresarial.",
     "Conhecer a trilha de desenvolvimento e a Universidade Corporativa.",
+    "Reconhecer os erros mais comuns cometidos por quem está chegando e entender como funciona a avaliação do período de experiência (cortes de 30, 60 e 90 dias).",
   ],
   sections: [
     {
@@ -141,6 +142,61 @@ export const module01: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-primeiros-90-dias",
+      title: "Capítulo 4: Os Primeiros 90 Dias — Erros Comuns e Avaliação de Experiência",
+      blocks: [
+        {
+          type: "text",
+          heading: "Ninguém Nasce Sabendo Operar a Torre",
+          paragraphs: [
+            [
+              "Todo colaborador novo passa por um período de experiência de até 90 dias (contrato de experiência 45+45, conforme a CLT). Nesse período, você não está apenas aprendendo os sistemas — está sendo avaliado em três cortes: aos 30, 60 e 90 dias, por sua liderança direta em conjunto com o DHO.",
+            ],
+            [
+              "A boa notícia: quase ninguém é desligado por não saber tudo de cara. A avaliação pesa muito mais sobre postura, aderência aos valores e velocidade de aprendizado do que sobre domínio técnico imediato. A má notícia: os erros abaixo se repetem módulo após módulo, turma após turma — e são eles que mais aparecem nas devolutivas de 30 dias.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Os Erros Mais Comuns de Quem Está Chegando",
+          items: [
+            "Prometer prazo ou solução ao cliente sem validar antes com Operações — quem assina o compromisso é a Atlas, não você sozinho.",
+            "Tratar dado de motorista (CPF, biometria, geolocalização) informalmente em print ou WhatsApp pessoal, ignorando a LGPD.",
+            "Escalar direto para a C.I.A. qualquer imprevisto, sem seguir o fluxo padrão da Torre — isso satura o canal reservado para eventos críticos reais.",
+            "Confundir sinistro com simples atraso de viagem, gerando alarme falso e desgaste desnecessário com o embarcador.",
+            "Compartilhar login e senha de sistema com colega 'só para agilizar' — violação direta de segurança da informação, mesmo com boa intenção.",
+            "Evitar perguntar por medo de parecer despreparado — na Atlas, quem pergunta erra menos que quem finge saber.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "O Erro Mais Caro: Silêncio",
+          text: [
+            "Na avaliação de 60 dias, o item mais citado como motivo de alerta não é erro técnico — é não comunicar a dúvida ou o erro a tempo de ser corrigido. Errar é esperado no aprendizado; esconder o erro é que compromete a confirmação.",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Quem participa da avaliação de experiência?",
+              a: "Sua liderança direta registra o desempenho em cada corte (30/60/90 dias) e o DHO consolida com os dados de progresso nas Trilhas da Universidade Corporativa, incluindo este módulo de Onboarding.",
+            },
+            {
+              q: "O que pesa mais: nota nos quizzes ou comportamento no dia a dia?",
+              a: "Comportamento. As Trilhas comprovam que você estudou; a rotina comprova que você aplicou. Um colaborador com nota alta e atitude de dono ausente é sinal de alerta maior do que o contrário.",
+            },
+            {
+              q: "E se eu não me sentir pronto na avaliação de 30 dias?",
+              a: "Normal. O corte de 30 dias raramente é eliminatório — ele existe para gerar plano de ação junto com sua liderança antes dos 60 e 90 dias, não para punir quem ainda está em curva de aprendizado.",
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -180,7 +236,7 @@ export const module01: ModuleContentFull = {
     branches: [
       { label: "Identidade", items: ["Propósito", "5 Valores"] },
       { label: "Estrutura", items: ["TI", "DHO", "Operações", "Comercial"] },
-      { label: "Comportamento", items: ["Atitude de Dono", "Estudo de Caso"] },
+      { label: "Comportamento", items: ["Atitude de Dono", "Estudo de Caso", "Período de Experiência (30/60/90 dias)"] },
     ],
   },
   scenario:

@@ -12,9 +12,10 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/trilha", label: "Missões & Módulos" },
+  { href: "/produtos", label: "Produtos" },
   { href: "/glossario", label: "Glossário" },
   { href: "/dashboard", label: "Cockpit" },
-  { href: "/admin", label: "Admin" },
+  { href: "/certificado", label: "Certificado" },
 ];
 
 export function SiteHeader() {

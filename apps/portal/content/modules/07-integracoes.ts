@@ -14,6 +14,7 @@ export const module07: ModuleContentFull = {
     "Compreender como a Atlas atua como 'Tradutor Universal' de hardwares de terceiros.",
     "Explicar o benefício comercial de 'zero digitação' proporcionado pela integração.",
     "Dominar o conceito de comandos remotos bidirecionais (enviar e receber dados).",
+    "Aplicar o checklist de homologação técnica para evitar que erros de integração cheguem à produção.",
   ],
   sections: [
     {
@@ -133,6 +134,61 @@ export const module07: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-onboarding-tecnico",
+      title: "Capítulo 4: Homologação e os Erros que Derrubam uma Integração",
+      blocks: [
+        {
+          type: "text",
+          heading: "Integração Não é 'Plugou, Funcionou'",
+          paragraphs: [
+            [
+              "Todo cliente novo acha que ligar o Connect ao ERP dele é como conectar um fone Bluetooth. Não é. Antes de qualquer integração ir para produção, existe uma fase de homologação — e é justamente essa fase que separa uma Torre de Controle confiável de uma Torre que gera sinistro por falha de dado.",
+            ],
+            [
+              "Um evento de posição errado não é só um detalhe técnico: se a carga sofrer um sinistro e o log do rastreador estiver com o horário trocado, a seguradora e a SUSEP vão questionar a apólice inteira. Por isso o onboarding técnico é tratado com o mesmo rigor de um PGR.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Checklist de Homologação Pré-Produção",
+          items: [
+            "Validar o fuso horário (timezone) de cada fonte de dado — ERP, TMS e cada fabricante de rastreador enviam timestamp do jeito que bem entendem.",
+            "Conferir a ordem das coordenadas GPS (latitude/longitude) recebidas do fabricante antes de plotar no mapa do Connect.",
+            "Rodar um lote de teste com eventos duplicados de propósito, para confirmar que o Connect deduplica e não abre duas viagens para a mesma NF.",
+            "Simular queda de sinal do rastreador e verificar se o alerta de 'perda de comunicação' dispara corretamente na Central 24/7.",
+            "Testar o envio de comando bidirecional (bloqueio/sirene) em ambiente controlado antes de liberar para o operador em campo.",
+            "Validar de ponta a ponta o vínculo Isca/Placa/NF para garantir que nenhum evento fique órfão no sistema.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Os Três Vilões da Integração",
+          text: [
+            "Na prática, 90% dos chamados de 'o rastreador está mentindo' se resumem a três causas: fuso horário configurado errado no fabricante (a carreta 'viaja no tempo'), latitude e longitude invertidas (o caminhão aparece dirigindo no meio do oceano) e duplicidade de eventos (a mesma viagem é criada duas vezes e a operação vê 'fantasmas' no mapa). Nenhuma dessas é falha do Connect — é dado ruim entrando por uma porta que a gente não fechou direito.",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Por que não colocamos a integração direto em produção, já que o cliente tem pressa?",
+              a: "Porque um erro de fuso horário só aparece quando alguém compara o horário do evento com o horário real do sinistro — e nesse ponto já é tarde. Homologar antes é mais barato do que explicar depois.",
+            },
+            {
+              q: "Quem faz esse checklist, o comercial ou a TI?",
+              a: "A TI executa os testes técnicos, mas o time comercial/CS precisa saber que ele existe para não prometer 'integração pronta em 1 dia' para o cliente.",
+            },
+            {
+              q: "E se o fabricante do rastreador não seguir nenhum padrão?",
+              a: "É basicamente todos eles. Por isso a Atlas mantém uma camada de tradução própria para cada fabricante homologado — é trabalho de tradutor, não de milagre.",
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -163,7 +219,7 @@ export const module07: ModuleContentFull = {
     branches: [
       { label: "Softwares", items: ["APIs", "ERP (Nota Fiscal)", "TMS (Fretes)"] },
       { label: "Hardwares", items: ["Agnóstico", "Fabricantes (Sascar/etc)"] },
-      { label: "Ações", items: ["Receber Posicionamento", "Enviar Bloqueio", "Zero Digitação"] },
+      { label: "Ações", items: ["Receber Posicionamento", "Enviar Bloqueio", "Zero Digitação", "Homologar Antes de Produção"] },
     ],
   },
   scenario:

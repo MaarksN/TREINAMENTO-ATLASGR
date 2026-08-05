@@ -1,28 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import {
-  Building2,
-  Compass,
-  Heart,
-  Sparkles,
-  Target,
-  Award,
-  Rocket,
-  ChevronRight,
-  GraduationCap,
-  Bot,
-  Headphones,
-  ShieldCheck,
-  BriefcaseBusiness,
-  Database,
-  Users,
-  BrainCircuit,
-  LockKeyhole,
-  Layers3,
-} from "lucide-react";
+import { Building2, Compass, Heart, Sparkles, Target, Award, Rocket, ChevronRight } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Logo } from "@/components/brand/Logo";
 import { SocialLinks, ContactAddress } from "@/components/brand/SocialLinks";
@@ -32,28 +13,9 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ModuleCard } from "@/components/trail/ModuleCard";
-import { moduleMetas, readyModuleSlugs } from "@/content/modules";
+import { moduleMetas } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
-import { levelProgress } from "@/lib/gamification";
-
-const indexes = [
-  {
-    number: "01",
-    eyebrow: "Formação e cultura",
-    title: "Trilha de Aprendizado ATLASGR",
-    shortTitle: "Trilha de Aprendizado",
-    description: "Cultura, base de conhecimento e 15 módulos em uma jornada progressiva.",
-    icon: GraduationCap,
-  },
-  {
-    number: "02",
-    eyebrow: "Inteligência aplicada",
-    title: "Academia de Gerenciamento de Risco ATLASGR",
-    shortTitle: "Academia de GR + IA",
-    description: "Ferramentas, motores e agentes de IA organizados por área e função.",
-    icon: Bot,
-  },
-];
+import { useToastStore } from "@/lib/toastStore";
 
 const values = [
   { label: "Perseverança", icon: Building2 },
@@ -63,150 +25,36 @@ const values = [
   { label: "Inovação", icon: Target },
 ];
 
-const academyTools = [
-  {
-    id: "sentinela-ocorrencias",
-    area: "Central e Operações",
-    title: "Sentinela de Ocorrências",
-    description: "Estrutura alertas, separa fatos de hipóteses e prepara o checklist de resposta do operador.",
-    icon: Headphones,
-    features: ["Resumo da ocorrência", "Pendências críticas", "Passagem de turno"],
-    prompt: "Analise esta ocorrência, destaque dados ausentes e monte um checklist para validação humana.",
-  },
-  {
-    id: "guardiao-pgr",
-    area: "Gerenciamento de Risco",
-    title: "Guardião do PGR",
-    description: "Compara a operação com regras, limites e exceções e mostra onde existe exposição.",
-    icon: ShieldCheck,
-    features: ["Leitura orientada do PGR", "Mapa de exposição", "Plano de mitigação"],
-    prompt: "Compare este cenário operacional com as regras do PGR e identifique riscos e validações.",
-  },
-  {
-    id: "copiloto-comercial",
-    area: "Comercial",
-    title: "Copiloto Consultivo",
-    description: "Transforma informações de descoberta em diagnóstico, perguntas e estrutura de proposta.",
-    icon: BriefcaseBusiness,
-    features: ["Diagnóstico do cliente", "Roteiro de descoberta", "Estrutura de proposta"],
-    prompt: "Organize estas necessidades do prospect e prepare perguntas para a próxima reunião.",
-  },
-  {
-    id: "navegador-implantacao",
-    area: "Implantação",
-    title: "Navegador de Implantação",
-    description: "Converte escopo em marcos, responsáveis, riscos e critérios claros de aceite.",
-    icon: Rocket,
-    features: ["Plano por marcos", "Matriz de responsáveis", "Checklist de ativação"],
-    prompt: "Transforme este escopo em um plano de implantação com marcos, responsáveis e riscos.",
-  },
-  {
-    id: "arquiteto-dados",
-    area: "Tecnologia e Dados",
-    title: "Arquiteto de Integrações",
-    description: "Organiza requisitos, fluxo de dados, exceções e testes para integrações mais seguras.",
-    icon: Database,
-    features: ["Mapa de integração", "Requisitos técnicos", "Plano de testes"],
-    prompt: "Mapeie esta integração, liste os campos necessários, exceções e testes prioritários.",
-  },
-  {
-    id: "tutor-desenvolvimento",
-    area: "Pessoas e Liderança",
-    title: "Tutor de Desenvolvimento",
-    description: "Cria planos de aprendizagem e práticas orientadas de acordo com cargo e momento.",
-    icon: Users,
-    features: ["Plano por competência", "Práticas guiadas", "Critérios de evolução"],
-    prompt: "Crie um plano de desenvolvimento para este cargo com prática, prazo e evidências.",
-  },
-];
-
-const engines = [
-  {
-    title: "Motor de Contexto",
-    description: "Interpreta área, cargo, objetivo e dados ausentes antes de sugerir qualquer saída.",
-    icon: BrainCircuit,
-  },
-  {
-    title: "Motor de Guardrails",
-    description: "Aplica limites de segurança, LGPD, rastreabilidade e validação humana.",
-    icon: LockKeyhole,
-  },
-  {
-    title: "Motor de Aprendizagem",
-    description: "Transforma cada uso em orientação prática, checklist e próximo passo.",
-    icon: Layers3,
-  },
-];
-
-function getModuleCategory(number: number) {
-  if (number <= 3) return "Fundamentos";
-  if (number <= 7) return "Soluções ATLASGR";
-  if (number <= 9) return "Mercado e clientes";
-  if (number <= 14) return "Excelência operacional";
-  return "Conclusão";
-}
-
-const moduleCategories = ["Todos", "Fundamentos", "Soluções ATLASGR", "Mercado e clientes", "Excelência operacional", "Conclusão"];
-
 export default function HomePage() {
   const router = useRouter();
-  const [activeIndex, setActiveIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [moduleSearch, setModuleSearch] = useState("");
-  const [moduleCategory, setModuleCategory] = useState("Todos");
-  const [identityOpen, setIdentityOpen] = useState(false);
-  const [selectedToolId, setSelectedToolId] = useState(academyTools[0].id);
+  const [returnTo, setReturnTo] = useState<string | null>(null);
+  const showToast = useToastStore((s) => s.show);
 
   const registration = useOnboardingStore((state) => state.registration);
   const onboardingCompleted = useOnboardingStore((state) => state.onboardingCompleted);
-  const progress = useOnboardingStore((state) => state.progress);
-  const xp = useOnboardingStore((state) => state.xp);
-  const badges = useOnboardingStore((state) => state.badges);
-  const streakDays = useOnboardingStore((state) => state.streakDays);
-  const exploredTools = useOnboardingStore((state) => state.exploredAcademyTools);
-  const createdAgents = useOnboardingStore((state) => state.createdAgents);
-  const exploreAcademyTool = useOnboardingStore((state) => state.exploreAcademyTool);
 
   const canContinue = Boolean(registration && onboardingCompleted);
-  const completedModules = readyModuleSlugs.filter((slug) => progress[slug]?.passed).length;
-  const trailProgress = Math.round((completedModules / readyModuleSlugs.length) * 100);
-  const level = levelProgress(xp);
-  const selectedTool = academyTools.find((tool) => tool.id === selectedToolId) ?? academyTools[0];
 
-  const filteredModules = useMemo(() => {
-    const term = moduleSearch.trim().toLocaleLowerCase("pt-BR");
-    return moduleMetas.filter((module) => {
-      const categoryMatches = moduleCategory === "Todos" || getModuleCategory(module.number) === moduleCategory;
-      const searchMatches =
-        !term ||
-        module.title.toLocaleLowerCase("pt-BR").includes(term) ||
-        module.shortDescription.toLocaleLowerCase("pt-BR").includes(term);
-      return categoryMatches && searchMatches;
-    });
-  }, [moduleCategory, moduleSearch]);
-
-  const missions = [
-    {
-      label: "Concluir o primeiro módulo",
-      reward: "+150 XP",
-      done: Boolean(progress["01-bem-vindo-atlasgr"]?.passed),
-    },
-    {
-      label: "Explorar três ferramentas de IA",
-      reward: "+60 XP",
-      done: exploredTools.length >= 3,
-    },
-    {
-      label: "Criar o primeiro agente",
-      reward: "+80 XP",
-      done: createdAgents.length > 0,
-    },
-  ];
-
-  function changeIndex(index: number) {
-    setActiveIndex(index);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  // Se o usuário caiu aqui por ter tentado acessar uma rota protegida sem
+  // estar logado (ver useRequireRegistration), explica o motivo, abre o
+  // modal de primeiro acesso automaticamente e, ao concluir, o devolve para
+  // a página que ele queria ver.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("authRequired") === "1") {
+      setReturnTo(params.get("returnTo"));
+      setModalOpen(true);
+      showToast({
+        title: "Faça seu primeiro acesso",
+        description: "Selecione seu nome e confirme o código de acesso para continuar.",
+        variant: "info",
+      });
+      window.history.replaceState({}, "", "/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleStart() {
     if (canContinue) {
@@ -214,19 +62,6 @@ export default function HomePage() {
       return;
     }
     setModalOpen(true);
-  }
-
-  function openModule(slug: string) {
-    if (canContinue) {
-      router.push(`/trilha/${slug}`);
-      return;
-    }
-    setModalOpen(true);
-  }
-
-  function selectTool(id: string) {
-    setSelectedToolId(id);
-    exploreAcademyTool(id);
   }
 
   return (
@@ -386,7 +221,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <AccessModal open={modalOpen} onOpenChange={setModalOpen} />
+      <AccessModal open={modalOpen} onOpenChange={setModalOpen} returnTo={returnTo} />
     </div>
   );
 }

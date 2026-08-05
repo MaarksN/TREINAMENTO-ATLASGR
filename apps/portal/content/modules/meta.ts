@@ -31,7 +31,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Produtos ATLASGR",
     shortDescription: "Visão geral do portfólio: gerenciamento de risco, tecnologia, perfil securitário e bases dedicadas.",
     durationMinutes: 45,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Soluções ATLASGR",
   },
   {
     slug: "05-software-logistico",
@@ -39,7 +39,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Software Logístico — Sistema Atlas Connect",
     shortDescription: "Telas, funcionalidades e fluxo de trabalho do sistema Atlas Connect.",
     durationMinutes: 50,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Soluções ATLASGR",
   },
   {
     slug: "06-atlas-profile",
@@ -47,7 +47,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Atlas Profile",
     shortDescription: "Background check, biometria e compliance na análise de motoristas e veículos.",
     durationMinutes: 35,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Soluções ATLASGR",
   },
   {
     slug: "07-integracoes",
@@ -55,7 +55,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Integrações",
     shortDescription: "Como o Atlas Connect conversa com ERP, TMS e rastreadores de diferentes fabricantes.",
     durationMinutes: 30,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Soluções ATLASGR",
   },
   {
     slug: "08-clientes",
@@ -63,7 +63,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Clientes",
     shortDescription: "Perfis de cliente atendidos pela Atlas: transportadoras, embarcadores e segmentos.",
     durationMinutes: 30,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Mercado e clientes",
   },
   {
     slug: "09-processo-comercial",
@@ -71,7 +71,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Processo Comercial",
     shortDescription: "ICP, persona, dores, objeções, diferenciais competitivos e argumentação.",
     durationMinutes: 40,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Mercado e clientes",
   },
   {
     slug: "10-termos-tecnicos",
@@ -79,7 +79,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Termos Técnicos",
     shortDescription: "Glossário consolidado com os termos usados no dia a dia da Central e do mercado.",
     durationMinutes: 30,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Excelência operacional",
   },
   {
     slug: "11-operacao",
@@ -87,7 +87,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Operação",
     shortDescription: "Fluxos, monitoramento, checklist, alertas e eventos do dia a dia da Central.",
     durationMinutes: 45,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Excelência operacional",
   },
   {
     slug: "12-compliance",
@@ -95,7 +95,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Compliance",
     shortDescription: "LGPD, segurança da informação, sigilo e boas práticas internas.",
     durationMinutes: 30,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Excelência operacional",
   },
   {
     slug: "13-tecnologia",
@@ -103,7 +103,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Tecnologia",
     shortDescription: "IA, analytics e automações aplicadas ao gerenciamento de risco logístico.",
     durationMinutes: 35,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Excelência operacional",
   },
   {
     slug: "14-casos-reais",
@@ -111,7 +111,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Casos Reais",
     shortDescription: "Cases, recuperações e resultados operacionais da Atlas.",
     durationMinutes: 30,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Excelência operacional",
   },
   {
     slug: "15-preparacao-final",
@@ -119,7 +119,7 @@ export const moduleMetas: ModuleMeta[] = [
     title: "Preparação Final",
     shortDescription: "Revisão geral de todo o conteúdo antes da prova final.",
     durationMinutes: 30,
-    status: "ready", category: "Fundamentos",
+    status: "ready", category: "Conclusão",
   },
 ];
 

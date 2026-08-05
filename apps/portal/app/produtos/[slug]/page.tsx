@@ -6,11 +6,24 @@ import RankingOfensores from "@/components/charts/RankingOfensores";
 import RepresentatividadeEventos from "@/components/charts/RepresentatividadeEventos";
 import TempoEmAlvosTable from "@/components/charts/TempoEmAlvosTable";
 import GlossaryTooltip from "@/components/ui/GlossaryTooltip";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import type { Metadata } from "next";
 
 const PRODUCT_SLUGS = ["profile", "connect", "gr", "analytics"];
+const PRODUCT_NAMES: Record<string, string> = {
+  profile: "Atlas Profile",
+  connect: "Atlas Connect",
+  gr: "Atlas GR",
+  analytics: "Atlas Analytics",
+};
 
 export function generateStaticParams() {
   return PRODUCT_SLUGS.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  return { title: `${PRODUCT_NAMES[slug] || slug} — Portal ATLASGR` };
 }
 
 // This is a dynamic route. In a real app, data would be fetched based on slug.
@@ -25,17 +38,22 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
   if (!isProfile && !isConnectOrGR && !isAnalytics) {
     // Basic fallback for now
     return (
-      <div className="min-h-screen bg-atlas-dark text-white flex flex-col items-center justify-center p-8">
-         <h1 className="text-4xl font-bold mb-4 capitalize">Módulo {slug}</h1>
-         <p className="text-gray-400 max-w-2xl text-center">
+      <div className="min-h-screen bg-atlas-dark text-white">
+        <SiteHeader />
+        <main className="flex flex-col items-center justify-center p-8 text-center">
+          <h1 className="text-4xl font-bold mb-4 capitalize">Módulo {slug}</h1>
+          <p className="text-gray-400 max-w-2xl text-center">
             Este módulo não possui um showcase específico ainda. Navegue para /produtos/profile, /produtos/connect ou /produtos/gr.
-         </p>
+          </p>
+        </main>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-atlas-dark text-white font-sans overflow-hidden">
+    <div className="min-h-screen bg-atlas-dark text-white font-sans">
+      <SiteHeader />
+      <main className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-8 flex flex-col items-center text-center">
         {/* Background glow */}
@@ -127,6 +145,7 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
           <ValueMetricsCards />
         </div>
       </section>
+      </main>
     </div>
   );
 }

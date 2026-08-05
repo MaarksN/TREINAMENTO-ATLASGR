@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, Bot } from "lucide-react";
-import { cn } from "../../../../packages/ui/src/utils";
+import { cn } from "@/lib/utils";
 
 export function AtlasMentorPanel() {
   const [isOpen, setIsOpen] = useState(false);

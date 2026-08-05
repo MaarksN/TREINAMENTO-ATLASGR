@@ -90,7 +90,11 @@ export default function WelcomeWizard({ onComplete }: { onComplete?: () => void 
 
         {/* Content Area */}
         <div className="min-h-[300px] py-4">
-          <AnimatePresence mode="wait">
+          {/* mode="wait" atrasa a montagem do próximo passo até a animação de
+              saída do anterior terminar; se essa animação nunca dispara (aba
+              em segundo plano, reduced motion, etc.) o usuário fica travado
+              vendo o passo antigo mesmo com o estado já avançado. */}
+          <AnimatePresence>
             {currentStep === 1 && (
               <motion.div
                 key="step1"

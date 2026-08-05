@@ -14,6 +14,7 @@ export const module05: ModuleContentFull = {
     "Explicar a dinâmica de criação, rastreamento e baixa de uma SM (Solicitação de Monitoramento).",
     "Compreender a mecânica do Motor de Regras e a priorização de níveis de alerta.",
     "Entender a diferença operacional entre Grade Passiva e Fila Ativa de Alertas.",
+    "Diagnosticar corretamente os alertas técnicos mais comuns (GPS sem sinal, evento duplicado, falso positivo de desvio) sem subestimar riscos reais.",
   ],
   sections: [
     {
@@ -121,6 +122,58 @@ export const module05: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-troubleshooting",
+      title: "Capítulo 4: Troubleshooting de Alertas na Tela do Operador",
+      blocks: [
+        {
+          type: "text",
+          heading: "Quando o Alerta Mente (ou Parece Mentir)",
+          paragraphs: [
+            [
+              "Nem todo alerta que pisca é um crime em andamento. Parte do ofício do Operador é diferenciar rapidamente um evento real de um ruído técnico, sem baixar a guarda e sem virar 'o menino que gritou lobo' de tanto ignorar tela.",
+            ],
+            [
+              "Esta seção cobre os três chifres do boi que mais aparecem na Fila de Alertas e o script de reação esperado para cada um. Decorar isso evita ligação desnecessária para o cliente e, o mais importante, evita deixar passar o alerta que era de verdade.",
+            ],
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Os 3 Vilões Mais Comuns da Tela",
+          items: [
+            "GPS sem sinal (Isca Muda): antes de escalar como perda de rastreio, confira o histórico de posição — se o último ping veio de um túnel, garagem coberta ou área rural conhecida por sombra de sinal, aguarde o tempo de tolerância do PGR antes de tratar como Nível 2.",
+            "Evento duplicado: o mesmo alerta aparece duas ou três vezes na fila em poucos segundos. Normalmente é reenvio de pacote pela operadora de telefonia do rastreador. Trate apenas a primeira ocorrência e marque as réplicas como duplicidade, nunca como alertas novos.",
+            "Falso positivo de desvio de rota: comum em obras, bloqueios e desvios oficiais de trânsito não cadastrados no mapa. Confira o aplicativo de trânsito e o contato do motorista antes de classificar como desvio suspeito — só escale como Nível 2 se o motorista não responder ou a explicação não fechar.",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Recebi um GPS sem sinal e o motorista não atende o telefone. E agora?",
+              a: "Aguardar sem agir é a pior opção. Se o tempo de tolerância do PGR já estourou e não há resposta do motorista, o alerta sobe automaticamente de nível — não force o rebaixamento manual só porque 'geralmente é sombra de sinal'.",
+            },
+            {
+              q: "Posso simplesmente fechar um alerta duplicado sem registrar nada?",
+              a: "Não. Fechar sem registrar apaga o rastro para auditoria. Sempre marque a duplicidade no próprio sistema, vinculando ao evento original, mesmo que a ação real tenha sido tomada apenas uma vez.",
+            },
+            {
+              q: "E se eu classificar um evento real como falso positivo por engano?",
+              a: "Acontece, e é para isso que existe a CIA. Escale imediatamente ao perceber o erro — corrigir rápido é infinitamente melhor do que deixar o erro 'se resolver sozinho'.",
+            },
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Regra de Desempate",
+          text: [
+            "Na dúvida entre 'é ruído técnico' e 'pode ser real', trate como real. Escalar um alerta que depois se confirma falso positivo custa um telefonema extra. Ignorar um alerta real custa uma carga — ou uma vida.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Próximos Passos",
       blocks: [
@@ -159,7 +212,7 @@ export const module05: ModuleContentFull = {
     branches: [
       { label: "Visões", items: ["Grade", "Fila de Alertas", "Mapa Virtual"] },
       { label: "Jornada", items: ["SM", "Ping", "Trânsito", "Baixa"] },
-      { label: "Regras", items: ["Nível 1 (Pânico)", "Nível 7 (Bateria)"] },
+      { label: "Regras", items: ["Nível 1 (Pânico)", "Nível 7 (Bateria)", "Falso Positivo (Desvio de Rota)"] },
     ],
   },
   scenario:

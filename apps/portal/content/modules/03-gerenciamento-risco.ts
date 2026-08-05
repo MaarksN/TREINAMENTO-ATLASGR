@@ -16,6 +16,7 @@ export const module03: ModuleContentFull = {
     "Diferenciar de forma jurídica as categorias de sinistro: Roubo, Furto, Sinistro e Avaria.",
     "Descrever o papel de 'Força Tática' da CIA em eventos críticos.",
     "Entender a anatomia de um PGR e como ele parametriza as automações da Torre de Controle.",
+    "Detalhar o fluxo operacional completo de um sinistro, da comunicação formal à seguradora até o pagamento da indenização, incluindo o dossiê probatório exigido.",
   ],
   sections: [
     {
@@ -154,6 +155,61 @@ export const module03: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-fluxo-sinistro",
+      title: "Capítulo 4: Do Aviso à Indenização — O Fluxo Completo do Sinistro",
+      blocks: [
+        {
+          type: "text",
+          heading: "A Burocracia que Vira Dinheiro",
+          paragraphs: [
+            [
+              "Depois que a poeira baixa — a carga foi recuperada, parcialmente perdida ou totalmente avariada — começa a segunda batalha: transformar um evento caótico em um dossiê técnico que a seguradora não consiga contestar. Essa etapa é conduzida pela Central, não pela CIA.",
+            ],
+            [
+              "Cada dia de atraso na comunicação ou cada documento faltante é munição para a seguradora negar ou reduzir o pagamento. A regra de ouro é simples: sem evidência formal, o ",
+              { term: "sinistro" },
+              " não existe para fins de indenização — não importa o quão óbvio ele tenha sido para quem viveu o evento.",
+            ],
+          ],
+        },
+        {
+          type: "timeline",
+          title: "Linha do Tempo da Regulação de Sinistro",
+          items: [
+            { label: "Dia 0 (até 24h)", text: "A Central formaliza o Aviso de Sinistro (AVS) por escrito à seguradora e ao corretor, abrindo oficialmente o processo de regulação." },
+            { label: "Dia 0 a 2", text: "Montagem do dossiê inicial: a Central reúne rastreamento, boletim de ocorrência preliminar, notas fiscais e CT-e/MDF-e da carga." },
+            { label: "Dia 3 a 10", text: "A seguradora nomeia o regulador de sinistro (perito independente), que cruza o dossiê com as cláusulas da apólice e o cumprimento do PGR." },
+            { label: "Dia 10 a 20", text: "Vistoria física do veículo e/ou da carga remanescente, quando aplicável, e eventual pedido de complementação documental." },
+            { label: "Dia 20 a 30", text: "Emissão do parecer de regulação: aprovação integral, pagamento parcial (respeitando LMI e sublimites) ou recusa fundamentada." },
+            { label: "Até Dia 30 (prazo SUSEP)", text: "Com o dossiê completo entregue, a seguradora deve efetuar o pagamento da indenização ao segurado dentro do prazo regulamentar, ou apresentar recusa formal por escrito." },
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Dossiê Mínimo de Sinistro (o que a Central precisa reunir)",
+          items: [
+            "Apólice vigente e o PGR assinado correspondente ao cliente/rota.",
+            "Boletim de Ocorrência (BO) registrado na delegacia com a tipificação correta.",
+            "CT-e e MDF-e da carga sinistrada.",
+            "Nota fiscal da mercadoria transportada.",
+            "Relatório de rastreamento (trilha de GPS e eventos) extraído do Atlas Connect.",
+            "Laudo de vistoria/perícia técnica, quando houver avaria física.",
+            "Ficha de habilitação e cadastro do motorista (Atlas Profile).",
+            "Relatório de atendimento da CIA, quando o evento tiver sido escalonado.",
+            "Ficha de Comunicação de Sinistro (FCS) preenchida e assinada.",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Cadeia de Custódia da Evidência",
+          text: [
+            "Fotos e prints tirados fora do sistema oficial, sem timestamp verificável, têm valor probatório baixo. Sempre registre evidências pelos canais homologados do Atlas Connect — a rastreabilidade do dado é tão importante quanto o dado em si na hora de sustentar o pagamento do LMI junto à seguradora.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Conclusão",
       blocks: [
@@ -190,7 +246,7 @@ export const module03: ModuleContentFull = {
   mindMap: {
     root: "Gerenciamento de Risco",
     branches: [
-      { label: "O Contrato", items: ["Apólice", "Seguradora", "Indenização"] },
+      { label: "O Contrato", items: ["Apólice", "Seguradora", "Indenização", "Regulação de Sinistro"] },
       { label: "A Execução", items: ["PGR", "Torre de Controle", "Auditoria"] },
       { label: "A Crise", items: ["Roubo", "Furto", "CIA", "Pronta Resposta"] },
     ],

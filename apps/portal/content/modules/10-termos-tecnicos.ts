@@ -15,6 +15,7 @@ export const module10: ModuleContentFull = {
     "Evitar relatórios incorretos que disparam ações letais (Ex: Jammer vs Área de Sombra).",
     "Diferenciar claramente documentos fiscais (NF-e) de documentos logísticos (CT-e).",
     "Compreender métricas vitais como SLA e ETA.",
+    "Distinguir os pares de termos que mais confundem operador novato, como sinistro/ocorrência e LMI/sublimite.",
   ],
   sections: [
     {
@@ -144,6 +145,79 @@ export const module10: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-falsos-amigos",
+      title: "Capítulo 4: Falsos Amigos do Jargão",
+      blocks: [
+        {
+          type: "text",
+          heading: "Palavras parecidas, consequências diferentes",
+          paragraphs: [
+            [
+              "Todo operador novato, nas primeiras semanas, troca um termo pelo outro e escreve um relatório tecnicamente errado. Isso não é feio, é normal — mas alguns pares de palavras têm efeitos práticos bem diferentes (aciona seguradora, aciona cliente, aciona nada), então vale a pena isolar esses pares e memorizar a diferença de uma vez.",
+            ],
+            [
+              "Regra de bolso: se você não tem certeza de qual dos dois termos usar, descreva o fato em português simples no campo de observação e peça confirmação ao supervisor antes de fechar o registro com a sigla errada.",
+            ],
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Sinistro vs Ocorrência",
+          left: {
+            label: "Sinistro",
+            points: [
+              "Evento que gerou (ou pode gerar) perda financeira coberta pela apólice — furto, roubo, avaria com prejuízo.",
+              "Abre processo formal na seguradora, com número de sinistro e regulação.",
+              "Nem toda ocorrência vira sinistro.",
+            ],
+          },
+          right: {
+            label: "Ocorrência",
+            points: [
+              "Qualquer evento fora do padrão registrado durante o monitoramento — parada não autorizada, alarme de porta, atraso.",
+              "Fica registrado no grid operacional, sem necessariamente envolver a seguradora.",
+              "Toda base de sinistro nasceu de uma ocorrência, mas a maioria das ocorrências morre como ocorrência mesmo.",
+            ],
+          },
+        },
+        {
+          type: "comparison",
+          title: "LMI vs Sublimite",
+          left: {
+            label: "LMI (Limite Máximo de Indenização)",
+            points: [
+              "O teto geral que a seguradora paga por evento, definido na apólice.",
+              "É o 'valor do jogo inteiro'.",
+            ],
+          },
+          right: {
+            label: "Sublimite",
+            points: [
+              "Um teto menor, dentro do LMI, para uma categoria específica de risco (ex: eletrônicos, joias, mercadoria a granel).",
+              "Mesmo com LMI alto, uma carga de sublimite baixo pode não ser totalmente coberta em caso de perda total.",
+            ],
+          },
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Apólice e PGR são a mesma coisa?",
+              a: "Não. A apólice é o contrato de seguro em si, com LMI, sublimites e cláusulas. O PGR (Plano de Gerenciamento de Risco) é o conjunto de exigências operacionais (rastreador, escolta, horário de circulação) que a seguradora impõe como condição para manter a cobertura. Descumprir o PGR pode zerar a indenização mesmo com a apólice em dia.",
+            },
+            {
+              q: "RCF-DC é a mesma coisa que a apólice de carga?",
+              a: "Não. RCF-DC (Responsabilidade Civil Facultativa do Transportador Rodoviário - Desaparecimento de Carga) é um seguro contratado pelo transportador para cobrir a própria responsabilidade civil. A apólice de transporte (RCTR-C) é do embarcador/dono da carga. Podem existir as duas ao mesmo tempo, cobrindo partes diferentes do risco.",
+            },
+            {
+              q: "Se o cliente liga perguntando 'foi sinistro?', posso responder na hora?",
+              a: "Não é o operador da Torre quem classifica um evento como sinistro — isso cabe à área de Regulação/Sinistro, com base na apuração. O operador relata a ocorrência com precisão técnica; a palavra 'sinistro' só deve ser usada depois de confirmada oficialmente.",
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -173,7 +247,7 @@ export const module10: ModuleContentFull = {
     root: "Termos Técnicos",
     branches: [
       { label: "Hardware Físico", items: ["Jammer", "Isca", "Rastreador", "Sombra"] },
-      { label: "Papelada", items: ["NF-e (Valor)", "CT-e (Frete)"] },
+      { label: "Papelada", items: ["NF-e (Valor)", "CT-e (Frete)", "Sinistro vs Ocorrência"] },
       { label: "As Métricas", items: ["SLA", "ETA", "OTD"] },
     ],
   },

@@ -14,6 +14,7 @@ export const module06: ModuleContentFull = {
     "Detalhar o funcionamento técnico do reconhecimento facial e checagem de dados.",
     "Relacionar a prática do Profile às exigências de anonimização e privacidade da LGPD.",
     "Interpretar corretamente os status gerados pelo sistema.",
+    "Aplicar corretamente o processo de contestação quando o candidato questiona um antecedente apontado pelo Profile.",
   ],
   sections: [
     {
@@ -131,6 +132,75 @@ export const module06: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-limites-contestacao",
+      title: "Capítulo 4: Os Limites da LGPD e o Direito de Contestação",
+      blocks: [
+        {
+          type: "text",
+          heading: "O Que a Lei Permite Usar na Decisão de Contratar",
+          paragraphs: [
+            [
+              "Saber que um antecedente existe é diferente de poder usá-lo para reprovar alguém. A LGPD trata dado criminal como dado sensível, e o critério de decisão do Atlas Profile precisa se limitar estritamente à finalidade declarada: avaliar se aquela pessoa pode dirigir aquela carga com segurança.",
+            ],
+            [
+              "Isso significa que categorias inteiras de informação são proibidas de influenciar o status, mesmo quando aparecem incidentalmente durante a varredura de bases públicas.",
+            ],
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Critérios de Decisão: Permitido vs. Proibido",
+          left: {
+            label: "Pode Compor o Status",
+            points: [
+              "Mandado de prisão em aberto ligado a crimes patrimoniais (roubo, furto, receptação, quadrilha).",
+              "CNH suspensa, vencida ou com pontuação incompatível.",
+              "Situação irregular do CPF ou do RNTRC do veículo.",
+              "Condenação transitada em julgado diretamente relacionada a risco de carga (ex: roubo de carga).",
+            ],
+          },
+          right: {
+            label: "Nunca Pode Compor o Status",
+            points: [
+              "Opinião política, filiação sindical, religião ou orientação sexual, ainda que apareçam em registros públicos.",
+              "Condição de saúde, deficiência ou histórico médico.",
+              "Processos cíveis sem relação com a carga (divórcio, disputa de vizinhança, dívida de consumo).",
+              "Antecedente já prescrito ou com pena cumprida há muito tempo, sem relação com a função.",
+            ],
+          },
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Discriminação Disfarçada de 'Cautela'",
+          text: [
+            "Usar um antecedente fora do escopo permitido para reprovar um motorista, mesmo 'só para garantir', é decisão discriminatória e gera passivo trabalhista e indenizatório para o cliente e para a AtlasGR. O sistema foi desenhado para não exibir esses dados ao operador exatamente para eliminar essa tentação.",
+          ],
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "O motorista pode contestar um status 'Não Recomendado'?",
+              a: "Sim. É direito do candidato solicitar revisão quando entende que a informação usada está incorreta, desatualizada ou fora de escopo. O pedido entra como chamado formal, nunca por ligação informal ao despachante.",
+            },
+            {
+              q: "Quem analisa a contestação, o cliente (transportadora)?",
+              a: "Não. A contestação é sempre analisada pela C.I.A (Célula de Inteligência Atlas), que tem acesso ao dado bruto sob sigilo. O cliente recebe apenas o resultado da revisão, nunca o motivo detalhado.",
+            },
+            {
+              q: "Qual o prazo para responder ao candidato?",
+              a: "A revisão deve ser concluída e comunicada em até 5 dias úteis, conforme o SLA interno de atendimento a titulares de dados previsto na Cartilha de LGPD.",
+            },
+            {
+              q: "E se a contestação for procedente (erro de sistema ou dado desatualizado)?",
+              a: "O status é corrigido, o log da alteração é registrado para auditoria, e o parecer anterior é anulado — o cliente é notificado apenas de que o status mudou, sem exposição do motivo.",
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Próximos Passos",
       blocks: [
@@ -161,7 +231,7 @@ export const module06: ModuleContentFull = {
     branches: [
       { label: "Bases", items: ["Tribunais", "ANTT", "Detran"] },
       { label: "FaceID", items: ["Prova de Vida", "Biometria", "Anti-Falsidade"] },
-      { label: "LGPD", items: ["Sigilo do Crime", "Apenas o Parecer", "Consentimento"] },
+      { label: "LGPD", items: ["Sigilo do Crime", "Apenas o Parecer", "Consentimento", "Direito de Contestação"] },
     ],
   },
   scenario:

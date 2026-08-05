@@ -15,6 +15,7 @@ export const module13: ModuleContentFull = {
     "Compreender a revolução das câmeras embarcadas com IA (Sensores de Safety e Fadiga).",
     "Descrever como o Atlas Analytics entrega valor executivo e gera retenção.",
     "Entender que a IA não demite o bom operador, mas potencializa sua eficiência.",
+    "Reconhecer os limites da IA (falso positivo e viés de dados) e por que a decisão final é sempre humana.",
   ],
   sections: [
     {
@@ -123,6 +124,69 @@ export const module13: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-limites-da-ia",
+      title: "Capítulo 4: Os Limites da IA — Humano no Comando",
+      blocks: [
+        {
+          type: "text",
+          heading: "Human in the Loop",
+          paragraphs: [
+            [
+              "É tentador tratar a IA da AtlasGR como um oráculo infalível, mas ela não é. Na prática, o modelo faz uma única coisa muito bem: sinalizar padrões suspeitos e priorizar quais alertas merecem atenção imediata da Torre. A decisão de bloquear uma carga, acionar o cliente ou escalar para a C.I.A. continua sendo sempre humana.",
+            ],
+            [
+              "Chamamos isso de 'human in the loop': a máquina filtra o ruído em milhares de eventos por dia, mas é o operador treinado que interpreta o contexto, pesa exceções e assina a decisão final. Sem esse humano no circuito, a AtlasGR não venderia gerenciamento de risco — venderia só um software bonito e sem responsabilidade nenhuma.",
+            ],
+          ],
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          title: "Confiar Cegamente no Modelo é Negligência",
+          text: [
+            "Todo modelo aprende com dados históricos. Se uma rota nunca teve sinistro registrado, a IA tende a classificá-la como 'baixo risco' — mesmo que o cenário tenha mudado ontem (nova obra, novo grupo criminoso atuando, alteração no PGR do cliente). Confiar no score sem checar o contexto é abrir mão do trabalho que a AtlasGR foi contratada para fazer.",
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Onde a Máquina Termina e o Operador Começa",
+          left: {
+            label: "O que a IA faz bem",
+            points: [
+              "Processa milhares de eventos simultâneos sem cansar.",
+              "Detecta padrões e desvios estatísticos em tempo real.",
+              "Prioriza a fila de alertas por probabilidade de risco.",
+            ],
+          },
+          right: {
+            label: "O que só o Operador decide",
+            points: [
+              "Confirmar se um alerta é sinistro real ou falso positivo.",
+              "Avaliar contexto fora dos dados históricos (obra nova, boato de risco, pedido do cliente).",
+              "Assumir a responsabilidade formal pela decisão registrada.",
+            ],
+          },
+        },
+        {
+          type: "faq",
+          items: [
+            {
+              q: "Se a IA erra, quem responde pela decisão?",
+              a: "Sempre o operador que validou o alerta. A IA sugere; a assinatura e a responsabilidade são humanas — é por isso que treinamento e atenção continuam essenciais.",
+            },
+            {
+              q: "O que é um falso positivo e por que ele importa?",
+              a: "É quando o sistema aponta risco onde não há (ex.: parada normal interpretada como desvio de rota). Confiar cegamente gera acionamentos desnecessários e desgasta a confiança do cliente na operação.",
+            },
+            {
+              q: "A IA pode ter viés?",
+              a: "Sim. Se o histórico de dados tem lacunas ou reflete um período atípico, o modelo herda essa distorção. Por isso a AtlasGR recalibra os modelos periodicamente e mantém o julgamento humano como camada final de segurança.",
+            },
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -151,7 +215,7 @@ export const module13: ModuleContentFull = {
   mindMap: {
     root: "Tecnologia AtlasGR",
     branches: [
-      { label: "A Mente", items: ["Preditivo", "IA Embarcada", "Automação"] },
+      { label: "A Mente", items: ["Preditivo", "IA Embarcada", "Automação", "Human-in-the-loop"] },
       { label: "Safety (Cabine)", items: ["Sensor Fadiga", "Alerta Celular", "Vibração"] },
       { label: "Analytics (Diretoria)", items: ["Tendências", "Indicadores", "Foco no Custo Oculto"] },
     ],

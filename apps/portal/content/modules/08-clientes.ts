@@ -15,6 +15,7 @@ export const module08: ModuleContentFull = {
     "Mapear a 'dor' específica de cada perfil.",
     "Traduzir essas dores para os produtos do nosso portfólio (A solução).",
     "Compreender a dinâmica de poder entre Embarcador, Seguradora e Transportadora.",
+    "Diferenciar clientes por criticidade e SLA, e entender como isso muda a priorização de atendimento da Central de Monitoramento.",
   ],
   sections: [
     {
@@ -118,6 +119,66 @@ export const module08: ModuleContentFull = {
       ],
     },
     {
+      id: "capitulo-4-segmentacao-sla",
+      title: "Capítulo 4: Segmentação por Criticidade e SLA",
+      blocks: [
+        {
+          type: "text",
+          heading: "Nem Todo Cliente Toca o Mesmo Alarme",
+          paragraphs: [
+            [
+              "Além do perfil (Transportadora, Embarcador, Operador), a AtlasGR classifica cada contrato por criticidade. Um cliente Enterprise com carga de alto valor (eletrônicos, farmacêuticos, combustível) não pode esperar na mesma fila que um cliente Padrão com carga de baixo risco. A Central de Monitoramento 24/7 opera com filas de prioridade, não com ordem de chegada.",
+            ],
+            [
+              "Isso está formalizado em contrato, no ",
+              { term: "sublimite" },
+              " e nas cláusulas de tempo de resposta. Ignorar essa hierarquia na hora do atendimento é o tipo de erro operacional que vira sinistro contestado, ou pior, cliente cancelando renovação.",
+            ],
+          ],
+        },
+        {
+          type: "comparison",
+          title: "Cliente Enterprise/Crítico vs Cliente Padrão",
+          left: {
+            label: "Enterprise / Crítico",
+            points: [
+              "Resposta da Central em minutos, com protocolo de escalonamento imediato para a C.I.A.",
+              "Monitoramento proativo: a Central aciona o cliente antes dele perceber o desvio.",
+              "Canal dedicado (linha direta, gestor de conta nomeado).",
+              "Apólices com LMI elevado e cobertura de RCF-DC ampliada, exigindo checagem redobrada de cada evento.",
+            ],
+          },
+          right: {
+            label: "Padrão",
+            points: [
+              "Resposta dentro da janela contratual padrão, sem escalonamento automático.",
+              "Monitoramento reativo: a Central atua quando o alerta dispara ou o cliente aciona.",
+              "Canal via central geral de atendimento.",
+              "Apólices dentro do sublimite padrão, com checagem seguindo o fluxo normal.",
+            ],
+          },
+        },
+        {
+          type: "stat",
+          items: [
+            { value: "< 5 min", label: "Tempo de resposta alvo para cliente Enterprise em ocorrência crítica" },
+            { value: "< 30 min", label: "Tempo de resposta alvo para cliente Padrão" },
+            { value: "24/7", label: "Cobertura da Central de Monitoramento, independentemente do nível" },
+          ],
+        },
+        {
+          type: "checklist",
+          title: "Como isso muda o seu atendimento",
+          items: [
+            "Antes de qualquer contato, verifique o nível de criticidade do cliente no cadastro — o tom e a velocidade da resposta dependem disso.",
+            "Para conta Enterprise, nunca deixe uma ocorrência 'na fila' esperando triagem manual: acione o escalonamento.",
+            "Não prometa um SLA que não está no contrato do cliente. Prometer minutos para quem tem contrato Padrão gera expectativa que a operação não sustenta.",
+            "Sempre que um cliente Padrão crescer em volume ou valor de carga, sinalize ao Comercial para reavaliar o enquadramento de criticidade.",
+          ],
+        },
+      ],
+    },
+    {
       id: "materiais-complementares",
       title: "Materiais Complementares e Fechamento",
       blocks: [
@@ -147,7 +208,7 @@ export const module08: ModuleContentFull = {
     root: "Perfis de Cliente",
     branches: [
       { label: "Transportadora", items: ["Dor: Seguro e PGR", "Solução: GR e Profile"] },
-      { label: "Embarcador", items: ["Dor: Cegueira e SLA", "Solução: Connect e Analytics"] },
+      { label: "Embarcador", items: ["Dor: Cegueira e SLA", "Solução: Connect e Analytics", "Segmentação: SLA por criticidade (Enterprise x Padrão)"] },
       { label: "O Argumento", items: ["Perdas (Combustível)", "Tempo (Sucos)"] },
     ],
   },
