@@ -1,0 +1,25 @@
+{
+  "realm": "treinamento-atlasgr",
+  "enabled": true,
+  "displayName": "Treinamento AtlasGR",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": true,
+  "clients": [
+    {
+      "clientId": "treinamento-atlasgr",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "redirectUris": ["http://localhost:3000/*"],
+      "webOrigins": ["http://localhost:3000"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "lms-admin" },
+      { "name": "instrutor" },
+      { "name": "gestor" },
+      { "name": "aluno" }
+    ]
+  }
+}

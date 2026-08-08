@@ -10,7 +10,11 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "test:e2e": "npm run test:e2e --workspace=@atlasgr/portal",
+    "storybook": "npm run storybook --workspace=@atlasgr/portal",
+    "infra:up": "docker compose -f docker-compose.opensource.yml up -d",
+    "infra:down": "docker compose -f docker-compose.opensource.yml down"
   },
   "devDependencies": {
     "turbo": "^2.10.9"

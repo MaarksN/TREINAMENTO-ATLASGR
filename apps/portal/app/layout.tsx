@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/Toaster";
@@ -10,18 +10,8 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-// Os arquivos da fonte "Mont" (identidade oficial ATLASGR) não estão disponíveis
-// no repositório para uso via next/font/local. Poppins é a geométrica sans mais
-// próxima do desenho da Mont entre as disponíveis no Google Fonts — mesmo
-// contra-formas circulares e traço uniforme — e serve como substituta de
-// display até os arquivos oficiais da Mont serem adicionados.
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-mont",
-  display: "swap",
-});
-
+// A Mont é a fonte primária da marca, mas seus arquivos licenciados não estão no
+// repositório. O manual indica Montserrat como família secundária oficial.
 const title = "Portal de Treinamento ATLASGR";
 const description =
   "Portal Enterprise de onboarding e treinamento corporativo da ATLASGR: conectamos pessoas e tecnologia, gerando valor com segurança e inovação para a logística nacional.";
@@ -73,7 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="pt-BR"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${montserrat.variable} ${poppins.variable} h-full`}
+      className={`${montserrat.variable} h-full`}
     >
       <body className="min-h-full antialiased">
         <a

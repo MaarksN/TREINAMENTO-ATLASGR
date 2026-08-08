@@ -1,0 +1,163 @@
+services:
+  keycloak-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-keycloak-local-password}
+      POSTGRES_DB: keycloak
+    volumes: ["keycloak_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3.3
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-keycloak-local-password}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-change-this-admin-password}
+    ports: ["8080:8080"]
+    volumes:
+      - ./infrastructure/keycloak/treinamento-realm.json:/opt/keycloak/data/import/treinamento-realm.json:ro
+    depends_on:
+      keycloak-db:
+        condition: service_healthy
+
+  minio:
+    image: quay.io/minio/minio:latest
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-treinamento}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-change-this-minio-password}
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["minio_data:/data"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  minio-init:
+    image: quay.io/minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}" &&
+        mc mb --ignore-existing local/course-assets &&
+        mc mb --ignore-existing local/course-certificates
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-treinamento}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-change-this-minio-password}
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.22
+    environment:
+      MEILI_ENV: development
+      MEILI_MASTER_KEY: ${MEILISEARCH_API_KEY:-change-this-meilisearch-key}
+    ports: ["7700:7700"]
+    volumes: ["meili_data:/meili_data"]
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    command: ["valkey-server", "--appendonly", "yes"]
+    ports: ["6379:6379"]
+    volumes: ["valkey_data:/data"]
+
+  learning-locker-mongo:
+    image: mongo:7
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    ports: ["27017:27017"]
+    volumes: ["learning_locker_mongo:/data/db"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  learning-locker-mongo-init:
+    image: mongo:7
+    restart: "no"
+    depends_on:
+      learning-locker-mongo:
+        condition: service_healthy
+    command:
+      - mongosh
+      - --host
+      - learning-locker-mongo:27017
+      - --eval
+      - rs.initiate({_id:'rs0',members:[{_id:0,host:'learning-locker-mongo:27017'}]})
+
+  learning-locker-xapi:
+    build:
+      context: ./infrastructure/learning-locker
+      dockerfile: Dockerfile
+    environment:
+      MODELS_REPO: mongo
+      MONGO_URL: mongodb://learning-locker-mongo:27017/learninglocker_v2?replicaSet=rs0
+      MONGO_DB: learninglocker_v2
+      REDIS_URL: redis://valkey:6379/0
+      STORAGE_REPO: local
+      FS_LOCAL_STORAGE_DIR: /data
+      EXPRESS_PORT: 8081
+    ports: ["8081:8081"]
+    volumes: ["learning_locker_files:/data"]
+    depends_on:
+      learning-locker-mongo-init:
+        condition: service_completed_successfully
+      valkey:
+        condition: service_started
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.136.0
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./infrastructure/observability/otel-collector.yml:/etc/otelcol-contrib/config.yaml:ro
+    ports: ["4317:4317", "4318:4318", "9464:9464"]
+    depends_on: [tempo]
+
+  tempo:
+    image: grafana/tempo:2.8.2
+    command: ["-config.file=/etc/tempo.yml"]
+    volumes:
+      - ./infrastructure/observability/tempo.yml:/etc/tempo.yml:ro
+      - tempo_data:/var/tempo
+
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    command: ["--config.file=/etc/prometheus/prometheus.yml"]
+    volumes:
+      - ./infrastructure/observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports: ["9090:9090"]
+
+  grafana:
+    image: grafana/grafana-oss:12.1.1
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-change-this-grafana-password}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    ports: ["3002:3000"]
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infrastructure/observability/grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+    depends_on: [prometheus, tempo]
+
+volumes:
+  keycloak_data:
+  minio_data:
+  meili_data:
+  valkey_data:
+  learning_locker_mongo:
+  learning_locker_files:
+  tempo_data:
+  prometheus_data:
+  grafana_data:

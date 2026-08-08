@@ -14,14 +14,25 @@ export function Logo({ className, withWordmark = true }: { className?: string; w
     );
   }
   return (
-    <span className={cn("inline-flex items-center", className)}>
+    <span className={cn("inline-flex items-center", className)} role="img" aria-label="ATLASGR">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`${BASE_PATH}/brand/atlas-logo.svg`}
-        alt="ATLASGR"
+        alt=""
+        aria-hidden="true"
         width={140}
         height={31}
-        className="dark:brightness-0 dark:invert"
+        className="block dark:hidden"
+      />
+      {/* Variante negativa oficial: preserva o símbolo laranja e o nome branco. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`${BASE_PATH}/brand/atlas-logo-negative.svg`}
+        alt=""
+        aria-hidden="true"
+        width={140}
+        height={31}
+        className="hidden dark:block"
       />
     </span>
   );

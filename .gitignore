@@ -46,6 +46,9 @@ next-env.d.ts
 apps/portal/.next
 apps/portal/out
 node_modules
+playwright-report/
+test-results/
+storybook-static/
 
 # Agents & AI tools
 .claude/

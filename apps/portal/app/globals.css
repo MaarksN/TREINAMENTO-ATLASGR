@@ -27,7 +27,8 @@
   --card-foreground: #111111;
 
   --atlas-orange: #ff5618;
-  --atlas-orange-2: #ff8a3d;
+  --atlas-orange-2: #ff6b10;
+  --font-mont: var(--font-montserrat);
   --atlas-graphite: #333333;
   --atlas-black: #090a0c;
   --atlas-ring: rgba(255, 86, 24, 0.42);
@@ -76,7 +77,7 @@
   --card-foreground: #ededed;
 
   --atlas-orange: #FF5618;
-  --atlas-orange-2: #ff8347;
+  --atlas-orange-2: #ff6b10;
   --atlas-graphite: #27272a;
   --atlas-ring: rgba(255, 86, 24, 0.45);
 
