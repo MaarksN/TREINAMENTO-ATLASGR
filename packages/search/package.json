@@ -1,5 +1,8 @@
 {
   "name": "@atlasgr/search",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "meilisearch": "^0.60.0"
+  }
 }

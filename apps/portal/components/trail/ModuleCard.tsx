@@ -43,15 +43,24 @@ export function ModuleCard({ meta, index, isCompleted }: ModuleCardProps) {
   return (
     <Link href={`/trilha/${meta.slug}`} className="block h-full group">
       <Card variant="interactive" className={cn("flex flex-col h-full border-border transition-all duration-300", isCompleted ? "bg-surface" : "bg-surface")}>
-        {/* Cover Image/Gradient Area */}
-        <div className="h-32 bg-surface-2 border-b border-border/50 relative overflow-hidden flex items-center justify-center">
-           <div className="absolute inset-0 bg-gradient-to-br from-atlas-orange/5 to-transparent group-hover:scale-105 transition-transform duration-500" />
-           <Icon className="w-16 h-16 text-muted/20 group-hover:text-atlas-orange/20 transition-colors duration-300" />
-           {isCompleted && (
-             <div className="absolute top-4 right-4 bg-emerald-500/90 backdrop-blur-md rounded-full p-1 shadow-sm border border-emerald-400/50">
-               <CheckCircle2 size={16} className="text-white" />
-             </div>
-           )}
+        {/* Visual Identity Cover Banner */}
+        <div className="h-36 bg-surface-2 border-b border-border/50 relative overflow-hidden flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-gradient-to-br from-atlas-orange/20 via-surface-2 to-surface opacity-90 group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-10 pointer-events-none" />
+          
+          <div className="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-border/60 text-[10px] font-mono font-bold text-atlas-orange shadow-sm">
+            MÓDULO {(index + 1).toString().padStart(2, "0")}
+          </div>
+
+          <div className="relative z-10 p-3 rounded-2xl bg-surface/95 border border-border/60 shadow-lg group-hover:border-atlas-orange/50 group-hover:shadow-atlas-orange/15 transition-all duration-300 transform group-hover:scale-110">
+            <Icon className="w-10 h-10 text-atlas-orange" />
+          </div>
+
+          {isCompleted && (
+            <div className="absolute top-3 right-3 bg-emerald-500/90 backdrop-blur-md rounded-full p-1 shadow-sm border border-emerald-400/50">
+              <CheckCircle2 size={16} className="text-white" />
+            </div>
+          )}
         </div>
 
         <CardHeader className="pb-2 pt-6">

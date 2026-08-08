@@ -18,7 +18,7 @@ const links = [
   { href: "/certificado", label: "Certificado" },
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean }) {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +29,6 @@ export function SiteHeader() {
   const xp = useOnboardingStore((s) => s.xp);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
 
     const handleScroll = () => {
@@ -52,14 +51,13 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
 
-  // Fecha o menu mobile automaticamente ao navegar para outra rota — sincroniza
-  // com a rota (sistema externo ao componente), não espelha props em estado.
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
   }, [pathname]);
 
   const { current } = levelProgress(xp);
+
+  const shouldHideLinks = hideNavLinks || pathname === "/";
 
   return (
     <header
@@ -77,30 +75,32 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav aria-label="Navegação principal" className="hidden items-center gap-8 md:flex absolute left-1/2 -translate-x-1/2">
-          {links.map((l) => {
-            const isActive = pathname === l.href || pathname?.startsWith(`${l.href}/`);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={isActive ? "page" : undefined}
-                className={cn(
-                  "text-sm font-semibold transition-all relative group py-2 focus-visible-ring rounded-sm",
-                  isActive ? "text-foreground" : "text-muted hover:text-foreground"
-                )}
-              >
-                {l.label}
-                <span
+        {!shouldHideLinks && (
+          <nav aria-label="Navegação principal" className="hidden items-center gap-8 md:flex absolute left-1/2 -translate-x-1/2">
+            {links.map((l) => {
+              const isActive = pathname === l.href || pathname?.startsWith(`${l.href}/`);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "absolute bottom-0 left-0 w-full h-[2px] bg-atlas-orange scale-x-0 transition-transform origin-left duration-300 rounded-full group-hover:scale-x-100",
-                    isActive && "scale-x-100"
+                    "text-sm font-semibold transition-all relative group py-2 focus-visible-ring rounded-sm",
+                    isActive ? "text-foreground" : "text-muted hover:text-foreground"
                   )}
-                />
-              </Link>
-            );
-          })}
-        </nav>
+                >
+                  {l.label}
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-0 w-full h-[2px] bg-atlas-orange scale-x-0 transition-transform origin-left duration-300 rounded-full group-hover:scale-x-100",
+                      isActive && "scale-x-100"
+                    )}
+                  />
+                </Link>
+              );
+            })}
+          </nav>
+        )}
 
         <div className="flex items-center gap-4">
           {mounted && registration && (
