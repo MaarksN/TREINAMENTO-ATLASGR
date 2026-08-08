@@ -1206,7 +1206,7 @@ const quiz09: QuizQuestion[] = [
     moduleSlug: "09-processo-comercial",
     question: "O que é o CRM na jornada comercial?",
     options: [
-      "O Conselho Regional de Medicina",
+      "O Controle de Relacionamento de Mercado",
       "O sistema (ex: Hubspot/Bitrix) onde se organiza o Funil de Vendas desde a ligação fria até o fechamento",
       "Um tipo de rastreador",
       "O botão de pânico",

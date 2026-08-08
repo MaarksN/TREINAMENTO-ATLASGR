@@ -67,7 +67,7 @@ export const module04: ModuleContentFull = {
           type: "checklist",
           title: "O que o Profile Analisa",
           items: [
-            "Validade de CNH, categorias permitidas e toxicológico.",
+            "Validade de CNH, situação cadastral e categorias permitidas.",
             "Antecedentes criminais impeditivos e mandados de prisão abertos.",
             "Licenciamento e documentação atrasada do veículo tracionador e carreta.",
             "Divergência Biométrica (Liveness detection).",
@@ -205,7 +205,7 @@ export const module04: ModuleContentFull = {
           type: "checklist",
           title: "Limites de Escopo: O Que Cada Produto NÃO Faz",
           items: [
-            "Atlas Profile não substitui exame toxicológico laboratorial exigido por norma; ele audita documentos e biometria, não faz exame clínico.",
+            "Atlas Profile não substitui validações oficiais exigidas por norma; ele audita documentos e biometria, mas não emite laudos.",
             "Atlas Connect não decide sozinho se um alerta é um assalto real; a leitura e a decisão tática são do Atlas GR/CIA.",
             "Atlas GR não é seguradora e não paga indenização; ele gerencia o risco e a tratativa dentro do PGR, a apólice e a SUSEP ficam com a seguradora.",
             "Atlas Analytics não gera dado novo; ele só é tão preciso quanto o histórico que Connect e GR alimentaram antes.",

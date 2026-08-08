@@ -127,7 +127,7 @@ export const module08: ModuleContentFull = {
           heading: "Nem Todo Cliente Toca o Mesmo Alarme",
           paragraphs: [
             [
-              "Além do perfil (Transportadora, Embarcador, Operador), a AtlasGR classifica cada contrato por criticidade. Um cliente Enterprise com carga de alto valor (eletrônicos, farmacêuticos, combustível) não pode esperar na mesma fila que um cliente Padrão com carga de baixo risco. A Central de Monitoramento 24/7 opera com filas de prioridade, não com ordem de chegada.",
+              "Além do perfil (Transportadora, Embarcador, Operador), a AtlasGR classifica cada contrato por criticidade. Um cliente Enterprise com carga de alto valor (eletrônicos, máquinas industriais, combustível) não pode esperar na mesma fila que um cliente Padrão com carga de baixo risco. A Central de Monitoramento 24/7 opera com filas de prioridade, não com ordem de chegada.",
             ],
             [
               "Isso está formalizado em contrato, no ",

@@ -147,7 +147,7 @@ export const module14: ModuleContentFull = {
           type: "case",
           title: "O Caso da Carga Farma: Recuperação em 38 Minutos",
           text:
-            "Uma carreta com insumos farmacêuticos avaliados em R$ 2,3 milhões saiu da rota programada na BR-381. O Connect disparou o alerta de desvio de trajeto no mesmo minuto. Em vez de confiar apenas na voz do motorista ao telefone — a mesma armadilha que custou R$ 800 mil no Capítulo 2 —, o operador acionou a checagem por vídeo (DMS) em tempo real e confirmou dois indivíduos não identificados na cabine. A CIA assumiu a ocorrência, ativou o bloqueio progressivo do motor (que reduz a velocidade sem travar o veículo de forma abrupta, preservando a integridade física do motorista) e compartilhou a geolocalização exata com a Polícia Rodoviária. A carga foi interceptada intacta antes de qualquer transferência para outro veículo.",
+            "Uma carreta com componentes eletrônicos avaliados em R$ 2,3 milhões saiu da rota programada na BR-381. O Connect disparou o alerta de desvio de trajeto no mesmo minuto. Em vez de confiar apenas na voz do motorista ao telefone — a mesma armadilha que custou R$ 800 mil no Capítulo 2 —, o operador acionou a checagem por vídeo (DMS) em tempo real e confirmou dois indivíduos não identificados na cabine. A CIA assumiu a ocorrência, ativou o bloqueio progressivo do motor (que reduz a velocidade sem travar o veículo de forma abrupta, preservando a integridade física do motorista) e compartilhou a geolocalização exata com a Polícia Rodoviária. A carga foi interceptada intacta antes de qualquer transferência para outro veículo.",
           source: "Arquivo Confidencial: Auditorias Forenses de Sinistros (2020-2025)",
         },
         {

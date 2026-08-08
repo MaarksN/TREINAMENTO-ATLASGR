@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Building2,
   Compass,
@@ -12,11 +12,13 @@ import {
   Target,
   Award,
   Rocket,
+  ChevronLeft,
   ChevronRight,
   Trophy,
   Radar,
   Layers,
   PlayCircle,
+  Video,
 } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Logo } from "@/components/brand/Logo";
@@ -57,10 +59,22 @@ const stats = [
   { label: "Módulos Técnicos", value: moduleMetas.length, suffix: "", icon: Layers },
 ];
 
+const HOME_PAGES = [
+  { id: "hero", title: "Boas-Vindas" },
+  { id: "video", title: "Vídeo Institucional" },
+  { id: "modulos", title: "Estrutura Operacional" },
+  { id: "indicadores", title: "Indicadores Institucionais" },
+  { id: "proposito", title: "O Propósito AtlasGR" },
+  { id: "valores", title: "Valores Nucleares" },
+  { id: "footer", title: "Rodapé & Contato" },
+] as const;
+
 export default function HomePage() {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [returnTo, setReturnTo] = useState<string | null>(null);
+  const [activePageIndex, setActivePageIndex] = useState(0);
+  const [activeModuleIndex, setActiveModuleIndex] = useState(0);
   const showToast = useToastStore((s) => s.show);
 
   const registration = useOnboardingStore((state) => state.registration);
@@ -69,20 +83,13 @@ export default function HomePage() {
 
   const canContinue = Boolean(registration && onboardingCompleted);
 
-  const featuredModules = moduleMetas.slice(0, 6);
-  const completedFeatured = featuredModules.filter((m) => progress[m.slug]?.completed).length;
+  const totalPages = HOME_PAGES.length;
+  const currentPage = HOME_PAGES[activePageIndex];
 
-  // Se o usuário caiu aqui por ter tentado acessar uma rota protegida sem
-  // estar logado (ver useRequireRegistration), explica o motivo, abre o
-  // modal de primeiro acesso automaticamente e, ao concluir, o devolve para
-  // a página que ele queria ver.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("authRequired") === "1") {
-      // Sincronização única com o querystring lido do browser no mount, não
-      // um espelhamento de props/estado — o setState direto aqui é intencional.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setReturnTo(params.get("returnTo"));
       setModalOpen(true);
       showToast({
@@ -92,8 +99,19 @@ export default function HomePage() {
       });
       window.history.replaceState({}, "", "/");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        setActivePageIndex((prev) => Math.min(totalPages - 1, prev + 1));
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        setActivePageIndex((prev) => Math.max(0, prev - 1));
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [totalPages]);
 
   function handleStart() {
     if (canContinue) {
@@ -103,229 +121,336 @@ export default function HomePage() {
     setModalOpen(true);
   }
 
-  function scrollToModules() {
-    document.getElementById("modulos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  function goNextPage() {
+    setActivePageIndex((prev) => Math.min(totalPages - 1, prev + 1));
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function goPrevPage() {
+    setActivePageIndex((prev) => Math.max(0, prev - 1));
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
-    <div className="min-h-screen bg-background selection:bg-atlas-orange selection:text-white pb-20">
+    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-atlas-orange selection:text-white">
       <SiteHeader />
 
-      <main id="main-content">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-24 pb-20 sm:pt-32 sm:pb-28">
-          <div className="absolute inset-0 bg-gradient-atlas opacity-[0.03] pointer-events-none" />
-          <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-5" />
-
-          <div className="absolute -top-40 right-[-10%] h-[600px] w-[600px] rounded-full bg-atlas-orange/10 blur-[120px] pointer-events-none" />
-          <div className="absolute top-40 left-[-10%] h-[400px] w-[400px] rounded-full bg-atlas-orange-2/10 blur-[100px] pointer-events-none" />
-
-          <div className="mx-auto max-w-4xl text-center px-6 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              className="flex justify-center"
-            >
-              <Badge variant="premium" className="mb-8 px-4 py-1.5 shadow-xl shadow-atlas-orange/10 gap-2">
-                <Award size={14} /> Portal Enterprise AtlasGR
-              </Badge>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex flex-wrap items-center justify-center gap-4 font-display text-5xl font-black leading-tight tracking-tight text-foreground sm:text-7xl mb-6"
-            >
-              Bem-vindo à
-              <Logo withWordmark={false} className="h-10 w-auto sm:h-14 mt-1" />
-              <span className="text-gradient-atlas bg-clip-text">ATLASGR</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="mx-auto max-w-2xl text-lg font-medium text-muted sm:text-xl leading-relaxed"
-            >
-              Conectamos pessoas e tecnologia, gerando valor com <strong className="text-foreground">segurança</strong> e <strong className="text-foreground">inovação</strong>.
-              Sua evolução na logística inteligente começa agora.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Button size="xl" onClick={handleStart} rightIcon={<Rocket className="w-5 h-5" />}>
-                {canContinue ? "Retomar minha missão" : "Iniciar Treinamento Corporativo"}
-              </Button>
-              <Button size="xl" variant="outline" onClick={scrollToModules} rightIcon={<PlayCircle className="w-5 h-5" />}>
-                Explorar módulos
-              </Button>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mx-auto mt-20 max-w-5xl px-6"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/10 dark:shadow-black/40 ring-1 ring-border/50">
-              <InstitutionalVideo />
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Trilha de Conhecimento */}
-        <section id="modulos" className="scroll-mt-20 bg-surface-2/50 border-y border-border/50 py-24">
-          <div className="mx-auto max-w-7xl px-6">
-            <SectionHeading
-              kicker="Módulos de Formação"
-              title="Estrutura Operacional"
-              description="Domine os pilares da AtlasGR. Do gerenciamento de riscos à tecnologia proprietária, tudo projetado para o seu sucesso na linha de frente."
-              className="mb-16"
-            />
-
-            {registration && (
-              <p className="mb-8 text-center text-sm font-semibold text-muted" aria-live="polite">
-                {completedFeatured} de {featuredModules.length} módulos em destaque concluídos
-              </p>
-            )}
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredModules.map((m, i) => (
-                <ModuleCard key={m.slug} meta={m} index={i} isCompleted={!!progress[m.slug]?.completed} />
-              ))}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Button variant="outline" size="lg" onClick={() => router.push('/trilha')} rightIcon={<ChevronRight size={18} />}>
-                Ver todos os {moduleMetas.length} módulos
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Indicadores Institucionais */}
-        <section className="mx-auto max-w-7xl px-6 py-24">
-          <div className="grid gap-6 sm:grid-cols-3">
-            {stats.map((s, i) => (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                key={s.label}
-              >
-                <Card variant="elevated" className="p-8 text-center h-full flex flex-col items-center justify-center">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-atlas-orange/10 text-atlas-orange">
-                    <s.icon size={24} aria-hidden="true" />
-                  </div>
-                  <p className="font-display text-5xl font-black text-gradient-atlas mb-2">
-                    <AnimatedCounter value={s.value} suffix={s.suffix} />
-                  </p>
-                  <p className="font-semibold text-muted tracking-wide uppercase text-sm">{s.label}</p>
-                </Card>
-              </motion.div>
+      {/* Top Page Progress Indicator */}
+      <div className="border-b border-border/50 bg-background/90 backdrop-blur-md sticky top-16 z-30">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
+          <span className="text-xs font-bold uppercase tracking-wider text-atlas-orange">
+            Item {activePageIndex + 1} de {totalPages}: {currentPage.title}
+          </span>
+          <div className="flex flex-1 items-center gap-1.5 max-w-md">
+            {HOME_PAGES.map((p, i) => (
+              <button
+                key={p.id}
+                onClick={() => setActivePageIndex(i)}
+                className={cn(
+                  "h-2 flex-1 rounded-full transition-all duration-300 focus-visible-ring",
+                  i === activePageIndex
+                    ? "bg-atlas-orange shadow-[0_0_8px_rgba(255,86,24,0.6)]"
+                    : i < activePageIndex
+                    ? "bg-atlas-orange/40"
+                    : "bg-border"
+                )}
+                title={`Ir para Página ${i + 1}: ${p.title}`}
+                aria-label={`Ir para item ${i + 1}`}
+              />
             ))}
           </div>
-        </section>
+          <span className="text-xs font-mono font-bold text-muted">
+            {Math.round(((activePageIndex + 1) / totalPages) * 100)}%
+          </span>
+        </div>
+      </div>
 
-        {/* Manifesto */}
-        <section className="mx-auto max-w-7xl px-6 pb-24">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <Card variant="elevated" className="relative p-10 overflow-hidden" withGlow>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${BASE_PATH}/brand/atlas-mark.png`}
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-16 -bottom-16 h-64 w-64 object-contain opacity-[0.04] dark:opacity-[0.06]"
-              />
-              <div className="relative z-10">
-                <Badge variant="orange" className="mb-6">Nosso DNA</Badge>
-                <h2 className="font-display text-3xl font-bold text-foreground mb-4">O Propósito AtlasGR</h2>
-                <blockquote className="text-xl font-medium text-muted leading-relaxed border-l-4 border-atlas-orange pl-6 py-2 my-6">
-                  &quot;Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação constante para a logística.&quot;
-                </blockquote>
-                <p className="text-sm text-muted/80">
-                  Uma cultura forjada na linha de frente, onde cada colaborador é fundamental para garantir que o fluxo logístico nacional nunca pare.
+      {/* Main Single Item Container */}
+      <main id="main-content" className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-4 py-8 sm:px-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPage.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex-1 flex flex-col justify-center items-center w-full min-h-[calc(100vh-220px)]"
+          >
+            {currentPage.id === "hero" && (
+              <section className="w-full text-center py-10">
+                <div className="flex justify-center">
+                  <Badge variant="premium" className="mb-8 px-4 py-1.5 shadow-xl shadow-atlas-orange/10 gap-2">
+                    <Award size={14} /> Portal Enterprise AtlasGR
+                  </Badge>
+                </div>
+
+                <h1 className="flex flex-wrap items-center justify-center gap-4 font-display text-5xl font-black leading-tight tracking-tight text-foreground sm:text-7xl mb-6">
+                  Bem-vindo à
+                  <Logo withWordmark={false} className="h-10 w-auto sm:h-14 mt-1" />
+                  <span className="text-gradient-atlas bg-clip-text">ATLASGR</span>
+                </h1>
+
+                <p className="mx-auto max-w-2xl text-lg font-medium text-muted sm:text-xl leading-relaxed">
+                  Conectamos pessoas e tecnologia, gerando valor com <strong className="text-foreground">segurança</strong> e <strong className="text-foreground">inovação</strong>.
+                  Sua evolução na logística inteligente começa agora.
                 </p>
-              </div>
-            </Card>
 
-            <Card variant="elevated" className="p-10">
-              <h2 className="font-display text-2xl font-bold text-foreground mb-8">Nossos Valores Nucleares</h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {values.map((v) => (
-                  <li key={v.label}>
-                    <button
-                      type="button"
-                      className="w-full h-full flex items-start gap-4 rounded-2xl bg-surface-2/50 border border-border/50 px-4 py-4 text-left transition-all duration-300 hover:border-atlas-orange/30 hover:-translate-y-0.5 hover:shadow-md focus-visible-ring group"
+                <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Button size="xl" onClick={handleStart} rightIcon={<Rocket className="w-5 h-5" />}>
+                    {canContinue ? "Retomar minha missão" : "Iniciar Treinamento Corporativo"}
+                  </Button>
+                  <Button size="xl" variant="outline" onClick={goNextPage} rightIcon={<PlayCircle className="w-5 h-5" />}>
+                    Ver Vídeo &amp; Módulos
+                  </Button>
+                </div>
+              </section>
+            )}
+
+            {currentPage.id === "video" && (
+              <section className="w-full max-w-4xl py-6">
+                <SectionHeading
+                  kicker="Apresentação Institucional"
+                  title="Conheça a AtlasGR"
+                  description="Assista ao vídeo e entenda como conectamos segurança e inteligência na logística."
+                  className="mb-8"
+                />
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/10 dark:shadow-black/40 ring-1 ring-border/50">
+                  <InstitutionalVideo />
+                </div>
+              </section>
+            )}
+
+            {currentPage.id === "modulos" && (
+              <section className="w-full max-w-2xl py-6">
+                <SectionHeading
+                  kicker="Módulos de Formação"
+                  title="Estrutura Operacional"
+                  description="Domine os pilares da AtlasGR. Navegue item por item nos 15 módulos corporativos."
+                  className="mb-6"
+                />
+
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setActiveModuleIndex((prev) => Math.max(0, prev - 1))}
+                    disabled={activeModuleIndex === 0}
+                    leftIcon={<ChevronLeft size={16} />}
+                  >
+                    Anterior
+                  </Button>
+
+                  <Badge variant="orange" className="px-3 py-1 font-mono text-xs">
+                    Módulo {activeModuleIndex + 1} de {moduleMetas.length}
+                  </Badge>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setActiveModuleIndex((prev) => Math.min(moduleMetas.length - 1, prev + 1))}
+                    disabled={activeModuleIndex === moduleMetas.length - 1}
+                    rightIcon={<ChevronRight size={16} />}
+                  >
+                    Próximo
+                  </Button>
+                </div>
+
+                <div className="relative min-h-[340px]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeModuleIndex}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -16 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <div className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border shadow-sm transition-colors duration-300", valueColorClasses[v.color])}>
-                        <v.icon size={20} aria-hidden="true" />
+                      <ModuleCard
+                        meta={moduleMetas[activeModuleIndex]}
+                        index={activeModuleIndex}
+                        isCompleted={!!progress[moduleMetas[activeModuleIndex].slug]?.completed}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                <div className="mt-6 flex items-center justify-center gap-1.5 flex-wrap">
+                  {moduleMetas.map((m, idx) => (
+                    <button
+                      key={m.slug}
+                      onClick={() => setActiveModuleIndex(idx)}
+                      className={cn(
+                        "h-2 rounded-full transition-all duration-300 focus-visible-ring",
+                        activeModuleIndex === idx ? "w-6 bg-atlas-orange" : "w-2 bg-border hover:bg-atlas-orange/50"
+                      )}
+                      title={`Ir para Módulo ${idx + 1}`}
+                      aria-label={`Módulo ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <div className="mt-8 text-center">
+                  <Button variant="outline" size="md" onClick={() => router.push("/trilha")} rightIcon={<ChevronRight size={16} />}>
+                    Ver todos os {moduleMetas.length} módulos na Trilha Completa
+                  </Button>
+                </div>
+              </section>
+            )}
+
+            {currentPage.id === "indicadores" && (
+              <section className="w-full max-w-4xl py-6">
+                <SectionHeading
+                  kicker="Números &amp; Excelência"
+                  title="Indicadores Corporativos"
+                  description="Resultados consolidados em mais de duas décadas de liderança operacional."
+                  className="mb-10"
+                />
+                <div className="grid gap-6 sm:grid-cols-3">
+                  {stats.map((s, i) => (
+                    <Card key={s.label} variant="elevated" className="p-8 text-center h-full flex flex-col items-center justify-center">
+                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-atlas-orange/10 text-atlas-orange">
+                        <s.icon size={24} aria-hidden="true" />
                       </div>
-                      <div>
-                        <span className="block font-semibold text-foreground">{v.label}</span>
-                        <span className="block text-xs text-muted mt-1 leading-relaxed">{v.description}</span>
+                      <p className="font-display text-5xl font-black text-gradient-atlas mb-2">
+                        <AnimatedCounter value={s.value} suffix={s.suffix} />
+                      </p>
+                      <p className="font-semibold text-muted tracking-wide uppercase text-sm">{s.label}</p>
+                    </Card>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {currentPage.id === "proposito" && (
+              <section className="w-full max-w-3xl py-6">
+                <Card variant="elevated" className="relative p-10 overflow-hidden" withGlow>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`${BASE_PATH}/brand/atlas-mark.png`}
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-16 -bottom-16 h-64 w-64 object-contain opacity-[0.04] dark:opacity-[0.06]"
+                  />
+                  <div className="relative z-10 text-center sm:text-left">
+                    <Badge variant="orange" className="mb-6">Nosso DNA</Badge>
+                    <h2 className="font-display text-3xl font-bold text-foreground mb-4">O Propósito AtlasGR</h2>
+                    <blockquote className="text-xl font-medium text-muted leading-relaxed border-l-4 border-atlas-orange pl-6 py-2 my-6">
+                      &quot;Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação constante para a logística.&quot;
+                    </blockquote>
+                    <p className="text-sm text-muted/80">
+                      Uma cultura forjada na linha de frente, onde cada colaborador é fundamental para garantir que o fluxo logístico nacional nunca pare.
+                    </p>
+                  </div>
+                </Card>
+              </section>
+            )}
+
+            {currentPage.id === "valores" && (
+              <section className="w-full max-w-4xl py-6">
+                <SectionHeading
+                  kicker="Cultura Corporativa"
+                  title="Nossos Valores Nucleares"
+                  description="Os 5 princípios inegociáveis que norteiam cada decisão em nossa operação."
+                  className="mb-8"
+                />
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {values.map((v) => (
+                    <li key={v.label}>
+                      <div className="h-full flex flex-col items-start gap-3 rounded-2xl bg-surface border border-border/60 p-5 transition-all duration-300 hover:border-atlas-orange/40 hover:shadow-md">
+                        <div className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border shadow-sm", valueColorClasses[v.color])}>
+                          <v.icon size={20} aria-hidden="true" />
+                        </div>
+                        <div>
+                          <span className="block font-semibold text-foreground text-lg">{v.label}</span>
+                          <span className="block text-xs text-muted mt-1 leading-relaxed">{v.description}</span>
+                        </div>
                       </div>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </div>
-        </section>
-
-        {/* Rodapé institucional */}
-        <footer className="border-t border-border/50">
-          <div className="mx-auto max-w-7xl px-6 pt-16 pb-8">
-            <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="lg:col-span-2">
-                <Logo className="mb-4" />
-                <p className="max-w-xs text-sm text-muted leading-relaxed mb-6">
-                  Conectamos pessoas e tecnologia, gerando valor com segurança e inovação constante para a logística nacional.
-                </p>
-                <SocialLinks />
-              </div>
-
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Plataforma</h3>
-                <nav aria-label="Links da plataforma">
-                  <ul className="space-y-3 text-sm">
-                    <li><Link href="/trilha" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Missões &amp; Módulos</Link></li>
-                    <li><Link href="/produtos" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Produtos</Link></li>
-                    <li><Link href="/glossario" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Glossário</Link></li>
-                    <li><Link href="/dashboard" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Cockpit</Link></li>
-                    <li><Link href="/certificado" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Certificado</Link></li>
-                  </ul>
-                </nav>
-              </div>
-
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Suporte &amp; Contato</h3>
-                <ul className="space-y-3 text-sm text-muted">
-                  <li><a href="mailto:comercial@atlasgr.com.br" className="hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">comercial@atlasgr.com.br</a></li>
-                  <li><a href="https://api.whatsapp.com/send?phone=5516991839108" target="_blank" rel="noopener noreferrer" className="hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">WhatsApp: (16) 99183-9108</a></li>
-                  <li><ContactAddress /></li>
+                    </li>
+                  ))}
                 </ul>
-              </div>
-            </div>
+              </section>
+            )}
 
-            <div className="mt-12 flex flex-col-reverse items-center justify-between gap-4 border-t border-border/50 pt-8 sm:flex-row">
-              <p className="text-xs text-muted">
-                © {new Date().getFullYear()} ATLASGR. Todos os direitos reservados.
-              </p>
-              <Badge variant="muted" className="text-[10px]">Portal v0.1.0</Badge>
-            </div>
-          </div>
-        </footer>
+            {currentPage.id === "footer" && (
+              <section className="w-full py-6">
+                <div className="rounded-3xl border border-border/50 bg-surface-2/40 p-8 sm:p-12">
+                  <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="lg:col-span-2">
+                      <Logo className="mb-4" />
+                      <p className="max-w-xs text-sm text-muted leading-relaxed mb-6">
+                        Conectamos pessoas e tecnologia, gerando valor com segurança e inovação constante para a logística nacional.
+                      </p>
+                      <SocialLinks />
+                    </div>
+
+                    <div>
+                      <h3 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Plataforma</h3>
+                      <nav aria-label="Links da plataforma">
+                        <ul className="space-y-3 text-sm">
+                          <li><Link href="/trilha" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Missões &amp; Módulos</Link></li>
+                          <li><Link href="/produtos" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Produtos</Link></li>
+                          <li><Link href="/glossario" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Glossário</Link></li>
+                          <li><Link href="/dashboard" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Cockpit</Link></li>
+                          <li><Link href="/certificado" className="text-muted hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">Certificado</Link></li>
+                        </ul>
+                      </nav>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Suporte &amp; Contato</h3>
+                      <ul className="space-y-3 text-sm text-muted">
+                        <li><a href="mailto:comercial@atlasgr.com.br" className="hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">comercial@atlasgr.com.br</a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=5516991839108" target="_blank" rel="noopener noreferrer" className="hover:text-atlas-orange transition-colors focus-visible-ring rounded-sm">WhatsApp: (16) 99183-9108</a></li>
+                        <li><ContactAddress /></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-12 flex flex-col-reverse items-center justify-between gap-4 border-t border-border/50 pt-8 sm:flex-row">
+                    <p className="text-xs text-muted">
+                      © {new Date().getFullYear()} ATLASGR. Todos os direitos reservados.
+                    </p>
+                    <Badge variant="muted" className="text-[10px]">Portal v0.1.0</Badge>
+                  </div>
+                </div>
+              </section>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </main>
+
+      {/* Fixed Bottom Page Navigation Controls */}
+      <div className="sticky bottom-0 z-40 border-t border-border/50 bg-background/95 backdrop-blur-xl py-3 shadow-2xl">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
+          <Button
+            variant="outline"
+            size="md"
+            onClick={goPrevPage}
+            disabled={activePageIndex === 0}
+            leftIcon={<ChevronLeft size={16} />}
+          >
+            Página Anterior
+          </Button>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold text-muted hidden sm:inline">
+              Navegação Geral:
+            </span>
+            <Badge variant="orange" className="px-3 py-1 font-mono text-xs">
+              Página {activePageIndex + 1} de {totalPages}
+            </Badge>
+          </div>
+
+          <Button
+            variant="primary"
+            size="md"
+            onClick={goNextPage}
+            disabled={activePageIndex === totalPages - 1}
+            rightIcon={<ChevronRight size={16} />}
+          >
+            Próxima Página
+          </Button>
+        </div>
+      </div>
 
       <AccessModal open={modalOpen} onOpenChange={setModalOpen} returnTo={returnTo} />
     </div>

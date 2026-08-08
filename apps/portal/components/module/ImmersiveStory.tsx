@@ -45,7 +45,7 @@ export function ImmersiveStory({ story, backgroundImage, className }: ImmersiveS
           </div>
 
           <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight md:leading-tight mb-8 text-balance">
-            {story || "São 2h17 da manhã. Um caminhão carregando R$ 2 milhões em medicamentos deixa a rodovia... Você saberia qual procedimento executar?"}
+            {story || "São 2h17 da manhã. Um caminhão carregando R$ 2 milhões em eletrônicos deixa a rodovia... Você saberia qual procedimento executar?"}
           </h2>
 
           <div className="w-16 h-1 bg-atlas-orange rounded-full shadow-[0_0_10px_rgba(255,86,24,0.5)] mx-auto" />

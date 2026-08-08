@@ -122,7 +122,7 @@ const areaProfiles: Record<
       "Definir evidências objetivas de aprendizagem.",
     ],
     guardrails: [
-      "Não realizar diagnóstico psicológico ou avaliação clínica.",
+      "Não inferir atributos sensíveis nem emitir avaliações profissionais sobre pessoas.",
       "Não registrar informação sensível desnecessária.",
       "Tratar recomendações como apoio, nunca como decisão automática.",
     ],

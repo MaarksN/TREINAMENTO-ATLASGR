@@ -163,7 +163,7 @@ export const module06: ModuleContentFull = {
             label: "Nunca Pode Compor o Status",
             points: [
               "Opinião política, filiação sindical, religião ou orientação sexual, ainda que apareçam em registros públicos.",
-              "Condição de saúde, deficiência ou histórico médico.",
+              "Origem racial ou étnica, dado genético ou biométrico.",
               "Processos cíveis sem relação com a carga (divórcio, disputa de vizinhança, dívida de consumo).",
               "Antecedente já prescrito ou com pena cumprida há muito tempo, sem relação com a função.",
             ],

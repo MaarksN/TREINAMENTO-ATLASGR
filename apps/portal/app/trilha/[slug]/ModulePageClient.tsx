@@ -21,14 +21,25 @@ type Screen =
   | { kind: "cover" }
   | { kind: "scenario" }
   | { kind: "objectives" }
-  | { kind: "section"; section: ModuleSection; chapterIndex: number }
+  | { kind: "sectionBlock"; section: ModuleSection; chapterIndex: number; block: ModuleSection["blocks"][number]; blockIndex: number; totalBlocks: number }
   | { kind: "diagram" }
   | { kind: "review" }
   | { kind: "quiz" };
 
 function buildScreens(content: ModuleContentFull): Screen[] {
   const screens: Screen[] = [{ kind: "cover" }, { kind: "scenario" }, { kind: "objectives" }];
-  content.sections.forEach((section, i) => screens.push({ kind: "section", section, chapterIndex: i }));
+  content.sections.forEach((section, chapterIndex) => {
+    section.blocks.forEach((block, blockIndex) => {
+      screens.push({
+        kind: "sectionBlock",
+        section,
+        chapterIndex,
+        block,
+        blockIndex,
+        totalBlocks: section.blocks.length,
+      });
+    });
+  });
   screens.push({ kind: "diagram" }, { kind: "review" }, { kind: "quiz" });
   return screens;
 }
@@ -174,19 +185,19 @@ export function ModulePageClient() {
             </section>
           )}
 
-          {screen.kind === "section" && (
+          {screen.kind === "sectionBlock" && (
             <section className="atlas-lesson-section">
               <div className="atlas-lesson-heading">
                 <span>{String(screen.chapterIndex + 1).padStart(2, "0")}</span>
                 <div>
-                  <p>Capítulo do módulo</p>
+                  <p className="text-xs uppercase font-bold text-atlas-orange tracking-wider">
+                    Capítulo {screen.chapterIndex + 1} de {content.sections.length} · Bloco {screen.blockIndex + 1} de {screen.totalBlocks}
+                  </p>
                   <h2>{screen.section.title}</h2>
                 </div>
               </div>
-              <div className="atlas-block-stack">
-                {screen.section.blocks.map((b, i) => (
-                  <ContentBlockView key={i} block={b} index={i} />
-                ))}
+              <div className="atlas-block-stack mt-6">
+                <ContentBlockView block={screen.block} index={screen.blockIndex} />
               </div>
             </section>
           )}

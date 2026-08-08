@@ -134,7 +134,7 @@ export const module03: ModuleContentFull = {
           type: "timeline",
           title: "Cronologia de um Escalonamento",
           items: [
-            { label: "Minuto 0", text: "Alerta Nível 1: Caminhão de medicamentos perde sinal em área vermelha." },
+            { label: "Minuto 0", text: "Alerta Nível 1: Caminhão de eletrônicos perde sinal em área vermelha." },
             { label: "Minuto 2", text: "Torre aciona bloqueio remoto e tenta contato com o motorista e as iscas móveis." },
             { label: "Minuto 5", text: "Sem contato, com desvio confirmado pela isca. Torre aciona a CIA imediatamente." },
             { label: "Minuto 6", text: "A CIA assume: Aciona a Pronta Resposta armada, contata o 190 da região com as coordenadas precisas da isca e informa o comitê de crise do cliente." },
