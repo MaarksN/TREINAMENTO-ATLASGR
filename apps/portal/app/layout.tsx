@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
@@ -22,9 +22,49 @@ const poppins = Poppins({
   display: "swap",
 });
 
+const title = "Portal de Treinamento ATLASGR";
+const description =
+  "Portal Enterprise de onboarding e treinamento corporativo da ATLASGR: conectamos pessoas e tecnologia, gerando valor com segurança e inovação para a logística nacional.";
+
 export const metadata: Metadata = {
-  title: "Portal de Onboarding ATLASGR",
-  description: "Uma jornada de onboarding e treinamento corporativo da ATLASGR.",
+  title: {
+    default: title,
+    template: "%s | ATLASGR",
+  },
+  description,
+  applicationName: "Portal ATLASGR",
+  keywords: [
+    "ATLASGR",
+    "treinamento corporativo",
+    "onboarding",
+    "logística",
+    "segurança patrimonial",
+    "portal enterprise",
+  ],
+  authors: [{ name: "ATLASGR" }],
+  openGraph: {
+    title,
+    description,
+    siteName: "Portal ATLASGR",
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fcfcfc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -36,6 +76,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${montserrat.variable} ${poppins.variable} h-full`}
     >
       <body className="min-h-full antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-atlas-orange focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+        >
+          Pular para o conteúdo principal
+        </a>
         <ThemeProvider>
           {children}
           <Toaster />

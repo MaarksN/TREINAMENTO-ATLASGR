@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { Maximize2, PlayCircle } from "lucide-react";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { cn } from "@/lib/utils";
 
 // Vídeo institucional real da ATLASGR (fornecido pelo usuário).
 const VIDEO_ID = "yALfdQPaPi4";
 
 export function InstitutionalVideo() {
   const [playing, setPlaying] = useState(false);
+  const [thumbLoaded, setThumbLoaded] = useState(false);
 
   if (playing) {
     return (
@@ -30,12 +33,17 @@ export function InstitutionalVideo() {
       aria-label="Reproduzir vídeo institucional da ATLASGR"
       className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-atlas-graphite shadow-lg"
     >
+      {!thumbLoaded && <Skeleton className="absolute inset-0 h-full w-full rounded-none" />}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
         alt=""
         loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-90"
+        onLoad={() => setThumbLoaded(true)}
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-90",
+          thumbLoaded ? "opacity-70" : "opacity-0"
+        )}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/40" />
       <PlayCircle
