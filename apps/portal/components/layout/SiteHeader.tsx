@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, Rocket, Zap } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useOnboardingStore } from "@/lib/store";
 import { levelProgress } from "@/lib/gamification";
-import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -22,6 +22,8 @@ export function SiteHeader() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
 
   const registration = useOnboardingStore((s) => s.registration);
   const xp = useOnboardingStore((s) => s.xp);
@@ -37,6 +39,25 @@ export function SiteHeader() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
+  // Fecha o menu mobile automaticamente ao navegar para outra rota — sincroniza
+  // com a rota (sistema externo ao componente), não espelha props em estado.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMenuOpen(false);
+  }, [pathname]);
 
   const { current } = levelProgress(xp);
 
@@ -56,17 +77,29 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex absolute left-1/2 -translate-x-1/2">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm font-semibold text-muted transition-all hover:text-foreground relative group py-2"
-            >
-              {l.label}
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-atlas-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full" />
-            </Link>
-          ))}
+        <nav aria-label="Navegação principal" className="hidden items-center gap-8 md:flex absolute left-1/2 -translate-x-1/2">
+          {links.map((l) => {
+            const isActive = pathname === l.href || pathname?.startsWith(`${l.href}/`);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "text-sm font-semibold transition-all relative group py-2 focus-visible-ring rounded-sm",
+                  isActive ? "text-foreground" : "text-muted hover:text-foreground"
+                )}
+              >
+                {l.label}
+                <span
+                  className={cn(
+                    "absolute bottom-0 left-0 w-full h-[2px] bg-atlas-orange scale-x-0 transition-transform origin-left duration-300 rounded-full group-hover:scale-x-100",
+                    isActive && "scale-x-100"
+                  )}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
@@ -84,9 +117,12 @@ export function SiteHeader() {
 
           <ThemeToggle />
           <button
-            className="p-2 md:hidden rounded-md bg-surface-2 border border-border/50 text-muted hover:text-foreground"
+            ref={menuButtonRef}
+            className="p-2 md:hidden rounded-md bg-surface-2 border border-border/50 text-muted hover:text-foreground focus-visible-ring"
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Menu"
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
           >
             {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -94,18 +130,29 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <nav className="flex flex-col gap-2 border-t border-border/50 bg-surface/95 backdrop-blur-md px-6 py-4 md:hidden absolute w-full shadow-xl">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-xl px-4 py-3 text-sm font-bold text-muted transition hover:bg-atlas-orange/10 hover:text-atlas-orange flex items-center justify-between"
-            >
-              {l.label}
-              <Rocket size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Link>
-          ))}
+        <nav
+          id="mobile-nav"
+          aria-label="Navegação mobile"
+          className="flex flex-col gap-2 border-t border-border/50 bg-surface/95 backdrop-blur-md px-6 py-4 md:hidden absolute w-full shadow-xl reveal-up"
+        >
+          {links.map((l) => {
+            const isActive = pathname === l.href || pathname?.startsWith(`${l.href}/`);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={isActive ? "page" : undefined}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "rounded-xl px-4 py-3 text-sm font-bold transition flex items-center justify-between group focus-visible-ring",
+                  isActive ? "bg-atlas-orange/10 text-atlas-orange" : "text-muted hover:bg-atlas-orange/10 hover:text-atlas-orange"
+                )}
+              >
+                {l.label}
+                <Rocket size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
+            );
+          })}
         </nav>
       )}
     </header>
