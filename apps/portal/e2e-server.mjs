@@ -42,5 +42,5 @@ server.listen(3020, '127.0.0.1');
 const shutdown = () => server.close(() => process.exit(0));
 process.once('SIGINT', shutdown);
 process.once('SIGTERM', shutdown);
-const forceStop = setTimeout(shutdown, 60_000);
+const forceStop = setTimeout(shutdown, 15_000);
 forceStop.unref();

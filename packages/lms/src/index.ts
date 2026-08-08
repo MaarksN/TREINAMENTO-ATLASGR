@@ -1,5 +1,7 @@
 import { H5PConfig } from '@lumieducation/h5p-server';
-import { Scorm12API, Scorm2004API, type Settings } from 'scorm-again';
+import { Scorm12API, Scorm2004API } from 'scorm-again';
+
+export type ScormSettings = ConstructorParameters<typeof Scorm12API>[0];
 
 export const h5pConfig = new H5PConfig(undefined, {
   baseUrl: '/api/h5p',
@@ -13,10 +15,10 @@ export const h5pConfig = new H5PConfig(undefined, {
   sendUsageStatistics: false,
 });
 
-export function createScorm12Runtime(settings?: Settings): Scorm12API {
+export function createScorm12Runtime(settings?: ScormSettings): Scorm12API {
   return new Scorm12API(settings);
 }
 
-export function createScorm2004Runtime(settings?: Settings): Scorm2004API {
+export function createScorm2004Runtime(settings?: ScormSettings): Scorm2004API {
   return new Scorm2004API(settings);
 }
