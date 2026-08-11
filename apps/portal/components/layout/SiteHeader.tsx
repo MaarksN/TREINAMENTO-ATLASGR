@@ -29,7 +29,7 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
   const xp = useOnboardingStore((s) => s.xp);
 
   useEffect(() => {
-    setMounted(true);
+    queueMicrotask(() => setMounted(true));
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -43,7 +43,7 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
     if (!menuOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setMenuOpen(false);
+        queueMicrotask(() => setMenuOpen(false));
         menuButtonRef.current?.focus();
       }
     };
@@ -52,7 +52,7 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
   }, [menuOpen]);
 
   useEffect(() => {
-    setMenuOpen(false);
+    queueMicrotask(() => setMenuOpen(false));
   }, [pathname]);
 
   const { current } = levelProgress(xp);
