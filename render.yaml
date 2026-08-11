@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: treinamento-atlasgr-api
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: .
+    buildCommand: npm ci --include=dev && npx prisma generate --schema=packages/database/prisma/schema.prisma && npx turbo run build --filter=@atlasgr/api
+    startCommand: node apps/api/dist/main.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.2
+      - key: DATABASE_URL
+        sync: false
+      - key: OTEL_EXPORTER_OTLP_ENDPOINT
+        sync: false
+      - key: OTEL_SERVICE_NAME
+        value: treinamento-atlasgr-api
