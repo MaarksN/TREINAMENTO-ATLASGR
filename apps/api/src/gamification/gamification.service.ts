@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaClient } from '@atlasgr/database';
 
 @Injectable()
 export class GamificationService {
+  private readonly logger = new Logger(GamificationService.name);
   private prisma = new PrismaClient();
 
   async getProfile(userId: string) {
@@ -18,7 +19,7 @@ export class GamificationService {
           return user.gamificationProfile;
       }
     } catch (e) {
-      console.log('Database not yet populated or connected, returning mock');
+      this.logger.warn('Database not yet populated or connected, returning mock');
     }
 
     // Return mock data temporarily until real DB setup
