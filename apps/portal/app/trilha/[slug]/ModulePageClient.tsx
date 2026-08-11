@@ -17,6 +17,8 @@ import { ImmersiveStory } from "@/components/module/ImmersiveStory";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
 import type { ModuleContentFull, ModuleSection } from "@/lib/types";
 
+import { AccessibilityToolbar } from "@/components/accessibility/AccessibilityToolbar";
+
 type Screen =
   | { kind: "cover" }
   | { kind: "scenario" }
@@ -42,6 +44,28 @@ function buildScreens(content: ModuleContentFull): Screen[] {
   });
   screens.push({ kind: "diagram" }, { kind: "review" }, { kind: "quiz" });
   return screens;
+}
+
+function getScreenText(screen: Screen | undefined, meta: ModuleMeta, content: ModuleContentFull | undefined): string {
+  if (!screen || !content) return meta.title;
+  switch (screen.kind) {
+    case "cover":
+      return `${meta.title}. ${meta.shortDescription}`;
+    case "scenario":
+      return `Cenário de Estudo: ${content.scenario}`;
+    case "objectives":
+      return `Objetivos do módulo: ${content.objectives.join(". ")}`;
+    case "sectionBlock":
+      return `${screen.section.title}. ${JSON.stringify(screen.block)}`;
+    case "diagram":
+      return `Fluxograma Operacional: ${content.diagram?.title || ""}`;
+    case "review":
+      return `Resumo do Módulo: ${content.summary?.join(". ") || ""}`;
+    case "quiz":
+      return "Avaliação Final. Teste seus conhecimentos para obter a certificação do módulo.";
+    default:
+      return meta.title;
+  }
 }
 
 export function ModulePageClient() {
@@ -136,6 +160,13 @@ export function ModulePageClient() {
           <span className="shrink-0 text-xs font-bold tabular-nums text-muted">
             {screenIndex + 1}/{totalScreens}
           </span>
+        </div>
+      </div>
+
+      {/* Barra de Acessibilidade (Voz, Legendas & LIBRAS) */}
+      <div className="border-b border-border/40 bg-surface-2/40 py-2">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
+          <AccessibilityToolbar currentText={getScreenText(screen, meta, content)} />
         </div>
       </div>
 

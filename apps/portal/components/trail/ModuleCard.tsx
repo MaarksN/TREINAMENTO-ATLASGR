@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Lock, Play, BookOpen, Clock } from "lucide-react";
+import { CheckCircle2, Lock, Play, BookOpen, Clock, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { ModuleMeta } from "@/lib/types";
@@ -42,29 +42,52 @@ export function ModuleCard({ meta, index, isCompleted }: ModuleCardProps) {
 
   return (
     <Link href={`/trilha/${meta.slug}`} className="block h-full group">
-      <Card variant="interactive" className={cn("flex flex-col h-full border-border/60 transition-all duration-300 shadow-sm hover:shadow-xl hover:border-atlas-orange/40", isCompleted ? "bg-surface" : "bg-surface")}>
-        {/* Visual Identity Cover Banner */}
-        <div className="h-36 bg-surface-2 border-b border-border/50 relative overflow-hidden flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-gradient-to-br from-atlas-orange/20 via-surface-2 to-surface opacity-90 group-hover:scale-105 transition-transform duration-500" />
-          <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-10 pointer-events-none" />
-          
-          <div className="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-border/60 text-[11px] font-mono font-bold text-atlas-orange shadow-sm">
+      <Card variant="interactive" className={cn("flex flex-col h-full border-border/60 transition-all duration-300 shadow-sm hover:shadow-xl hover:border-atlas-orange/40 overflow-hidden", isCompleted ? "bg-surface" : "bg-surface")}>
+        {/* Cover Image Temática por Módulo */}
+        <div className="h-44 bg-surface-2 border-b border-border/50 relative overflow-hidden flex items-center justify-center p-4">
+          {meta.imageUrl ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={meta.imageUrl}
+              alt={meta.imageCaption || meta.title}
+              className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+              onError={(e) => {
+                // Fallback para gradiente visual caso a imagem não exista no caminho local
+                e.currentTarget.style.display = "none";
+              }}
+            />
+          ) : null}
+
+          {/* Gradiente e Overlay com o tema visual */}
+          <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent z-0" />
+          <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-10 pointer-events-none z-0" />
+
+          {/* Badge do Número do Módulo */}
+          <div className="absolute top-3 left-3 z-10 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-border/60 text-[11px] font-mono font-bold text-atlas-orange shadow-sm">
             MÓDULO {(index + 1).toString().padStart(2, "0")}
           </div>
 
-          <div className="relative z-10 p-3 rounded-2xl bg-surface/95 border border-border/60 shadow-lg group-hover:border-atlas-orange/50 group-hover:shadow-atlas-orange/15 transition-all duration-300 transform group-hover:scale-110">
-            <Icon className="w-10 h-10 text-atlas-orange" />
+          {/* Ícone Temático Central */}
+          <div className="relative z-10 p-3 rounded-2xl bg-surface/90 border border-border/60 shadow-lg group-hover:border-atlas-orange/50 group-hover:shadow-atlas-orange/15 transition-all duration-300 transform group-hover:scale-110">
+            <Icon className="w-9 h-9 text-atlas-orange" />
           </div>
 
+          {/* Legenda Resumida do Tema (Bottom Banner) */}
+          {meta.imageCaption && (
+            <div className="absolute bottom-2 left-3 right-3 z-10 text-[10px] font-bold text-muted bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-md border border-border/50 truncate">
+              {meta.imageCaption}
+            </div>
+          )}
+
           {isCompleted && (
-            <div className="absolute top-3 right-3 bg-emerald-500/90 backdrop-blur-md rounded-full p-1 shadow-sm border border-emerald-400/50">
+            <div className="absolute top-3 right-3 z-10 bg-emerald-500/90 backdrop-blur-md rounded-full p-1 shadow-sm border border-emerald-400/50">
               <CheckCircle2 size={16} className="text-white" />
             </div>
           )}
         </div>
 
-        <CardHeader className="pb-2 pt-5 px-6">
-          <div className="flex justify-between items-center mb-3">
+        <CardHeader className="pb-2 pt-4 px-6">
+          <div className="flex justify-between items-center mb-2.5">
              <Badge variant={isCompleted ? "success" : "orange"} className="text-[11px] font-bold px-2.5 py-0.5">
                {meta.category}
              </Badge>
