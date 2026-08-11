@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Debt Remediation Control Center</title>
+    <style>
+        :root {
+            --bg: #0f111a;
+            --surface: #1e2130;
+            --surface-hover: #2a2d3e;
+            --text: #f0f0f0;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --primary: #FF5618;
+            --primary-hover: #ff7a45;
+
+            --p0: #ef4444;
+            --p1: #f97316;
+            --p2: #eab308;
+            --p3: #3b82f6;
+            --p4: #64748b;
+
+            --success: #22c55e;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .progress-bar-container {
+            background-color: var(--surface);
+            border-radius: 9999px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--success);
+            transition: width 0.3s ease;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        input, select, button {
+            background-color: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .item {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--p4);
+        }
+
+        .item[data-severity="P0"] { border-left-color: var(--p0); }
+        .item[data-severity="P1"] { border-left-color: var(--p1); }
+        .item[data-severity="P2"] { border-left-color: var(--p2); }
+        .item[data-severity="P3"] { border-left-color: var(--p3); }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .item-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge-p0 { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+        .badge-p1 { background-color: rgba(249, 115, 22, 0.2); color: #fdba74; }
+        .badge-p2 { background-color: rgba(234, 179, 8, 0.2); color: #fde047; }
+        .badge-p3 { background-color: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+
+        .details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .details.open {
+            display: block;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.5rem;
+            min-height: 80px;
+            margin-top: 0.5rem;
+        }
+
+        pre {
+            background-color: var(--bg);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+
+        .prompt-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Technical Debt Remediation Control Center</h1>
+            <p>Projeto: Portal de Onboarding ATLASGR | Data da auditoria: 11/08/2026 | Stack: Next.js, Turborepo</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="stat-card">
+                <div>Total de Itens</div>
+                <div class="stat-value" id="stat-total">0</div>
+            </div>
+            <div class="stat-card">
+                <div>P0 / P1</div>
+                <div class="stat-value" id="stat-critical" style="color: var(--p0)">0</div>
+            </div>
+            <div class="stat-card">
+                <div>Concluídos</div>
+                <div class="stat-value" id="stat-done" style="color: var(--success)">0</div>
+            </div>
+            <div class="stat-card">
+                <div>Progresso</div>
+                <div class="stat-value" id="stat-progress">0%</div>
+            </div>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="main-progress" style="width: 0%"></div>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="search" placeholder="Pesquisar..." style="flex-grow: 1;">
+            <select id="filter-status">
+                <option value="all">Todos os Status</option>
+                <option value="not-started">Não Iniciado</option>
+                <option value="in-progress">Em Correção</option>
+                <option value="validating">Aguardando Validação</option>
+                <option value="done">Corrigido/Validado</option>
+            </select>
+            <select id="filter-severity">
+                <option value="all">Todas Severidades</option>
+                <option value="P0">P0 - Bloqueador</option>
+                <option value="P1">P1 - Crítico</option>
+                <option value="P2">P2 - Alto</option>
+                <option value="P3">P3 - Médio</option>
+            </select>
+            <button onclick="exportData()">Exportar JSON</button>
+        </div>
+
+        <div id="items-container">
+            <!-- Items will be generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Item data
+        const items = [
+            {
+                id: "TD-LINT-001",
+                title: "React Hook useEffect has a missing dependency",
+                category: "Frontend",
+                file: "apps/portal/app/trilha/[slug]/ModulePageClient.tsx",
+                severity: "P3",
+                status: "not-started",
+                problem: "O Hook useEffect chama a função showToast mas não a inclui no array de dependências.",
+                rootCause: "Descuido ao adicionar dependências no useEffect.",
+                impact: "Pode causar comportamentos inesperados se a referência de showToast mudar (embora improvável no Zustand, quebra a regra do linter).",
+                fix: "Adicionar showToast ao array de dependências ou refatorar o toast para ser estável.",
+                validation: "Rodar npm run lint no projeto.",
+                prompt: `PAPEL\nVocê é um engenheiro de software sênior responsável por corrigir uma dívida técnica específica no projeto.\n\nPROBLEMA\nO Hook useEffect chama a função showToast mas não a inclui no array de dependências.\n\nLOCALIZAÇÃO\nArquivo: apps/portal/app/trilha/[slug]/ModulePageClient.tsx\nLinhas aproximadas: 28-37\n\nCAUSA RAIZ\nDescuido ao adicionar dependências no useEffect.\n\nIMPACTO\nPode causar comportamentos inesperados se a referência de showToast mudar, quebra a regra do linter.\n\nOBJETIVO\nCorrigir completamente o problema sem remover funcionalidades existentes.\n\nTAREFAS\n1. Adicionar showToast ao array de dependências no useEffect.\n2. Garantir que isso não crie re-renders infinitos.\n\nCRITÉRIOS DE ACEITE\n- Linter não reclama mais do deps do useEffect.\n\nVALIDAÇÃO\nExecute:\n- lint;\n- typecheck;\n\nREGRAS\n- Não adicionar TODO.\n- Não utilizar @ts-ignore para esconder o problema.\n\nENTREGA\nImplemente a correção, valide e informe os arquivos alterados.`
+            },
+            {
+                id: "TD-LINT-002",
+                title: "Calling setState synchronously within an effect",
+                category: "Frontend",
+                file: "apps/portal/app/trilha/[slug]/ModulePageClient.tsx",
+                severity: "P2",
+                status: "not-started",
+                problem: "Múltiplas chamadas setState (setScreenIndex, setShowQuiz) feitas sincronamente dentro de useEffect.",
+                rootCause: "Tentativa de resetar o estado quando a rota muda, mas feito de forma que causa cascading renders.",
+                impact: "Performance prejudicada devido a renderizações em cascata desnecessárias.",
+                fix: "Derivar estado ou ajustar a lógica de forma a evitar setState em useEffect para inicialização/sincronização de props. Pode-se usar keys para resetar o componente ou ajustar quando os sets são chamados.",
+                validation: "Rodar npm run lint no projeto.",
+                prompt: `PAPEL\nVocê é um engenheiro de software sênior responsável por corrigir uma dívida técnica específica no projeto.\n\nPROBLEMA\nMúltiplas chamadas setState (setScreenIndex, setShowQuiz) feitas sincronamente dentro de useEffect.\n\nLOCALIZAÇÃO\nArquivo: apps/portal/app/trilha/[slug]/ModulePageClient.tsx\nLinhas aproximadas: 71-76\n\nCAUSA RAIZ\nTentativa de resetar o estado quando a rota muda, mas feito de forma que causa cascading renders.\n\nIMPACTO\nPerformance prejudicada devido a renderizações em cascata desnecessárias.\n\nOBJETIVO\nCorrigir completamente o problema sem remover funcionalidades existentes.\n\nTAREFAS\n1. Remover o setState síncrono do useEffect dependente de params.slug.\n2. Alternativa: Resetar estado no momento da navegação ou resetar o componente passando uma key.\n\nCRITÉRIOS DE ACEITE\n- Linter não reclama mais do react-hooks/set-state-in-effect.\n\nVALIDAÇÃO\nExecute:\n- lint;\n\nREGRAS\n- Não adicionar TODO.\n- Não utilizar @ts-ignore para esconder o problema.\n\nENTREGA\nImplemente a correção, valide e informe os arquivos alterados.`
+            },
+            {
+                id: "TD-LINT-003",
+                title: "Calling setState synchronously within an effect in SiteHeader",
+                category: "Frontend",
+                file: "apps/portal/components/layout/SiteHeader.tsx",
+                severity: "P3",
+                status: "not-started",
+                problem: "setMounted(true) sendo chamado diretamente no useEffect sem precauções.",
+                rootCause: "Padrão comum para evitar erros de hidratação com temas, mas o linter do React não gosta (causa cascading render).",
+                impact: "Cascading render no primeiro load da página.",
+                fix: "Em layouts com tema, é aceito. Se for para silenciar o erro, mover para um hook customizado useMounted() que usa useEffect ou ignorar a regra apenas nesta linha específica se for estritamente necessário para UI de client-side. No entanto, é melhor garantir que é estritamente necessário e ignorar explicitamente, ou usar soluções de hidratação melhores.",
+                validation: "Rodar npm run lint no projeto.",
+                prompt: `PAPEL\nVocê é um engenheiro de software sênior responsável por corrigir uma dívida técnica específica no projeto.\n\nPROBLEMA\nsetMounted(true) e setMenuOpen(false) sendo chamado sincronamente dentro do useEffect em SiteHeader.\n\nLOCALIZAÇÃO\nArquivo: apps/portal/components/layout/SiteHeader.tsx\nLinhas aproximadas: 30-33, 53-56\n\nCAUSA RAIZ\nGerenciamento de hidratação e navegação feito de forma que causa cascading render.\n\nIMPACTO\nCascading render no header.\n\nOBJETIVO\nCorrigir completamente o problema sem remover funcionalidades existentes.\n\nTAREFAS\n1. Refatorar para silenciar o setMounted(true) (geralmente necessário, pode demandar desativar regra na linha).\n2. Refatorar o fechamento do menu ao mudar de rota para não causar setState em useEffect.\n\nCRITÉRIOS DE ACEITE\n- Linter não reclama mais.\n\nVALIDAÇÃO\nExecute:\n- lint;\n\nREGRAS\n- Não adicionar TODO.\n\nENTREGA\nImplemente a correção, valide e informe os arquivos alterados.`
+            },
+            {
+                id: "TD-LINT-004",
+                title: "Calling setState synchronously within an effect in AdminGate",
+                category: "Frontend",
+                file: "apps/portal/components/admin/AdminGate.tsx",
+                severity: "P2",
+                status: "not-started",
+                problem: "setUnlocked e setChecked chamados no useEffect.",
+                rootCause: "Verificação de admin baseada em sessionStorage no client-side.",
+                impact: "FOUC (Flash of Unstyled Content) ou piscadas na renderização. Dívida de Auth (Frontend).",
+                fix: "O problema raiz é autenticação sendo feita no frontend. A curto prazo, fixar a regra do useEffect; a longo prazo, mover para Middleware (Server side).",
+                validation: "Rodar npm run lint no projeto.",
+                prompt: `PAPEL\nVocê é um engenheiro de software sênior responsável por corrigir uma dívida técnica específica no projeto.\n\nPROBLEMA\nsetState síncrono no AdminGate para controle de acesso.\n\nLOCALIZAÇÃO\nArquivo: apps/portal/components/admin/AdminGate.tsx\n\nCAUSA RAIZ\nControle de acesso feito no lado do cliente pós-montagem.\n\nIMPACTO\nCascading renders e possível FOUC.\n\nOBJETIVO\nCorrigir erro de linter, mitigando a dívida.\n\nTAREFAS\n1. Ajustar lógica para evitar react-hooks/set-state-in-effect.\n\nCRITÉRIOS DE ACEITE\n- Linter passa.\n\nVALIDAÇÃO\nExecute:\n- lint;\n\nREGRAS\n- Não adicionar TODO.\n\nENTREGA\nImplemente a correção.`
+            },
+            {
+                id: "TD-IMG-001",
+                title: "Uso da tag <img> nativa ao invés de next/image",
+                category: "Performance",
+                file: "apps/portal/components/module/ImmersiveStory.tsx",
+                severity: "P3",
+                status: "not-started",
+                problem: "Usando tag img normal.",
+                rootCause: "Provavelmente para evitar erros de configuração de domínio externo ou complexidade.",
+                impact: "Performance inferior (LCP) em conexões lentas.",
+                fix: "Trocar para next/image.",
+                validation: "Rodar npm run lint no projeto.",
+                prompt: `PAPEL\nVocê é um engenheiro de software sênior.\n\nPROBLEMA\nUso de <img> nativa.\n\nLOCALIZAÇÃO\nArquivo: apps/portal/components/module/ImmersiveStory.tsx\n\nTAREFAS\n1. Mudar para next/image.\n\nENTREGA\nImplemente a correção.`
+            },
+            {
+                id: "TD-UNUSED-001",
+                title: "Variáveis não utilizadas (Warnings eslint)",
+                category: "Limpeza",
+                file: "Múltiplos arquivos (generateCertificatePdf.ts, GamificationDashboard.tsx, WelcomeWizard.tsx, PremiumCard.tsx, Toast.tsx)",
+                severity: "P4",
+                status: "not-started",
+                problem: "Várias variáveis importadas ou definidas e não utilizadas.",
+                rootCause: "Refatorações parciais ou prototipagem rápida.",
+                impact: "Código sujo e warning no build.",
+                fix: "Remover as variáveis ou utilizá-las.",
+                validation: "Rodar npm run lint no projeto.",
+                prompt: `PAPEL\nVocê é um engenheiro de software sênior.\n\nPROBLEMA\nVariáveis não utilizadas gerando warnings.\n\nLOCALIZAÇÃO\nArquivos: generateCertificatePdf.ts, GamificationDashboard.tsx, WelcomeWizard.tsx, PremiumCard.tsx, Toast.tsx\n\nTAREFAS\n1. Remover vars não usadas.\n\nENTREGA\nImplemente a correção.`
+            },
+            {
+                id: "TD-ARCH-001",
+                title: "Migrar para estrutura de Monorepo (Turborepo + pnpm/npm workspaces)",
+                category: "Arquitetura",
+                file: "Raiz do projeto",
+                severity: "P1",
+                status: "not-started",
+                problem: "O projeto já possui apps/ e packages/, mas a documentação FORENSE aponta que ele não atua 100% como monorepo Enterprise isolado e a inicialização de backend está ausente.",
+                rootCause: "Fase 1 do protótipo focada só em Front.",
+                impact: "Dificulta escalabilidade, testes independentes e adição do Backend (NestJS).",
+                fix: "Estruturar workspaces corretamente. Como parece que já existe package.json configurado na raiz com 'apps/*' e 'packages/*', é preciso validar por que a forense reclamou e criar o backend NestJS base para estabilizar a plataforma.",
+                validation: "Verificar se npm install passa em todos os subprojetos, e turbo build funciona perfeitamente (o que já funcionou). A tarefa real é criar o esqueleto do NestJS em apps/api.",
+                prompt: `PAPEL\nVocê é um arquiteto de software.\n\nPROBLEMA\nAusência de backend e monorepo não finalizado para produção (apps/api está vazio ou incipiente).\n\nTAREFAS\n1. Investigar estado de apps/api.\n2. Instanciar scaffold base NestJS caso não exista ou esteja cru.\n\nENTREGA\nImplemente a correção.`
+            }
+        ];
+
+        // Load persisted state
+        const loadState = () => {
+            const savedState = localStorage.getItem('atlas-tech-debt');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                items.forEach(item => {
+                    if (state[item.id]) {
+                        item.status = state[item.id].status || item.status;
+                        item.notes = state[item.id].notes || '';
+                    }
+                });
+            }
+        };
+
+        const saveState = () => {
+            const state = {};
+            items.forEach(item => {
+                state[item.id] = {
+                    status: item.status,
+                    notes: item.notes || ''
+                };
+            });
+            localStorage.setItem('atlas-tech-debt', JSON.stringify(state));
+            updateDashboard();
+        };
+
+        const updateDashboard = () => {
+            document.getElementById('stat-total').innerText = items.length;
+
+            const critical = items.filter(i => i.severity === 'P0' || i.severity === 'P1');
+            document.getElementById('stat-critical').innerText =
+                `${critical.filter(i => i.status === 'done').length} / ${critical.length}`;
+
+            const done = items.filter(i => i.status === 'done').length;
+            document.getElementById('stat-done').innerText = done;
+
+            const progress = Math.round((done / items.length) * 100) || 0;
+            document.getElementById('stat-progress').innerText = `${progress}%`;
+            document.getElementById('main-progress').style.width = `${progress}%`;
+        };
+
+        const getBadgeClass = (sev) => {
+            switch(sev) {
+                case 'P0': return 'badge-p0';
+                case 'P1': return 'badge-p1';
+                case 'P2': return 'badge-p2';
+                case 'P3': return 'badge-p3';
+                default: return '';
+            }
+        };
+
+        const getStatusLabel = (status) => {
+            switch(status) {
+                case 'not-started': return '⚪ Não Iniciado';
+                case 'in-progress': return '🟡 Em Correção';
+                case 'validating': return '🟣 Aguardando Validação';
+                case 'done': return '✅ Validado';
+                default: return status;
+            }
+        };
+
+        const renderItems = () => {
+            const container = document.getElementById('items-container');
+            const search = document.getElementById('search').value.toLowerCase();
+            const filterStatus = document.getElementById('filter-status').value;
+            const filterSeverity = document.getElementById('filter-severity').value;
+
+            container.innerHTML = '';
+
+            // Sort: P0 first, then not done, then severity
+            let filteredItems = items.filter(item => {
+                const matchSearch = item.title.toLowerCase().includes(search) ||
+                                   item.id.toLowerCase().includes(search) ||
+                                   item.file.toLowerCase().includes(search);
+                const matchStatus = filterStatus === 'all' || item.status === filterStatus;
+                const matchSeverity = filterSeverity === 'all' || item.severity === filterSeverity;
+
+                return matchSearch && matchStatus && matchSeverity;
+            });
+
+            filteredItems.sort((a, b) => {
+                if (a.status !== 'done' && b.status === 'done') return -1;
+                if (a.status === 'done' && b.status !== 'done') return 1;
+                return a.severity.localeCompare(b.severity);
+            });
+
+            filteredItems.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'item';
+                el.setAttribute('data-severity', item.severity);
+
+                const isDone = item.status === 'done';
+
+                el.innerHTML = `
+                    <div class="item-header">
+                        <div>
+                            <span class="badge ${getBadgeClass(item.severity)}">${item.severity}</span>
+                            <span style="color: var(--text-muted); font-size: 0.8rem; margin-left: 0.5rem">${item.id}</span>
+                            <h3 class="item-title">${item.title}</h3>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">
+                                ${item.category} • ${item.file}
+                            </div>
+                        </div>
+                        <div>
+                            <select onchange="updateStatus('${item.id}', this.value)" style="${isDone ? 'border-color: var(--success); color: var(--success)' : ''}">
+                                <option value="not-started" ${item.status === 'not-started' ? 'selected' : ''}>⚪ Não Iniciado</option>
+                                <option value="in-progress" ${item.status === 'in-progress' ? 'selected' : ''}>🟡 Em Correção</option>
+                                <option value="validating" ${item.status === 'validating' ? 'selected' : ''}>🟣 Aguardando Validação</option>
+                                <option value="done" ${item.status === 'done' ? 'selected' : ''}>✅ Validado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" onchange="toggleDone('${item.id}', this.checked)" ${isDone ? 'checked' : ''}>
+                            Correção concluída
+                        </label>
+                        <button onclick="toggleDetails('${item.id}')">Ver Detalhes</button>
+                        <button onclick="copyPrompt('${item.id}')">Copiar Prompt</button>
+                    </div>
+
+                    <div id="details-${item.id}" class="details">
+                        <p><strong>Problema:</strong> ${item.problem}</p>
+                        <p><strong>Causa Raiz:</strong> ${item.rootCause}</p>
+                        <p><strong>Impacto:</strong> ${item.impact}</p>
+                        <p><strong>Correção Sugerida:</strong> ${item.fix}</p>
+                        <p><strong>Validação:</strong> ${item.validation}</p>
+
+                        <div style="margin-top: 1rem;">
+                            <strong>Observações:</strong>
+                            <textarea onchange="updateNotes('${item.id}', this.value)">${item.notes || ''}</textarea>
+                        </div>
+                    </div>
+
+                    <textarea id="prompt-${item.id}" class="prompt-container">${item.prompt}</textarea>
+                `;
+
+                container.appendChild(el);
+            });
+        };
+
+        // Actions
+        window.updateStatus = (id, status) => {
+            const item = items.find(i => i.id === id);
+            if (item) {
+                item.status = status;
+                saveState();
+                renderItems();
+            }
+        };
+
+        window.toggleDone = (id, isDone) => {
+            updateStatus(id, isDone ? 'done' : 'validating');
+        };
+
+        window.updateNotes = (id, notes) => {
+            const item = items.find(i => i.id === id);
+            if (item) {
+                item.notes = notes;
+                saveState();
+            }
+        };
+
+        window.toggleDetails = (id) => {
+            const el = document.getElementById(`details-${id}`);
+            if (el) el.classList.toggle('open');
+        };
+
+        window.copyPrompt = (id) => {
+            const prompt = document.getElementById(`prompt-${id}`);
+            if (prompt) {
+                prompt.style.display = 'block';
+                prompt.select();
+                document.execCommand('copy');
+                prompt.style.display = 'none';
+                alert('Prompt copiado para a área de transferência!');
+            }
+        };
+
+        window.exportData = () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items, null, 2));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "technical-debt.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        };
+
+        // Events
+        document.getElementById('search').addEventListener('input', renderItems);
+        document.getElementById('filter-status').addEventListener('change', renderItems);
+        document.getElementById('filter-severity').addEventListener('change', renderItems);
+
+        // Init
+        loadState();
+        updateDashboard();
+        renderItems();
+    </script>
+</body>
+</html>

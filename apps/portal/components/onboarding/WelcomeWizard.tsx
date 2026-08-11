@@ -55,7 +55,7 @@ export default function WelcomeWizard({ onComplete }: { onComplete?: () => void 
       <div className="relative z-10">
         {/* Stepper Header */}
         <div className="flex items-center justify-between mb-8">
-          {STEPS.map((step, index) => (
+          {STEPS.map((step) => (
             <div key={step.id} className="flex flex-col items-center gap-2">
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-500

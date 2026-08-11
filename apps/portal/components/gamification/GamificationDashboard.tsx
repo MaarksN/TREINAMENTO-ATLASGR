@@ -8,15 +8,14 @@ import { AtlasMedalGold, AtlasMedalSilver, AtlasSecurityIcon } from "@/component
 import { cn } from "@/lib/utils";
 import { useOnboardingStore } from "@/lib/store";
 import { levelProgress, BADGES } from "@/lib/gamification";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function GamificationDashboard() {
   const { xp, streakDays } = useOnboardingStore();
   const { current, next, pct } = levelProgress(xp);
 
   // Real backend integration hook placeholder for future use
-  const [apiData, setApiData] = useState(null);
-  useEffect(() => {
+    useEffect(() => {
     // In the future this will fetch from the NestJS /gamification/:userId/profile endpoint
     // fetch('http://localhost:3001/gamification/user-id/profile').then(...)
   }, []);

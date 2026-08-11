@@ -70,8 +70,10 @@ export function ModulePageClient() {
   // Novo módulo -> volta pra primeira tela em vez de continuar de onde a
   // navegação anterior parou.
   useEffect(() => {
-    setScreenIndex(0);
-    setShowQuiz(false);
+    queueMicrotask(() => {
+      setScreenIndex(0);
+      setShowQuiz(false);
+    });
   }, [params.slug]);
 
   function goNext() {

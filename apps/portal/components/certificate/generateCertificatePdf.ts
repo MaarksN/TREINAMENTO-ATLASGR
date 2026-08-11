@@ -21,8 +21,7 @@ function centerText(
   font: PDFFont,
   size: number,
   color = TEXT_PRIMARY,
-  pageWidth: number,
-  letterSpacing = 0
+  pageWidth: number
 ) {
   // Rough estimate for letter spacing if needed, pdf-lib doesn't support native tracking
   const w = font.widthOfTextAtSize(text, size);

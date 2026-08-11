@@ -201,7 +201,7 @@ export default function AdminPage() {
               />
             </div>
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto hidden md:block">
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
                 <tr className="border-b border-border text-xs text-muted">
@@ -227,6 +227,34 @@ export default function AdminPage() {
               </tbody>
             </table>
           </div>
+
+            {/* Mobile View - Cards */}
+            <div className="md:hidden flex flex-col gap-4 mt-4">
+              {filtered.map((r) => (
+                <div key={r.nome} className="bg-surface-2 p-4 rounded-lg border border-border flex flex-col gap-2">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="font-semibold">{r.nome}</div>
+                      <div className="text-xs text-muted">{r.cargo} &bull; {r.departamento || ''}</div>
+                    </div>
+                    <Badge variant={statusLabel[r.status].variant}>{statusLabel[r.status].label}</Badge>
+                  </div>
+                  <div className="flex justify-between text-sm mt-2">
+                    <div className="text-muted">Progresso</div>
+                    <div className="font-medium">{r.progresso}%</div>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <div className="text-muted">Nota Média</div>
+                    <div className="font-medium">{r.notaMedia}%</div>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <div className="text-muted">Último Acesso</div>
+                    <div className="font-medium">{r.ultimoAcesso}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
         </Card>
       </main>
     </div>
