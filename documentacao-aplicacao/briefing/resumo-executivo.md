@@ -1,10 +1,6 @@
-# 1. Resumo Executivo
+# Resumo Executivo
 
-O Portal de Onboarding ATLASGR é uma plataforma corporativa avançada focada em centralizar o treinamento, acompanhamento e capacitação de agentes logísticos. A aplicação oferece um ambiente imersivo, com identidade visual de alto padrão inspirada em centros de comando (Cockpit Operacional), combinando módulos de aprendizagem, glossários técnicos, dashboards de indicadores e detalhamento dos produtos oferecidos pela ATLASGR.
+O Portal de Onboarding ATLASGR é uma plataforma de treinamento corporativo desenvolvida para capacitar colaboradores nos processos operacionais e de segurança da empresa. A aplicação apresenta uma interface moderna, amigável e gamificada, voltada para proporcionar um aprendizado estruturado e envolvente. O sistema facilita a assimilação de conteúdo crítico por meio de módulos interativos, acompanhamento de progresso e certificação, elevando a eficiência e o engajamento dos novos talentos.
 
-O público-alvo inclui novos colaboradores, agentes operacionais, analistas de risco e gestores que precisam compreender em profundidade a operação logística, as ferramentas disponíveis (como Atlas Profile, Connect, GR e Analytics) e as regras de negócio de maneira estruturada.
-
-Entre os principais benefícios estão:
-- **Centralização do Conhecimento:** Um único ambiente para explorar módulos de trilha de aprendizagem, glossário e documentação técnica.
-- **Acompanhamento e Gamificação:** O "Cockpit Operacional" proporciona uma visão clara do progresso, nível, experiência (XP) e indicadores de performance.
-- **Experiência Premium:** Interface de alta performance, design escuro, moderno, com navegação fluida, o que eleva a percepção de valor do usuário sobre a tecnologia ATLASGR.
+## 2. Objetivo da plataforma
+A aplicação tem como finalidade centralizar o processo de integração e treinamento de colaboradores da ATLASGR. Ela organiza conteúdos institucionais, operacionais e de segurança em trilhas de conhecimento estruturadas, permitindo que o usuário acompanhe sua evolução de forma clara. A plataforma atende à necessidade de padronizar o conhecimento corporativo e apoiar a operação, garantindo que os profissionais estejam plenamente capacitados para os desafios do dia a dia.
