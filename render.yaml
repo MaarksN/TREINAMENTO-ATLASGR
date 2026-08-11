@@ -5,7 +5,7 @@ services:
     plan: free
     region: oregon
     rootDir: .
-    buildCommand: npm ci && npx turbo run build --filter=@atlasgr/api
+    buildCommand: npm ci --include=dev && npx prisma generate --schema=packages/database/prisma/schema.prisma && npx turbo run build --filter=@atlasgr/api
     startCommand: node apps/api/dist/main.js
     healthCheckPath: /
     envVars:
