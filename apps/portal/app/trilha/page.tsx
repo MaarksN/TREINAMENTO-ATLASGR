@@ -40,7 +40,7 @@ export default function TrilhaPage() {
         <div className="mx-auto max-w-7xl px-6 relative z-10">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
             <Badge variant="orange" className="mb-3 px-3 py-1 text-xs font-bold">Operador: {registration.nomeCompleto.split(" ")[0]}</Badge>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-3">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-gradient-title mb-3">
               Missões Operacionais
             </h1>
             <p className="max-w-2xl text-base sm:text-lg text-muted font-medium leading-relaxed">

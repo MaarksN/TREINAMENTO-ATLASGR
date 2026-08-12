@@ -8,7 +8,7 @@
   --surface: #ffffff;
   --surface-2: #f4f4f5;
   --foreground: #111111;
-  --muted: #6b7178;
+  --muted: #4b5563;
   --border: #e4e4e7;
   --input: #e4e4e7;
   --ring: rgba(255, 86, 24, 0.45);
@@ -33,8 +33,8 @@
   --atlas-black: #090a0c;
   --atlas-ring: rgba(255, 86, 24, 0.42);
 
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 86, 24, 0.25);
 
   --radius: 0.75rem;
 
@@ -140,6 +140,7 @@ body {
     box-shadow: 0 0 0 5px var(--atlas-ring);
   }
 
+  /* Glass Card — Light Mode */
   .glass {
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(24px);
@@ -147,23 +148,16 @@ body {
   }
 
   .glass-card {
-    background: linear-gradient(145deg, rgba(255, 86, 24, 0.12) 0%, rgba(20, 20, 20, 0.95) 50%, rgba(245, 158, 11, 0.12) 100%);
-    border: 1px solid rgba(255, 86, 24, 0.35);
+    background: linear-gradient(145deg, rgba(255, 86, 24, 0.08) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(245, 158, 11, 0.1) 100%);
+    border: 1px solid rgba(255, 86, 24, 0.25);
     box-shadow: var(--shadow-premium);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
 
-  /* Gradiente de Títulos em Laranja (#FF5618), Amarelo (#F59E0B) e Branco (#FFFFFF) */
-  .text-gradient-atlas {
-    background: linear-gradient(110deg, #FF5618 0%, #F59E0B 45%, #FFFFFF 90%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .text-gradient-title {
-    background: linear-gradient(110deg, #FF5618 0%, #FBBF24 50%, #FFFFFF 100%);
+  /* Gradiente de Títulos no LIGHT MODE: Laranja (#FF5618) -> Amarelo (#D97706) -> Grafite (#111111) */
+  .text-gradient-atlas, .text-gradient-title {
+    background: linear-gradient(110deg, #FF5618 0%, #D97706 45%, #111111 90%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -173,8 +167,28 @@ body {
     background: linear-gradient(135deg, #FF5618 0%, #FF6B10 50%, #F59E0B 100%);
   }
 
-  /* Cards em Gradiente Laranja, Grafite Escuro e Amarelo com Glassmorphism */
+  /* Cards Gradientes no LIGHT MODE */
   .card-gradient-atlas {
+    background: linear-gradient(145deg, rgba(255, 86, 24, 0.08) 0%, #ffffff 50%, rgba(245, 158, 11, 0.1) 100%);
+    border: 1px solid rgba(255, 86, 24, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(255, 86, 24, 0.15);
+  }
+
+  /* Gradientes no DARK MODE: Laranja (#FF5618) -> Amarelo (#F59E0B) -> Branco (#FFFFFF) */
+  :is(.dark *) .text-gradient-atlas, :is(.dark *) .text-gradient-title {
+    background: linear-gradient(110deg, #FF5618 0%, #F59E0B 45%, #FFFFFF 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Cards Gradientes no DARK MODE */
+  :is(.dark *) .glass-card {
+    background: linear-gradient(145deg, rgba(255, 86, 24, 0.14) 0%, rgba(20, 20, 20, 0.95) 50%, rgba(245, 158, 11, 0.14) 100%);
+    border: 1px solid rgba(255, 86, 24, 0.4);
+  }
+
+  :is(.dark *) .card-gradient-atlas {
     background: linear-gradient(145deg, rgba(255, 86, 24, 0.14) 0%, rgba(26, 26, 26, 0.95) 50%, rgba(245, 158, 11, 0.14) 100%);
     border: 1px solid rgba(255, 86, 24, 0.4);
     box-shadow: 0 12px 35px -10px rgba(255, 86, 24, 0.25);

@@ -74,7 +74,7 @@ export function ModuleCard({ meta, index, isCompleted }: ModuleCardProps) {
 
           {/* Legenda Resumida do Tema (Bottom Banner) */}
           {meta.imageCaption && (
-            <div className="absolute bottom-2 left-3 right-3 z-10 text-[10px] font-bold text-muted bg-surface/90 backdrop-blur-sm px-2.5 py-1 rounded-md border border-border/50 truncate">
+            <div className="absolute bottom-2 left-3 right-3 z-10 text-[10px] font-bold text-foreground bg-surface/95 backdrop-blur-md px-2.5 py-1 rounded-md border border-border/80 truncate shadow-sm">
               {meta.imageCaption}
             </div>
           )}
