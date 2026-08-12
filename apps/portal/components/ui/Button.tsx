@@ -31,12 +31,15 @@ const buttonVariants = cva(
   }
 );
 
+import { playUiSound } from "@/lib/soundEngine";
+
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   isLoading?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  disableSound?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -51,16 +54,24 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       rightIcon,
       children,
       disabled,
+      onClick,
+      disableSound = false,
       ...props
     },
     ref
   ) => {
+    function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+      if (!disableSound) playUiSound("click");
+      if (onClick) onClick(e);
+    }
+
     return (
       <button
         ref={ref}
         className={cn(buttonVariants({ variant, size, fullWidth, className }))}
         disabled={disabled || isLoading}
         aria-disabled={disabled || isLoading}
+        onClick={handleClick}
         {...props}
       >
         {isLoading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}

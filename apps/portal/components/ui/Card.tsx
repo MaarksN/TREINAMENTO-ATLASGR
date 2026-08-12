@@ -9,8 +9,8 @@ const cardVariants = cva(
       variant: {
         default: "shadow-sm hover:shadow-md",
         glass: "glass-card",
-        elevated: "shadow-premium hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 dark:hover:shadow-[0_20px_40px_-15px_rgba(255,86,24,0.1)]",
-        interactive: "hover:border-atlas-orange/50 hover:shadow-md cursor-pointer group hover:-translate-y-0.5",
+        elevated: "card-gradient-atlas shadow-premium hover:shadow-[0_20px_50px_-10px_rgba(255,86,24,0.25)] hover:-translate-y-1",
+        interactive: "card-gradient-atlas hover:border-atlas-orange/70 hover:shadow-xl cursor-pointer group hover:-translate-y-1",
       },
     },
     defaultVariants: {

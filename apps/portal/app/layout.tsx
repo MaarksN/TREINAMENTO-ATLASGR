@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/Toaster";
+import { AssistantBalloon } from "@/components/ui/AssistantBalloon";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -10,8 +11,6 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-// A Mont é a fonte primária da marca, mas seus arquivos licenciados não estão no
-// repositório. O manual indica Montserrat como família secundária oficial.
 const title = "Portal de Treinamento ATLASGR";
 const description =
   "Portal Enterprise de onboarding e treinamento corporativo da ATLASGR: conectamos pessoas e tecnologia, gerando valor com segurança e inovação para a logística nacional.";
@@ -75,6 +74,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider>
           {children}
           <Toaster />
+          <AssistantBalloon />
         </ThemeProvider>
       </body>
     </html>
