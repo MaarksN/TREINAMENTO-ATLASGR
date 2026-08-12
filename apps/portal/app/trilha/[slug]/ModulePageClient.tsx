@@ -15,7 +15,7 @@ import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { ImmersiveStory } from "@/components/module/ImmersiveStory";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
-import type { ModuleContentFull, ModuleSection } from "@/lib/types";
+import type { ModuleContentFull, ModuleSection, ModuleMeta } from "@/lib/types";
 
 import { AccessibilityToolbar } from "@/components/accessibility/AccessibilityToolbar";
 

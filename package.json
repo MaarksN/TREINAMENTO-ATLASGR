@@ -9,6 +9,11 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "build:portal": "npm run build --workspace=@atlasgr/portal",
+    "build:api": "npm run build --workspace=@atlasgr/api",
+    "start": "npm run start:portal",
+    "start:portal": "npx serve -s apps/portal/out -l 3000",
+    "start:api": "npm run start --workspace=@atlasgr/api",
     "test": "turbo test",
     "lint": "turbo lint",
     "test:e2e": "npm run test:e2e --workspace=@atlasgr/portal",
@@ -17,6 +22,7 @@
     "infra:down": "docker compose -f docker-compose.opensource.yml down"
   },
   "devDependencies": {
+    "serve": "^14.2.4",
     "turbo": "^2.10.9"
   },
   "packageManager": "npm@11.11.0",
