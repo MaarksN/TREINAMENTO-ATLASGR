@@ -1,9 +1,13 @@
-# 10. Atualizações futuras
+## 10. Atualizações futuras
+
+Como evolução da plataforma, poderá ser adicionado o aprimoramento contínuo dos recursos para expandir a experiência do usuário.
 
 | Atualização futura | Benefício | Impacto esperado | Prioridade | Complexidade | Área relacionada |
-|---|---|---|---|---|---|
-| Expansão da Academia ATLAS IA | Oferecerá agentes específicos e ferramentas inteligentes por cargo, ajudando os colaboradores a realizarem tarefas complexas com auxílio da IA. | Aumentará a produtividade operacional e a assertividade na tomada de decisões diárias. | Alta | Avançada | Academia IA / Dashboard |
-| Melhoria nos Showcases de Produtos (Módulos dinâmicos adicionais) | Exibirá mais detalhamentos para módulos que ainda não possuem um layout de showcase específico (ex: quando acessar outros produtos). | Permitirá um entendimento mais profundo e completo do catálogo de ofertas ATLASGR. | Média | Moderada | Páginas de Produtos (`/produtos`) |
-| Integração com Sistema de Certificados Externo | Permitirá exportar ou compartilhar automaticamente o certificado de conclusão da trilha no LinkedIn ou via e-mail. | Ampliará o engajamento dos colaboradores e o reconhecimento profissional da capacitação. | Média | Moderada | Módulo Certificado (`/certificado`) |
-| Dashboards Analíticos Detalhados para Gestores | Os líderes poderão visualizar o progresso de toda a sua equipe, não apenas a visão individual do colaborador atual. | Melhorará o controle e acompanhamento gerencial do treinamento corporativo. | Alta | Avançada | Área Administrativa / Dashboard (`/admin` e `/dashboard`) |
-| Personalização do Cockpit | O usuário poderá escolher quais métricas ou atalhos deseja fixar na tela inicial do dashboard. | Tornará a experiência de uso mais focada nas necessidades específicas daquele agente. | Baixa | Simples | Dashboard (`/dashboard`) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Integração de Backend com Banco de Dados | Permitir o armazenamento seguro dos dados, dispensando o uso apenas do `localStorage`. | Alto impacto na escalabilidade e retenção segura das informações do usuário. | Alta | Avançada | Todas (Infraestrutura) |
+| Gestão de Usuários e Autenticação Robusta | Oferecer perfis de acesso distintos (ex: Colaborador vs. Gestor) e login seguro com senhas/tokens. | Aumento na segurança, controle de acessos e personalização da jornada. | Alta | Moderada | Acesso e Admin |
+| Automação na Emissão de Certificados | Garantir a oficialidade dos certificados gerados pela plataforma. | Maior credibilidade. | Média | Moderada | Certificação |
+| Expansão do Conteúdo | Oferecer a totalidade dos 15 módulos previstos. | Enriquecimento da base de conhecimento. | Alta | Simples | Trilha de Conhecimento |
+| Exportação de Relatórios | Permitir aos gestores o acompanhamento do progresso detalhado das equipes. | Facilita a gestão de Treinamento. | Média | Moderada | Painel Admin |
+
+Para as próximas etapas do produto, recomenda-se considerar a automação de processos adicionais listados acima.

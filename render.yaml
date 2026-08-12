@@ -1,22 +1,19 @@
-# Render Blueprint Specification for AtlasGR LMS Monorepo
 services:
-  # 1. LMS Portal Frontend (Static Site on Render)
-  - type: web
-    name: treinamento-atlasgr-portal
-    env: static
-    buildCommand: npm install && npm run build --workspace=@atlasgr/portal
-    staticPublishPath: ./apps/portal/out
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-
-  # 2. Backend Microservice API (NestJS Web Service)
   - type: web
     name: treinamento-atlasgr-api
-    env: node
-    buildCommand: npm install && npm run build --workspace=@atlasgr/api
-    startCommand: npm run start --workspace=@atlasgr/api
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: .
+    buildCommand: npm ci --include=dev && npx prisma generate --schema=packages/database/prisma/schema.prisma && npx turbo run build --filter=@atlasgr/api
+    startCommand: node apps/api/dist/main.js
+    healthCheckPath: /
     envVars:
-      - key: PORT
-        value: 3001
+      - key: NODE_VERSION
+        value: 22.22.2
+      - key: DATABASE_URL
+        sync: false
+      - key: OTEL_EXPORTER_OTLP_ENDPOINT
+        sync: false
+      - key: OTEL_SERVICE_NAME
+        value: treinamento-atlasgr-api

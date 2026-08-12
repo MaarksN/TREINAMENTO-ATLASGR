@@ -18,8 +18,10 @@ export function AdminGate({ children }: { children: ReactNode }) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setUnlocked(typeof window !== "undefined" && sessionStorage.getItem(SESSION_KEY) === "1");
-    setChecked(true);
+    queueMicrotask(() => {
+      setUnlocked(typeof window !== "undefined" && sessionStorage.getItem(SESSION_KEY) === "1");
+      setChecked(true);
+    });
   }, []);
 
   function handleSubmit() {

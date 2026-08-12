@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface ImmersiveStoryProps {
   story: string;
@@ -22,10 +23,11 @@ export function ImmersiveStory({ story, backgroundImage, className }: ImmersiveS
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,color-mix(in_srgb,var(--atlas-orange)_16%,transparent),transparent_55%)]" />
         {backgroundImage && (
           <>
-            <img
+            <Image
               src={backgroundImage}
               alt="Story background"
-              className="w-full h-full object-cover opacity-25 grayscale mix-blend-luminosity"
+              fill
+              className="object-cover opacity-25 grayscale mix-blend-luminosity"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-surface/10" />
             <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-transparent to-transparent" />

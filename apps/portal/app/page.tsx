@@ -25,16 +25,19 @@ export default function HomePage() {
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("authRequired") === "1") {
-      setReturnTo(params.get("returnTo"));
-      setModalOpen(true);
-      showToast({
+      queueMicrotask(() => {
+        setReturnTo(params.get("returnTo"));
+        setModalOpen(true);
+        showToast({
+
         title: "Faça seu primeiro acesso",
         description: "Selecione seu nome e confirme o código de acesso para continuar.",
         variant: "info",
+        });
       });
       window.history.replaceState({}, "", "/");
     }
-  }, []);
+  }, [showToast]);
 
   function handleStart() {
     if (canContinue) {
