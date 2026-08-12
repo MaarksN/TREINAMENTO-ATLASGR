@@ -6,64 +6,74 @@ const meta = getModuleMeta("05-software-logistico")!;
 export const module05: ModuleContentFull = {
   ...meta,
   sources: [
-    "Manuais de Operação Atlas Connect",
-    "Torre de Controle - Guias Práticos",
+    "Manuais de Operação Avançada Atlas Connect",
+    "Torre de Controle - Manuais de Contingência",
   ],
   objectives: [
-    "Dominar a arquitetura visual e a hierarquia da tela do Atlas Connect.",
-    "Explicar a dinâmica de criação, rastreamento e baixa de uma SM (Solicitação de Monitoramento).",
-    "Compreender a mecânica do Motor de Regras e a priorização de níveis de alerta.",
-    "Entender a diferença operacional entre Grade Passiva e Fila Ativa de Alertas.",
-    "Diagnosticar corretamente os alertas técnicos mais comuns (GPS sem sinal, evento duplicado, falso positivo de desvio) sem subestimar riscos reais.",
+    "Navegar e dominar a arquitetura de dados e hierarquia visual avançada do cockpit do Atlas Connect.",
+    "Dissecar o ciclo de vida estruturado (Criação, Rastreamento, Baixa) de uma SM (Solicitação de Monitoramento).",
+    "Interiorizar a matriz de regras preditivas do Motor de Regras e seu critério inegociável de priorização.",
+    "Dominar o modelo mental entre o Monitoramento Passivo na Grade e a Execução Ativa e Ágil na Fila de Alertas.",
+    "Triar e diagnosticar complexidades técnicas, separando ruído de sinal (Jammer vs. Sombra) sem nunca negligenciar um risco fatal.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Cockpit de Comando",
+      title: "Introdução: O Cockpit Operacional e o Motor de Guerra",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
+        },
+        {
           type: "text",
-          heading: "A Orquestração do Risco",
+          heading: "A Interface que Separa a Ordem do Caos",
           paragraphs: [
             [
-              "Bem-vindo ao Atlas Connect. Se o PGR é a lei, o Connect é a delegacia, o juiz e o camburão, tudo em um sistema só. É nesta tela que milhares de veículos são acompanhados e onde a inteligência artificial da Atlas separa o que é rotina do que é tragédia.",
+              "Bem-vindo ao Atlas Connect. Na analogia tática, se o PGR é a doutrina militar, o Connect é o sistema de radar, mísseis guiados e a sala de crise simultaneamente. Nesta tela fluem milhares de dados por segundo, enquanto nosso Motor de Regras IA distingue instantaneamente entre uma anomalia rotineira e uma tentativa coordenada de roubo.",
             ],
             [
-              "Seu objetivo aqui não é decorar onde fica o botão de 'Salvar'. É entender o FLUXO DA INFORMAÇÃO: como uma viagem nasce, como o sistema vigia e como os alertas são priorizados.",
+              "Não buscamos meros apertadores de botão. Buscamos Analistas Táticos. Seu foco não deve ser decorar a interface atual, mas interiorizar o FLUXO DE DADOS VITAIS: a génese da viagem, o monitoramento contínuo, a análise heurística de alertas e o escalonamento rigoroso.",
             ],
           ],
         },
         {
+          type: "quote",
+          text: "Um operador reage à tela. Um Analista AtlasGR comanda a operação lendo a matriz por trás dos números.",
+          author: "Gerência Técnica AtlasGR"
+        },
+        {
           type: "callout",
           variant: "info",
-          title: "Dica do Assistente IA",
+          title: "Princípio de Design Universal",
           text: [
-            "Não se preocupe com telas mudando de layout no futuro. A lógica (Grade vs Alertas) nunca muda. Se você focar na lógica, o design se torna irrelevante.",
+            "A interface (UX) passará por atualizações estéticas contínuas, mas a ontologia do sistema (A Fila Ativa x A Grade Passiva) é imutável. Prenda-se à lógica processual.",
           ],
         },
       ],
     },
     {
       id: "capitulo-1-interface",
-      title: "Capítulo 1: A Anatomia da Tela",
+      title: "Capítulo 1: Dissecando a Arquitetura da Tela",
       blocks: [
         {
           type: "comparison",
-          title: "Grade de Viagens x Fila de Alertas",
+          title: "O Cérebro Dividido: Grade x Fila",
           left: {
-            label: "A Grade de Viagens (Passiva)",
+            label: "A Grade de Viagens (Modo Consulta Passiva)",
             points: [
-              "É a lista de TODOS os caminhões atualmente em rota.",
-              "Serve para consultas (Ex: Cliente liga pedindo o ETA de um caminhão específico).",
-              "Não exige ação imediata do operador.",
+              "O panorama completo e holístico de todos os ativos tracionados em rota viva.",
+              "Utilizada para reports sob demanda, conferências de ETA para o cliente ou buscas forenses.",
+              "Status verde e silencioso. Não exige interação crítica no fluxo normal de trabalho.",
             ],
           },
           right: {
-            label: "A Fila de Alertas (Ativa)",
+            label: "A Fila de Alertas (Modo Execução Tática)",
             points: [
-              "O coração pulsante. Aqui caem apenas as EXCEÇÕES (violações do PGR).",
-              "Pisca, faz barulho e exige AÇÃO IMEDIATA (SLA).",
-              "Ordenada por Níveis de Prioridade (do 1 ao 7).",
+              "A artéria pulsante da operação. Exclusiva para EXCEÇÕES que quebram o SLA ou o PGR.",
+              "Dinâmica, agressiva (alertas visuais e sonoros) e regida por métricas de SLA implacáveis.",
+              "Rigorosamente ranqueada pelo Algoritmo (Prioridades 1 ao 7).",
             ],
           },
         },
@@ -71,154 +81,154 @@ export const module05: ModuleContentFull = {
     },
     {
       id: "capitulo-2-a-viagem",
-      title: "Capítulo 2: O Ciclo de Vida da Viagem (SM)",
+      title: "Capítulo 2: O Ciclo de Operação de um SM",
       blocks: [
         {
           type: "timeline",
-          title: "A Jornada do SM (Solicitação de Monitoramento)",
+          title: "O Life Cycle da Solicitação de Monitoramento",
           items: [
-            { label: "Nascimento (Criação)", text: "Gerada via integração com o TMS do cliente. O Connect atrela automaticamente o veículo, o motorista (já validado no Profile) e o PGR correspondente à carga." },
-            { label: "Ativação (Ping)", text: "O sistema testa a comunicação com o hardware (Rastreador e Isca). Se ambos responderem, a viagem fica 'Em Trânsito'." },
-            { label: "Execução (Rastreio)", text: "Cercas virtuais, macros de teclado e posições de GPS são gravadas a cada minuto." },
-            { label: "Morte (Encerramento)", text: "O caminhão entra na cerca eletrônica do destino final. O operador (ou o sistema via Automação) dá baixa na SM, liberando o veículo para novo frete." },
+            { label: "1. Criação (Gênese Automática)", text: "Ingestão via API do TMS. O sistema amarra parametricamente o ativo (caminhão), o humano pré-aprovado (Profile) e o conjunto de regras invioláveis (PGR) para criar uma entidade SM." },
+            { label: "2. Ping Inicial e Ativação", text: "Handshake telemático. O Connect exige resposta do rastreador primário e secundário (isca). Ao confirmar a conectividade, o SM transiciona para status 'Em Trânsito'." },
+            { label: "3. Rastreabilidade Extrema", text: "A cada milissegundo, a posição do GPS, desvios de rota (geofences) e telemetria bruta (macros/atuadores) são cruzados contra as regras de negócio." },
+            { label: "4. Encerramento (Baixa Segura)", text: "Atingida a Geocerca de destino final com sucesso, a viagem é desfeita de forma autônoma ou baixada com supervisão humana, concluindo o ciclo de risco com integridade." },
           ],
         },
       ],
     },
     {
       id: "capitulo-3-motor",
-      title: "Capítulo 3: O Motor de Regras e Níveis",
+      title: "Capítulo 3: Motor de Regras e a Hierarquia de Prioridades",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O Operador não caça problemas; o Motor de Regras os traz até ele. O Motor é o cérebro da AtlasGR. Ele lê o PGR e classifica a gravidade do que acabou de acontecer.",
+              "Na Torre AtlasGR, o operador jamais sai à caça de problemas no mapa. É o Motor de Regras IA que peneira o caos, injetando alertas diretamente na veia do fluxo de trabalho. A hierarquia imposta pelo algoritmo não é sugestiva; ela é uma lei marcial.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Escala de Gravidade",
+          title: "A Escala Algorítmica de Crise",
           items: [
-            "Nível 1 (CRÍTICO EXTREMO): Acionamento do botão de pânico. Violação de painel. (SLA: Ação em 1 min. CIA imediata).",
-            "Nível 2 (ALTO RISCO): Perda de sinal (Jammer) em área de risco mapeada. Desvio de rota em carga de altíssimo valor.",
-            "Nível 4 (RISCO MODERADO): Parada não programada por 15 minutos fora de local seguro.",
-            "Nível 7 (INFORMATIVO/LOGÍSTICO): Bateria da isca atingiu 20%.",
+            "Nível 1 (CRÍTICO ABSOLUTO): Botão de pânico, violação direta de cabine/painel ou Jammer em curso de carga milionária. (SLA de resposta de segundos. Escalonamento automático para a CIA).",
+            "Nível 2 (ALTO RISCO): Perda de conectividade massiva (possível bloqueador) em zonas vermelhas ou desvio crítico de ativo de alta atratividade.",
+            "Nível 4 (ATENÇÃO MODERADA): Pernoites não homologados, paradas injustificadas acima do limite do PGR.",
+            "Nível 7 (INFORME OPERACIONAL): Alertas técnicos de hardware (Ex: Queda abrupta de tensão na bateria da isca).",
           ],
         },
       ],
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: A Ordem dos Fatores Altera a Vida",
+      title: "Case Fatal: Subvertendo o Algoritmo",
       blocks: [
         {
           type: "case",
-          title: "O Operador que Escolheu o Mais Fácil",
-          text: "Um caso clássico usado em reciclagens: Um operador iniciante viu sua Fila de Alertas subir. No topo, piscava em vermelho um Alerta Nível 1 (Pânico). Embaixo, piscava em amarelo um Alerta Nível 4 (Parada não programada). Como ele já conhecia o motorista do Nível 4, resolveu atender o Nível 4 primeiro para 'limpar a tela rápido'. Ele gastou 5 minutos nessa ligação. Quando abriu o Nível 1, a carreta já havia sumido no mapa (Jammer ativado). O Nível 1 era um sequestro real. Regra de Ouro: Nunca subverta a priorização do sistema. Ele sabe mais de risco do que você.",
-          source: "Manual de Falhas Comuns - DHO AtlasGR",
+          title: "O Preço de 'Limpar a Tela Rápido'",
+          text: "Um caso verídico de perda grave exposto em treinamentos: Sob alta demanda, um operador inexperiente tentou zerar sua Fila de Alertas começando pelos eventos mais simples. Ele ignorou um alerta rubro de Nível 1 (Acionamento de Pânico Silencioso) para solucionar antes um alerta amarelo de Nível 4 (Parada prolongada) com o qual já estava acostumado. Ao gastar míseros 4 minutos no telefone, quando retornou ao Nível 1, a carreta já se encontrava invisível aos satélites e em poder do crime organizado. A lição é cravada a sangue: O algoritmo de triagem detém maior capacidade heurística que qualquer humano; jamais inverta a priorização do sistema.",
+          source: "Manual de Doutrina e Correções DHO"
         },
       ],
     },
     {
       id: "capitulo-4-troubleshooting",
-      title: "Capítulo 4: Troubleshooting de Alertas na Tela do Operador",
+      title: "Capítulo 4: Diagnóstico de Alertas Complexos (Falso Positivo vs Fato)",
       blocks: [
         {
           type: "text",
-          heading: "Quando o Alerta Mente (ou Parece Mentir)",
+          heading: "A Linha Tênue da Falsa Normalidade",
           paragraphs: [
             [
-              "Nem todo alerta que pisca é um crime em andamento. Parte do ofício do Operador é diferenciar rapidamente um evento real de um ruído técnico, sem baixar a guarda e sem virar 'o menino que gritou lobo' de tanto ignorar tela.",
+              "A tecnologia é ruidosa. A diferença entre um novato e um Sênior reside na perspicácia de diagnosticar um falso positivo de hardware sem se dessensibilizar e acabar ignorando um gatilho autêntico.",
             ],
             [
-              "Esta seção cobre os três chifres do boi que mais aparecem na Fila de Alertas e o script de reação esperado para cada um. Decorar isso evita ligação desnecessária para o cliente e, o mais importante, evita deixar passar o alerta que era de verdade.",
+              "Apresentamos abaixo os três principais ofensores algorítmicos que poluem a fila de alertas. Dominá-los otimiza seu SLA sem colocar bilhões em ativos sob risco letal.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Os 3 Vilões Mais Comuns da Tela",
+          title: "Troubleshooting Rápido dos '3 Fantasmas'",
           items: [
-            "GPS sem sinal (Isca Muda): antes de escalar como perda de rastreio, confira o histórico de posição — se o último ping veio de um túnel, garagem coberta ou área rural conhecida por sombra de sinal, aguarde o tempo de tolerância do PGR antes de tratar como Nível 2.",
-            "Evento duplicado: o mesmo alerta aparece duas ou três vezes na fila em poucos segundos. Normalmente é reenvio de pacote pela operadora de telefonia do rastreador. Trate apenas a primeira ocorrência e marque as réplicas como duplicidade, nunca como alertas novos.",
-            "Falso positivo de desvio de rota: comum em obras, bloqueios e desvios oficiais de trânsito não cadastrados no mapa. Confira o aplicativo de trânsito e o contato do motorista antes de classificar como desvio suspeito — só escale como Nível 2 se o motorista não responder ou a explicação não fechar.",
+            "GPS Cego (Zona de Sombra): Antes de declarar alerta de Jammer (Perda de Sinal provocada), valide a trilha histórica. O ativo submergiu em um túnel, região de garimpo ou serra profunda? Confirme o tempo de tolerância específico do PGR.",
+            "Flood de Redundância (Eventos Duplicados): Operadoras de telefonia costumam reenviar o mesmo pacote em milissegundos, empilhando o alerta. Trate assertivamente o evento root e archive imediatamente as réplicas referenciando a ação matriz.",
+            "Falso Positivo Cartográfico (Desvio Fake): Caminhões sofrem redirecionamentos contínuos por obras, quedas de barreiras ou blitze da PRF que o mapa desconhece. Triangular contato rápido com a cabine antes de escalar para Nível 2.",
           ],
         },
         {
           type: "faq",
           items: [
             {
-              q: "Recebi um GPS sem sinal e o motorista não atende o telefone. E agora?",
-              a: "Aguardar sem agir é a pior opção. Se o tempo de tolerância do PGR já estourou e não há resposta do motorista, o alerta sobe automaticamente de nível — não force o rebaixamento manual só porque 'geralmente é sombra de sinal'.",
+              q: "Há perda de sinal e o canal primário de voz com a cabine está mudo. É Jammer?",
+              a: "O pressuposto tático inicial deve sempre tender ao pior cenário. Se o prazo de contingência do PGR venceu, a escalada é imediata. A hesitação na esperança de ser uma 'sombra' custa a janela ouro de recuperação.",
             },
             {
-              q: "Posso simplesmente fechar um alerta duplicado sem registrar nada?",
-              a: "Não. Fechar sem registrar apaga o rastro para auditoria. Sempre marque a duplicidade no próprio sistema, vinculando ao evento original, mesmo que a ação real tenha sido tomada apenas uma vez.",
+              q: "Posso arquivar anomalias duplicadas sem justificar no log do sistema?",
+              a: "Absolutamente não. A exclusão silenciosa envenena o rastro forense essencial para o time do Analytics e peritos securitários. Cada fechamento exige referenciamento.",
             },
             {
-              q: "E se eu classificar um evento real como falso positivo por engano?",
-              a: "Acontece, e é para isso que existe a CIA. Escale imediatamente ao perceber o erro — corrigir rápido é infinitamente melhor do que deixar o erro 'se resolver sozinho'.",
+              q: "Na pressão da rotina, escalei um desvio por obra (falso positivo) diretamente para a CIA. Haverá retaliação?",
+              a: "Nunca. O erro em excesso de zelo é amparado pela liderança e rapidamente resolvido. O erro omissivo (ignorar suspeita com medo de incomodar a CIA) é severamente repreendido.",
             },
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Regra de Desempate",
+          title: "Princípio Operacional da Dúvida",
           text: [
-            "Na dúvida entre 'é ruído técnico' e 'pode ser real', trate como real. Escalar um alerta que depois se confirma falso positivo custa um telefonema extra. Ignorar um alerta real custa uma carga — ou uma vida.",
+            "Sob qualquer ambiguidade entre 'apenas um lag sistêmico' e 'risco real deflagrado', assuma o risco como FATO. Acionar indevidamente a CIA gera um desconforto temporário; subestimar um alerta rubro resulta em passivo cível e dano reputacional incomensurável.",
           ],
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Próximos Passos",
+      title: "Considerações Finais e Mentoria On-the-Job",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Leia o 'Manual de Telas' no sistema de Base de Conhecimento interno para ver capturas de tela atualizadas do cockpit.",
+              "Para uma visualização detalhada das novas telas do painel de controle, consulte a Base de Conhecimento na seção 'Interface Connect'.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "O que vem a seguir",
+          title: "As Próximas Fases",
           items: [
-            "Você passará por uma semana de 'Treinamento Sombra' (ouvindo ligações reais).",
-            "Seu próximo módulo será focado na etapa ANTERIOR ao Connect: O Atlas Profile.",
+            "Você engatará em ciclos de 'Treinamento Shadow' (escuta e observação de operações reais ao vivo).",
+            "O próximo estágio mergulha fundo na barreira profilática que blinda o Connect: O Atlas Profile.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "O Connect orquestra toda a viagem, da validação inicial até o encerramento no destino.",
-    "A Grade é passiva; A Fila de Alertas é ativa e dita a ordem de trabalho do Operador.",
-    "Um SM (Solicitação de Monitoramento) centraliza caminhão, motorista, carga e regras.",
-    "O Motor de Regras usa 7 níveis de prioridade para impedir que o Operador escolha o que tratar primeiro.",
+    "A orquestração telemática do Connect mapeia toda a janela de oportunidade de risco da viagem.",
+    "O entendimento cristalino da dicotomia Grade (Visão Passiva) vs Fila de Alertas (Visão Ativa) previne gargalos.",
+    "A estrutura do SM é a garantia algorítmica de que humano, máquina e regras viajam entrelaçados.",
+    "A aderência cega ao Sistema de Níveis de Prioridade do Motor IA não é negociável.",
   ],
   finalChecklist: [
-    "Entendo a função da Fila de Alertas vs Grade.",
-    "Consigo elencar os 4 estágios de vida de um SM.",
-    "Sei a consequência fatal de subverter a ordem de Níveis de Prioridade.",
+    "Compreendo a arquitetura de prioridade da Fila de Alertas.",
+    "Sei enumerar e descrever o lifecycle impecável de um SM.",
+    "Aceito e entendo o risco fatal de tentar 'otimizar' a ordem de resolução estipulada pelo motor.",
   ],
   mindMap: {
-    root: "Atlas Connect",
+    root: "Operação Connect",
     branches: [
-      { label: "Visões", items: ["Grade", "Fila de Alertas", "Mapa Virtual"] },
-      { label: "Jornada", items: ["SM", "Ping", "Trânsito", "Baixa"] },
-      { label: "Regras", items: ["Nível 1 (Pânico)", "Nível 7 (Bateria)", "Falso Positivo (Desvio de Rota)"] },
+      { label: "UX Operacional", items: ["Modo Grade", "Fila Prioritária", "Mapa Integrado"] },
+      { label: "Flow da Viagem (SM)", items: ["Ingestão Automática", "Ping Validado", "Baixa Geolocalizada"] },
+      { label: "Priorização IA", items: ["Nível 1 (Pânico Silencioso)", "Nível 7 (Aviso de Bateria)", "Ghost Alerts (Troubleshooting)"] },
     ],
   },
   scenario:
-    "Cenário Prático: A energia cai na sua central, mas o sistema de nobreak segura os computadores. A fila tem 50 alertas acumulados. O que você (e o sistema) fazem para voltar ao controle sem perder uma carga crítica?",
+    "Cenário Prático: A central sofre um blackout temporário de telecom (link primário cai), restando apenas o link redundante e 70 alertas represados. Como você e o Motor de Regras interagem para reestabelecer o comando sem comprometer o SLA dos eventos Nível 1?",
   diagram: {
-    title: "Triagem de Alertas",
-    chart: "graph TD\n  Evento[Caminhão Desvia Rota] --> Motor[Motor de Regras]\n  Motor --> Classifica[Classifica como Nível 2]\n  Classifica --> Fila[Topo da Fila do Operador]\n  Fila --> Acao[Operador Age]",
+    title: "Triagem Algorítmica e Escalonamento",
+    chart: "graph TD\n  Evento[Desvio ou Jammer no GPS] --> Motor[Motor de Regras IA]\n  Motor --> Classifica[Atribuição Crítica de SLA]\n  Classifica --> Fila[Injeção no Topo da Fila do Operador]\n  Fila --> Acao[Resposta Humana Imediata]",
   },
 };

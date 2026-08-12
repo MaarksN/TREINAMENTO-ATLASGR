@@ -12,85 +12,95 @@ export const module01: ModuleContentFull = {
     "Jornada do Colaborador",
   ],
   objectives: [
-    "Compreender profundamente a origem, o propósito e os valores inegociáveis da ATLASGR.",
-    "Mapear mentalmente a estrutura organizacional e a cadeia de comando.",
-    "Assimilar as políticas rígidas de compliance e ética empresarial.",
-    "Conhecer a trilha de desenvolvimento e a Universidade Corporativa.",
-    "Reconhecer os erros mais comuns cometidos por quem está chegando e entender como funciona a avaliação do período de experiência (cortes de 30, 60 e 90 dias).",
+    "Compreender profundamente a origem, o propósito e os valores inegociáveis da ATLASGR no ecossistema logístico.",
+    "Mapear mentalmente a estrutura organizacional de alta performance e a cadeia de comando da Torre de Controle.",
+    "Assimilar as políticas rígidas de compliance corporativo e ética empresarial em operações de alto risco.",
+    "Conhecer a trilha de desenvolvimento contínuo e os recursos da Universidade Corporativa.",
+    "Reconhecer falhas operacionais críticas durante a integração e dominar a matriz de avaliação do período de experiência.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Propósito da AtlasGR",
+      title: "Introdução: O Propósito Inegociável da AtlasGR",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
+        },
+        {
           type: "text",
-          heading: "A Gênese da Inteligência Logística",
+          heading: "A Gênese da Inteligência Logística Avançada",
           paragraphs: [
             [
-              "Antes da AtlasGR, o mercado brasileiro sofria com um modelo de segurança ultrapassado e puramente reativo. A fundação da empresa, em 2004, teve um objetivo claro: parar de apenas 'rastrear o que já foi roubado' e passar a 'antecipar o risco antes que ele se materialize'.",
+              "Antes da AtlasGR, o mercado brasileiro sofria com um modelo de segurança obsoleto e essencialmente reativo. A fundação da empresa, em 2004, foi disruptiva: substituir o rastreamento post-mortem de cargas subtraídas por uma arquitetura preditiva capaz de antecipar e neutralizar o risco antes de sua materialização.",
             ],
             [
-              "Nosso propósito não mudou: ",
+              "Nosso propósito inabalável: ",
               { term: "gr" },
-              " — 'Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação'. A tecnologia, por si só, é fria. É a equipe humana, qualificada por esta Universidade Corporativa, que transforma dados em decisões de alto impacto.",
+              " — 'Nós conectamos pessoas e tecnologia gerando valor com segurança e inovação'. A tecnologia, embora robusta, é apenas o meio. É a nossa elite operacional humana, moldada por esta Universidade Corporativa, que converte dados brutos em inteligência acionável e decisões de alto impacto financeiro.",
             ],
           ],
         },
         {
+          type: "quote",
+          text: "Na AtlasGR, não monitoramos pontos no mapa; protegemos a integridade da economia circulante e a reputação de nossos clientes.",
+          author: "Diretoria de Operações AtlasGR"
+        },
+        {
           type: "callout",
           variant: "success",
-          title: "Sua Missão Aqui",
+          title: "Sua Missão Operacional",
           text: [
-            "Ao longo das Trilhas de Aprendizagem, você passará de iniciante a Especialista Enterprise. O Onboarding é a fundação. Absorva cada regra como se fosse operar a Torre de Controle amanhã.",
+            "Através destas Trilhas de Aprendizagem, você escalará de novato a Especialista Enterprise. O Onboarding é sua fundação tática. Absorva cada diretriz como se a próxima decisão na Torre de Controle dependesse exclusivamente da sua precisão.",
           ],
         },
       ],
     },
     {
       id: "capitulo-1-historia",
-      title: "Capítulo 1: Linha do Tempo e Evolução",
+      title: "Capítulo 1: Linha do Tempo e Evolução Tecnológica",
       blocks: [
         {
           type: "timeline",
-          title: "Da Fundação à Era da IA",
+          title: "Da Fundação à Era da Inteligência Artificial",
           items: [
-            { label: "2004", text: "A semente: Fundação da AtlasGR com foco em processos rigorosos de PGR." },
-            { label: "2010", text: "Expansão nacional: Abertura da Torre de Controle Operacional." },
-            { label: "2018", text: "Inovação tecnológica: Desenvolvimento interno do sistema preditivo e integração de APIs." },
-            { label: "2024", text: "Maturidade do Portfólio: Consolidação dos 4 pilares (Profile, Connect, GR, Analytics)." },
-            { label: "2026", text: "A Revolução do Conhecimento: Lançamento do AtlasGR Enterprise Learning com tutoria via IA." },
+            { label: "2004", text: "A semente: Fundação da AtlasGR estabelecendo novos paradigmas e processos rigorosos de PGR." },
+            { label: "2010", text: "Expansão nacional massiva: Abertura da Torre de Controle Operacional 24/7." },
+            { label: "2018", text: "Inovação tecnológica disruptiva: Desenvolvimento interno do sistema preditivo e integração de APIs de alta conectividade." },
+            { label: "2024", text: "Maturidade do Portfólio: Consolidação definitiva dos 4 pilares estratégicos (Profile, Connect, GR, Analytics)." },
+            { label: "2026", text: "A Revolução do Conhecimento: Lançamento do AtlasGR Enterprise Learning, alavancando tutoria via IA para escalar o treinamento corporativo." },
           ],
         },
       ],
     },
     {
       id: "capitulo-2-cultura",
-      title: "Capítulo 2: Cultura e Valores na Prática",
+      title: "Capítulo 2: Cultura de Excelência e Valores na Prática",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Valores são as regras de conduta para quando o manual acaba. Se o sistema cair e o telefone tocar, é nos valores da AtlasGR que você se apoiará para tomar a decisão correta.",
+              "Os valores não são jargões de parede; são algoritmos de conduta para quando o script falha. Diante de uma crise sistêmica, são os pilares éticos da AtlasGR que balizarão a sua capacidade de tomar a decisão cirúrgica correta no menor tempo possível.",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "Os 5 Pilares de Conduta",
+          title: "Os 5 Pilares de Alta Performance",
           left: {
             label: "Valores Essenciais",
-            points: ["Perseverança", "Transparência", "Simplicidade", "Atitude de Dono", "Inovação"],
+            points: ["Perseverança Resiliente", "Transparência Absoluta", "Simplicidade Ágil", "Atitude de Dono Inegociável", "Inovação Contínua"],
           },
           right: {
-            label: "Comportamento Esperado",
+            label: "Comportamento Esperado na Operação",
             points: [
-              "Não aceitar a primeira desculpa em uma investigação de desvio.",
-              "Comunicação direta, sem omitir erros do cliente ou do time.",
-              "Descomplicar processos burocráticos sem perder a segurança.",
-              "Cuidar do contrato de R$ 10 milhões como se fosse sua própria empresa.",
-              "Sugerir melhorias ativamente para a Diretoria.",
+              "Nunca aceitar a primeira justificativa superficial em investigações de desvio tático.",
+              "Comunicação direta, reportando falhas imediatamente para mitigação de danos colaterais.",
+              "Descomplicar fluxos burocráticos otimizando o SLA sem comprometer o cinturão de segurança.",
+              "Gerenciar uma operação milionária com o zelo de quem protege seu próprio capital.",
+              "Propor ativamente melhorias de processo, alimentando o ciclo de engenharia reversa.",
             ],
           },
         },
@@ -98,151 +108,142 @@ export const module01: ModuleContentFull = {
     },
     {
       id: "capitulo-3-estrutura",
-      title: "Capítulo 3: Estrutura Organizacional",
+      title: "Capítulo 3: Arquitetura Organizacional",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A empresa opera como um organismo vivo, dividido em 5 grandes Diretorias que se alimentam mutuamente. O Comercial vende a inteligência que a TI constrói, que o DHO treina, e que as Operações executam.",
+              "A corporação opera como um organismo vivo e altamente sincronizado, orquestrado em 5 macro-Diretorias. O Comercial capitaliza a inteligência desenvolvida pela TI, que é potencializada pelo DHO, e finalmente executada com precisão letal pelas Operações.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "As Engrenagens da AtlasGR",
+          title: "As Engrenagens do Ecossistema AtlasGR",
           items: [
-            "TI (Tecnologia da Informação): Engenharia do Connect, IA e infraestrutura de servidores.",
-            "DHO (Desenvolvimento Humano e Organizacional): O guardião da cultura, dono da Universidade Corporativa e responsável por PDI.",
-            "Comercial / Administrativo: O pulmão financeiro, negociação de contratos e faturamento.",
-            "Relações Institucionais: Diplomacia com polícias civis, militares, PRF e ANTT.",
-            "Operações (A Torre e CIA): Execução do monitoramento de milhares de viagens simultâneas, 24 horas por dia.",
+            "TI (Tecnologia da Informação): Engenharia do Connect, arquitetura de IA e infraestrutura cloud de alta disponibilidade.",
+            "DHO (Desenvolvimento Humano e Organizacional): O guardião da cultura de alta performance, orquestrador da Universidade Corporativa e curador de talentos.",
+            "Comercial / Administrativo: O motor financeiro, especializado em negociação de contratos enterprise e estruturação de faturamento.",
+            "Relações Institucionais: Diplomacia estratégica com forças de segurança (Polícias, PRF, ANTT) para recuperação tática.",
+            "Operações (Torre e CIA): O front de batalha. Execução cirúrgica do monitoramento de milhares de ativos em tempo real, 24 horas por dia.",
           ],
         },
       ],
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: Atitude de Dono Salvando Cargas",
+      title: "Estudo de Caso Forense: A Atitude de Dono Salvando Milhões",
       blocks: [
         {
           type: "case",
-          title: "O Operador que Quebrou a Regra (para salvar o cliente)",
-          text: "Caso real de 2023: Um operador notou que o PGR de um embarcador de pneus não exigia escolta armada em um trecho específico, mas o operador sabia, por experiência, que aquela rodovia estava sob ataque nos últimos 3 dias. Usando a 'Atitude de Dono', ele parou a carreta no posto anterior, chamou o supervisor e escalonou. A transportadora aprovou a escolta emergencial. O caminhão que vinha logo atrás (de outra empresa) foi roubado no mesmo trecho. A Atlas salvou R$ 2.5 Milhões agindo preventivamente.",
-          source: "Repositório de Cases AtlasGR",
+          title: "O Operador que Sobrescreveu o Algoritmo (Para Proteger o Ativo)",
+          text: "Em 2023, um operador sênior detectou uma anomalia não documentada: o PGR de um embarcador premium não exigia escolta armada em um trecho específico da rota, porém, sua análise empírica apontava para uma escalada de ataques naquela malha rodoviária nas últimas 72 horas. Exercendo a 'Atitude de Dono', ele interrompeu preventivamente o trânsito da carreta, escalonou a situação com a supervisão tática e obteve aprovação emergencial para escolta. Um comboio concorrente, seguindo logo atrás, foi interceptado. A proatividade estratégica da AtlasGR salvou R$ 2.5 Milhões em ativos.",
+          source: "Repositório Confidencial de Cases AtlasGR"
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Lição Aprendida",
+          title: "Insight Operacional",
           text: [
-            "Seguir o processo é vital, mas o processo serve ao propósito de segurança. Se o contexto exige, o escalonamento proativo demonstra a inteligência humana sobrepondo a máquina.",
+            "Processos são vitais, mas eles existem para servir ao ecossistema de segurança. Quando o contexto diverge do modelo, o escalonamento proativo evidencia a superioridade da inteligência humana sobre o algoritmo básico.",
           ],
         },
       ],
     },
     {
       id: "capitulo-4-primeiros-90-dias",
-      title: "Capítulo 4: Os Primeiros 90 Dias — Erros Comuns e Avaliação de Experiência",
+      title: "Capítulo 4: O Ramp-up dos Primeiros 90 Dias — Avaliação e Performance",
       blocks: [
         {
           type: "text",
-          heading: "Ninguém Nasce Sabendo Operar a Torre",
+          heading: "A Curva de Aprendizado Acelerado",
           paragraphs: [
             [
-              "Todo colaborador novo passa por um período de experiência de até 90 dias (contrato de experiência 45+45, conforme a CLT). Nesse período, você não está apenas aprendendo os sistemas — está sendo avaliado em três cortes: aos 30, 60 e 90 dias, por sua liderança direta em conjunto com o DHO.",
+              "A maestria na Torre não é inata; ela é forjada. Durante o ciclo de experiência (45+45 dias), você será imerso em operações reais e avaliado em três checkpoints críticos: 30, 60 e 90 dias, por uma banca conjunta de Liderança e DHO.",
             ],
             [
-              "A boa notícia: quase ninguém é desligado por não saber tudo de cara. A avaliação pesa muito mais sobre postura, aderência aos valores e velocidade de aprendizado do que sobre domínio técnico imediato. A má notícia: os erros abaixo se repetem módulo após módulo, turma após turma — e são eles que mais aparecem nas devolutivas de 30 dias.",
+              "A métrica de sucesso não é a ausência de erros sistêmicos no início, mas a velocidade de adaptação, resiliência e aderência cultural. Os desvios mapeados abaixo são recorrentes e frequentemente resultam em attrition prematuro. Estude-os para não repeti-los.",
             ],
           ],
         },
         {
-          type: "checklist",
-          title: "Os Erros Mais Comuns de Quem Está Chegando",
+          type: "stat",
           items: [
-            "Prometer prazo ou solução ao cliente sem validar antes com Operações — quem assina o compromisso é a Atlas, não você sozinho.",
-            "Tratar dado de motorista (CPF, biometria, geolocalização) informalmente em print ou WhatsApp pessoal, ignorando a LGPD.",
-            "Escalar direto para a C.I.A. qualquer imprevisto, sem seguir o fluxo padrão da Torre — isso satura o canal reservado para eventos críticos reais.",
-            "Confundir sinistro com simples atraso de viagem, gerando alarme falso e desgaste desnecessário com o embarcador.",
-            "Compartilhar login e senha de sistema com colega 'só para agilizar' — violação direta de segurança da informação, mesmo com boa intenção.",
-            "Evitar perguntar por medo de parecer despreparado — na Atlas, quem pergunta erra menos que quem finge saber.",
+            { value: "30", label: "Dias - Foco em adaptação e aderência cultural." },
+            { value: "60", label: "Dias - Foco em fluência de processo e escalonamento." },
+            { value: "90", label: "Dias - Foco em autonomia operacional e decisão." }
+          ]
+        },
+        {
+          type: "checklist",
+          title: "Fator Crítico de Falha: Evite Estes Erros",
+          items: [
+            "Assumir prazos ou soluções irreais com clientes sem a validação tática da Operação — a assinatura de risco é corporativa, não individual.",
+            "Vazar dados sensíveis (LGPD) através de canais não criptografados ou corporativos (ex: WhatsApp pessoal) ao gerenciar informações de condutores.",
+            "Saturar o canal da C.I.A. com ruídos operacionais de baixo nível, prejudicando o tempo de resposta para incidentes de alta gravidade.",
+            "Diagnosticar erroneamente atrasos logísticos triviais como sinistros iminentes, disparando pânico falso no embarcador.",
+            "Violar o protocolo de Segurança da Informação através do compartilhamento de credenciais de acesso, sob a falsa premissa de 'agilidade'.",
+            "Omitir dúvidas cruciais. Na AtlasGR, o silêncio custa muito mais caro do que a ignorância temporária.",
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "O Erro Mais Caro: Silêncio",
+          title: "O Ponto Cego da Performance",
           text: [
-            "Na avaliação de 60 dias, o item mais citado como motivo de alerta não é erro técnico — é não comunicar a dúvida ou o erro a tempo de ser corrigido. Errar é esperado no aprendizado; esconder o erro é que compromete a confirmação.",
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Quem participa da avaliação de experiência?",
-              a: "Sua liderança direta registra o desempenho em cada corte (30/60/90 dias) e o DHO consolida com os dados de progresso nas Trilhas da Universidade Corporativa, incluindo este módulo de Onboarding.",
-            },
-            {
-              q: "O que pesa mais: nota nos quizzes ou comportamento no dia a dia?",
-              a: "Comportamento. As Trilhas comprovam que você estudou; a rotina comprova que você aplicou. Um colaborador com nota alta e atitude de dono ausente é sinal de alerta maior do que o contrário.",
-            },
-            {
-              q: "E se eu não me sentir pronto na avaliação de 30 dias?",
-              a: "Normal. O corte de 30 dias raramente é eliminatório — ele existe para gerar plano de ação junto com sua liderança antes dos 60 e 90 dias, não para punir quem ainda está em curva de aprendizado.",
-            },
+            "A omissão de falhas é o maior preditor de desligamento na avaliação de 60 dias. O ambiente de alta complexidade tolera o erro de aprendizado; ele abomina o encobrimento do erro.",
           ],
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
+      title: "Materiais Complementares e Certificação",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Para aprofundar sua imersão, recomendamos a leitura do Código de Ética completo no portal interno.",
+              "Para solidificar sua base ética, devore o Código de Conduta Integrado disponível no portal corporativo.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "O que vem a seguir?",
+          title: "Ação Imediata",
           items: [
-            "Finalize este módulo com sucesso no Simulador de Decisão.",
-            "Avance para a Trilha 01 - Módulo 02 para entender o Mercado.",
-            "Acompanhe sua barra de XP e Conquistas Gamificadas no dashboard.",
+            "Submeta-se ao Simulador de Decisão Tática deste módulo.",
+            "Inicie a Trilha 01 - Módulo 02 para dominar a mecânica do Mercado Logístico.",
+            "Monitore seu progresso e conquistas de XP no dashboard de performance.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A AtlasGR foca na predição de risco logístico.",
-    "Os 5 valores guiam a conduta e decisões críticas.",
-    "As 5 diretorias funcionam integradas para o cliente final.",
-    "Atitude de Dono significa pró-atividade na prevenção de sinistros.",
+    "A AtlasGR é a vanguarda na predição algorítmica e análise humana de risco logístico.",
+    "Os 5 pilares fundamentais são os filtros absolutos para decisões críticas sob estresse.",
+    "A sinergia entre as 5 diretorias blinda o SLA entregue ao cliente final.",
+    "A Atitude de Dono transforma operadores passivos em analistas preventivos formidáveis.",
   ],
   finalChecklist: [
-    "Compreendo perfeitamente o propósito e os valores da AtlasGR.",
-    "Sei as funções de TI, DHO, Comercial, Relações Institucionais e Operações.",
-    "Entendi o Estudo de Caso de 'Atitude de Dono'.",
+    "Compreendo visceralmente o propósito e o código ético da AtlasGR.",
+    "Domino a função estratégica da TI, DHO, Comercial, R.I. e Operações.",
+    "Internalizei a lição forense do caso 'Atitude de Dono'.",
   ],
   mindMap: {
-    root: "Bem-vindo à AtlasGR",
+    root: "O Universo AtlasGR",
     branches: [
-      { label: "Identidade", items: ["Propósito", "5 Valores"] },
-      { label: "Estrutura", items: ["TI", "DHO", "Operações", "Comercial"] },
-      { label: "Comportamento", items: ["Atitude de Dono", "Estudo de Caso", "Período de Experiência (30/60/90 dias)"] },
+      { label: "Identidade Central", items: ["Propósito", "5 Valores"] },
+      { label: "Arquitetura", items: ["TI", "DHO", "Operações", "Comercial"] },
+      { label: "Performance", items: ["Atitude de Dono", "Estudo de Caso", "Avaliação 30/60/90"] },
     ],
   },
   scenario:
-    "Cenário Prático: Um cliente sugere uma mudança tecnológica que viola nossos princípios de segurança. Com qual área você deve debater internamente antes de responder?",
+    "Cenário Prático: Um cliente VIP exige uma customização que flagrantemente burla protocolos de contingência da apólice. Qual a matriz de escalonamento correta (envolvendo quais áreas) para mitigar o desgaste sem comprometer o risco?",
   diagram: {
-    title: "Diretorias",
+    title: "Sinergia das Diretorias",
     chart: "graph TD\n  AtlasGR --> TI\n  AtlasGR --> DHO\n  AtlasGR --> Operacoes\n  AtlasGR --> Comercial",
   },
 };

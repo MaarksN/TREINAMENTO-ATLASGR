@@ -15,6 +15,9 @@ import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { ImmersiveStory } from "@/components/module/ImmersiveStory";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
+import { ModuleRating } from "@/components/module/ModuleRating";
+import { CertificateActions } from "@/components/module/CertificateActions";
+import { Maximize, Minimize } from "lucide-react";
 import type { ModuleContentFull, ModuleSection, ModuleMeta } from "@/lib/types";
 
 import { AccessibilityToolbar } from "@/components/accessibility/AccessibilityToolbar";
@@ -76,6 +79,7 @@ export function ModulePageClient() {
   const completeModuleQuiz = useOnboardingStore((s) => s.completeModuleQuiz);
   const [showQuiz, setShowQuiz] = useState(false);
   const [screenIndex, setScreenIndex] = useState(0);
+  const [isFocusMode, setIsFocusMode] = useState(false);
 
   const meta = getModuleMeta(params.slug);
   const content = getModuleContent(params.slug);
@@ -139,12 +143,13 @@ export function ModulePageClient() {
   }
 
   return (
-    <div className="atlas-module-content flex min-h-screen flex-col bg-background text-foreground selection:bg-atlas-orange selection:text-white">
-      <SiteHeader />
+    <div className={`atlas-module-content flex min-h-screen flex-col bg-background text-foreground selection:bg-atlas-orange selection:text-white ${isFocusMode ? "" : "pt-0"}`}>
+      {!isFocusMode && <SiteHeader />}
 
       {/* Barra de progresso por tela (não por scroll) + navegação de saída.
           Não é sticky: o SiteHeader já é sticky top-0, e empilhar dois
           elementos sticky no mesmo top-0 faz um cobrir o outro. */}
+      {!isFocusMode && (
       <div className="border-b border-border/50 bg-background">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link href="/trilha" className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-muted transition-colors hover:text-atlas-orange">
@@ -164,34 +169,58 @@ export function ModulePageClient() {
           </span>
         </div>
       </div>
+      )}
 
       {/* Barra de Acessibilidade (Voz, Legendas & LIBRAS) */}
-      <div className="border-b border-border/40 bg-surface-2/40 py-2">
+      <div className="border-b border-border/40 bg-surface-2/40 py-2 print:hidden">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
           <AccessibilityToolbar currentText={getScreenText(screen, meta, content)} />
+          <button
+            onClick={() => setIsFocusMode(!isFocusMode)}
+            className="inline-flex items-center gap-2 rounded-lg bg-surface px-3 py-1.5 text-xs font-semibold text-muted hover:text-atlas-orange transition-colors border border-border/50"
+            title={isFocusMode ? "Sair do Modo Foco" : "Entrar no Modo Foco"}
+          >
+            {isFocusMode ? <Minimize size={14} /> : <Maximize size={14} />}
+            <span className="hidden sm:inline">{isFocusMode ? "Sair do Foco" : "Modo Foco"}</span>
+          </button>
         </div>
       </div>
 
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-10 sm:px-6">
         <motion.div key={screenIndex} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }} className="flex-1">
           {screen.kind === "cover" && (
-            <div className="flex flex-col items-center pt-6 text-center">
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <span className="rounded border border-atlas-orange/50 bg-atlas-orange/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-atlas-orange">
+            <div className="relative flex flex-col items-center justify-center pt-16 pb-12 text-center overflow-hidden rounded-3xl border-2 border-atlas-orange/20 bg-gradient-to-b from-surface via-surface to-atlas-orange/5 shadow-2xl mb-8">
+              <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-5 pointer-events-none" />
+              <div className="absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-atlas-orange/10 blur-[100px] pointer-events-none" />
+              <div className="absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[80px] pointer-events-none" />
+              
+              <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
+                <span className="rounded-full border-2 border-atlas-orange/50 bg-atlas-orange/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-atlas-orange shadow-[0_0_15px_rgba(255,86,24,0.3)]">
                   Módulo {String(meta.number).padStart(2, "0")}
                 </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-muted">{meta.durationMinutes} min</span>
+                <span className="rounded-full border border-border bg-surface-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-muted">
+                  {meta.durationMinutes} min
+                </span>
                 {modProgress?.passed && (
-                  <span className="flex items-center gap-1 rounded border border-emerald-500/50 bg-emerald-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-emerald-400">
-                    <CheckCircle2 size={12} /> Concluído
+                  <span className="flex items-center gap-1.5 rounded-full border-2 border-emerald-500/50 bg-emerald-500/20 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                    <CheckCircle2 size={14} /> Concluído
                   </span>
                 )}
               </div>
-              <h1 className="mt-6 text-balance font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">{content.title}</h1>
-              <p className="mx-auto mt-4 max-w-3xl text-xl leading-relaxed text-muted">{meta.shortDescription}</p>
-              <div className="mt-10 flex items-center gap-2 text-xs font-semibold text-muted">
-                <Compass size={16} className="text-atlas-orange" />
-                Este módulo tem {totalScreens} telas: contexto, objetivos, {content.sections.length} capítulos, diagrama, revisão e simulador.
+              
+              <h1 className="relative z-10 mt-8 max-w-4xl text-balance font-display text-5xl font-black leading-tight tracking-tight md:text-7xl text-gradient-title">
+                {content.title}
+              </h1>
+              
+              <p className="relative z-10 mx-auto mt-6 max-w-3xl text-lg md:text-xl font-medium leading-relaxed text-muted/90">
+                {meta.shortDescription}
+              </p>
+              
+              <div className="relative z-10 mt-12 flex items-center justify-center gap-2.5 rounded-2xl bg-surface/80 backdrop-blur-md px-6 py-3 text-xs font-bold text-foreground border border-atlas-orange/20 shadow-lg">
+                <Compass size={18} className="text-atlas-orange animate-pulse" />
+                <span>
+                  Estrutura: Contexto, Objetivos, {content.sections.length} Capítulos, Diagrama, Revisão e Simulador.
+                </span>
               </div>
             </div>
           )}
@@ -286,20 +315,27 @@ export function ModulePageClient() {
           )}
 
           {screen.kind === "quiz" && (
-            <div className="atlas-content-card mx-auto max-w-3xl text-center">
-              <h2 className="font-display text-2xl font-bold sm:text-3xl">Simulador de Decisão</h2>
-              <p className="mx-auto mb-2 mt-4 max-w-xl text-muted">
-                Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.
-              </p>
+            <div className="atlas-content-card mx-auto max-w-3xl text-center border-2 border-atlas-orange/20 shadow-2xl overflow-hidden relative">
+              <div className="absolute top-0 right-0 h-64 w-64 bg-atlas-orange/10 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute bottom-0 left-0 h-64 w-64 bg-amber-500/10 blur-[80px] rounded-full pointer-events-none" />
+              
+              <div className="relative z-10">
+                <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-atlas-orange to-amber-500 text-white shadow-lg mb-6">
+                  <CheckCircle2 size={32} />
+                </span>
+                <h2 className="font-display text-3xl font-black sm:text-4xl text-gradient-title">Simulador de Decisão</h2>
+                <p className="mx-auto mb-2 mt-4 max-w-xl text-muted font-medium text-lg leading-relaxed">
+                  Comprove que você assimilou os pontos essenciais deste módulo. É necessário atingir 70% de acertos para concluir esta etapa.
+                </p>
 
-              {!showQuiz && (
-                <button
-                  onClick={() => setShowQuiz(true)}
-                  className="relative z-10 mt-8 rounded-lg bg-atlas-orange px-8 py-4 font-bold uppercase tracking-wider text-white shadow-glow transition-all hover:scale-105 hover:bg-atlas-orange-2"
-                >
-                  {modProgress?.passed ? "Refazer Simulação" : "Iniciar Avaliação"}
-                </button>
-              )}
+                {!showQuiz && (
+                  <button
+                    onClick={() => setShowQuiz(true)}
+                    className="relative z-10 mt-8 rounded-xl bg-gradient-to-r from-atlas-orange to-amber-500 px-10 py-5 font-black uppercase tracking-widest text-white shadow-[0_10px_30px_-10px_rgba(255,86,24,0.5)] transition-all hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(255,86,24,0.6)]"
+                  >
+                    {modProgress?.passed ? "Refazer Simulação" : "Iniciar Avaliação"}
+                  </button>
+                )}
               {showQuiz && (
                 <div className="relative z-10 mt-8 text-left">
                   <QuizRunner
@@ -312,15 +348,23 @@ export function ModulePageClient() {
                       }
                     }}
                   />
+                  {modProgress?.passed && (
+                    <div className="mt-12 border-t border-border pt-8 animate-fade-in">
+                      <CertificateActions moduleTitle={content.title} moduleNumber={meta.number} />
+                      <ModuleRating />
+                    </div>
+                  )}
                 </div>
               )}
+            </div>
             </div>
           )}
         </motion.div>
       </main>
 
       {/* Navegação entre telas: sempre visível, fixa na base do conteúdo */}
-      <div className="sticky bottom-0 z-30 border-t border-border/50 bg-background/90 backdrop-blur-xl">
+      {!isFocusMode && (
+      <div className="sticky bottom-0 z-30 border-t border-border/50 bg-background/90 backdrop-blur-xl print:hidden">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           {isFirstScreen ? (
             previousReady ? (
@@ -354,6 +398,7 @@ export function ModulePageClient() {
           )}
         </div>
       </div>
+      )}
     </div>
   );
 }

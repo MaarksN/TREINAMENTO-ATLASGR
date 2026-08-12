@@ -311,6 +311,21 @@ export function ContentBlockView({ block, index = 0 }: { block: ContentBlock; in
         </motion.blockquote>
       );
 
+    case "image":
+      return (
+        <motion.figure
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={viewport}
+          transition={{ ...blockTransition, duration: 0.6 }}
+          className="atlas-image-card"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={block.url} alt={block.alt || block.caption || "Imagem do módulo"} className="w-full h-auto object-cover rounded-2xl" />
+          {block.caption && <figcaption className="atlas-image-caption">{block.caption}</figcaption>}
+        </motion.figure>
+      );
+
     default:
       return null;
   }

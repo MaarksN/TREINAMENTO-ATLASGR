@@ -18,7 +18,8 @@ export type ContentBlock =
   | { type: "case"; title: string; text: string; source: string }
   | { type: "faq"; items: { q: string; a: string }[] }
   | { type: "stat"; items: { value: string; label: string }[] }
-  | { type: "quote"; text: string; author?: string };
+  | { type: "quote"; text: string; author?: string }
+  | { type: "image"; url: string; caption?: string; alt?: string };
 
 export interface ModuleSection {
   id: string;

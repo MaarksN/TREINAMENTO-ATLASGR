@@ -19,205 +19,194 @@ export const module14: ModuleContentFull = {
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Laboratório da Realidade",
+      title: "Introdução: O Laboratório da Realidade Operacional",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Análise investigativa forense de ocorrências logísticas complexas de sinistros solucionados."
+        },
+        {
           type: "text",
-          heading: "A Teoria Encontra o Asfalto",
+          heading: "Onde a Teoria Encontra o Asfalto",
           paragraphs: [
             [
-              "Até aqui, você estudou manuais, diretrizes de IA e regras da Seguradora. Neste módulo, vamos colocar a teoria na sala de autópsia.",
+              "Ao longo de sua imersão, você absorveu fundamentos processuais, a teoria de inteligência artificial de ponta, bem como as apólices rigorosas das Seguradoras. Contudo, teorias perdem o significado se descoladas das feridas de um campo de batalha logístico. Chegou a hora de conduzir as autópsias operacionais reais.",
             ],
             [
-              "Analisaremos o maior case de sucesso financeiro da AtlasGR e a maior tragédia operacional gerada por uma quebra de protocolo, comprovando que o processo não existe para engessar o trabalho, mas para evitar o colapso.",
+              "Mergulharemos em eventos de alto estresse documentados e que figuram nos arquivos da companhia. Identificaremos minuciosamente as intervenções perfeitas que recuperaram bens inestimáveis, mas observaremos — sem julgamentos pessoais e com visão analítica focada — os equívocos catastróficos provenientes de infrações protocolares humanas. Nossas matrizes procedimentais (PGR) existem única e exclusivamente para frear o caos e anular a improvisação.",
             ],
           ],
         },
         {
+          type: "quote",
+          text: "Sucesso contínuo em logística exige menos genialidade improvisada e muito mais resiliência perante protocolos estruturados.",
+          author: "Gerência Executiva de C.I.A."
+        },
+        {
           type: "callout",
           variant: "warning",
-          title: "Mentalidade de Investigador",
+          title: "Perspectiva de Investigador",
           text: [
-            "Não julgue os operadores dos casos passados. A pressão e a engenharia social atuam no cérebro de formas complexas. Seu trabalho é identificar 'em qual minuto do SLA a regra foi quebrada'.",
+            "Não estamos aqui para depreciar os operadores do passado. O esgotamento emocional e táticas engenhosas de manipulação afetam os julgamentos cerebrais severamente. Seu foco deve estar isolado na variável central de cada caso: descubra a fração de segundo em que o protocolo foi corrompido, abalando a rede de segurança corporativa.",
           ],
         },
       ],
     },
     {
       id: "capitulo-1-sucesso",
-      title: "Capítulo 1: O Triunfo Operacional (Carga Viva)",
+      title: "Capítulo 1: Triunfo Operacional — O Case Eletrônicos (R$ 1.5M)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Este é o case matriz de como a integração entre Sistema, Torre e CIA salva fortunas na madrugada.",
+              "Esta ocorrência, estudada internacionalmente, sintetiza perfeitamente a sinergia imbatível entre os sistemas de IA de retaguarda, o tempo de resposta (SLA) agressivo do operador de base, e a eficácia letal da intervenção policial orquestrada pela C.I.A.",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "Cronologia: A Recuperação de Eletrônicos (R$ 1.5M)",
+          title: "A Escalada de Eventos: Carga Viva",
           items: [
-            { label: "03:15 (O Alerta)", text: "Connect acusa Perda do Rastreador Principal na Fernão Dias. O Operador age no minuto 1." },
-            { label: "03:17 (A Ação)", text: "Macro de bloqueio e sirene enviados sem sucesso. Celular desligado. Sem hesitar e sem tentar ligar infinitamente, a CIA é acionada." },
-            { label: "03:22 (A Inteligência)", text: "A CIA isola o sinal da Isca Móvel (que estava viva). A posição apontava 5km fora da rodovia, em direção a um galpão." },
-            { label: "03:30 (O Resgate)", text: "CIA aciona viaturas da PM local com a latitude/longitude precisa da Isca. A Polícia entra no galpão, liberta o motorista ileso e recupera 100% dos celulares." },
+            { label: "03:15 (O Estopim)", text: "O sistema Connect indica, via satélite, a interrupção bruta de telemetria no Rastreador Primário ao longo do eixo da Rodovia Fernão Dias. Em incríveis 60 segundos, o operador valida e isola o evento." },
+            { label: "03:17 (Contenção Lógica)", text: "O envio de Comandos Macro defensivos resulta negativo. O telefone celular de apoio está hermeticamente desligado. Em respeito ao SLA restrito e eliminando qualquer tentativa frustrante de contato passivo, o operador procede com o escalonamento à C.I.A." },
+            { label: "03:22 (A Geoinformação)", text: "Especialistas da Inteligência ativam a transmissão oculta da 'Isca Móvel' que os criminosos não detectaram. O ping satelital evidencia movimentação hostil, fixando a coordenada num raio de 5 quilômetros rumo a um galpão clandestino." },
+            { label: "03:30 (Desfecho Letal)", text: "Forças Táticas Militares convergem na latitude e longitude apontadas milimetricamente pelos monitores da AtlasGR. Interceptação completa, neutralização da quadrilha, resgate íntegro e sem danos do condutor, e salvaguarda absoluta dos 100% de ativos tecnológicos." },
           ],
+        },
+        {
+          type: "stat",
+          items: [
+            { value: "R$ 1.5M", label: "Carga 100% recuperada com zero avaria comercial." },
+            { value: "15 min", label: "Tempo transcorrido da perda do rastreador principal à recuperação da carga pela PM." }
+          ]
         },
       ],
     },
     {
       id: "capitulo-2-falha",
-      title: "Capítulo 2: O Fracasso Humano (O Enforcamento)",
+      title: "Capítulo 2: Ruína Operacional — A Precarização do Protocolo (R$ 800k)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A máquina agiu certo. A IA funcionou. Mas a empatia cega do humano quebrou a defesa. O caso da carga de defensivos agrícolas (R$ 800 mil) é o nosso alerta máximo.",
+              "A infraestrutura tecnológica atuou exatamente como modelada, porém uma fratura emocional na execução derrubou o pilar. O caso infame de uma rotação complexa portando Defensivos Agrícolas (R$ 800 mil) converteu-se em pauta nacional de reestruturação de PGR e o nosso mais triste caso de 'Empatia Operacional'.",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "Cronologia: O Preço da Confiança (R$ 800k)",
+          title: "A Crônica Anunciada de Prejuízos",
           items: [
-            { label: "14:00 (O Alerta)", text: "Connect acusa Parada Indevida (Alto Risco)." },
-            { label: "14:15 (Furo de SLA)", text: "Operador só inicia tratativa 15 min depois, já com o SLA primário estourado." },
-            { label: "14:18 (O Erro Fatal)", text: "Operador liga para o motorista, que diz: 'Parei para verificar a lona, a chuva tá forte'. O Operador acredita na voz calma e, COM PREGUIÇA, não pede a contra-senha. Dá baixa no alerta." },
-            { label: "17:00 (O Colapso)", text: "O cliente liga em desespero. A carga sumiu. O motorista estava refém com arma na cabeça na ligação das 14:18." },
+            { label: "14:00 (Risco Iminente)", text: "Acionamento contundente no Connect: Anomalia caracterizando 'Parada Indevida de Alto Risco'." },
+            { label: "14:15 (A Quebra do SLA)", text: "Atribuição extremamente demorada: O responsável ignora as normativas primárias e encosta o alerta num ciclo latente, excedendo 15 minutos preciosos de inação (estrangulamento temporal completo)." },
+            { label: "14:18 (O Erro Definitivo)", text: "Inicia-se a tratativa por celular: 'Parei no acostamento para esticar as amarras e ajeitar a lona no frio'. A voz audível parecia mansa. Pautando-se nessa calma dissimulada, o operador — incorrendo no pecado capital da preguiça sistêmica — ABDIcou da requisição formal de Contra-Senha, registrando baixa definitiva no evento." },
+            { label: "17:00 (Destruição em Curso)", text: "Os gestores embarcadores declaram extravio crônico via contato emergencial com os diretores AtlasGR. A verdade emerge: a pretensa chamada serena contava com o cano de uma pistola na nuca do transportador refém." },
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "A Conclusão Forense",
+          title: "Veredito Forense Desastroso",
           text: [
-            "O operador 'burlou' o processo. Deixou a pressa sobrepor a segurança. A Seguradora negou o pagamento por culpa exclusiva do mau gerenciamento de risco da Torre.",
+            "A apuração sentenciou as ações humanas. A negligência flagrante com a regra base (Contra-senha ausente) suprimiu inteiramente a obrigação da Seguradora. Além de amargar uma gigantesca perda por falha puramente interna, restaram responsabilidades civis, abalo gigantesco do prestígio da Torre e danos colaterais profundos à vida do motorista sequestrado.",
           ],
         },
       ],
     },
     {
       id: "capitulo-3-casos-macro",
-      title: "Capítulo 3: Os Grandes Cases Comerciais",
+      title: "Capítulo 3: Consolidação dos Argumentos Comerciais de Prevenção",
       blocks: [
         {
           type: "comparison",
-          title: "Prevenção vs Eficiência",
+          title: "Resultados que Vendem AtlasGR: Mitigação Exponencial",
           left: {
-            label: "Case Combustíveis (Roubo Zero)",
+            label: "Operação Distribuição Combustíveis",
             points: [
-              "Problema Original: 40 roubos e desvios ao ano (Prejuízos constantes).",
-              "Solução: Implantação massiva do Atlas Profile + Bloqueios Agressivos e regras restritas.",
-              "Resultado Final: ZERO roubos por 24 meses seguidos. Economia contábil de R$ 95 Milhões.",
+              "Passivo Constante: Média amarga de 40 investidas de furto/roubos totais no ciclo anterior.",
+              "Ação Tecnológica Defensiva: Instalação sistemática do portal Atlas Profile e execução de travas agressivas na engrenagem remota (motor cortado sob suspeita).",
+              "Benefício Materializado: Exatos ZERO desvios contábeis registrados, chancelando um colossal superávit anual na faixa de R$ 95 Milhões ao CEO parceiro.",
             ],
           },
           right: {
-            label: "Case Sucos (Otimização Extrema)",
+            label: "Operação Bebidas (Gigante do Setor de Sucos)",
             points: [
-              "Problema Original: Zero roubos, mas os caminhões passavam dias em filas nas fazendas.",
-              "Solução: Cercas Virtuais do Connect ligadas ao Atlas Analytics para medição de pátio.",
-              "Resultado Final: Redução de 26% no tempo ocioso. Aumento bruto na margem de lucro da transportadora.",
+              "Ponto de atrito: Pouquíssimos índices de criminalidade atípica, porém um gargalo dramático de frotas acampadas à margem de carregamento logístico (OPEX derretido em fila de ociosidade).",
+              "Ação Tecnológica Preventiva: Criação de polígonos inteligentes de geofencing alimentando os bancos de dados complexos do Atlas Analytics.",
+              "Benefício Materializado: Eliminação formidável de 26% de improdutividade contínua nas operações de carga/descarga, revitalizando abruptamente a rentabilidade do frete."
             ],
           },
-        },
-      ],
-    },
-    {
-      id: "estudo-de-caso",
-      title: "Síntese Prática",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Todos os casos acima possuem o mesmo fio condutor: O respeito à regra gera lucro e segurança; a quebra da regra (seja pela dor, pela preguiça ou pela desatenção) gera caos.",
-            ],
-          ],
         },
       ],
     },
     {
       id: "capitulo-4-resgate-farma",
-      title: "Capítulo 4: O Resgate Relâmpago (Carga Farma)",
+      title: "Capítulo 4: Recuperação Instantânea (Carga Farma)",
       blocks: [
         {
           type: "case",
-          title: "O Caso da Carga Farma: Recuperação em 38 Minutos",
-          text:
-            "Uma carreta com componentes eletrônicos avaliados em R$ 2,3 milhões saiu da rota programada na BR-381. O Connect disparou o alerta de desvio de trajeto no mesmo minuto. Em vez de confiar apenas na voz do motorista ao telefone — a mesma armadilha que custou R$ 800 mil no Capítulo 2 —, o operador acionou a checagem por vídeo (DMS) em tempo real e confirmou dois indivíduos não identificados na cabine. A CIA assumiu a ocorrência, ativou o bloqueio progressivo do motor (que reduz a velocidade sem travar o veículo de forma abrupta, preservando a integridade física do motorista) e compartilhou a geolocalização exata com a Polícia Rodoviária. A carga foi interceptada intacta antes de qualquer transferência para outro veículo.",
-          source: "Arquivo Confidencial: Auditorias Forenses de Sinistros (2020-2025)",
-        },
-        {
-          type: "timeline",
-          title: "Cronologia: Do Desvio à Recuperação Total",
-          items: [
-            { label: "09:41 (O Alerta)", text: "Connect acusa desvio de rota fora do corredor logístico autorizado no Atlas Profile." },
-            { label: "09:43 (A Verificação)", text: "Em vez de ligar e confiar na voz, o operador ativa o DMS e visualiza dois ocupantes estranhos na cabine. Contra-senha nem chega a ser solicitada: a evidência visual já basta." },
-            { label: "09:47 (A Ação)", text: "CIA assume a ocorrência e aciona o bloqueio progressivo do motor via Atlas Connect, evitando reação violenta dos criminosos." },
-            { label: "10:05 (A Interceptação)", text: "Coordenadas em tempo real são repassadas à Polícia Rodoviária. Veículo é abordado antes de alcançar o ponto de troca de carga." },
-            { label: "10:19 (O Fechamento)", text: "Motorista recuperado ileso, carga 100% intacta. Ocorrência encerrada sem acionamento de sinistro junto à Seguradora." },
-          ],
+          title: "Eletrônicos e Medicamentos em 38 Minutos",
+          text: "Um semirreboque transportando placas de telecomunicações de altíssimo agregado (R$ 2.3 Milhões) distanciou-se do perímetro virtual mapeado no eixo da BR-381. Em resposta, o algoritmo Atlas Connect fulminou a plataforma do Operador Padrão com o selo emergencial de 'Evidente Abandono de Trajeto Permitido'. Recusando a falha ingênua exposta no Capítulo 2 (ligação vazia e sem apelo visual), o operador prontamente conectou-se ao sistema interligado de Vídeo-Monitoramento e DMS ao vivo da cabine.\n\nA matriz constatou a presença obscura de dois suspeitos. Eximindo-se da fútil etapa de Contra-senha (a imagem era incriminatória por si só), o protocolo C.I.A e PM local operaram a redução mecânica progressiva dos eixos do caminhão remotamente via satélite — garantindo que a frenagem não desaguasse num acidente e blindando o sequestrado. Resgate pleno, integridade resguardada antes que as rodas ultrapassassem 20 km de distância do evento matriz.",
+          source: "Auditorias Forenses - Incidentes Isolados (Volume V)",
         },
         {
           type: "stat",
           items: [
-            { value: "38 min", label: "Do alerta à recuperação total" },
-            { value: "100%", label: "Da carga entregue sem avaria" },
-            { value: "R$ 2,3 mi", label: "Valor da mercadoria preservado" },
-            { value: "0", label: "Sinistros acionados junto à Seguradora" },
-          ],
-        },
-        {
-          type: "callout",
-          variant: "success",
-          title: "Os Três Fatores que Mudaram o Resultado",
-          text: [
-            "Verificação por vídeo (DMS) em vez de confiança cega na voz do motorista, bloqueio progressivo (segurança física antes de tudo) e compartilhamento imediato de geolocalização com a força policial. Nenhum herói isolado: um protocolo seguido à risca, do primeiro ao último minuto.",
-          ],
+            { value: "38 min", label: "Contagem regressiva total até fechamento de contenção" },
+            { value: "R$ 2.3M", label: "Capital retido sem disparo das alavancas da Seguradora" }
+          ]
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
+      title: "Resumo Conclusivo",
       blocks: [
         {
+          type: "text",
+          paragraphs: [
+            [
+              "Todos os eventos narrados gravitam sobre um fato: a inflexibilidade com o Protocolo assegura vitórias corporativas sólidas e defende capitais bilionários; as rachaduras na vigilância (compaixão impensada e desdém burocrático) incitam o desastre.",
+            ],
+          ],
+        },
+        {
           type: "checklist",
-          title: "O Penúltimo Passo",
+          title: "Encerramento e Trânsito",
           items: [
-            "Falta pouco. Reflita sobre o erro da 'falta de contra-senha'. Prometa a si mesmo que isso não ocorrerá no seu turno.",
-            "Acesse o último módulo da Trilha. A Preparação Final para a Prova de Certificação.",
+            "Cristalize na memória os erros do fracasso abordado e assuma o compromisso de repulsa total à prática criminosa da 'Enforcada' sistêmica.",
+            "Direcione-se para a consagração acadêmica na AtlasGR: o rigoroso e conclusivo bloco focado nos simulados em Preparação Final.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A precisão do SLA (agir em minutos) foi a diferença vital para recuperar 1.5M em eletrônicos usando a Isca Móvel.",
-    "A empatia sem método e a 'preguiça' de pedir contra-senha causaram a perda de 800k de defensivos.",
-    "Nenhum operador pode assumir o risco da intuição contrária à tela do Connect.",
-    "O discurso comercial real é balizado pelos cases de economia de R$ 95M (contra roubo) e -26% de tempo (eficiência).",
+    "A aplicação milimétrica dos SLAs (reação de poucos minutos) ditou inteiramente a salvação do patrimônio tecnológico tracionado e valeu-se soberanamente do acionamento de inteligência tática suplementar (Isca Móvel).",
+    "Viés de empatia falho gerou ruína logística avassaladora de 800 mil por subversão no recolhimento da Contra-Senha legal.",
+    "Decisões de resgate que ignoram e suplantam o Motor de Regras e evidências em vídeo são ações indiscutivelmente inaceitáveis.",
+    "Redução crônica em acidentes passivos economizou margens superiores de noventa milhões anuais em apólices comerciais com foco macro (Combustível).",
   ],
   finalChecklist: [
-    "Sei a causa-raiz do fracasso no evento de roubo de defensivos (falta de contra-senha e SLA).",
-    "Compreendo o papel da Isca e da CIA na recuperação tática.",
-    "Sei como argumentar valor baseado nos cases macro (Combustível e Sucos).",
+    "Categorizo exatamente por que a quebra deliberada de Contra-Senha causou o repúdio securitário da carga.",
+    "Desenvolvi fluência e familiaridade com a aplicabilidade das Câmeras (DMS) e Rastreadores Ocultos nas tratativas táticas diárias.",
+    "Assimilei a retórica exata aplicável nos robustos portfólios comerciais (Economia indireta de Ociosidade).",
   ],
   mindMap: {
-    root: "Laboratório Forense",
+    root: "Evolução Crítica: Lab Forense",
     branches: [
-      { label: "O Triunfo", items: ["SLA Rápido", "Acionamento da CIA", "Uso da Isca Móvel", "Verificação por Vídeo (DMS) e Bloqueio Progressivo"] },
-      { label: "O Fracasso", items: ["Enforcar Alerta", "Acreditar na Voz", "Omitir Contra-Senha"] },
-      { label: "O Valor", items: ["95 Milhões (Combustível)", "Redução Pátio (Sucos)"] },
+      { label: "Pilares do Êxito", items: ["Adoção Feroz do SLA", "Interseção com C.I.A", "Geofence e Vídeo DMS"] },
+      { label: "Bases da Ruína", items: ["Estrangulamento do Alarme", "Anulação Auditiva", "Ignorância Sistêmica"] },
+      { label: "Alavancas da Alta Direção", items: ["Otimização de Horários Logísticos", "Redução Securitária Drástica"] },
     ],
   },
   scenario:
-    "Cenário Prático: A carreta para fora de hora. Você liga, o motorista passa a contra-senha CORRETA, mas você ouve tiros ao fundo da ligação. A contra-senha diz que está tudo bem, o ambiente diz o contrário. Você dá baixa ou aciona a CIA por Anomalia Externa?",
+    "Dinâmica Crítica: Você contacta uma carreta recém estagnada em território sensível. A resposta sonora que emite via fonia pronuncia de imediato a Contra-Senha irretocável para o dia, no entanto um estampido abafado cruza em decibéis o áudio. O protocolo indica encerramento diante da validade vocal da senha. Como atuar sobrepondo regras vis-à-vis o instinto de preservação logístico?",
   diagram: {
-    title: "O Peso da Decisão",
-    chart: "graph TD\n  Inicio[Alerta Crítico] --> Decisao{Decisão do Operador}\n  Decisao -- Foco no PGR --> A[Valida Contra-Senha]\n  A --> Sucesso[Recupera Carga / Garante Seguro]\n  Decisao -- Empatia Cega / Preguiça --> B[Ignora Contra-Senha]\n  B --> Falha[Roubo com Culpa Operacional / Seguro Negado]",
+    title: "O Pêndulo Forense: Ruína ou Glória",
+    chart: "graph TD\n  A[Condição Inadequada Exposta na Base] --> B{Operador Acata ao PGR Estrito?}\n  B -- Postura Técnica: Validação Pura --> C[Triunfo Estrutural / Furo Criminal Bloqueado]\n  B -- Displicência: Aceitação Vaga e Submissão --> D[Fratura Ampla, Risco Operacional Aberto, e Extravio Completo das Garantias]",
   },
 };

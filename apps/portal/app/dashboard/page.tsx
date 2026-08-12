@@ -11,6 +11,7 @@ import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { moduleMetas, readyModuleSlugs } from "@/content/modules";
 import { levelProgress } from "@/lib/gamification";
+import { DailyQuests } from "@/components/gamification/daily-quests";
 
 // Demo/seed apenas para ilustrar como o ranking ficaria com uma base maior de
 // colaboradores (não há backend nesta fase do protótipo). O usuário real é
@@ -231,7 +232,7 @@ export default function DashboardPage() {
                     >
                       {isYou && <div className="absolute left-0 top-0 bottom-0 w-1 bg-atlas-orange" />}
                       <div className={`flex items-center gap-3 ${isYou ? "pl-2" : ""}`}>
-                        <span className={`font-display font-bold ${isYou ? "text-atlas-orange" : "text-muted"}`}>#{entry.rank}</span>
+                         <span className={`font-display font-bold ${isYou ? "text-atlas-orange" : "text-muted"}`}>#{entry.rank}</span>
                         <span className="text-sm font-bold text-foreground">{entry.name}</span>
                       </div>
                       <span className={`text-xs font-bold px-2 py-1 rounded ${isYou ? "text-atlas-orange bg-atlas-orange/20" : "text-muted bg-surface"}`}>{entry.xp} XP</span>
@@ -253,13 +254,11 @@ export default function DashboardPage() {
                 )}
               </div>
               <p className="mt-3 text-center text-[11px] text-muted">Ranking com colegas de demonstração — apenas você é uma conta real.</p>
-              <button
-                onClick={() => setShowFullLeaderboard((v) => !v)}
-                className="w-full mt-2 text-xs font-bold text-muted uppercase tracking-widest hover:text-foreground transition-colors"
-              >
-                {showFullLeaderboard ? "Ver menos" : "Ver ranking completo"}
-              </button>
+              <Link href="/ranking" className="block w-full mt-4 text-center text-xs font-bold text-atlas-orange uppercase tracking-widest hover:text-atlas-orange-2 transition-colors">
+                Ver ranking completo
+              </Link>
             </PremiumCard>
+            <DailyQuests />
           </div>
         </div>
       </main>

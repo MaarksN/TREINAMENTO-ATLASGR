@@ -8,41 +8,46 @@ export const module03: ModuleContentFull = {
   sources: [
     "Outline consolidado (content/modules/meta.ts)",
     "Apólice de Seguro de Transporte e RCTR-C",
-    "Manual de Estruturação de PGR",
-    "Protocolos de CIA - Central de Inteligência Atlas",
+    "Manual de Estruturação Avançada de PGR",
+    "Protocolos Táticos - Central de Inteligência Atlas (CIA)",
   ],
   objectives: [
-    "Definir tecnicamente Gerenciamento de Risco, Apólice Securitária e PGR.",
-    "Diferenciar de forma jurídica as categorias de sinistro: Roubo, Furto, Sinistro e Avaria.",
-    "Descrever o papel de 'Força Tática' da CIA em eventos críticos.",
-    "Entender a anatomia de um PGR e como ele parametriza as automações da Torre de Controle.",
-    "Detalhar o fluxo operacional completo de um sinistro, da comunicação formal à seguradora até o pagamento da indenização, incluindo o dossiê probatório exigido.",
+    "Definir tecnicamente a arquitetura do Gerenciamento de Risco, a mecânica da Apólice Securitária e a parametrização do PGR.",
+    "Diferenciar com rigor jurídico as tipologias de sinistro: Roubo, Furto Simples, Furto Qualificado, Avaria e Apropriação Indébita.",
+    "Descrever o escopo de atuação de Força Tática da CIA em incidentes de crise.",
+    "Dissecar a anatomia de um PGR e como ele comanda os algoritmos de automação na Torre de Controle.",
+    "Detalhar o workflow operacional de um sinistro, da notificação preliminar à liquidação do sinistro, englobando a forense e o dossiê probatório.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Coração do Negócio",
+      title: "Introdução: O Core Operacional e Tático",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
+        },
+        {
           type: "text",
-          heading: "A Guerra Contra a Perda",
+          heading: "A Guerra Tática Contra as Perdas",
           paragraphs: [
             [
-              "O Brasil perde bilhões anualmente com roubos de carga e acidentes. O Gerenciamento de Risco (GR) não é um 'adicional de segurança', é a espinha dorsal que mantém o ecossistema logístico respirando.",
+              "A economia nacional sangra bilhões anualmente em decorrência de sinistros de cargas. O Gerenciamento de Risco (GR) transcende a figura de um 'bônus de segurança'; ele é o framework estrutural que estabiliza todo o ecossistema logístico.",
             ],
             [
-              "Sem GR forte, as seguradoras não emitem apólices. Sem apólice, o embarcador não contrata a transportadora. Neste módulo, você vai entender as engrenagens desse sistema: como as seguradoras ditam as regras, como o PGR as traduz, e como a nossa ",
+              "Na ausência de um GR impenetrável, o mercado securitário colapsa. Sem a proteção de apólices, os embarcadores retraem e o fluxo logístico trava. Este módulo desvenda as engrenagens deste ecossistema: o compliance exigido pelas seguradoras, a tradução tática via PGR, e a atuação da nossa ",
               { term: "cia" },
-              " entra em campo como a proteção final.",
+              " como o anel de defesa definitivo.",
             ],
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Desafio de Aprendizagem",
+          title: "Paradigma de Aprendizagem",
           text: [
-            "O termo 'PGR' vai aparecer dezenas de vezes. Toda vez que lê-lo, traduza na sua mente para: 'O Livro de Regras do Jogo daquele caminhão específico, ditado por quem paga o prejuízo'.",
+            "A sigla 'PGR' permeará sua jornada profissional. Considere o PGR como a 'Constituição' inviolável de cada comboio, ditada pela entidade que provê a liquidez financeira do risco (a Seguradora).",
           ],
         },
       ],
@@ -53,21 +58,21 @@ export const module03: ModuleContentFull = {
       blocks: [
         {
           type: "comparison",
-          title: "Quem Paga vs Quem Previne",
+          title: "Equilíbrio de Forças: Cobertura vs. Prevenção",
           left: {
             label: "Apólice de Seguro",
             points: [
-              "É o contrato financeiro assinado entre Transportadora/Embarcador e a Seguradora.",
-              "Diz QUANTO vai ser pago em caso de perda total ou parcial.",
-              "Possui 'Condicionantes': Só paga se o PGR for cumprido à risca.",
+              "O instrumento jurídico de lastro financeiro pactuado entre as partes e a Seguradora.",
+              "Regula o LMI (Limite Máximo de Indenização) para perdas totais ou parciais.",
+              "Alavanca-se em 'Condicionantes': a liquidação do sinistro está inexoravelmente ligada ao cumprimento do PGR.",
             ],
           },
           right: {
             label: "PGR (Plano de Gerenciamento de Risco)",
             points: [
-              "É o manual tático e operacional.",
-              "Diz O QUE TEM QUE SER FEITO (tecnologias, paradas permitidas, horários) para evitar a perda.",
-              "Gerido e executado pela AtlasGR.",
+              "O playbook tático-operacional da operação logística.",
+              "Estabelece os vetores obrigatórios (tecnologias embarcadas, rotas homologadas, horários de trânsito) para mitigação preemptiva.",
+              "Implementado, monitorado e auditado incansavelmente pela AtlasGR.",
             ],
           },
         },
@@ -75,9 +80,9 @@ export const module03: ModuleContentFull = {
           type: "text",
           paragraphs: [
             [
-              "O papel da AtlasGR não é ser a seguradora, e sim ser a auditora imparcial e executora rigorosa. Nós garantimos que o caminhão não quebre o ",
+              "O mandato da AtlasGR não é assumir o papel financeiro da seguradora, mas atuar como o braço forte e imparcial que assegura o cumprimento do ",
               { term: "pgr" },
-              ", garantindo assim a cobertura da Apólice.",
+              ". Nossa eficiência garante a higidez e o acatamento da apólice no cenário mais crítico.",
             ],
           ],
         },
@@ -85,147 +90,152 @@ export const module03: ModuleContentFull = {
     },
     {
       id: "capitulo-2-sinistros",
-      title: "Capítulo 2: Anatomia do Sinistro",
+      title: "Capítulo 2: Tipologia Forense do Sinistro",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Um ",
+              "Denominamos ",
               { term: "sinistro" },
-              " é a materialização do risco. O mercado exige precisão absoluta nas nomenclaturas, pois elas definem as cláusulas de indenização.",
+              " a concretização do risco. A precisão técnica na classificação do evento é imperativa, pois a taxonomia define a elegibilidade para as cláusulas de indenização.",
             ],
           ],
         },
         {
-          type: "checklist",
-          title: "Glossário de Ocorrências",
+          type: "stat",
           items: [
-            "Roubo: Subtração da carga mediante violência ou grave ameaça (assalto armado, retenção de motorista).",
-            "Furto Simples: Subtração da carga sem uso de violência (carga levada enquanto o motorista tomava banho).",
-            "Furto Qualificado: Subtração sem violência contra a pessoa, mas com quebra de barreira (ex: arrombamento de baú).",
-            "Avaria: Dano físico à carga (tombamento do caminhão que quebrou os produtos).",
-            "Apropriação Indébita: Quando o próprio motorista contratado some com a carga.",
+            { value: "98%", label: "dos sinistros de sucesso possuem evidências documentais inquestionáveis coletadas nos primeiros minutos da crise." }
+          ]
+        },
+        {
+          type: "checklist",
+          title: "Glossário Avançado de Ocorrências",
+          items: [
+            "Roubo: Subtração do ativo mediante grave ameaça ou violência (abordagem armada, sequestro-relâmpago).",
+            "Furto Simples: Subtração oportunista sem violência física ou rompimento de barreira.",
+            "Furto Qualificado: Subtração sem ataque direto à pessoa, mas com quebra de obstáculos físicos (arrombamentos estruturais).",
+            "Avaria: Degradação física ou térmica da mercadoria devido a incidentes operacionais.",
+            "Apropriação Indébita: Fraude interna onde o condutor responsável se apropria deliberadamente da carga.",
           ],
         },
         {
           type: "callout",
           variant: "info",
-          title: "A Importância Jurídica",
+          title: "O Peso da Caneta",
           text: [
-            "Escrever 'Roubo' quando foi um 'Furto Simples' pode caracterizar fraude securitária. Use termos neutros como 'Suspeita' ou 'Ocorrência' nos relatórios da Torre até que o Boletim de Ocorrência (BO) policial tipifique o crime.",
+            "Rotular equivocadamente um 'Furto Simples' como 'Roubo' pode induzir fraude securitária. Adote nomenclaturas estritamente neutras ('Suspeita' ou 'Alerta Tático') nos relatórios preliminares até a confirmação cabal do Boletim de Ocorrência (BO).",
           ],
         },
       ],
     },
     {
       id: "capitulo-3-cia",
-      title: "Capítulo 3: A CIA e a Intervenção de Crise",
+      title: "Capítulo 3: A CIA e o Gerenciamento Tático de Crise",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A Torre de Controle faz a prevenção primária. Mas quando a prevenção falha — um botão de pânico é apertado, ou o sinal de satélite é derrubado na Dutra — a ocorrência é escalonada em segundos para a Central de Inteligência Atlas (CIA).",
+              "Enquanto a Torre de Controle opera na prevenção primária e mitigação contínua, a Central de Inteligência Atlas (CIA) entra em ação nas rupturas críticas. Se a barreira preventiva for rompida (botão de pânico ou supressão de sinal), a CIA assume o comando.",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "Cronologia de um Escalonamento",
+          title: "Doutrina de Escalonamento (Time-to-React)",
           items: [
-            { label: "Minuto 0", text: "Alerta Nível 1: Caminhão de eletrônicos perde sinal em área vermelha." },
-            { label: "Minuto 2", text: "Torre aciona bloqueio remoto e tenta contato com o motorista e as iscas móveis." },
-            { label: "Minuto 5", text: "Sem contato, com desvio confirmado pela isca. Torre aciona a CIA imediatamente." },
-            { label: "Minuto 6", text: "A CIA assume: Aciona a Pronta Resposta armada, contata o 190 da região com as coordenadas precisas da isca e informa o comitê de crise do cliente." },
+            { label: "Minuto 0", text: "Alerta Crítico: Perda abrupta de telemetria em vetor vermelho." },
+            { label: "Minuto 2", text: "Torre executa protocolos de bloqueio remoto e varredura de contingência (tentativas de comunicação multiprotocolo)." },
+            { label: "Minuto 5", text: "Esgotamento das contingências. Confirmação de desvio pela telemetria reserva. Escalonamento imediato para a CIA." },
+            { label: "Minuto 6", text: "A CIA toma o controle operacional: Dispatch de Pronta Resposta armada, triangulação com o COPOM/190 e acionamento do comitê executivo de crise do embarcador." },
           ],
         },
       ],
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: A Falha de Enquadramento",
+      title: "Case de Auditoria: A Acurácia que Vale Milhões",
       blocks: [
         {
           type: "case",
-          title: "A Diferença de 1 Milhão de Reais",
-          text: "Um cliente sofreu a perda total de uma carga de defensivos agrícolas. No painel do Atlas Connect, o operador marcou o evento como 'Furto Qualificado' porque o baú estava arrombado, mas não havia sinal do motorista. A apólice do cliente cobria Roubo, mas tinha exclusão para Furto em postos não credenciados. A Seguradora negou o pagamento baseada no apontamento primário. Após investigação da CIA e depoimento do motorista na delegacia, provou-se que o motorista foi rendido com arma de fogo no pátio, configurando Roubo. A seguradora pagou o prêmio, mas a lição ficou: Nomenclatura no calor do momento requer neutralidade.",
-          source: "Arquivo de Auditoria Forense AtlasGR",
+          title: "A Classificação Precipitada e o Risco de Retenção",
+          text: "Relatório de Incidente (2022): Uma perda total de defensivos agrícolas foi registrada preliminarmente na Torre como 'Furto Qualificado' por um operador iniciante (baú arrombado sem motorista à vista). A apólice, no entanto, continha uma cláusula restritiva negando cobertura para furtos em pontos não homologados. A Seguradora declinou a indenização baseada na tipificação primária. Foi necessária uma investigação exaustiva da CIA, recuperando testemunhos de que o condutor fora abordado sob mira de arma de fogo e imobilizado à distância, reclassificando o evento para 'Roubo'. A indenização (R$ 1 Milhão) foi paga, mas evidenciou que a sobriedade descritiva nos primeiros minutos é tão crítica quanto a própria contenção do evento.",
+          source: "Arquivos de Auditoria Operacional AtlasGR"
         },
       ],
     },
     {
       id: "capitulo-4-fluxo-sinistro",
-      title: "Capítulo 4: Do Aviso à Indenização — O Fluxo Completo do Sinistro",
+      title: "Capítulo 4: O Workflow de Regulação Securitária",
       blocks: [
         {
           type: "text",
-          heading: "A Burocracia que Vira Dinheiro",
+          heading: "Conversão de Evidências em Liquidez",
           paragraphs: [
             [
-              "Depois que a poeira baixa — a carga foi recuperada, parcialmente perdida ou totalmente avariada — começa a segunda batalha: transformar um evento caótico em um dossiê técnico que a seguradora não consiga contestar. Essa etapa é conduzida pela Central, não pela CIA.",
+              "Pós-evento — após a contenção ou perda consolidada — a Central (não a CIA) inicia uma complexa engrenagem burocrática para materializar as evidências do ocorrido em um dossiê forense inquestionável, garantindo a liquidação por parte da seguradora.",
             ],
             [
-              "Cada dia de atraso na comunicação ou cada documento faltante é munição para a seguradora negar ou reduzir o pagamento. A regra de ouro é simples: sem evidência formal, o ",
+              "Lembre-se: no ambiente securitário, sem evidência robusta (timestamp, logs auditáveis), o ",
               { term: "sinistro" },
-              " não existe para fins de indenização — não importa o quão óbvio ele tenha sido para quem viveu o evento.",
+              " virtualmente inexistiu aos olhos do regulador. Cada delay ou falha documental potencializa a recusa do LMI.",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "Linha do Tempo da Regulação de Sinistro",
+          title: "SLA de Regulação de Sinistro",
           items: [
-            { label: "Dia 0 (até 24h)", text: "A Central formaliza o Aviso de Sinistro (AVS) por escrito à seguradora e ao corretor, abrindo oficialmente o processo de regulação." },
-            { label: "Dia 0 a 2", text: "Montagem do dossiê inicial: a Central reúne rastreamento, boletim de ocorrência preliminar, notas fiscais e CT-e/MDF-e da carga." },
-            { label: "Dia 3 a 10", text: "A seguradora nomeia o regulador de sinistro (perito independente), que cruza o dossiê com as cláusulas da apólice e o cumprimento do PGR." },
-            { label: "Dia 10 a 20", text: "Vistoria física do veículo e/ou da carga remanescente, quando aplicável, e eventual pedido de complementação documental." },
-            { label: "Dia 20 a 30", text: "Emissão do parecer de regulação: aprovação integral, pagamento parcial (respeitando LMI e sublimites) ou recusa fundamentada." },
-            { label: "Até Dia 30 (prazo SUSEP)", text: "Com o dossiê completo entregue, a seguradora deve efetuar o pagamento da indenização ao segurado dentro do prazo regulamentar, ou apresentar recusa formal por escrito." },
+            { label: "Dia 0 (até 24h)", text: "Formalização do Aviso de Sinistro (AVS) à Seguradora e corretor." },
+            { label: "Dia 0 a 2", text: "Consolidação inicial do dossiê: extração de rastros de telemetria, BO preliminar e documentação fiscal do ativo (NF, CT-e, MDF-e)." },
+            { label: "Dia 3 a 10", text: "Atuação do Regulador de Sinistro: o perito valida a estrita aderência do evento e das ações tomadas contra as regras do PGR." },
+            { label: "Dia 10 a 20", text: "Inspeção física do equipamento e salvados (quando aplicável); requerimento de documentos adicionais." },
+            { label: "Dia 20 a 30", text: "Emissão do parecer conclusivo: liquidação total, parcial ou negativa formalmente justificada." },
+            { label: "Até Dia 30 (SLA SUSEP)", text: "Completado o dossiê probatório, a Seguradora procede com a indenização regulamentar ou emissão de recusa legal." },
           ],
         },
         {
           type: "checklist",
-          title: "Dossiê Mínimo de Sinistro (o que a Central precisa reunir)",
+          title: "O Dossiê Forense Mínimo Viável",
           items: [
-            "Apólice vigente e o PGR assinado correspondente ao cliente/rota.",
-            "Boletim de Ocorrência (BO) registrado na delegacia com a tipificação correta.",
-            "CT-e e MDF-e da carga sinistrada.",
-            "Nota fiscal da mercadoria transportada.",
-            "Relatório de rastreamento (trilha de GPS e eventos) extraído do Atlas Connect.",
-            "Laudo de vistoria/perícia técnica, quando houver avaria física.",
-            "Ficha de habilitação e cadastro do motorista (Atlas Profile).",
-            "Relatório de atendimento da CIA, quando o evento tiver sido escalonado.",
-            "Ficha de Comunicação de Sinistro (FCS) preenchida e assinada.",
+            "Apólice vigente e PGR endossado aplicável à operação.",
+            "B.O. ratificado em autoridade policial com tipologia exata.",
+            "CT-e, MDF-e e NFs espelho do ativo.",
+            "Logs imutáveis de telemetria e eventos (Atlas Connect).",
+            "Laudos de vistoria em casos de Avaria.",
+            "Dossiê de validação do Atlas Profile do condutor.",
+            "Relatórios de Tratativa Tática da CIA.",
+            "Ficha de Comunicação de Sinistro (FCS) auditada.",
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Cadeia de Custódia da Evidência",
+          title: "Cadeia de Custódia e Compliance",
           text: [
-            "Fotos e prints tirados fora do sistema oficial, sem timestamp verificável, têm valor probatório baixo. Sempre registre evidências pelos canais homologados do Atlas Connect — a rastreabilidade do dado é tão importante quanto o dado em si na hora de sustentar o pagamento do LMI junto à seguradora.",
+            "Prints de WhatsApp ou mídias não certificadas são nulos em uma auditoria securitária severa. Tudo deve ser transacionado dentro dos canais corporativos e trilhas do Atlas Connect para manter a validade forense.",
           ],
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Conclusão",
+      title: "Recursos e Fechamento do Módulo",
       blocks: [
         {
           type: "checklist",
-          title: "Recursos Adicionais",
+          title: "Checkpoint Operacional",
           items: [
-            "Consulte o 'Guia Rápido de Sinistros' na biblioteca digital para ver exemplos de B.O. reais.",
-            "Assista ao vídeo 'A CIA em Ação: Interceptação na Dutra'.",
+            "Avalie B.O. reais na nossa biblioteca de sinistros.",
+            "Estude as interceptações táticas da CIA em vídeos classificados internos.",
           ],
         },
         {
           type: "text",
           paragraphs: [
             [
-              "Avance para o simulador de conhecimento (Quiz) para fixar a base teórica antes de conhecermos, no Módulo 4, os produtos de software que executam todas essas regras.",
+              "Valide sua compreensão teórica no Quiz antes de avançarmos para o Módulo 04, onde a materialização de todas essas diretrizes é implementada no nosso portfólio de software.",
             ],
           ],
         },
@@ -233,28 +243,28 @@ export const module03: ModuleContentFull = {
     },
   ],
   summary: [
-    "GR foca em prevenção absoluta. A Apólice foca em compensação financeira.",
-    "O PGR é o livro de regras mandatório ditado pela apólice.",
-    "Categorizar crimes corretamente (Roubo vs Furto) tem peso jurídico e financeiro.",
-    "A Torre de Controle previne e monitora; a CIA atua taticamente na recuperação e contingência grave.",
+    "A essência do GR é a neutralização proativa, amparada pelas coberturas da Apólice.",
+    "O PGR consolida as regras de ouro imutáveis.",
+    "A categorização jurídica forense de um crime dita a liquidação financeira.",
+    "A Torre orquestra a prevenção sistêmica; a CIA comanda o combate direto e contingenciamento.",
   ],
   finalChecklist: [
-    "Diferencio tecnicamente Apólice e PGR.",
-    "Sei a diferença exata entre roubo, furto, avaria e apropriação indébita.",
-    "Consigo explicar qual é o gatilho de tempo/gravidade para chamar a CIA.",
+    "Domino com clareza cristalina os papéis da Apólice e do PGR.",
+    "Capacidade total em distinguir roubo, furtos, avaria e fraude interna.",
+    "Compreendo o limite de contenção da Torre e o trigger para a CIA.",
   ],
   mindMap: {
-    root: "Gerenciamento de Risco",
+    root: "Arquitetura do Gerenciamento de Risco",
     branches: [
-      { label: "O Contrato", items: ["Apólice", "Seguradora", "Indenização", "Regulação de Sinistro"] },
-      { label: "A Execução", items: ["PGR", "Torre de Controle", "Auditoria"] },
-      { label: "A Crise", items: ["Roubo", "Furto", "CIA", "Pronta Resposta"] },
+      { label: "Mecânica Securitária", items: ["Apólice", "LMI", "Regulação", "Indenização"] },
+      { label: "Execução Tática", items: ["PGR", "Torre de Controle", "Auditoria Contínua"] },
+      { label: "Gestão de Crise", items: ["Roubo/Furto", "CIA", "Pronta Resposta", "Escalonamento"] },
     ],
   },
   scenario:
-    "Cenário Prático: A transportadora pede que você 'ignore' um desvio de rota para que o caminhão fuja de um congestionamento, mas o PGR proíbe saída da via principal. O que você responde considerando o risco securitário?",
+    "Cenário Prático: Uma transportadora sob pressão de SLA demanda a liberação tácita para romper o traçado planejado (desvio de rota não homologado). Como o operador da Torre blinda a operação securitariamente perante uma quebra direta do PGR?",
   diagram: {
-    title: "Ciclo de Risco",
-    chart: "graph TD\n  Apólice --> PGR\n  PGR --> Monitoramento[Torre de Controle]\n  Monitoramento -- Alerta Crítico --> CIA\n  CIA --> Recuperacao[Sucesso: Recuperação / Falha: Sinistro]",
+    title: "Ciclo Vital do Risco",
+    chart: "graph TD\n  Apólice --> PGR\n  PGR --> Monitoramento[Torre de Controle]\n  Monitoramento -- Ruptura Crítica --> CIA\n  CIA --> Recuperacao[Recuperação / Dossiê de Sinistro]",
   },
 };

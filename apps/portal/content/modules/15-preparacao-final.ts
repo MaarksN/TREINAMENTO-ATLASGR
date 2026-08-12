@@ -19,74 +19,84 @@ export const module15: ModuleContentFull = {
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Fim do Início",
+      title: "Introdução: O Epílogo Desta Jornada",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "O ápice intelectual da imersão: Consolidando competências em uma atuação tática decisiva."
+        },
+        {
           type: "text",
-          heading: "A Sua Formatura",
+          heading: "A Graduação Oficial",
           paragraphs: [
             [
-              "Você absorveu a história, a cultura, as entranhas do mercado, os sistemas, as integrações, os crimes e os cases reais. O volume de informações foi brutal, e isso foi intencional.",
+              "Você atravessou integralmente o núcleo de valores Atlas, mapeou cenários macroeconômicos globais do transporte, investigou profundamente camadas cibernéticas (Connect, Analytics, Profiling), além de processar as mais densas e extremas ocorrências criminais já documentadas. Esta monumental carga instrucional não é acidental; é um filtro de elite. O ecossistema AtlasGR exige resiliência forjada no volume denso e na precisão ininterrupta.",
             ],
             [
-              "Na AtlasGR, nós não entregamos tarefas simples; nós entregamos responsabilidade sobre a espinha dorsal logística do Brasil. Este módulo é a amarração de tudo o que foi ensinado para garantir a sua Certificação.",
+              "Operações complexas e robustas, como as orquestradas pelo portfólio da AtlasGR, conferem ao colaborador — do mais experiente gerente ao novo integrante — não uma mera delegação de tarefas, mas sim o domínio ativo sobre engrenagens cruciais que preservam o fluxo mercantil da nação. Este desfecho lapida e prepara de forma sublime seus reflexos teóricos rumo à certificação intransigente da banca.",
             ],
           ],
         },
         {
+          type: "quote",
+          text: "Vocês não gerenciam sistemas; através da resiliência, gerenciam o futuro iminente e pacífico do transporte em grande escala.",
+          author: "Conselho Deliberativo AtlasGR"
+        },
+        {
           type: "callout",
           variant: "success",
-          title: "Parabéns pela Jornada",
+          title: "Perspectiva de Mérito e Dedicação",
           text: [
-            "Chegar até aqui atesta a sua resiliência e foco, alinhando-se perfeitamente ao nosso valor de Perseverança. Respire fundo, revise o conteúdo, a prova começa em breve.",
+            "Concluir este panorama atesta singular perseverança e robustez psicológica perante a montanha massiva de procedimentos operacionais e legislações vigentes (como a LGPD e resoluções securitárias). Avante, sem receios.",
           ],
         },
       ],
     },
     {
       id: "capitulo-1-revisao-cultura",
-      title: "Capítulo 1: Revisão — A Base e o Mercado",
+      title: "Capítulo 1: Recapitulando o Alicerce Cultural e Jurídico",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "No começo, vimos que a AtlasGR nasceu em 2004 para quebrar o modelo reativo. Nós vendemos Pessoas, Tecnologias e Processos (PGR).",
+              "Revisitemos os pilares da revolução analítica lançada sobre a logística ultrapassada e obsoleta. Em 2004, assumimos o compromisso audacioso de não mais gerir passivos, mas sim prever ativamente disfunções e ataques.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Tópicos de Fogo (Cai na Prova)",
+          title: "Fundamentos Sistêmicos Obrigatórios (Tópicos Comuns)",
           items: [
-            "Os 5 Valores Inegociáveis (Perseverança, Transparência, Simplicidade, Atitude de Dono, Inovação).",
-            "A Diferença de Mercado: Embarcador (Dono da Carga/Visibilidade) e Transportadora (Executor/Seguro).",
-            "As regras restritas de Tolerância Zero da LGPD (Nunca fotografar telas, nunca compartilhar senhas).",
+            "Domínio absoluto sobre o Dogma dos 5 Valores Institucionais e éticos (Foco Absoluto em Perseverança e na sagrada Transparência Corporativa).",
+            "A delineação profunda de autoridade entre o C-Level do Embarcador (Dono final da carga/exigência primária de segurança) e a infraestrutura pesada da Transportadora Executora.",
+            "Lealdade incondicional às resoluções legais pautadas pela estrita observância do sigilo e isolamento de tratativas da Lei Geral de Proteção de Dados (Vedação incontestável e total à propagação de mídias de incidentes fora dos domínios da base)."
           ],
         },
       ],
     },
     {
       id: "capitulo-2-revisao-sistemas",
-      title: "Capítulo 2: Revisão — Softwares e Operação",
+      title: "Capítulo 2: Cartografia das Tecnologias e Camadas Táticas",
       blocks: [
         {
           type: "comparison",
-          title: "O Portfólio Blindado",
+          title: "Sinergia Plena (Homem x Hardware)",
           left: {
-            label: "As Ferramentas",
+            label: "Infraestrutura Tecnológica AtlasGR",
             points: [
-              "Atlas Profile: Filtro da portaria, bloqueia biometria falsa (Falsidade Ideológica).",
-              "Atlas Connect: O Cockpit. Fila de Alertas e Integrações API.",
-              "Atlas Analytics: A visão do CEO para corrigir gargalos logísticos crônicos.",
+              "**Atlas Profile**: Ferramenta de detecção pericial de fraude de identidades (Blindagem da Portaria).",
+              "**Atlas Connect**: Estação central de alerta tático contínuo, absorvendo telemetrias massivas das frotas ativas.",
+              "**Atlas Analytics**: Inteligência macro e financeira direcionada aos painéis analíticos do board diretivo (CEO, CFO)."
             ],
           },
           right: {
-            label: "As Pessoas",
+            label: "Esquadrão Humano e Resposta Base",
             points: [
-              "Torre de Controle: Age no Alerta. O SLA é sagrado (10m e 45m).",
-              "Central de Inteligência (CIA): Escalona e lida com o combate real, polícia e pronta resposta quando há suspeita forte ou ruptura total do PGR.",
-              "Comercial B2B: Ataca dores específicas com o diferencial de 'Custo Oculto Evitado'.",
+              "**Operador da Torre (10m SLA)**: Intervenção técnica baseada no cruzamento temporal imperativo com rígido SLA preventivo, e exigência da inviolável Contra-Senha.",
+              "**Célula de Inteligência Atlas (C.I.A)**: Comando especial acionado sobre infrações brutais aos protocolos de rastreamento com intercepções armadas e resgates orquestrados.",
+              "**Consultor Comercial Estratégico B2B**: Formula defesas comerciais provando, cabalmente, o montante da riqueza empresarial preservada perante a eliminação das ociosidades."
             ],
           },
         },
@@ -94,117 +104,103 @@ export const module15: ModuleContentFull = {
     },
     {
       id: "capitulo-3-prova",
-      title: "Capítulo 3: Dinâmica da Certificação",
+      title: "Capítulo 3: Exame Profissional de Retenção — A Grande Prova",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A prova não medirá apenas a sua memória; medirá o seu julgamento técnico sob pressão.",
+              "A aprovação exige proficiência interpretativa ímpar. O simulado exaustivo modelará com exatidão a enorme pressão tática cotidiana, testando o rápido julgamento frente à exatidão milimétrica da normativa interna (Manuais, SLAs, Conformidade de Sistemas).",
             ],
           ],
         },
         {
           type: "faq",
           items: [
-            { q: "Quantas questões possui a prova?", a: "O banco global possui 150 questões. Você responderá a uma bateria focada que exige pontuação de corte." },
-            { q: "Qual a nota para ser certificado?", a: "Acima de 70%. Somente os aprovados recebem a chancela e avançam para a parte prática da trilha." },
-            { q: "Posso colar/consultar material?", a: "Você é um profissional de risco. A prova foca em raciocínio, não em decoreba cega. Se houver dúvida tática real, a Base de Conhecimento existe para ser usada na vida real." },
-          ],
-        },
-      ],
-    },
-    {
-      id: "estudo-de-caso",
-      title: "Sua Carreira: O PDI (Plano de Desenvolvimento)",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Após o clique final na prova, a teoria termina. O DHO desenhará o seu acompanhamento dos próximos 30, 60 e 90 dias, focando exclusivamente na aplicação real da sua área (TI, Comercial ou Operações). A teoria foi a fundação; a prática é a casa construída em cima dela.",
-            ],
+            { q: "Quais os contornos avaliativos globais e qual a métrica punitiva aplicável no processo de crivo corporativo (Prova Final)?", a: "Formado por 150 complexos enunciados ramificados por toda a malha curricular instrucional em módulos de dez questões sequenciais." },
+            { q: "E o que se qualifica oficialmente por chancela sistêmica (Aprovação Mínima)?", a: "Índice de Acertos acima do rigorosíssimo limite limiar de 70%, validando assim a sua escalada final ao campo prático das operações setoriais diárias da companhia (PDI Prático)." },
+            { q: "Nossa operação prevê consultoria nos materiais de consulta do Banco de Conhecimento, isto é aplicável no momento da prova?", a: "Totalmente descartável na ótica primária da prova. O simulado requer precisão e agilidade de reação reflexiva e instantânea. Deixe as dúvidas processuais periféricas para a Torre do dia a dia, após dominar e solidificar com sucesso o DNA macro desta imersão." }
           ],
         },
       ],
     },
     {
       id: "capitulo-4-estrategia-prova",
-      title: "Capítulo 4: Estratégia de Prova — Tempo, Foco e Sangue-Frio",
+      title: "Capítulo 4: Engenharia Psicológica para Execução Rápida do Teste",
       blocks: [
         {
           type: "text",
-          heading: "150 Perguntas Não É Maratona, É Ritmo",
+          heading: "Manutenção do Fluxo Temporal Cognitivo",
           paragraphs: [
             [
-              "Saber o conteúdo é metade do trabalho. A outra metade é administrar o relógio. Quem trava 8 minutos numa única questão sobre sublimite de apólice geralmente é o mesmo que entrega as últimas 20 perguntas em branco por falta de tempo.",
+              "Uma das grandes barreiras que ceifam carreiras promissoras, não somente no processo de recrutamento, mas nas trincheiras reativas diárias da Torre de Comando, reside puramente na péssima gestão e administração de minutos essenciais.",
             ],
             [
-              "A prova é dividida em blocos por módulo (10 perguntas cada). Trate cada bloco como um pequeno checkpoint: se você não sabe a resposta em 40 ou 50 segundos, marque a mais provável, sinalize para revisão (se o sistema permitir) e siga em frente. Voltar no final com a cabeça mais leve resolve mais dúvidas do que insistir no calor do momento.",
+              "Travar exaustivamente, paralisado perante minúcias obscuras em um trecho contratual do manual da Seguradora e consequentemente descartar o fechamento de dezenas de alternativas primárias fundamentais em branco é inaceitável. Na prova, aplique as lógicas de SLA de campo: decida firmemente em até quarenta segundos e avance. Pule interrogações traiçoeiras; responda integralmente às sólidas e consolidadas bases. Ao fim, retorne àquelas de alta complexidade com clareza cognitiva maior.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Checklist de Sobrevivência na Prova",
+          title: "Boas Práticas de Superação — Diretrizes Avaliativas:",
           items: [
-            "Nunca deixe uma questão em branco: sem marcação, a chance de acerto é zero; com um chute educado, ainda existe chance.",
-            "Leia o enunciado duas vezes antes de olhar as alternativas — muita pegadinha está no 'não', no 'exceto' e no 'sempre'.",
-            "Elimine primeiro as alternativas absurdas (extremos como 'nunca' ou 'sempre' costumam ser as erradas).",
-            "Desconfie de si mesmo quando mudar uma resposta pela terceira vez seguida — geralmente a primeira leitura já estava certa.",
-            "Reserve os últimos 10 minutos exclusivamente para revisar as questões sinalizadas, não para revisar tudo de novo.",
+            "Garantir a total e completa submissão do formulário. Interrogações órfãs refletem índice zero, enquanto opções logicamente decantadas impulsionam exponencialmente sua absorção das respostas exatas.",
+            "Esmiuçar o enunciado cautelosamente e destrinchar imperativos excludentes perigosíssimos mascarados sob adjetivos capciosos como 'Exclusivamente', 'Obrigatoriamente Sempre' e 'De modo algum'.",
+            "Mantenha firmeza de convicções: A estatística aponta incisivamente que oscilações e mudanças de gabarito pautadas por ansiedade retrospectiva derrubam substancialmente médias perfeitamente construídas em sua dedução original e orgânica.",
           ],
         },
         {
-          type: "faq",
+          type: "stat",
           items: [
-            { q: "Errei mais de 30% e reprovei. E agora?", a: "Sem drama. Reprovar não é demissão, é feedback. Você revisa o conteúdo do próprio relatório de erros, foca nos módulos fracos e reagenda uma nova tentativa com o DHO." },
-            { q: "Qual é o erro mais comum de quem reprova?", a: "Confundir os pilares tecnológicos entre si (trocar a função do Atlas Connect pela do Atlas Analytics) e esquecer os prazos de SLA da Torre de Controle. São detalhes, mas a prova cobra precisão, não 'mais ou menos'." },
-            { q: "Vale a pena estudar até a última hora antes da prova?", a: "Revisão leve, sim. Decoreba de última hora sob ansiedade, não — ela mais atrapalha do que ajuda. Prefira reler o resumo executivo de cada módulo e descansar a cabeça." },
-          ],
-        },
-        {
-          type: "quote",
-          text: "Você não chegou até a questão 150 por sorte. Chegou porque estudou. Confie no processo, confie no que você aprendeu e responda com a calma de quem já sabe o caminho.",
-          author: "Equipe de DHO — AtlasGR",
+            { value: "70%", label: "Mínimo rigoroso para qualificação (Aprovação)" },
+            { value: "150", label: "Questões dinâmicas que filtram memória procedimental" }
+          ]
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Mensagem da Liderança e Partida",
+      title: "Encerramento Definitivo e Partida",
       blocks: [
         {
+          type: "text",
+          paragraphs: [
+            [
+              "Conecte-se às estruturas mais basilares de sabedoria e serenidade. Honre o conhecimento técnico transmitido. Em momentos de incertezas na trilha executiva futura, aplique fundamentalmente sua visão analítica que molda as engrenagens de contenção bilionária gerenciadas diariamente.",
+            ],
+          ],
+        },
+        {
           type: "quote",
-          text: "A ignorância custa fortunas; a inteligência previne tragédias. Vocês agora são portadores da nossa inteligência tática. Honrem a camisa, cumpram os SLAs, e garantam a segurança do Brasil.",
-          author: "Diretoria e Fundação AtlasGR",
+          text: "Um erro contornado com clareza processual previne tragédias de escalas irremediáveis; A omissão complacente destrói impérios corporativos erguidos através de décadas.",
+          author: "Alta Governança e Corpo Diretivo Superior (Board) AtlasGR"
         },
       ],
     },
   ],
   summary: [
-    "O ecossistema AtlasGR atua Antes, Durante, e Depois do risco.",
-    "As políticas de segurança corporativa (Tolerância Zero) acompanham você independente do setor.",
-    "A certificação final (70% de corte) não é o fim da linha, é o acesso ao acompanhamento prático.",
-    "Revisar o conceito dos pilares e do PGR é essencial para dominar as perguntas da prova.",
+    "Revisitamos de maneira irretocável a integração vertical sistêmica AtlasGR — antecipando e sanando vulnerabilidades macro.",
+    "Direcionamos a cultura inflexível da Privacidade Legal e Compliance Corporativo a todos os instantes e manuseios sistêmicos diários.",
+    "Destacamos o pilar fundamental: O conhecimento é mero espectro; A aplicação reativa (dentro do corte avaliativo de exatos 70%) solidifica o operador no seleto grupo logístico nacional.",
+    "Rigorosa otimização e controle psíquico do relógio é imprescindível para vencer as extenuantes barreiras intelectuais dos múltiplos blocos das 150 questões de campo."
   ],
   finalChecklist: [
-    "Sinto total confiança nos 4 pilares tecnológicos.",
-    "Sei a diferença entre a Torre e a CIA.",
-    "Estou mentalmente preparado para iniciar a avaliação final.",
+    "Mentalidade preparada inteiramente quanto à estruturação e arquitetura pericial das quatro soluções do nosso portfólio massivo.",
+    "Absoluta fixação técnica quanto às prerrogativas extremas das camadas de Torre Reativa contra a letalidade proativa do efetivo de rua (C.I.A).",
+    "Estabilização e alinhamento do pulso reflexivo direcionado e exclusivo ao exame tático de consolidação corporativa."
   ],
   mindMap: {
-    root: "Revisão Executiva",
+    root: "Consolidação Curricular Master",
     branches: [
-      { label: "A Base", items: ["Cultura, LGPD", "Embarcador vs Transportadora"] },
-      { label: "O Jogo", items: ["Profile, Connect, PGR", "Torre, CIA, Analytics"] },
-      { label: "A Prova", items: ["Corte de 70%", "Julgamento Tático", "Certificação", "Gestão de Tempo nas 150 Questões"] },
+      { label: "Corrente de Cultura", items: ["LGPD Integral", "Conexão Embarcador & Corretagem"] },
+      { label: "Paredes Tecnológicas", items: ["Sistema Connect SLA", "Muralha Preventiva Profile", "Inteligência Analítica Board"] },
+      { label: "Protocolo de Exame", items: ["Pontuação Regimental 70%", "Controle Estrito de Tempo e Desbloqueio Psicológico"] },
     ],
   },
   scenario:
-    "Cenário Prático Final: Faça uma reflexão interna. Se você fosse o CEO da AtlasGR hoje, qual área da empresa você consideraria a mais vital para o sucesso das operações diárias? Reflita sobre o peso da Torre de Controle e inicie o exame.",
+    "Reflexão Crítica e Moral: Você transicionou integralmente do estágio inicial cego para a compreensão tática profunda e assertiva de como proteger e blindar a espinha logística e mercantil fundamental de nosso País. Tome um fôlego regenerador, absorva o peso moral atrelado ao botão inicial do sistema corporativo e mergulhe em prol da grandiosidade certificada AtlasGR. Acione a prova quando se julgar inteiramente convicto.",
   diagram: {
-    title: "O Ciclo do Colaborador",
-    chart: "graph TD\n  Teoria[Onboarding Universidade] --> Prova{Simulador Final 70%}\n  Prova -- Falha --> Reciclagem[Revisão de Conteúdo]\n  Prova -- Sucesso --> PDI[Treinamento Prático Setorial]\n  PDI --> Profissional[Especialista AtlasGR]",
+    title: "O Ponto Culminante",
+    chart: "graph TD\n  Teoria[Recepção na Universidade] --> Pressao{Rigor do Exame de Certificação}\n  Pressao -- Ajuste Necessário --> Reforco[Alinhamento de DHO Posterior]\n  Pressao -- Execução Singular e Maestria --> Sucesso[Aval Oficial da Presidência / Status Operador]\n  Sucesso --> Campo[Avanço aos Desafios da Sala Tática de Operações Reais]",
   },
 };

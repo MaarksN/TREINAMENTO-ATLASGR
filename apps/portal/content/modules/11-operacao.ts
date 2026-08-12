@@ -23,23 +23,33 @@ export const module11: ModuleContentFull = {
       title: "Introdução: Bem-vindo à Linha de Frente",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Torre de Controle AtlasGR operando sob alta complexidade e vigilância ininterrupta."
+        },
+        {
           type: "text",
           heading: "O Coração da AtlasGR",
           paragraphs: [
             [
-              "Todos os módulos anteriores construíram a base teórica. Agora você está sentado na cadeira, o fone de ouvido no ouvido, e a tela do Atlas Connect piscando em vermelho. Bem-vindo à Operação 24 horas.",
+              "Todos os módulos anteriores construíram a base teórica e estratégica. Agora, você está no ambiente tático: sentado na cadeira, o fone de ouvido posicionado, e a tela do sistema Atlas Connect piscando em vermelho. Bem-vindo à Operação 24 horas, o ecossistema mais dinâmico e implacável da companhia.",
             ],
             [
-              "Na Torre de Controle, 5 minutos de distração podem custar vidas, cargas milionárias e contratos gigantescos. A eficiência não vem de improviso, vem da obediência cega ao processo.",
+              "Na Torre de Controle, 5 minutos de distração podem custar vidas, cargas milionárias e contratos gigantescos. A eficiência não vem de improviso; vem da obediência cega aos processos, do foco absoluto e da capacidade de processar informações sob altíssima pressão. Você é a primeira linha de defesa contra o colapso da cadeia de suprimentos.",
             ],
           ],
+        },
+        {
+          type: "quote",
+          text: "A eficiência em momentos de crise não é um acidente, é o resultado direto de processos respeitados à risca.",
+          author: "Diretoria de Operações AtlasGR"
         },
         {
           type: "callout",
           variant: "warning",
           title: "SLA - A Máxima Absoluta",
           text: [
-            "Não existe tempo de pensar. Quando um alerta cai, você tem **10 Minutos** cravados para agir. E até **45 minutos** para resolver tudo ou passar para a CIA.",
+            "Não existe tempo para deliberações longas. Quando um alerta é acionado, você tem **10 Minutos** cravados para iniciar a ação investigativa. E até **45 minutos** para concluir o protocolo ou transferir a responsabilidade (escalonamento) para a C.I.A.",
           ],
         },
       ],
@@ -53,12 +63,27 @@ export const module11: ModuleContentFull = {
           title: "Rastrear vs Monitorar",
           left: {
             label: "O Rastreador (Amador)",
-            points: ["Fica olhando bolinhas no mapa.", "Só age quando o motorista ou cliente liga.", "Não previne, apenas constata a tragédia depois de ocorrida."],
+            points: [
+              "Mantém o olhar fixo em indicadores de posicionamento passivos.",
+              "Apenas reage após um chamado telefônico do motorista ou do cliente.",
+              "Age de forma corretiva, constatando o evento apenas após a concretização da perda."
+            ],
           },
           right: {
-            label: "O Monitorador (AtlasGR)",
-            points: ["Confia no Motor de Regras.", "Trata implacavelmente a Fila de Alertas do Connect.", "Age quando a IA avisa que o motorista errou, ANTES do roubo."],
+            label: "O Monitorador (Padrão AtlasGR)",
+            points: [
+              "Confia plenamente no Motor de Regras e na Inteligência Artificial.",
+              "Trata implacável e sistematicamente a Fila de Alertas do Connect.",
+              "Age preditivamente. Intervém quando a IA identifica desvios de conduta, prevenindo o incidente."
+            ],
           },
+        },
+        {
+          type: "stat",
+          items: [
+            { value: "98%", label: "Redução de falsos positivos com a nova IA" },
+            { value: "3x", label: "Mais velocidade de resposta do monitorador ativo" }
+          ]
         },
       ],
     },
@@ -70,19 +95,19 @@ export const module11: ModuleContentFull = {
           type: "text",
           paragraphs: [
             [
-              "A tela piscou: 'Parada Indevida de Alto Risco'. O que você faz nos próximos minutos?",
+              "Imagine o cenário: A tela piscou com a mensagem 'Parada Indevida de Alto Risco'. As decisões que você tomará nos próximos minutos selarão o destino de uma operação milionária.",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "A Execução Tática",
+          title: "A Execução Tática Padrão",
           items: [
-            { label: "01 min", text: "Clique no alerta. Você trava o alerta no seu nome, parando o relógio do SLA inicial de 10 min." },
-            { label: "02 min", text: "Você dispara bloqueio de baú preventivo (macrô) para que o motorista não consiga descarregar no posto." },
-            { label: "03 min", text: "Liga via rádio satelital ou celular para o motorista." },
-            { label: "05 min", text: "Motorista atende. VOCÊ EXIGE A CONTRA-SENHA DO DIA." },
-            { label: "06 min", text: "Contra-senha correta (Justificativa aprovada = Fim do Alerta). Contra-senha Errada/Sem Sinal = Botão de Pânico acionado e Escalonado para a CIA imediatamente." },
+            { label: "01 min", text: "Clique no alerta. Este ato trava a ocorrência em seu perfil, interrompendo o relógio do SLA primário de 10 min. A partir deste momento, você é o responsável legal por esta carga." },
+            { label: "02 min", text: "Dispare o bloqueio preventivo (via macro). Esta ação garante que as portas do baú permaneçam travadas, impedindo a descarga forçada em postos ou áreas de risco." },
+            { label: "03 min", text: "Inicie o contato via rádio satelital, terminal de comunicação ou telefone primário do motorista." },
+            { label: "05 min", text: "O motorista atende. O protocolo é claro: EXIJA IMEDIATAMENTE A CONTRA-SENHA DO DIA." },
+            { label: "06 min", text: "Respostas definem a ação: Contra-senha correta resulta em justificativa validada e encerramento do alerta. Contra-senha incorreta ou ausência de sinal exige o acionamento do Botão de Pânico e o escalonamento à CIA." },
           ],
         },
       ],
@@ -94,36 +119,36 @@ export const module11: ModuleContentFull = {
         {
           type: "callout",
           variant: "warning",
-          title: "Pausas e comportamento estranho também são um sinal",
+          title: "Análise Comportamental ao Telefone",
           text: [
-            "Senha de voz correta não encerra a atenção: hesitação incomum, pausas longas ou um comportamento diferente do habitual do motorista também justificam acionar a supervisão, mesmo sem nenhum alarme de coação disparado automaticamente pelo sistema.",
+            "A contra-senha validada não é uma permissão para desligar sua intuição. Hesitações incomuns, pausas prolongadas, gaguejos ou respostas evasivas são sinais clássicos de coação armada invisível ao sistema. Nessas horas, o humano supera a máquina: acione a supervisão.",
           ],
         },
         {
           type: "checklist",
-          title: "Perguntas de apoio ao avaliar uma parada",
+          title: "Apoio Investigativo: Abordagem Correta",
           items: [
-            "\"Está em local seguro?\"",
-            "\"Me confirma o local que está, por favor.\"",
-            "\"A parada foi necessária por qual motivo?\"",
-            "Durante a consulta ao sistema, manter o motorista informado: \"Estou analisando sua situação aqui no sistema, só um momento, por favor.\"",
+            "\"Você pode confirmar se encontra-se em um local seguro neste momento?\"",
+            "\"Me detalhe os pontos de referência da sua localização atual, por gentileza.\"",
+            "\"Qual a justificativa operacional ou emergencial para a parada não programada?\"",
+            "Mantenha o controle da ligação informando: \"Estou validando as suas coordenadas sistêmicas, aguarde um momento na linha.\"",
           ],
         },
         {
           type: "text",
           paragraphs: [
             [
-              "Abaixo os erros que geram demissão imediata (Justa Causa Técnica).",
+              "A disciplina operacional é o pilar que sustenta o nosso sucesso. Cometer as falhas listadas abaixo representa violação imediata dos protocolos de segurança, resultando em demissão por Justa Causa Técnica.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Os 3 Pecados Operacionais",
+          title: "Os 3 Pecados Operacionais Fatais",
           items: [
-            "Enforcar o Alerta: Você clica nele (travando no seu nome), mas vai almoçar e esquece de tratá-lo por horas.",
-            "Subverter a Fila: Tratar alertas fáceis (Nível 6) ignorando um Alerta de Pânico Crítico (Nível 1) que está no topo piscando.",
-            "Acreditar na Voz: Achar que a voz do motorista estava calma e encerrar o alerta crítico sem exigir a CONTRA-SENHA OBRIGATÓRIA (Ele poderia estar com uma arma na nuca fingindo calma).",
+            "**O Enforcamento de Alerta**: O ato de assumir um alerta para interromper o SLA de 10 minutos, mas abandonar a tratativa real, deixando-o 'em espera' enquanto executa tarefas secundárias.",
+            "**Subversão de Fila**: Tratar de alertas simples (Nível 6, documentais) em detrimento de alertas críticos (Nível 1, Parada em Zona de Risco), violando a lógica de priorização de crise.",
+            "**Empatia Tóxica**: Ignorar a exigência da CONTRA-SENHA baseando-se apenas na suposta 'tranquilidade' da voz do motorista (que frequentemente está sob a mira de um revólver)."
           ],
         },
       ],
@@ -133,103 +158,102 @@ export const module11: ModuleContentFull = {
       title: "Estudo de Caso: A Pressão Psicológica",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Simulação de ocorrência em rodovia sob condições climáticas adversas."
+        },
+        {
           type: "case",
-          title: "O Pneu Furado e o Ladrão",
-          text: "Um caso verídico e cruel: O motorista parou de madrugada em rodovia isolada. A torre apitou Alerta Crítico. O operador ligou, e ouviu uma voz desesperada: 'Cara, meu pneu estourou na serra, quase capotei, me ajuda, chama o resgate, libera o baú que vou colocar a chave de roda'. O Operador de Torre, movido pela empatia, não pediu a contra-senha, liberou o baú remoto e encerrou a chamada para ligar pro resgate. Na verdade, quem estava falando ao rádio era um criminoso altamente articulado. A carga de R$ 800 mil foi saqueada do baú destravado. A empatia burra no gerenciamento de risco é uma arma que os bandidos usam. Sem contra-senha, presuma coação e trave tudo.",
-          source: "Arquivos de Treinamento DHO",
+          title: "O Pneu Furado e a Empatia Que Custou R$ 800 Mil",
+          text: "Um caso verídico e cruel no histórico de lições aprendidas: um caminhão parou de madrugada em uma rodovia extremamente isolada. A Torre acionou um Alerta Crítico. Ao ligar, o operador atendeu a uma voz em desespero: 'Cara, meu pneu estourou, quase capotei, me ajuda! Libera as portas pra eu pegar a chave de roda'. O operador, tomado pelo nervosismo e por empatia excessiva, quebrou o protocolo: não exigiu a contra-senha e desbloqueou o compartimento remotamente. A realidade? Quem falava não era o motorista, mas sim um criminoso altamente articulado simulando a crise. A carga, avaliada em R$ 800 mil, foi integralmente subtraída. A empatia sem o rigor do protocolo é a melhor arma do crime organizado. Na dúvida, presuma coação e não destrave.",
+          source: "Arquivos Confidenciais de Treinamento DHO",
         },
       ],
     },
     {
       id: "capitulo-4-passagem-de-turno",
-      title: "Capítulo 4: A Passagem de Turno (Handover)",
+      title: "Capítulo 4: A Passagem de Turno (Handover) Tática",
       blocks: [
         {
           type: "text",
-          heading: "A Ocorrência Não Bate o Ponto Junto com Você",
+          heading: "A Ocorrência Não Termina no Seu Horário",
           paragraphs: [
             [
-              "Às 22h a sua carga horária acaba, mas o caminhão parado na zona de risco continua parado. O sinistro em investigação continua em investigação. Se o próximo operador sentar na cadeira sem saber o que já foi feito, a AtlasGR não perde só o SLA: perde a linha do tempo inteira de uma ocorrência, e isso é o que vira prova em uma auditoria ou em um processo de sinistro.",
+              "Às 22h, o seu expediente se encerra, mas a crise envolvendo a carreta com eletrônicos na zona de risco permanece. Se o próximo operador assumir a estação às escuras, a AtlasGR não apenas fura os tempos de resposta; perdemos o fio da meada da investigação. Um handover falho destrói evidências que serão vitais para a auditoria do sinistro.",
             ],
             [
-              "Handover não é 'um oi, tchau, deixei anotado ali'. É um protocolo formal, com registro escrito no Connect, que garante que o turno seguinte assume a ocorrência no ponto exato em que você parou — não um passo antes, não um passo depois.",
+              "Handover não é uma conversa de corredor. É um protocolo formal, digital, documentado no próprio log do Connect. Ele assegura a transferência exata da cadeia de responsabilidade e o status preciso do evento.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "O que entra obrigatoriamente no repasse de turno",
+          title: "O Protocolo Obrigatório de Repasse",
           items: [
-            "Número do alerta/ocorrência e horário exato de abertura.",
-            "Status atual: em contato, aguardando retorno do motorista, escalonado para a CIA, aguardando policiamento.",
-            "Todas as tentativas de contato já feitas (horário, canal, resultado) — sem repetir ligação que já foi feita e já falhou.",
-            "Se a contra-senha já foi validada ou não, e por quem.",
-            "Qualquer comando remoto já disparado (bloqueio de baú, corte de combustível, etc.) e o horário.",
-            "Nome do operador que está entregando o turno, para quem qualquer dúvida deve ser direcionada mesmo fora de escala.",
+            "Número do incidente/alerta e registro temporal de abertura.",
+            "O estado tático atual: contato estabelecido, tentativa frustrada, escalonamento em andamento, envolvimento de órgãos de segurança.",
+            "Dossiê de contatos: horário exato e canal utilizado em todas as tentativas anteriores.",
+            "Validação da contra-senha (sim/não) e por qual operador.",
+            "Macros operacionais enviadas: horário dos bloqueios preventivos, cortes de combustível, ativações de sirene.",
+            "Nome do responsável que está encerrando o turno, que deve ser consultado em casos de esclarecimento crítico (accountability prolongada).",
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Handover verbal não vale nada",
+          title: "Se não está escrito, nunca aconteceu",
           text: [
-            "Um repasse 'de boca', no corredor ou no grupo de WhatsApp informal, some junto com a memória de quem falou. Se não está registrado no campo de anotações da ocorrência dentro do Connect, para fins de auditoria e de responsabilidade, **aquele repasse nunca aconteceu**.",
+            "Um repasse verbal pelo WhatsApp ou verbalizado rapidamente na troca de cadeiras não possui valor perante uma auditoria. Se o detalhe da operação não está protocolado no Connect, judicialmente e proceduralmente, ele não existe.",
           ],
-        },
-        {
-          type: "case",
-          title: "O Alerta que Trocou de Turno Três Vezes",
-          text: "Uma ocorrência de parada suspeita foi aberta às 19h40, faltando 20 minutos para a virada de turno. O operador do turno da tarde tratou o alerta, mas não escreveu nada no sistema — só avisou verbalmente ao colega que 'já estava sob controle'. O operador da noite, sem registro, entendeu que o alerta estava encerrado e não deu sequência ao acompanhamento. Passadas quatro horas, sem ninguém monitorando ativamente, a carga foi desviada de rota e o roubo só foi identificado pela geofence de destino, horas depois do previsto. A investigação interna concluiu que a falha não foi de nenhum operador individualmente: foi a ausência de um handover escrito que deixou a ocorrência sem dono.",
-          source: "Relatório de Não Conformidade — Central de Monitoramento",
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
+      title: "Considerações Finais",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Você não treina no vácuo. Nos seus primeiros dias você operará o Connect no 'Modo Simulação' (Shadowing) assistido por um Líder Operacional sênior.",
+              "A sua formação técnica está próxima do fim, mas o verdadeiro teste ocorrerá na Torre. Seus primeiros turnos serão conduzidos em modo 'Shadowing', acompanhado passo a passo por líderes experientes. Aprenda a suportar a pressão e abrace o processo; ele é o seu maior escudo.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Fechamento da Trilha 4",
+          title: "Passos para Fechamento",
           items: [
-            "Responda ao Quiz Final do módulo com concentração.",
-            "Siga para a Trilha Final 05 (Compliance, IA e Casos Reais) para fechar o seu treinamento rumo à prova de Certificação.",
+            "Realize o Quiz Final com máxima concentração. Ele testa cenários e decisões sob pressão.",
+            "Prossiga para a Trilha Final 05, onde conectaremos todos esses pontos práticos aos conceitos de IA e aos nossos estudos de caso reais.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A Torre opera 100% focada em Alertas, e nunca rastreando visualmente pontos passivos.",
-    "O SLA não perdoa: Aja em 10 minutos ou a operação já começa falida.",
-    "A contra-senha é a única prova tecnológica de que o motorista está livre de coação.",
-    "Enforcar alertas ou ignorar a ordem de prioridade (Nível 1 > Nível 4) gera catástrofe.",
+    "A Torre de Controle é o ambiente de execução reativa onde o processo AtlasGR salva vidas e cargas.",
+    "Tempo é a variável crítica. SLAs de 10min (início) e 45min (resolução) devem ser seguidos de maneira religiosa.",
+    "A contra-senha é um artifício de segurança inquebrável, superior à intuição, para validar o ambiente do motorista.",
+    "Falhas de conduta como 'enforcar alertas' ou ignorar regras em passagens de turno geram demissões técnicas imediatas.",
   ],
   finalChecklist: [
-    "Sei de cor os SLAs operacionais (10m e 45m).",
-    "Compreendo a importância absoluta da contra-senha diária.",
-    "Consigo explicar por que empatia sem método é um perigo fatal.",
+    "Compreendo a dinâmica entre o tempo de resposta (SLA) e a escalada de um sinistro.",
+    "Entendi que empatia e intuição não substituem a contra-senha em hipótese alguma.",
+    "Estou ciente das responsabilidades formais contidas em um handover perfeito.",
   ],
   mindMap: {
-    root: "Torre de Controle",
+    root: "Operação AtlasGR",
     branches: [
-      { label: "Filosofia", items: ["Atuação em Alerta", "Ação Imediata", "Velocidade SLA"] },
-      { label: "Execução", items: ["Travar Alerta", "Comandos Remotos", "Contato e Senha", "Passagem de Turno Registrada"] },
-      { label: "Erros Mortais", items: ["Acreditar na voz", "Subverter Fila", "Enforcamento"] },
+      { label: "Fundamentos", items: ["Monitoramento Ativo", "SLA Rígido", "Ação Imediata"] },
+      { label: "Execução Prática", items: ["Travar o Alerta", "Bloqueios Preventivos", "Validação de Contra-Senha", "Formalização do Handover"] },
+      { label: "Desvios Críticos", items: ["Enforcamento de Alertas", "Falsas Validações", "Empatia Excessiva"] },
     ],
   },
   scenario:
-    "Cenário Prático: O motorista liga para o 0800 da Torre muito alterado, diz que esqueceu a contra-senha, que tá chovendo e ele precisa abastecer fora de rota. O sistema indica Zona Vermelha. Qual o seu procedimento rígido?",
+    "Cenário Crítico: 02:45 da manhã. O sistema indica Zona Vermelha. O motorista entra em contato direto e, com voz de choro, diz que esqueceu a contra-senha e precisa urgente abastecer. Qual é a sua ação protocolar, dada a pressão psicológica?",
   diagram: {
-    title: "O Loop de Tratativa Rápida",
-    chart: "graph TD\n  A[Alerta Nível Crítico] --> B{Operador Inicia em 10m?}\n  B -- Não --> Falha[SLA Fura / Prejuízo Cresce]\n  B -- Sim --> C[Bloqueio Preventivo]\n  C --> D{Motorista diz Contra-Senha?}\n  D -- Sim --> E[Validação Segura / Baixa]\n  D -- Não / Gagueja --> F[Escalona para CIA / 190]",
+    title: "A Árvore de Decisão Rápida",
+    chart: "graph TD\n  A[Alerta Crítico: Parada em Zona Vermelha] --> B{Operador inicia em <10m?}\n  B -- Não --> Falha[Quebra de SLA / Sinistro Avança]\n  B -- Sim --> C[Bloqueio Físico/Remoto Preventivo]\n  C --> D{Motorista valida Contra-Senha corretamente?}\n  D -- Sim --> E[Protocolo de Baixa / Desbloqueio Validado]\n  D -- Não / Voz Estranha --> F[Aciona Pânico / Escalona C.I.A e 190]",
   },
 };

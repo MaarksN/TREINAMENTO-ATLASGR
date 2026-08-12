@@ -9,7 +9,7 @@ const SESSION_KEY = "atlasgr-admin-unlocked";
 // num link caia direto no painel administrativo. Não é controle de acesso
 // real (o PIN fica no bundle do cliente) — numa versão com backend, /admin
 // precisa de autenticação de verdade (sessão de servidor, SSO, etc.).
-const ADMIN_PIN = "ATLASGR2026";
+const ADMIN_PIN = "0000";
 
 export function AdminGate({ children }: { children: ReactNode }) {
   const [unlocked, setUnlocked] = useState(false);

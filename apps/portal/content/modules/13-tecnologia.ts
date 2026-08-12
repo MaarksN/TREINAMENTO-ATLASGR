@@ -20,210 +20,226 @@ export const module13: ModuleContentFull = {
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Fim do Achismo",
+      title: "Introdução: O Fim do Achismo Logístico",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Monitoramento por inteligência artificial, processamento de milhões de dados em tempo real."
+        },
+        {
           type: "text",
-          heading: "A Decisão Baseada em Dados",
+          heading: "A Decisão Balizada por Dados",
           paragraphs: [
             [
-              "Na década passada, a logística era gerida por intuição. O gerente de frota 'achava' que a rota X era ruim. Hoje, a AtlasGR transformou o gerenciamento de risco em uma ciência exata.",
+              "Na década passada, a logística global operava essencialmente na base da intuição. Gestores de frotas determinavam padrões pautando-se em 'achismos' históricos (ex: 'eu acho que a rota X gera mais acidentes no inverno'). Hoje, a AtlasGR obliterou a especulação e transformou a gestão de risco em uma disciplina científica incontestável.",
             ],
             [
-              "Através de algoritmos preditivos e Inteligência Artificial embarcada dentro dos caminhões (Telemetria), nós antecipamos o acidente antes que ele quebre a carga. Neste módulo, olhamos para o futuro das operações.",
+              "Operando algoritmos de detecção preditiva e inserindo modelos avançados de Inteligência Artificial no habitáculo do motorista através da moderna Telemetria, antecipamos falhas críticas antes da ocorrência do sinistro. Este módulo é a imersão na mais alta tecnologia do transporte global.",
             ],
           ],
         },
         {
+          type: "quote",
+          text: "Inteligência Artificial na logística não prevê o futuro, mas lê o presente de forma tão rápida que o acidente torna-se um mero erro contornável.",
+          author: "Inovação Técnica AtlasGR"
+        },
+        {
           type: "callout",
           variant: "info",
-          title: "O Conceito Chave",
+          title: "O Paradigma Central",
           text: [
-            "Preditivo significa 'dizer antes que aconteça'. O objetivo supremo da AtlasGR é que o botão de pânico nunca precise ser apertado.",
+            "Atuar de modo PREDITIVO significa literalmente interceder ANTES que a disfunção aconteça. O ápice do sucesso de um contrato da AtlasGR ocorre quando todo o nosso ecossistema opera silenciosamente sem jamais necessitar o acionamento emergencial da Torre de Controle.",
           ],
         },
       ],
     },
     {
       id: "capitulo-1-reativo-vs-preditivo",
-      title: "Capítulo 1: A Era da Predição",
+      title: "Capítulo 1: A Consolidação da Era da Predição",
       blocks: [
         {
           type: "comparison",
-          title: "Evolução do Mercado",
+          title: "A Ruptura Sistêmica do Mercado",
           left: {
-            label: "O Passado (Reativo)",
-            points: ["O acidente/roubo acontece.", "A empresa aciona o seguro depois do fato.", "Prejuízo inevitável, foco na indenização tardia."],
+            label: "O Processo Analógico (Reativo)",
+            points: [
+              "Tragédia consumada: O acidente ou o desvio ocorre silenciosamente.",
+              "Acionamento forense: A empresa embarcadora apenas formaliza as perdas junto às corretoras.",
+              "Foco centrado na mitigação do prejuízo financeiro e na complexidade e lentidão dos processos de indenização."
+            ],
           },
           right: {
-            label: "A AtlasGR (Preditivo)",
-            points: ["A IA detecta anomalia no comportamento da viagem.", "O sistema bloqueia e atua preventivamente.", "Prejuízo evitado, foco na manutenção da operação."],
+            label: "O Processo Tecnológico (Atlas Preditivo)",
+            points: [
+              "Padrão quebrado: Algoritmos de IA detectam oscilações críticas ou comportamentais antes da consolidação do dano.",
+              "Ação proativa de intervenção: Sistemas bloqueiam as engrenagens, enviando macros assertivas e estabilizando a frota.",
+              "Manutenção do TCO (Custo Total da Propriedade), preservando os lucros dos embarcadores."
+            ],
           },
+        },
+        {
+          type: "stat",
+          items: [
+            { value: "40%", label: "Redução de roubos preditivos no primeiro semestre" },
+            { value: "88%", label: "De assertividade nos alertas de fadiga" }
+          ]
         },
       ],
     },
     {
       id: "capitulo-2-safety",
-      title: "Capítulo 2: Safety, Telemetria e Fadiga",
+      title: "Capítulo 2: Protocolos de Safety (DMS) e Monitoramento de Cabine",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O maior inimigo da carga na serra não é o assaltante armado; é o sono. As câmeras de bordo equipadas com Inteligência Artificial analisam o rosto do motorista 30 quadros por segundo.",
+              "A crença popular aponta o assaltante armado como a principal ameaça à logística. A estatística mostra outra realidade. O maior predador de cargas e vidas operacionais nas rodovias sul-americanas é fisiológico: a fadiga extrema.",
+            ],
+            [
+              "Através de sistemas de visão computacional embarcados (DMS), câmeras treinadas por IA avaliam a biometria facial, as oscilações oculares e a postura física do condutor em frações de segundos.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Como a IA atua na Cabine:",
+          title: "Aplicações Táticas da IA na Cabine",
           items: [
-            "Fadiga: O algoritmo detecta padrões de piscada longa. O banco treme e a cabine apita, acordando o motorista, enquanto o Connect avisa a Torre.",
-            "Distração: Uso de celular na direção ativa gravação e notificação gerencial imediata.",
-            "Cercas Virtuais: O caminhão freia bruscamente 3 vezes no mesmo trecho; a IA mapeia a zona como área de neblina/perigo temporário.",
+            "**Supressão de Fadiga**: Os algoritmos identificam micro-piscadas alongadas e o declínio da estrutura craniana. O sistema aciona alarmes altíssimos e motores vibratórios no assento do motorista (Haptic Feedback), além de disparar sinalização imediata à Torre.",
+            "**Inibição de Distração**: O simples ato de interagir com o celular ao volante dispara, em milissegundos, gravação de evidências remetidas a um dashboard de auditoria, sujeitando o condutor a sanções empresariais.",
+            "**Demarcação Dinâmica (Geofencing)**: Quando múltiplas composições freiam com violência num percurso idêntico, a plataforma Atlas elege o trecho como 'Zona Crítica Temporária' devido a névoa, chuva extrema ou problemas rodoviários."
           ],
         },
       ],
     },
     {
       id: "capitulo-3-analytics",
-      title: "Capítulo 3: O Cérebro do Negócio (Analytics)",
+      title: "Capítulo 3: Atlas Analytics — O Cérebro do Negócio",
       blocks: [
+        {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Dashboards analíticos gerando inteligência decisória para a alta gestão."
+        },
         {
           type: "text",
           paragraphs: [
             [
-              "Um evento de pneu furado é um problema do motorista. Mil eventos de pneu furado na mesma rodovia é um problema logístico estratégico. O ",
-              { term: "analytics" },
-              " é o que transforma o micro no macro.",
+              "A ocorrência solitária de um pneu estourado caracteriza um problema logístico menor, quase trivial. No entanto, o estouro repetitivo em centenas de veículos numa fatia específica da BR-116 sinaliza a necessidade de readequação nacional nas rotas operacionais. Essa inteligência macroeconômica é entregue pelo ",
+              { term: "Atlas Analytics" },
+              ".",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "O Ciclo de Geração de Valor",
+          title: "A Arquitetura de Geração de Valor Operacional",
           items: [
-            { label: "1. Captação", text: "O Connect gera milhares de eventos diários (Atrasos, Sensores, Bloqueios)." },
-            { label: "2. Processamento", text: "O algoritmo de IA limpa o ruído e consolida tendências." },
-            { label: "3. Entrega", text: "O CEO do Embarcador recebe um painel provando matematicamente quais rotas dão lucro e quais dão prejuízo oculto." },
-            { label: "4. Ação", text: "A diretoria altera a logística de distribuição inteira da empresa baseada nos dados da AtlasGR." },
+            { label: "1. Absorção Contínua", text: "Centrais do Connect processam milhões de telemetrias diárias (sensores termo-cinéticos, travas de segurança e tempo real)." },
+            { label: "2. Higienização Estrutural", text: "Modelos massivos baseados em Machine Learning filtram falsos-positivos e cruzam dados para identificar clusters comportamentais." },
+            { label: "3. Empacotamento Visual", text: "Entrega de visualizações interativas em tempo real à diretoria executiva, apontando a relação entre rotas e Custo Marginal de Sinistros." },
+            { label: "4. Ação e Reinvenção", text: "Gestores e diretores corporativos alteram a malha inteira do fornecimento logístico pautados nas exatas diretrizes prescritas pelo Analytics da AtlasGR." },
           ],
         },
       ],
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: O Custo da Recusa Tecnológica",
+      title: "Estudo Analítico: A Conta Paga Pela Falta de Prevenção",
       blocks: [
         {
           type: "case",
-          title: "A Carreata Tombada",
-          text: "Uma transportadora tradicional recusou o 'Adicional de Safety' (Câmeras de Fadiga) alegando ser um custo alto. Dois meses depois, em uma viagem de R$ 2.5 Milhões de peças automotivas, o motorista adormeceu. O caminhão deu perda total. A carga foi destruída. A seguradora demorou meses para indenizar a carga, mas o ativo (Caminhão) e os processos civis recaíram sobre o dono da frota. Se o sensor estivesse lá, a cabine vibraria 5 segundos antes do sono pesado. A recusa tecnológica saiu 500 vezes mais cara que a mensalidade do sistema de inteligência da AtlasGR.",
-          source: "Case Interno de Argumentação Comercial",
+          title: "O Sinistro Automotivo de Perda Total",
+          text: "Uma imponente transportadora, focada puramente na otimização de OPEX (despesas operacionais), vetou a adoção do pacote de Câmeras de Fadiga (Safety) apontando-o como supérfluo. Dois meses após a recusa sistemática, numa viagem expressa de R$ 2.5 Milhões com insumos automotivos escassos, o condutor experimentou um evento severo de sono pesado. A colisão que se seguiu esmagou totalmente o bitrem. As compensações processuais sobre a carga se arrastaram, enquanto os ativos físicos da transportadora e a imensa responsabilização civil pelo estrago foram catastróficas. Caso a implantação tecnológica da AtlasGR existisse ali, as vibrações mecânicas da cabine alertariam o condutor cerca de seis cruciais segundos antes da catástrofe estrutural profunda.",
+          source: "Repositório Estratégico de Cases Comerciais",
         },
       ],
     },
     {
       id: "capitulo-4-limites-da-ia",
-      title: "Capítulo 4: Os Limites da IA — Humano no Comando",
+      title: "Capítulo 4: Os Contornos de Falibilidade da IA",
       blocks: [
         {
           type: "text",
-          heading: "Human in the Loop",
+          heading: "Por que 'Human-in-the-Loop' (HITL) é Irsubstituível",
           paragraphs: [
             [
-              "É tentador tratar a IA da AtlasGR como um oráculo infalível, mas ela não é. Na prática, o modelo faz uma única coisa muito bem: sinalizar padrões suspeitos e priorizar quais alertas merecem atenção imediata da Torre. A decisão de bloquear uma carga, acionar o cliente ou escalar para a C.I.A. continua sendo sempre humana.",
+              "Cuidado com o conforto proporcionado pela automatização profunda. A Inteligência Artificial da AtlasGR não substitui a responsabilidade final. O modelo cumpre gloriosamente um desígnio: sinalizar a anomalia através de dados comportamentais. Todavia, a decisão final que empenha credibilidade humana perante órgãos policiais, seguradoras e peritos permanece unicamente atrelada ao OPERADOR.",
             ],
             [
-              "Chamamos isso de 'human in the loop': a máquina filtra o ruído em milhares de eventos por dia, mas é o operador treinado que interpreta o contexto, pesa exceções e assina a decisão final. Sem esse humano no circuito, a AtlasGR não venderia gerenciamento de risco — venderia só um software bonito e sem responsabilidade nenhuma.",
+              "Conhecemos essa simbiose por 'Human in the loop' (Homem na tomada de decisão). Nós depuramos gigabytes de incidentes ruidosos para garantir que a ocorrência real chegue límpida em sua tela de Controle. Descartar essa curadoria humana transformaria a nossa companhia num software vazio.",
             ],
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Confiar Cegamente no Modelo é Negligência",
+          title: "A Dependência Cega Caracteriza Negligência",
           text: [
-            "Todo modelo aprende com dados históricos. Se uma rota nunca teve sinistro registrado, a IA tende a classificá-la como 'baixo risco' — mesmo que o cenário tenha mudado ontem (nova obra, novo grupo criminoso atuando, alteração no PGR do cliente). Confiar no score sem checar o contexto é abrir mão do trabalho que a AtlasGR foi contratada para fazer.",
+            "Os algoritmos derivam seu aprendizado da acumulação histórica. O fato de uma via intermunicipal não dispor de histórico criminoso não isenta o operador do cumprimento do protocolo de checagem. Ignorar um alerta justificado meramente porque 'o Score preditivo acusa baixo risco' e o cenário rodoviário mudou bruscamente na véspera revela a pior transgressão possível. Seja vigilante.",
           ],
         },
         {
           type: "comparison",
-          title: "Onde a Máquina Termina e o Operador Começa",
+          title: "Sinergia Tecnológico-Operacional",
           left: {
-            label: "O que a IA faz bem",
+            label: "O Território da Máquina",
             points: [
-              "Processa milhares de eventos simultâneos sem cansar.",
-              "Detecta padrões e desvios estatísticos em tempo real.",
-              "Prioriza a fila de alertas por probabilidade de risco.",
+              "Processa fluxos paroxísticos de milhares de eventos coligados com tolerância ao cansaço infinita.",
+              "Aponta rapidamente falhas na cadeia do Motor de Regras e estabelece Scores quantitativos dinâmicos.",
+              "Gerencia a hierarquia tática da Fila de Alertas prioritária.",
             ],
           },
           right: {
-            label: "O que só o Operador decide",
+            label: "A Jurisdição do Operador Humano",
             points: [
-              "Confirmar se um alerta é sinistro real ou falso positivo.",
-              "Avaliar contexto fora dos dados históricos (obra nova, boato de risco, pedido do cliente).",
-              "Assumir a responsabilidade formal pela decisão registrada.",
+              "Correlacionar fatores intangíveis (recessos econômicos súbitos, instabilidades ou blecautes regionais).",
+              "Deliberar com precisão cirúrgica perante falsos positivos e sinistros graves disfarçados.",
+              "Responsabilizar-se pelo registro cartorial oficial do protocolo perante o Sistema."
             ],
           },
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Se a IA erra, quem responde pela decisão?",
-              a: "Sempre o operador que validou o alerta. A IA sugere; a assinatura e a responsabilidade são humanas — é por isso que treinamento e atenção continuam essenciais.",
-            },
-            {
-              q: "O que é um falso positivo e por que ele importa?",
-              a: "É quando o sistema aponta risco onde não há (ex.: parada normal interpretada como desvio de rota). Confiar cegamente gera acionamentos desnecessários e desgasta a confiança do cliente na operação.",
-            },
-            {
-              q: "A IA pode ter viés?",
-              a: "Sim. Se o histórico de dados tem lacunas ou reflete um período atípico, o modelo herda essa distorção. Por isso a AtlasGR recalibra os modelos periodicamente e mantém o julgamento humano como camada final de segurança.",
-            },
-          ],
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
+      title: "Próximos Passos Táticos",
       blocks: [
         {
           type: "checklist",
-          title: "Reta Final",
+          title: "Diretrizes",
           items: [
-            "Revise as funcionalidades de dashboards na aba /produtos/analytics.",
-            "Nosso penúltimo módulo (14) trará um laboratório final de casos reais que você resolverá usando toda a teoria vista até aqui.",
+            "Familiarize-se profundamente com as plataformas do portal, especialmente a apresentação interativa sobre Analytics.",
+            "Prepare-se intensamente para o próximo (e penúltimo) bloco de treinamento: A unificação de todo este conhecimento nos grandiosos 'Casos Reais' operados pela empresa.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "A IA aplicada substitui a gestão de frota baseada em 'achismos' por certeza matemática.",
-    "Câmeras de fadiga salvam vidas (e cargas) agindo antes do cérebro humano desligar (Safety).",
-    "O Atlas Analytics é o produto de maior valor agregado da empresa, focando na C-Level (Diretores).",
-    "Tecnologia e Operador não competem; a IA faz o trabalho braçal e o Operador toma a decisão de crise.",
+    "A adoção em larga escala de IA não marginaliza a presença humana, e sim direciona a capacidade humana para deliberações iminentemente críticas.",
+    "Sistemas de Safety, notadamente aqueles para detecção de anomalias faciais (Fadiga) representam a vanguarda na preservação integral da cadeia patrimonial e biológica.",
+    "Atlas Analytics consubstancia o pináculo valorativo da oferta da AtlasGR, conferindo rentabilidade a diretores (C-Level).",
+    "Modelos de IA aprendem padrões, o ser humano delibera o contexto das exceções.",
   ],
   finalChecklist: [
-    "Sei a diferença entre a logística reativa do passado e a preditiva da AtlasGR.",
-    "Consigo explicar como um sensor de fadiga funciona na prática.",
-    "Entendo que o Atlas Analytics é feito para descobrir tendências e gerar dashboards executivos.",
+    "Possuo proficiência discursiva entre a mecânica Reativa e a metodologia Preditiva inerentes ao escopo da AtlasGR.",
+    "Entendo o funcionamento orgânico e mecânico dos sensores de Safety de Cabine.",
+    "Assimilo perfeitamente que falsos-positivos são intrínsecos a algoritmos complexos, razão da nossa constante mediação manual.",
   ],
   mindMap: {
-    root: "Tecnologia AtlasGR",
+    root: "O Complexo Tecnológico",
     branches: [
-      { label: "A Mente", items: ["Preditivo", "IA Embarcada", "Automação", "Human-in-the-loop"] },
-      { label: "Safety (Cabine)", items: ["Sensor Fadiga", "Alerta Celular", "Vibração"] },
-      { label: "Analytics (Diretoria)", items: ["Tendências", "Indicadores", "Foco no Custo Oculto"] },
+      { label: "Inteligência Estrutural", items: ["Predição", "Aprendizado Contínuo", "Estatísticas Operacionais"] },
+      { label: "Hardware de Defesa", items: ["Monitor Facial", "Detecção de Sonolência", "Alertas Híbridos (Som/Vibração)"] },
+      { label: "Visão Macro", items: ["Dashboard C-Level", "Análise Dinâmica de Custos", "Refinamento das Rotas"] },
     ],
   },
   scenario:
-    "Cenário Prático: O motorista coloca um esparadrapo na lente da câmera de fadiga porque 'se sente vigiado'. O sistema Connect acusa 'Câmera Obstruída'. Qual o protocolo baseando-se no fato de que o PGR de Safety foi violado de propósito?",
+    "Desafio Comportamental: Durante uma varredura sistêmica, você constata que um condutor deliberadamente obstruiu o foco da câmera DMS alegando invasão de privacidade e queixa de cansaço emocional. Paralelamente, os sensores enviam sinal vermelho contínuo ('Hardware Obstruído'). Apoiado nas normativas estruturais de combate preventivo do AtlasGR, qual é a resposta imediata?",
   diagram: {
-    title: "O Padrão Preditivo",
-    chart: "graph LR\n  Caminhao[Sensores no Caminhão] --> IA[IA Identifica Anomalia]\n  IA --> Torre[Torre Bloqueia Preventivamente]\n  Torre --> DB[Banco de Dados]\n  DB --> Analytics[Analytics Gera Dashboards para o CEO]",
+    title: "O Ecossistema Preditivo em Fluxo",
+    chart: "graph LR\n  A[Sensores Ativos na Cabine e Motor] --> B[Camadas de IA Processando o Sinal]\n  B --> C[Alarme Inteligente na Torre de Operação]\n  C --> D[Intervenção Cirúrgica ou Desbloqueio Analisado]\n  D --> E[Armazenamento em Data Lake]\n  E --> F[Dashboard Prescritivo Atlas Analytics - Diretoria]",
   },
 };

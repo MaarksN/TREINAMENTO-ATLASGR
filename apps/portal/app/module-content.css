@@ -1,0 +1,958 @@
+/* ============================================================
+   ATLAS MODULE CONTENT DESIGN SYSTEM
+   Premium CSS for all atlas-* component classes used in
+   ContentBlockView, ModulePageClient and related components.
+   ============================================================ */
+
+/* ── Base Content Card ───────────────────────────────────── */
+.atlas-content-card {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(145deg,
+    rgba(255, 86, 24, 0.06) 0%,
+    rgba(255, 255, 255, 0.97) 45%,
+    rgba(245, 158, 11, 0.06) 100%);
+  border: 1.5px solid rgba(255, 86, 24, 0.18);
+  box-shadow:
+    0 4px 24px -8px rgba(255, 86, 24, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.atlas-content-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF5618, #F59E0B, #FF5618);
+  background-size: 200%;
+  animation: atlasShimmer 3s linear infinite;
+}
+
+.atlas-content-card:hover {
+  box-shadow:
+    0 8px 40px -8px rgba(255, 86, 24, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* ── Card Heading ────────────────────────────────────────── */
+.atlas-content-card-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.atlas-content-card-heading h4 {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ── Icon Badge ──────────────────────────────────────────── */
+.atlas-content-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.875rem;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 86, 24, 0.35);
+}
+
+/* ── Kicker / Label ──────────────────────────────────────── */
+.atlas-content-kicker {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--atlas-orange);
+  margin-bottom: 0.2rem;
+}
+
+/* ── Rich Copy ───────────────────────────────────────────── */
+.atlas-rich-copy-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.atlas-rich-copy {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--foreground);
+  font-weight: 450;
+}
+
+.atlas-rich-copy strong {
+  font-weight: 700;
+  color: var(--atlas-orange);
+}
+
+.atlas-rich-copy em {
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ── Callout Blocks ──────────────────────────────────────── */
+.atlas-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1.5px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-callout::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.atlas-callout-info {
+  background: rgba(59, 130, 246, 0.07);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: var(--foreground);
+}
+.atlas-callout-info::before { background: #3B82F6; }
+.atlas-callout-info .atlas-callout-icon { color: #3B82F6; }
+
+.atlas-callout-warning {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.atlas-callout-warning::before { background: #F59E0B; }
+.atlas-callout-warning .atlas-callout-icon { color: #F59E0B; }
+
+.atlas-callout-success {
+  background: rgba(16, 185, 129, 0.07);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.atlas-callout-success::before { background: #10B981; }
+.atlas-callout-success .atlas-callout-icon { color: #10B981; }
+
+.atlas-callout-icon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.atlas-callout-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.atlas-callout-copy {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  opacity: 0.85;
+}
+
+/* ── Checklist Card ──────────────────────────────────────── */
+.atlas-checklist-card {
+  background: linear-gradient(150deg,
+    rgba(255, 86, 24, 0.05) 0%,
+    rgba(255, 255, 255, 0.97) 60%,
+    rgba(245, 158, 11, 0.05) 100%);
+}
+
+.atlas-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.atlas-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: 0.875rem;
+  background: rgba(255, 86, 24, 0.04);
+  border: 1px solid rgba(255, 86, 24, 0.12);
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--foreground);
+  line-height: 1.5;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.atlas-checklist li:hover {
+  background: rgba(255, 86, 24, 0.09);
+  border-color: rgba(255, 86, 24, 0.28);
+}
+
+.atlas-checklist li svg:last-child {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #10B981;
+}
+
+.atlas-check-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+/* ── Comparison Grid ─────────────────────────────────────── */
+.atlas-comparison {
+  margin-bottom: 1.5rem;
+}
+
+.atlas-comparison > .atlas-content-card-heading {
+  margin-bottom: 1.25rem;
+}
+
+.atlas-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .atlas-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.atlas-comparison-card {
+  position: relative;
+  border-radius: 1.125rem;
+  padding: 1.5rem;
+  border: 1.5px solid rgba(255, 86, 24, 0.18);
+  background: linear-gradient(150deg, rgba(255, 86, 24, 0.05), rgba(255, 255, 255, 0.97) 70%);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.atlas-comparison-card:hover {
+  box-shadow: 0 6px 30px rgba(255, 86, 24, 0.15);
+}
+
+.atlas-comparison-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.95rem;
+  margin-bottom: 0.875rem;
+  box-shadow: 0 4px 10px rgba(255, 86, 24, 0.3);
+}
+
+.atlas-comparison-card p {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--foreground);
+  margin-bottom: 0.875rem;
+}
+
+.atlas-comparison-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.atlas-comparison-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.atlas-comparison-card ul li span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--atlas-orange);
+  margin-top: 0.42rem;
+  flex-shrink: 0;
+}
+
+/* ── Timeline ────────────────────────────────────────────── */
+.atlas-timeline-card {
+  background: linear-gradient(145deg,
+    rgba(245, 158, 11, 0.05) 0%,
+    rgba(255, 255, 255, 0.97) 60%,
+    rgba(255, 86, 24, 0.05) 100%);
+}
+
+.atlas-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.atlas-timeline::before {
+  content: "";
+  position: absolute;
+  left: 1.125rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #FF5618, #F59E0B, transparent);
+  border-radius: 999px;
+}
+
+.atlas-timeline li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1rem 1rem 1.25rem;
+  position: relative;
+}
+
+.atlas-timeline li div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.atlas-timeline li div p {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.atlas-timeline li div span {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.atlas-timeline-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 4px rgba(255, 86, 24, 0.12), 0 4px 10px rgba(255, 86, 24, 0.3);
+}
+
+/* ── Case Study Card ─────────────────────────────────────── */
+.atlas-case-card {
+  background: linear-gradient(135deg,
+    rgba(255, 86, 24, 0.08) 0%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(245, 158, 11, 0.08) 100%);
+  border-left: 4px solid var(--atlas-orange);
+}
+
+.atlas-case-copy {
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: var(--foreground);
+  font-weight: 450;
+  margin: 0 0 1rem;
+}
+
+.atlas-case-source {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin: 0;
+}
+
+/* ── FAQ Card ────────────────────────────────────────────── */
+.atlas-faq-card {
+  background: linear-gradient(145deg,
+    rgba(255, 86, 24, 0.04) 0%,
+    rgba(255, 255, 255, 0.98) 60%,
+    rgba(245, 158, 11, 0.04) 100%);
+}
+
+.atlas-faq-list {
+  margin-top: 0.5rem;
+}
+
+/* ── Stats Grid ──────────────────────────────────────────── */
+.atlas-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.atlas-stat-card {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: linear-gradient(145deg, rgba(255, 86, 24, 0.08), rgba(245, 158, 11, 0.06));
+  border: 1.5px solid rgba(255, 86, 24, 0.2);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.atlas-stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 86, 24, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.atlas-stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(255, 86, 24, 0.2);
+}
+
+.atlas-stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(255, 86, 24, 0.3);
+}
+
+.atlas-stat-card p {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(110deg, #FF5618, #F59E0B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+.atlas-stat-card span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ── Image Card ──────────────────────────────────────────── */
+.atlas-image-card {
+  position: relative;
+  border-radius: 1.25rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 86, 24, 0.2);
+  box-shadow: 0 4px 24px -8px rgba(255, 86, 24, 0.15);
+  background: var(--surface-2);
+}
+
+.atlas-image-caption {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  color: var(--muted);
+  background: linear-gradient(to top, var(--surface) 0%, transparent 100%);
+  border-top: 1px solid rgba(255, 86, 24, 0.1);
+}
+
+/* ── Quote Card ──────────────────────────────────────────── */
+.atlas-quote-card {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 2.5rem 2rem 2rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg,
+    rgba(255, 86, 24, 0.07) 0%,
+    rgba(255, 255, 255, 0.97) 50%,
+    rgba(245, 158, 11, 0.07) 100%);
+  border: 1.5px solid rgba(255, 86, 24, 0.2);
+  overflow: hidden;
+}
+
+.atlas-quote-card > svg {
+  color: rgba(255, 86, 24, 0.25);
+  margin-bottom: 1.25rem;
+}
+
+.atlas-quote-card p {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--foreground);
+  font-style: italic;
+  margin: 0 0 1.25rem;
+}
+
+.atlas-quote-card footer {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--atlas-orange);
+}
+
+/* ── Module Lesson Section ───────────────────────────────── */
+.atlas-lesson-section {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.atlas-lesson-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 86, 24, 0.15);
+}
+
+.atlas-lesson-heading > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.35rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(255, 86, 24, 0.35);
+}
+
+.atlas-lesson-heading h2 {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--foreground);
+  margin: 0.35rem 0 0;
+}
+
+.atlas-block-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Objectives Panel ────────────────────────────────────── */
+.atlas-objectives-panel {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.atlas-objectives-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 86, 24, 0.08), rgba(245, 158, 11, 0.06));
+  border: 1.5px solid rgba(255, 86, 24, 0.2);
+}
+
+.atlas-objectives-heading > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(255, 86, 24, 0.35);
+}
+
+.atlas-objectives-heading p {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--atlas-orange);
+  margin: 0 0 0.15rem;
+}
+
+.atlas-objectives-heading h2 {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.atlas-objectives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.atlas-objectives-grid article {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(255, 86, 24, 0.05), rgba(255, 255, 255, 0.97) 70%);
+  border: 1.5px solid rgba(255, 86, 24, 0.16);
+  transition: box-shadow 0.25s, transform 0.25s;
+  cursor: default;
+}
+
+.atlas-objectives-grid article:hover {
+  box-shadow: 0 6px 24px rgba(255, 86, 24, 0.14);
+  transform: translateY(-3px);
+}
+
+.atlas-objectives-grid article > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(255, 86, 24, 0.28);
+}
+
+.atlas-objectives-grid article > p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.5;
+  margin: 0.2rem 0 0;
+}
+
+/* ── Summary Card ────────────────────────────────────────── */
+.atlas-summary-card {
+  border-radius: 1.25rem;
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(255, 86, 24, 0.06), rgba(255, 255, 255, 0.98) 55%, rgba(245, 158, 11, 0.06));
+  border: 1.5px solid rgba(255, 86, 24, 0.18);
+  box-shadow: 0 4px 24px -8px rgba(255, 86, 24, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF5618, #F59E0B);
+}
+
+.atlas-summary-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.atlas-summary-heading > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #FF5618, #F59E0B);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(255, 86, 24, 0.3);
+}
+
+.atlas-summary-heading > div p {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--atlas-orange);
+  margin: 0 0 0.2rem;
+}
+
+.atlas-summary-heading > div h2 {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.atlas-summary-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.atlas-summary-card ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 1.125rem;
+  border-radius: 0.875rem;
+  background: rgba(255, 86, 24, 0.04);
+  border: 1px solid rgba(255, 86, 24, 0.1);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--foreground);
+  line-height: 1.55;
+}
+
+.atlas-summary-card ul li svg {
+  flex-shrink: 0;
+  color: #10B981;
+  margin-top: 0.15rem;
+}
+
+/* ── Final Checklist ─────────────────────────────────────── */
+.atlas-final-checklist {
+  border-radius: 1.25rem;
+  padding: 2rem;
+  background: linear-gradient(145deg,
+    rgba(16, 185, 129, 0.06) 0%,
+    rgba(255, 255, 255, 0.97) 50%,
+    rgba(255, 86, 24, 0.06) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-final-checklist::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #10B981, #F59E0B, #FF5618);
+}
+
+.atlas-final-checklist > p.atlas-content-kicker {
+  color: #10B981;
+}
+
+.atlas-final-checklist h2 {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  margin: 0.25rem 0 1.25rem;
+}
+
+.atlas-final-checklist > p {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.875rem 1.125rem;
+  border-radius: 0.875rem;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--foreground);
+  line-height: 1.55;
+  margin-bottom: 0.625rem;
+}
+
+.atlas-final-checklist > p > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #10B981, #F59E0B);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes atlasShimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ── DARK MODE OVERRIDES ─────────────────────────────────── */
+:is(.dark *) .atlas-content-card {
+  background: linear-gradient(145deg,
+    rgba(255, 86, 24, 0.1) 0%,
+    rgba(18, 18, 18, 0.95) 50%,
+    rgba(245, 158, 11, 0.1) 100%);
+  border-color: rgba(255, 86, 24, 0.3);
+  box-shadow:
+    0 4px 24px -8px rgba(255, 86, 24, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:is(.dark *) .atlas-callout-info {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+:is(.dark *) .atlas-callout-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+:is(.dark *) .atlas-callout-success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+:is(.dark *) .atlas-checklist li {
+  background: rgba(255, 86, 24, 0.07);
+  border-color: rgba(255, 86, 24, 0.2);
+}
+
+:is(.dark *) .atlas-checklist li:hover {
+  background: rgba(255, 86, 24, 0.12);
+  border-color: rgba(255, 86, 24, 0.35);
+}
+
+:is(.dark *) .atlas-comparison-card {
+  background: linear-gradient(150deg, rgba(255, 86, 24, 0.1), rgba(18, 18, 18, 0.97) 70%);
+  border-color: rgba(255, 86, 24, 0.28);
+}
+
+:is(.dark *) .atlas-stat-card {
+  background: linear-gradient(145deg, rgba(255, 86, 24, 0.12), rgba(245, 158, 11, 0.08));
+  border-color: rgba(255, 86, 24, 0.3);
+}
+
+:is(.dark *) .atlas-quote-card {
+  background: linear-gradient(135deg,
+    rgba(255, 86, 24, 0.1) 0%,
+    rgba(18, 18, 18, 0.96) 50%,
+    rgba(245, 158, 11, 0.1) 100%);
+  border-color: rgba(255, 86, 24, 0.28);
+}
+
+:is(.dark *) .atlas-summary-card {
+  background: linear-gradient(145deg, rgba(255, 86, 24, 0.1), rgba(18, 18, 18, 0.96) 55%, rgba(245, 158, 11, 0.08));
+  border-color: rgba(255, 86, 24, 0.28);
+}
+
+:is(.dark *) .atlas-summary-card ul li {
+  background: rgba(255, 86, 24, 0.07);
+  border-color: rgba(255, 86, 24, 0.15);
+}
+
+:is(.dark *) .atlas-final-checklist {
+  background: linear-gradient(145deg,
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(18, 18, 18, 0.96) 50%,
+    rgba(255, 86, 24, 0.08) 100%);
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+:is(.dark *) .atlas-final-checklist > p {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+:is(.dark *) .atlas-objectives-panel .atlas-objectives-heading {
+  background: linear-gradient(135deg, rgba(255, 86, 24, 0.12), rgba(245, 158, 11, 0.08));
+  border-color: rgba(255, 86, 24, 0.28);
+}
+
+:is(.dark *) .atlas-objectives-grid article {
+  background: linear-gradient(145deg, rgba(255, 86, 24, 0.08), rgba(18, 18, 18, 0.96) 70%);
+  border-color: rgba(255, 86, 24, 0.22);
+}
+
+:is(.dark *) .atlas-case-card {
+  background: linear-gradient(135deg,
+    rgba(255, 86, 24, 0.12) 0%,
+    rgba(18, 18, 18, 0.95) 50%,
+    rgba(245, 158, 11, 0.1) 100%);
+}
+
+:is(.dark *) .atlas-checklist-card,
+:is(.dark *) .atlas-text-card,
+:is(.dark *) .atlas-timeline-card,
+:is(.dark *) .atlas-faq-card {
+  background: linear-gradient(145deg,
+    rgba(255, 86, 24, 0.1) 0%,
+    rgba(18, 18, 18, 0.95) 60%,
+    rgba(245, 158, 11, 0.08) 100%);
+}

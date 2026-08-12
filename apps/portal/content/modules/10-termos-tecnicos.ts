@@ -6,255 +6,183 @@ const meta = getModuleMeta("10-termos-tecnicos")!;
 export const module10: ModuleContentFull = {
   ...meta,
   sources: [
-    "Glossário Oficial AtlasGR",
-    "Documentação da ANTT e SEFAZ",
-    "Manuais de Operação",
+    "Glossário Operacional Oficial AtlasGR",
+    "Documentações Normativas (ANTT e SEFAZ)",
+    "Diretrizes Táticas da Central 24/7",
   ],
   objectives: [
-    "Dominar a sopa de letrinhas (siglas) usadas nas rodovias e escritórios brasileiros.",
-    "Evitar relatórios incorretos que disparam ações letais (Ex: Jammer vs Área de Sombra).",
-    "Diferenciar claramente documentos fiscais (NF-e) de documentos logísticos (CT-e).",
-    "Compreender métricas vitais como SLA e ETA.",
-    "Distinguir os pares de termos que mais confundem operador novato, como sinistro/ocorrência e LMI/sublimite.",
+    "Dominar de forma assertiva as siglas críticas que pavimentam a comunicação rodoviária e dos escritórios do setor logístico.",
+    "Aprender as diferenças abissais entre alertas vitais (Jammer) e flutuações operacionais (Área de Sombra), para não tomar atitudes catastróficas.",
+    "Diferenciar rigorosamente o documento fiscal (NF-e) do documento legal logístico (CT-e).",
+    "Assimilar métricas decisivas (KPIs) como SLA, ETA e OTD na avaliação gerencial de sucesso da operação.",
+    "Distinguir pares de conceitos perigosos como LMI x Sublimite, fundamentais no crivo da seguradora.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Idioma da Logística",
+      title: "Introdução: O Idioma Cirúrgico da Logística",
       blocks: [
         {
-          type: "text",
-          heading: "Por que as palavras importam?",
-          paragraphs: [
-            [
-              "Na Torre de Controle, você tem 10 minutos para agir. Se você gritar 'Roubo!' ao invés de 'Avaria', você acionará a Polícia Militar com cães farejadores para atender um caminhão que apenas furou o pneu e quebrou a carga.",
-            ],
-            [
-              "Este módulo é o seu dicionário de sobrevivência. Precisão técnica evita histeria, falsos positivos e garante que a CIA saiba exatamente qual ferramenta usar no combate.",
-            ],
-          ],
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
         },
         {
-          type: "callout",
-          variant: "success",
-          title: "Funcionalidade do Portal",
-          text: [
-            "Não precisa decorar tudo hoje. O portal da AtlasGR possui o sublinhado em termos-chave. Passou o mouse por cima do termo, a explicação aparece.",
+          type: "quote",
+          text: "A precisão da comunicação na Torre de Controle determina se a polícia cerca o caminhão certo ou se o criminoso escapa rindo por conta de um erro de digitação.",
+          author: "Líder de Comando da CIA"
+        },
+        {
+          type: "text",
+          heading: "Por Que a Terminologia Importa?",
+          paragraphs: [
+            [
+              "Na cadeira de gestão de risco e monitoramento de uma Torre, o tempo útil de contenção de uma crise dura minutos. Em um cenário de alto estresse, se você clica 'Alerta de Roubo' num momento onde ocorreu apenas uma simples 'Avaria' ou quebra mecânica inofensiva, a máquina de pronta-resposta dispara.",
+            ],
+            [
+              "Esta confusão gera falsos alertas, engaja escoltas policiais baseadas num erro de semântica e afunda a credibilidade da AtlasGR. Este módulo atua como sua principal cartilha anti-desastres comunicacionais, assegurando operações fluídas e assertivas.",
+            ],
           ],
         },
       ],
     },
     {
       id: "capitulo-1-hardwares",
-      title: "Capítulo 1: Hardware e Equipamentos Táticos",
+      title: "Capítulo 1: Componentes Táticos do Caminhão (Hardwares)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O caminhão é uma fortaleza móvel cheia de tecnologia embutida.",
+              "A carreta de um cliente Enterprise AtlasGR não é apenas ferro, é uma bolha tecnológica que respira e transmite dados vitais ininterruptamente.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Tecnologias Físicas",
+          title: "Anatomia Tecnológica e as Ameaças",
           items: [
-            "Rastreador Primário (Hardware Fixo): Fica embutido no painel do caminhão e acionado pela bateria do veículo. Cortam o fio, ele apaga.",
-            "Isca Móvel: Uma pequena caixa (rastreador secundário) escondida dentro de uma caixa de papelão no meio da carga, com bateria própria. Se a quadrilha arrancar o painel do caminhão, a isca dedura a posição do galpão de desmanche.",
-            "Jammer (Chupa-Cabra): Equipamento de rádio-frequência usado por bandidos para 'cegar' os rastreadores. Derruba o satélite e o celular do caminhão.",
+            "Rastreador Primário (A Bússola): Módulo embutido fisicamente no painel. Totalmente dependente do cabeamento elétrico do caminhão. Caso os meliantes o removam e cortem a ignição, a tela na torre acende no vermelho instantaneamente (Evento de falha de energia).",
+            "Isca Móvel (O Plano B Inivisível): Rastreador independente, alimentado por bateria contida nele, oculto aleatoriamente no meio dos pallets da mercadoria de alto valor. Se o cavalo mecânico for descartado pelos bandidos, a carga continuará ecoando sua posição do esconderijo.",
+            "Jammer (Chupa-Cabra): Aparato eletrônico bélico altamente proibido, cujo propósito é lançar bombardeio de radiofrequência contra as antenas de celular/satélite em um raio em torno da carreta, suprimindo o envio do socorro e neutralizando (temporariamente) a resposta remota.",
           ],
         },
       ],
     },
     {
       id: "capitulo-2-documentos",
-      title: "Capítulo 2: A Burocracia Governamental",
+      title: "Capítulo 2: Burocracia, Legalidade e Documentos Fiscais",
       blocks: [
         {
+          type: "text",
+          paragraphs: [
+            [
+              "Existem duas vertentes no universo de documentos da estrada: O que o caminhão leva (o produto) e O serviço que o caminhão faz (o frete). Confundi-los gera bloqueio na Receita Estadual (Sefaz) e na agência rodoviária (ANTT).",
+            ],
+          ],
+        },
+        {
           type: "comparison",
-          title: "NF-e vs CT-e",
+          title: "Distinção Crítica: A Carga versus o Serviço",
           left: {
-            label: "NF-e (Nota Fiscal)",
-            points: ["O imposto sobre o PRODUTO.", "Gerado por quem vende (Embarcador).", "Mede o 'Valor da Carga' (Ex: 1 Milhão de Reais). Essencial para a Apólice."],
+            label: "NF-e (Nota Fiscal Eletrônica do Produto)",
+            points: ["Emitida estritamente pelo dono original da carga (A Indústria, o Embarcador).", "Espelha o Valor Exposto Ao Risco real. Ex: O caminhão leva R$ 1.500.000 em Notebooks.", "Documento base irrevogável para a Seguradora cobrir o pagamento do roubo."],
           },
           right: {
-            label: "CT-e (Conhecimento de Transporte)",
-            points: ["O imposto sobre o FRETE.", "Gerado por quem transporta (Transportadora).", "Mede o serviço logístico. Se não for emitido, a ANTT apreende a carga na balança fiscal."],
+            label: "CT-e (Conhecimento de Transporte Eletrônico)",
+            points: ["Emitido unicamente por quem realiza o movimento (A Transportadora contratada).", "Mapeia o imposto sobre o serviço do frete cobrado. (Ex: O frete da viagem custou R$ 3.000).", "Indispensável e inspecionado em balanças fiscais estaduais (ANTT e Sefaz). A ausência retém o veículo instantaneamente."],
           },
-        },
-        {
-          type: "checklist",
-          title: "Principais códigos",
-          items: [
-            "#CONF — confirmação com motorista ou responsável, sempre com data, hora, meio de contato (telefone ou WhatsApp) e a informação confirmada.",
-            "#AUT — autorização do responsável para reset, desengate ou desativação de sensor, com data, hora e prazo.",
-            "@Conf — marca que uma confirmação foi registrada; @@@ separa veículos diferentes dentro da mesma grade.",
-            "? Pa / ? Local / ? Pa-Local — motivo da parada, local da parada, ou os dois, cobrados do motorista via mensagem.",
-            "GPS / Reset-Script / Setas-Sirene — ações remotas enviadas ao veículo (reset de GPS, reset acompanhado de script, ativação de setas e sirene).",
-            "**** — mensagem enviada ao veículo por perda de sinal ou de comunicação.",
-            "@ Porta / @ Painel / @ Baú / @ Desengate / @ Âncora / @ BP — alarmes por tipo de sensor (porta, painel, baú, desengate, âncora, botão de pânico).",
-            "Abast / WC / HP / Ref / Manifesto — motivo de parada informado pelo motorista (abastecimento, banheiro, higiene pessoal, refeição, manifesto).",
-            "Pel / Pmec — problema elétrico ou mecânico relatado pelo motorista.",
-            "Pe / Re — pernoite / previsão de reinício da viagem.",
-            "CR — indica que, ao final da viagem, uma nova rota precisa ser cadastrada no sistema.",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          title: "Decodificando uma linha do Grid",
-          text: [
-            "\"@ Porta [Cidade A]=>[Cidade B]\" significa que o veículo, em trânsito entre essas duas cidades, gerou um alarme de porta. \"? Pa Local [Cidade A]=>[Cidade B]\" significa que o operador cobrou do motorista o motivo e o local da parada. Toda manutenção, parada fora do autorizado ou circulação fora do horário permitido deve ser confirmada com o cliente antes de ser liberada.",
-          ],
         },
       ],
     },
     {
       id: "capitulo-3-metricas",
-      title: "Capítulo 3: Indicadores e Métricas (KPIs)",
+      title: "Capítulo 3: Indicadores e Métricas Operacionais (KPIs)",
       blocks: [
         {
-          type: "text",
-          paragraphs: [
-            [
-              "Você será cobrado por performance. Conheça as réguas de medição.",
-            ],
-          ],
+          type: "stat",
+          items: [
+            { value: "SLA", label: "Service Level Agreement (Acordo de Nível de Serviço e Tratativas Operacionais)" },
+            { value: "ETA", label: "Estimated Time of Arrival (Previsão Inteligente da Chegada do Caminhão)" }
+          ]
         },
         {
           type: "faq",
           items: [
-            { q: "O que é SLA?", a: "Service Level Agreement (Acordo de Nível de Serviço). É o prazo máximo permitido em contrato. SLA da Torre para tratar alerta crítico: 10 minutos." },
-            { q: "O que é ETA?", a: "Estimated Time of Arrival (Estimativa de Chegada). A inteligência do Connect calculando se a viagem vai atrasar ou não." },
-            { q: "O que é OTD?", a: "On-Time Delivery. Uma métrica do Embarcador que mede a porcentagem de caminhões que chegaram no prazo." },
+            { q: "Qual a diferença entre SLA e OTD?", a: "O SLA é interno: O tempo que VOCÊ demora na Torre para reagir a um evento anômalo (ex: atuar no bloqueio em 5 min). O OTD (On Time Delivery) é logístico: o percentual de caminhões do cliente que cumpriu a viagem sem furar a agenda na porta da fábrica." },
           ],
-        },
-      ],
-    },
-    {
-      id: "estudo-de-caso",
-      title: "Estudo de Caso: Sombra vs Jammer",
-      blocks: [
-        {
-          type: "case",
-          title: "O Pânico na Serra",
-          text: "Caso Clássico: O caminhão entra na Rodovia Regis Bittencourt, num trecho de serra profundo. O sinal some. O operador inexperiente clica no relatório e escreve 'Perda de Sinal por Ação de Jammer'. Dispara o protocolo da CIA e a Polícia fecha a rodovia com helicóptero. O caminhão passa o túnel, o sinal volta. Foi apenas uma 'Área de Sombra' (sem cobertura de celular natural). O uso da palavra errada gera danos incalculáveis de desperdício de recursos policiais.",
-          source: "Manual de Falhas - AtlasGR DHO",
         },
       ],
     },
     {
       id: "capitulo-4-falsos-amigos",
-      title: "Capítulo 4: Falsos Amigos do Jargão",
+      title: "Capítulo 4: Falsos Amigos do Jargão Securitário (Alerta Máximo)",
       blocks: [
         {
           type: "text",
-          heading: "Palavras parecidas, consequências diferentes",
+          heading: "Como Não Estragar Milhões em Coberturas de Apólice",
           paragraphs: [
             [
-              "Todo operador novato, nas primeiras semanas, troca um termo pelo outro e escreve um relatório tecnicamente errado. Isso não é feio, é normal — mas alguns pares de palavras têm efeitos práticos bem diferentes (aciona seguradora, aciona cliente, aciona nada), então vale a pena isolar esses pares e memorizar a diferença de uma vez.",
-            ],
-            [
-              "Regra de bolso: se você não tem certeza de qual dos dois termos usar, descreva o fato em português simples no campo de observação e peça confirmação ao supervisor antes de fechar o registro com a sigla errada.",
+              "A fronteira entre um operador novato e um sênior da AtlasGR se consolida no domínio dos jargões securitários sensíveis.",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "Sinistro vs Ocorrência",
+          title: "O Pânico Sintético: Sombras e Interferências",
           left: {
-            label: "Sinistro",
-            points: [
-              "Evento que gerou (ou pode gerar) perda financeira coberta pela apólice — furto, roubo, avaria com prejuízo.",
-              "Abre processo formal na seguradora, com número de sinistro e regulação.",
-              "Nem toda ocorrência vira sinistro.",
-            ],
+            label: "Área de Sombra (Falha de Cobertura Telecom)",
+            points: ["Evento orgânico de falha na rede de antenas (celulares e dados) por relevo profundo, serras, canaviais ou túneis.", "Tratativa: Aguardar o veículo retomar áreas povoadas. Não exige protocolo da CIA no ato."],
           },
           right: {
-            label: "Ocorrência",
-            points: [
-              "Qualquer evento fora do padrão registrado durante o monitoramento — parada não autorizada, alarme de porta, atraso.",
-              "Fica registrado no grid operacional, sem necessariamente envolver a seguradora.",
-              "Toda base de sinistro nasceu de uma ocorrência, mas a maioria das ocorrências morre como ocorrência mesmo.",
-            ],
+            label: "Jammer (Interferência Paramilitar Ativa)",
+            points: ["Uso orquestrado de equipamento de rádio ilegal por uma quadrilha abordando o condutor na pista.", "Tratativa: Crise sistêmica grave, demandando bloqueio irreversível do motor imediato e envio tático policial. Confundir Sombra com Jammer é um erro fatal na operação."],
           },
         },
         {
           type: "comparison",
-          title: "LMI vs Sublimite",
+          title: "O Glossário do Risco: Sinistros vs Limites",
           left: {
-            label: "LMI (Limite Máximo de Indenização)",
+            label: "Ocorrência Logística vs Sinistro Consolidado",
             points: [
-              "O teto geral que a seguradora paga por evento, definido na apólice.",
-              "É o 'valor do jogo inteiro'.",
+              "Ocorrência é um desvio que o operador cuida todo dia: pneu furado, atraso em doca, abertura de baú indevida.",
+              "Sinistro é o evento validado por auditoria e inteligência que consolida um dano real e irreversível coberto pela seguradora (Ex: Roubo com restrição de liberdade, Avaria destrutiva na estrada).",
             ],
           },
           right: {
-            label: "Sublimite",
+            label: "LMI Geral vs Sublimite Restrito",
             points: [
-              "Um teto menor, dentro do LMI, para uma categoria específica de risco (ex: eletrônicos, joias, mercadoria a granel).",
-              "Mesmo com LMI alto, uma carga de sublimite baixo pode não ser totalmente coberta em caso de perda total.",
+              "LMI (Limite Máximo de Indenização): O capital teto global da apólice inteira para sinistros diversos.",
+              "Sublimite: Uma subcláusula exigente que só cobre até determinado valor dependendo do tipo da carga (Ex: Cobre tudo até 1 Milhão, mas celulares estão sublimitados a no máximo 100 Mil reais). A quebra disso queima milhões em indenização não paga.",
             ],
           },
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Apólice e PGR são a mesma coisa?",
-              a: "Não. A apólice é o contrato de seguro em si, com LMI, sublimites e cláusulas. O PGR (Plano de Gerenciamento de Risco) é o conjunto de exigências operacionais (rastreador, escolta, horário de circulação) que a seguradora impõe como condição para manter a cobertura. Descumprir o PGR pode zerar a indenização mesmo com a apólice em dia.",
-            },
-            {
-              q: "RCF-DC é a mesma coisa que a apólice de carga?",
-              a: "Não. RCF-DC (Responsabilidade Civil Facultativa do Transportador Rodoviário - Desaparecimento de Carga) é um seguro contratado pelo transportador para cobrir a própria responsabilidade civil. A apólice de transporte (RCTR-C) é do embarcador/dono da carga. Podem existir as duas ao mesmo tempo, cobrindo partes diferentes do risco.",
-            },
-            {
-              q: "Se o cliente liga perguntando 'foi sinistro?', posso responder na hora?",
-              a: "Não é o operador da Torre quem classifica um evento como sinistro — isso cabe à área de Regulação/Sinistro, com base na apuração. O operador relata a ocorrência com precisão técnica; a palavra 'sinistro' só deve ser usada depois de confirmada oficialmente.",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
-      blocks: [
-        {
-          type: "checklist",
-          title: "Consolidação",
-          items: [
-            "Acesse o Glossário Geral da AtlasGR no rodapé da página para mais de 300 termos mapeados.",
-            "Vá para o Módulo 11 para ver tudo isso sendo usado sob extrema pressão na operação diária.",
-          ],
         },
       ],
     },
   ],
   summary: [
-    "Isca móvel e Rastreador principal não são a mesma coisa; um é contingência vital do outro.",
-    "Jammer é um ataque criminoso; Sombra é falha de infraestrutura de telecom.",
-    "O Valor exposto ao risco que importa para o Seguro está na NF-e.",
-    "SLA e ETA são os medidores da sua velocidade e da velocidade do caminhão.",
+    "Isca móvel garante uma camada redundante (plano B) perante a remoção bruta do rastreador primário fixo.",
+    "Categorizar precipuamente uma Área de Sombra como Ataque Jammer é inflacionar artificialmente o pânico e as ferramentas policias no estado.",
+    "A nota fiscal (NF-e) dita o valor da carga; CT-e lida unicamente com a burocracia do frete.",
+    "Um evento anômalo só ganha a classificação definitiva de Sinistro após validações da perícia (apólice e corretagem); para a Torre, inicia-se apenas como Ocorrência.",
   ],
   finalChecklist: [
-    "Diferencio perfeitamente Sombra de Jammer.",
-    "Sei a diferença entre a nota fiscal da TV e o imposto de transporte da TV.",
-    "Compreendo o significado de SLA e sua importância.",
+    "Distingo perfeitamente causas orgânicas (Área de Sombra) de intervenções criminais (Jammer).",
+    "Não caio na armadilha de trocar os termos referentes ao valor da mercadoria (NF-e) com o documento do transportador (CT-e).",
+    "Reconheço que acionamentos indevidos sobre Sinistros criam danos pesados à credibilidade corporativa AtlasGR e da corretora parceira.",
   ],
   mindMap: {
-    root: "Termos Técnicos",
+    root: "O Dicionário AtlasGR Avançado",
     branches: [
-      { label: "Hardware Físico", items: ["Jammer", "Isca", "Rastreador", "Sombra"] },
-      { label: "Papelada", items: ["NF-e (Valor)", "CT-e (Frete)", "Sinistro vs Ocorrência"] },
-      { label: "As Métricas", items: ["SLA", "ETA", "OTD"] },
+      { label: "Arsenal Tecnológico", items: ["Rastreadores Primários (Chassi/Energia)", "Isca Tática Embutida", "Interferidor Ilegal (Jammer)", "Cegueira Regional (Sombra)"] },
+      { label: "Corpo Burocrático", items: ["NF-e (Produto)", "CT-e (Viagem/Frete)", "Seguros (LMI vs Sublimite)"] },
+      { label: "Métricas Centrais", items: ["Torre: SLA (Tempo de Reação)", "Frota: ETA (Previsão)", "Gerencial: OTD"] },
     ],
   },
   scenario:
-    "Cenário Prático: A carreta para em um local ermo, e o rastreador principal emite que a bateria foi cortada subitamente (corte de fio), mas há 100% de cobertura de celular na região. Isso é Área de Sombra ou possível ação humana?",
+    "Cenário Prático Avançado: Durante a chuva forte na balsa do porto, a rede de dados GPRS do caminhão que transporta Notebooks (alvo visado) cai e não retorna posição. Levando em conta que o evento está associado à água e ausência de torres próximas da transportadora, que erro crasso o operador amador comete se escrever no relatório 'Perda de Sinal por Jammer Confirmado'?",
   diagram: {
-    title: "Documentação de Risco",
-    chart: "graph LR\n  Cliente(Embarcador) --> NFE[NF-e : Valor Alto]\n  NFE --> PGR{PGR Exige Isca?}\n  PGR -- Sim --> Torre(Atlas Connect)\n  PGR -- Não --> VSR(Viagem de Baixo Risco)",
+    title: "O Ecossistema Crítico Tático",
+    chart: "graph TD\n  Anomalia[Torre: Alarme Físico Disparado] --> Triagem{Investigação Rápida}\n  Triagem -- Sombra (Celular Inoperante Orgânico) --> Aguarda[Rotina Padrão - Monitoramento Contínuo]\n  Triagem -- Jammer (Queda Súbita e Bloqueio de Ondas) --> Crise[Alerta Máximo - Travar Motor & Acionar CIA]\n  Crise --> AvaliacaoPos[Corretora avalia LMI e Sublimite caso Sinistro consolidado]",
   },
 };

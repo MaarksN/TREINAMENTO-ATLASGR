@@ -6,216 +6,171 @@ const meta = getModuleMeta("08-clientes")!;
 export const module08: ModuleContentFull = {
   ...meta,
   sources: [
-    "Outline consolidado (content/modules/meta.ts)",
-    "Módulo 2 — Mercado de Logística (Revisão)",
-    "Showcases de Casos de Sucesso Comerciais",
+    "Mapeamento Estratégico Corporativo 2026",
+    "Showcases de Casos de Sucesso Comerciais de Alta Complexidade",
   ],
   objectives: [
-    "Reconhecer os três grandes perfis de cliente atendidos pela AtlasGR.",
-    "Mapear a 'dor' específica de cada perfil.",
-    "Traduzir essas dores para os produtos do nosso portfólio (A solução).",
-    "Compreender a dinâmica de poder entre Embarcador, Seguradora e Transportadora.",
-    "Diferenciar clientes por criticidade e SLA, e entender como isso muda a priorização de atendimento da Central de Monitoramento.",
+    "Reconhecer profundamente os três macro-perfis de cliente (Transportador, Embarcador, Operador Logístico).",
+    "Mapear a 'dor' sistêmica e as métricas vitais de cada perfil de cliente.",
+    "Traduzir as funcionalidades brutas dos nossos softwares na solução exata dessas dores corporativas.",
+    "Compreender a dinâmica de poder entre Embarcador (Dono da carga), Seguradora e Transportadora.",
+    "Dominar a priorização tática de atendimento (Enterprise vs Padrão) baseada em SLA e SLAs de Criticidade.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: A Lente do Cliente",
+      title: "Introdução: A Lente do Cliente e a Venda Consultiva",
       blocks: [
         {
-          type: "text",
-          heading: "Falando a Língua Certa",
-          paragraphs: [
-            [
-              "Um erro clássico é vender 'segurança' para quem está preocupado com 'prazo de entrega'. Na AtlasGR, você precisa calibrar o seu discurso dependendo de quem está do outro lado da linha.",
-            ],
-            [
-              "Para um embarcador de bebidas, perder 10 caminhões de refrigerante no roubo é ruim, mas perder 50 caminhões parados em uma doca por ineficiência é muito pior para a margem de lucro. Neste módulo, vamos aprender a ler mentes corporativas.",
-            ],
-          ],
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
         },
         {
-          type: "callout",
-          variant: "info",
-          title: "Dica do Assistente IA",
-          text: [
-            "Use o assistente virtual para gerar simulações de diálogos. Peça a ele: 'Haja como um Diretor de Transportadora furioso por causa de uma multa da apólice, e eu tentarei acalmá-lo usando o argumento do Atlas GR'.",
+          type: "quote",
+          text: "A dor do transportador é o caminhão bloqueado e a apólice rasgada. A dor do embarcador é a fábrica parada e a falta de visibilidade na estrada.",
+          author: "Head de Operações B2B AtlasGR"
+        },
+        {
+          type: "text",
+          heading: "Falando o Dialeto Corporativo Certo",
+          paragraphs: [
+            [
+              "Vender 'segurança de válvula contra roubo' para um gestor logístico que não sofreu um assalto nos últimos dez anos é jogar discurso fora. Ele está preocupado com ociosidade da frota, tempo de espera na doca e multas por atraso na entrega.",
+            ],
+            [
+              "Neste módulo, você aprenderá a realizar a escuta ativa das queixas corporativas e direcionar o discurso para o alvo certo, transformando produtos de tecnologia (como Connect e Analytics) na pílula analgésica perfeita para a dor daquele tomador de decisão.",
+            ],
           ],
         },
       ],
     },
     {
       id: "capitulo-1-transportadora",
-      title: "Capítulo 1: A Dor da Transportadora",
+      title: "Capítulo 1: A Angústia da Transportadora",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A transportadora é o executor do frete. A maior dor dela é ter um caminhão roubado e a Seguradora se recusar a pagar a indenização porque o motorista quebrou a regra do ",
-              { term: "pgr" },
-              ".",
+              "A transportadora é o peão de guerra da logística, é o executor que bota a frota na estrada. O maior pesadelo financeiro de um dono de transportadora não é perder a carga, é a Seguradora se recusar a pagar a indenização do roubo porque o motorista violou uma minúscula regra do PGR.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "O que a Transportadora quer de nós:",
+          title: "A Demanda Principal: Garantia e Respaldo",
           items: [
-            "Garantia Absoluta: Ela quer que a AtlasGR obrigue o motorista a seguir as regras, para que a apólice pague em caso de sinistro.",
-            "Custo Evitado: Se o motorista tentar desviar a rota, ela quer que a Atlas bloqueie o caminhão IMEDIATAMENTE.",
-            "Produto Alvo: O Atlas GR (Processo e Torre) e o Atlas Profile (Para não contratar o motorista errado).",
+            "Exigência Contratual: Ela quer que a AtlasGR aplique o rigor necessário (bloqueios incisivos, sirenes, imobilização) para forçar o motorista a seguir a rota, protegendo a apólice.",
+            "Produto Foco: Torre de Gestão de Risco 24/7 (Atlas GR pesado) e o Atlas Profile (Para garantir que o crime não está sendo contratado no próprio pátio).",
           ],
         },
       ],
     },
     {
       id: "capitulo-2-embarcador",
-      title: "Capítulo 2: A Dor do Embarcador",
+      title: "Capítulo 2: A Cegueira do Embarcador (Dono da Carga)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "O Embarcador é o dono da carga (Ex: Samsung, Ambev). A transportadora é terceirizada dele. A dor do Embarcador é a cegueira. Quando a carga sai da fábrica na carreta do terceiro, ele não sabe onde ela está.",
+              "O Embarcador (ex: Ambev, Nestlé, Samsung) terceiriza a frota. Sua maior dor é a perda do controle no momento em que a carga sai do seu armazém. Ele vira refém das desculpas das dezenas de transportadoras terceirizadas: 'O caminhão está quase chegando', 'Deu trânsito'.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "O que o Embarcador quer de nós:",
+          title: "A Demanda Principal: Visibilidade e OTD (On Time Delivery)",
           items: [
-            "Visibilidade Total: Ver todos os transportadores terceirizados na mesma tela.",
-            "Eficiência (SLA): Medir qual transportadora entrega no prazo e qual atrasa.",
-            "Produto Alvo: Atlas Connect (Para ver o GPS em tempo real) e o Atlas Analytics (Para ver os gráficos de performance no fim do mês).",
-          ],
-        },
-      ],
-    },
-    {
-      id: "capitulo-3-operador",
-      title: "Capítulo 3: O Operador Logístico",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "O Operador Logístico (Ex: DHL) faz o meio de campo. Ele aluga o galpão, contrata a transportadora e atende o embarcador. Ele precisa da 'Visão de Deus' sobre toda a cadeia.",
-            ],
+            "Controle Total (Torre de Controle Logístico): Acompanhar em tempo real todos os terceiros na mesma tela.",
+            "Auditoria de SLA: Saber estatisticamente qual transportadora cumpre prazo e qual gera gargalos na fábrica.",
+            "Produto Foco: Atlas Connect (visibilidade de malha) e Atlas Analytics (B.I. gerencial e cercas virtuais nas docas).",
           ],
         },
       ],
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: Vendendo o Produto Certo para a Dor Certa",
+      title: "Estudo de Caso: O Contexto Define o Produto",
       blocks: [
         {
           type: "case",
-          title: "A Venda de R$ 95 Milhões vs A Venda de 26%",
-          text: "Dois cases reais da Atlas: Para um embarcador de combustíveis (alto índice de roubo e desvio), vendemos o Atlas GR pesado. Bloqueio automático de válvulas, CIA atuando fortemente e escoltas. Resultado: R$ 95 Milhões economizados em cargas roubadas. Para um embarcador de sucos (zero roubo), o discurso de segurança de válvula não serviria de nada. O foco foi o tempo. Vendemos o Atlas Connect e o Analytics para criar Cercas Eletrônicas em fazendas de laranja. O cliente diminuiu em 26% o tempo de fila de seus caminhões. É a mesma plataforma, vendida de formas completamente diferentes dependendo de quem escuta.",
-          source: "Playbook Comercial AtlasGR",
+          title: "A Venda Milionária de Combustível vs A de Sucos",
+          text: "Caso real de precificação consultiva: Para uma distribuidora de Combustíveis (carga hiper-visada), o discurso foca na sobrevivência: vendemos inteligência anti-desvio, bloqueadores de válvulas remotos e a CIA agindo na recuperação. Resultado imediato: redução violenta de sinistros (Milhões salvos). Já para uma gigante do ramo de Sucos Tropicais, onde o índice de roubo beira a zero, usamos a mesma plataforma para desenhar Cercas Eletrônicas que medem o tempo de permanência de caminhões na fila da colheita de laranja. Reduzimos o tempo de ociosidade em 26%. Plataforma igual, valor gerado completamente distinto.",
+          source: "Diretoria de Estratégia B2B - AtlasGR",
         },
       ],
     },
     {
       id: "capitulo-4-segmentacao-sla",
-      title: "Capítulo 4: Segmentação por Criticidade e SLA",
+      title: "Capítulo 4: Segmentação por Criticidade na Operação (O Pós-Venda)",
       blocks: [
         {
           type: "text",
-          heading: "Nem Todo Cliente Toca o Mesmo Alarme",
+          heading: "Hierarquia de Atendimento e SLAs Operacionais",
           paragraphs: [
             [
-              "Além do perfil (Transportadora, Embarcador, Operador), a AtlasGR classifica cada contrato por criticidade. Um cliente Enterprise com carga de alto valor (eletrônicos, máquinas industriais, combustível) não pode esperar na mesma fila que um cliente Padrão com carga de baixo risco. A Central de Monitoramento 24/7 opera com filas de prioridade, não com ordem de chegada.",
+              "Dentro da Torre de Controle, o tratamento não é igualitário, é priorizado pelo contrato. Um cliente Enterprise com carga super-sensível e alto risco (celulares) tem um SLA de tratativa de anomalia absurdamente agressivo. Eles não entram na fila de atendimento normal.",
             ],
             [
-              "Isso está formalizado em contrato, no ",
-              { term: "sublimite" },
-              " e nas cláusulas de tempo de resposta. Ignorar essa hierarquia na hora do atendimento é o tipo de erro operacional que vira sinistro contestado, ou pior, cliente cancelando renovação.",
+              "Compreender a diferença do sublimite do cliente e da criticidade dele dita se você trata a ocorrência como uma rotina administrativa ou aciona a CIA imediatamente.",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "Cliente Enterprise/Crítico vs Cliente Padrão",
+          title: "Priorização de Atendimento na Torre",
           left: {
-            label: "Enterprise / Crítico",
+            label: "Conta Enterprise / Alta Criticidade",
             points: [
-              "Resposta da Central em minutos, com protocolo de escalonamento imediato para a C.I.A.",
-              "Monitoramento proativo: a Central aciona o cliente antes dele perceber o desvio.",
-              "Canal dedicado (linha direta, gestor de conta nomeado).",
-              "Apólices com LMI elevado e cobertura de RCF-DC ampliada, exigindo checagem redobrada de cada evento.",
+              "SLA de atuação proativa hiper-reduzido (Geralmente inferior a 5 minutos na quebra de rota).",
+              "Sublimite e LMI elevadíssimos (Milhões de reais no baú do veículo).",
+              "Dedicado a analistas sêniores; acionamentos diretos de linha vermelha com gerências.",
             ],
           },
           right: {
-            label: "Padrão",
+            label: "Conta Padrão (Standard)",
             points: [
-              "Resposta dentro da janela contratual padrão, sem escalonamento automático.",
-              "Monitoramento reativo: a Central atua quando o alerta dispara ou o cliente aciona.",
-              "Canal via central geral de atendimento.",
-              "Apólices dentro do sublimite padrão, com checagem seguindo o fluxo normal.",
+              "SLA padronizado de acordo com contrato base.",
+              "Tratativas conduzidas via fila sistêmica normal, focadas em eficiência em escala.",
+              "Cargas de menor valor atrativo com exigências mais leves de PGR.",
             ],
           },
         },
         {
           type: "stat",
           items: [
-            { value: "< 5 min", label: "Tempo de resposta alvo para cliente Enterprise em ocorrência crítica" },
-            { value: "< 30 min", label: "Tempo de resposta alvo para cliente Padrão" },
-            { value: "24/7", label: "Cobertura da Central de Monitoramento, independentemente do nível" },
-          ],
-        },
-        {
-          type: "checklist",
-          title: "Como isso muda o seu atendimento",
-          items: [
-            "Antes de qualquer contato, verifique o nível de criticidade do cliente no cadastro — o tom e a velocidade da resposta dependem disso.",
-            "Para conta Enterprise, nunca deixe uma ocorrência 'na fila' esperando triagem manual: acione o escalonamento.",
-            "Não prometa um SLA que não está no contrato do cliente. Prometer minutos para quem tem contrato Padrão gera expectativa que a operação não sustenta.",
-            "Sempre que um cliente Padrão crescer em volume ou valor de carga, sinalize ao Comercial para reavaliar o enquadramento de criticidade.",
-          ],
-        },
-      ],
-    },
-    {
-      id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
-      blocks: [
-        {
-          type: "checklist",
-          title: "Aprofunde-se",
-          items: [
-            "Assista ao vídeo 'Pitch de Vendas para Transportadoras' na biblioteca.",
-            "No próximo módulo, Módulo 09, vamos entender o passo a passo de como o setor Comercial captura esses clientes.",
-          ],
+            { value: "0", label: "Tolerância para atrasos em acionamentos da faixa Enterprise." },
+            { value: "VIP", label: "Atenção necessária em contas Enterprise onde um sinistro paga todo o lucro anual do contrato." }
+          ]
         },
       ],
     },
   ],
   summary: [
-    "Transportadoras compram AtlasGR para garantir o pagamento do seguro e evitar multas.",
-    "Embarcadores compram AtlasGR para enxergar cargas terceirizadas e medir a eficiência da logística.",
-    "Operadores Logísticos usam a AtlasGR para gerir toda a cadeia simultaneamente.",
-    "O discurso comercial deve ancorar o produto na dor específica (Segurança vs Eficiência).",
+    "A venda B2B de sucesso mapeia a dor (Segurança vs Gestão de Prazo) para o produto exato.",
+    "A AtlasGR é a interface que garante a sobrevivência da transportadora perante a seguradora.",
+    "O Atlas Analytics é a principal ferramenta de retenção de embarcadores que buscam visibilidade da eficiência.",
+    "O Atendimento Operacional da Torre de Controle é segmentado contratualmente, ditando os níveis agressivos de SLA (Enterprise x Standard).",
   ],
   finalChecklist: [
-    "Diferencio a dor de uma transportadora da dor de um embarcador.",
-    "Sei qual produto oferecer (GR ou Analytics) baseado na queixa do cliente.",
-    "Compreendo o case de sucesso do Combustível vs Suco.",
+    "Adapto o discurso do AtlasGR baseado no público (Transportador vs Embarcador).",
+    "Consigo apresentar soluções de rentabilidade (Tempo) ao invés de apenas segurança para clientes de baixo risco.",
+    "Domino a lógica de SLAs corporativos e sei que falhar com contas críticas gera ruptura contratual imediata.",
   ],
   mindMap: {
-    root: "Perfis de Cliente",
+    root: "Perfis B2B Corporativos",
     branches: [
-      { label: "Transportadora", items: ["Dor: Seguro e PGR", "Solução: GR e Profile"] },
-      { label: "Embarcador", items: ["Dor: Cegueira e SLA", "Solução: Connect e Analytics", "Segmentação: SLA por criticidade (Enterprise x Padrão)"] },
-      { label: "O Argumento", items: ["Perdas (Combustível)", "Tempo (Sucos)"] },
+      { label: "Transportadora", items: ["Dor: Multas e Recusas de Seguro", "Foco: Atlas GR Restritivo e Profile"] },
+      { label: "Embarcador", items: ["Dor: Malha Cega e Atrasos (SLA)", "Foco: Atlas Connect (Gestão) e Analytics"] },
+      { label: "Atendimento da Torre", items: ["SLA Enterprise (< 5m)", "SLA Padrão", "Foco no Sublimite e Risco"] },
     ],
   },
   scenario:
-    "Cenário Prático: O cliente é a Nike (Embarcador). Eles terceirizam 100% da frota. Eles reclamam que a transportadora sempre diz que 'está chegando', mas os tênis chegam 2 dias atrasados. Qual é o produto AtlasGR ideal para resolver isso e por quê?",
+    "Cenário Prático: A diretoria logística da Unilever (Embarcador Gigante) quer saber como reduzir os custos de estadias (tempo que o caminhão terceirizado fica esperando pra descarregar) nas suas docas. Você ofereceria a eles as Escoltas Armadas (GR) ou a criação de Cercas Poligonais no Connect integradas aos painéis do Analytics?",
   diagram: {
-    title: "Mapeamento Dores vs Soluções",
-    chart: "graph TD\n  Trans[Transportadora] --> DorT[Não perder Seguro]\n  Emb[Embarcador] --> DorE[Quero Eficiência/Visibilidade]\n  DorT --> SolT[Venda: Atlas GR]\n  DorE --> SolE[Venda: Atlas Connect / Analytics]",
+    title: "Alinhamento Estratégico Comercial",
+    chart: "graph TD\n  Cli[Identifica Perfil] --> A{Quem é?}\n  A -- Transp --> Dor1(Foco na Apólice)\n  A -- Embarcador --> Dor2(Foco na Visibilidade/Prazo)\n  Dor1 --> ProdutoGR[Vende: Atlas GR Proativo + Profile]\n  Dor2 --> ProdutoCon[Vende: Atlas Connect Omnicanal + Analytics]",
   },
 };

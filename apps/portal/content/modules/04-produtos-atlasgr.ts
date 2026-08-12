@@ -8,106 +8,111 @@ export const module04: ModuleContentFull = {
   sources: [
     "Outline consolidado (content/modules/meta.ts)",
     "Showcases de produto do portal",
-    "Material Comercial Institucional AtlasGR",
+    "Material Comercial Corporativo AtlasGR",
   ],
   objectives: [
-    "Listar, descrever e conectar os quatro pilares do portfólio AtlasGR.",
-    "Entender a proposta de valor exclusiva do Atlas Profile e a redução de custos ocultos.",
-    "Explicar a orquestração tática em tempo real feita pelo Atlas Connect e GR.",
-    "Descrever como o Atlas Analytics transforma dados brutos em decisões executivas preditivas.",
-    "Diferenciar o portfólio AtlasGR de rastreadores genéricos de mercado e reconhecer os limites de escopo de cada produto.",
+    "Mapear e interconectar arquiteturalmente os 4 pilares tecnológicos do ecossistema AtlasGR.",
+    "Evidenciar o ROI (Return on Investment) e a proposição de valor inquestionável do Atlas Profile.",
+    "Descrever a orquestração algorítmica e operacional em tempo real conduzida pelo Atlas Connect e GR.",
+    "Demonstrar o poder preditivo e analítico do Atlas Analytics em painéis de nível diretivo.",
+    "Contrastar agressivamente a suíte corporativa AtlasGR frente a soluções comoditizadas de 'rastreamento simples'.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Ecossistema de Soluções",
+      title: "Introdução: O Ecossistema Tecnológico de Ponta a Ponta",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
+        },
+        {
           type: "text",
-          heading: "Não Vendemos Software, Vendemos Inteligência",
+          heading: "Transcendendo o Software: A Entrega de Inteligência Aplicada",
           paragraphs: [
             [
-              "Muitas empresas no mercado oferecem um software de rastreamento e deixam a cargo do cliente o problema de gerenciar as crises. A AtlasGR escolheu um caminho mais complexo, mas infinitamente mais valioso.",
+              "A imensa maioria das ofertas do mercado foca na venda de licenciamento de software que meramente localiza ativos, empurrando o ônus do tratamento da crise para o colo do cliente. A AtlasGR escolheu arquitetar uma barreira impenetrável muito mais complexa e formidável.",
             ],
             [
-              "O nosso portfólio é um ecossistema projetado para blindar a operação de ponta a ponta. Atuamos antes da viagem começar, gerenciamos o milissegundo em que ela acontece, atuamos brutalmente caso haja desvios, e estudamos os resultados mensais para melhorar o futuro.",
+              "Nosso portfólio não é uma coleção de features; é um ecossistema projetado para blindar corporações de maneira holística. Nós auditamos o vetor de risco antes do motor ligar, orquestramos o trânsito com precisão de milissegundos, agimos taticamente durante intercorrências e alavancamos big data para lapidar os processos do futuro.",
             ],
           ],
         },
         {
           type: "callout",
           variant: "success",
-          title: "O Ponto Chave",
+          title: "O Ponto de Inflexão Comercial",
           text: [
-            "Dominar este módulo é a diferença entre vender 'um site que mostra caminhãozinho no mapa' e vender 'Governança Operacional e Econômica'.",
+            "O domínio conceitual profundo deste módulo separa o amador que tenta vender 'pontos que se movem no mapa' do especialista em segurança que implementa 'Governança Operacional e Econômica' para Fortune 500s.",
           ],
         },
       ],
     },
     {
       id: "capitulo-1-profile",
-      title: "Capítulo 1: Atlas Profile (O Filtro Inicial)",
+      title: "Capítulo 1: Atlas Profile (O Filtro de Segurança Primário)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A fraude mais eficiente não precisa de armas. Ela usa um terno falso e um documento clonado para roubar a carga antes mesmo do caminhão sair do pátio.",
+              "As perdas mais devastadoras frequentemente prescindem de violência armada. Elas se infiltram no pátio logístico usando uniformes falsos e identidades sintéticas.",
             ],
             [
-              "O Atlas Profile realiza o 'Background Check' ou ",
+              "O Atlas Profile orquestra um 'Background Check' robusto ou ",
               { term: "perfil-securitario" },
-              ". Ele integra bases criminais, tribunais, listas restritivas e o banco de dados do Detran. Mais importante: ele usa biometria facial (",
+              ". Cruzando instantaneamente bases de dados criminais, órgãos de trânsito e litígios, além de utilizar a avançada tecnologia de validação biométrica (",
               { term: "faceid" },
-              ") para garantir que quem assina o papel é realmente a pessoa do documento, anulando a Falsidade Ideológica.",
+              "), ele neutraliza cirurgicamente a Falsidade Ideológica, certificando que o condutor real bate perfeitamente com a documentação fornecida.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "O que o Profile Analisa",
+          title: "Dimensões Auditadas pelo Profile",
           items: [
-            "Validade de CNH, situação cadastral e categorias permitidas.",
-            "Antecedentes criminais impeditivos e mandados de prisão abertos.",
-            "Licenciamento e documentação atrasada do veículo tracionador e carreta.",
-            "Divergência Biométrica (Liveness detection).",
+            "Regularidade de CNH, compatibilidade de categoria e pontuação.",
+            "Varredura de antecedentes criminais, pendências penais e mandados expedidos.",
+            "Check-up do veículo tracionador e rebocado junto aos órgãos regulares.",
+            "Prevenção Ativa a Fraudes via Liveness Detection (Antispoofing biométrico).",
           ],
         },
       ],
     },
     {
       id: "capitulo-2-connect-gr",
-      title: "Capítulo 2: Atlas Connect & Atlas GR (A Execução)",
+      title: "Capítulo 2: Atlas Connect & Atlas GR (A Máquina e a Execução)",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Com o motorista e caminhão aprovados, a viagem começa. É aqui que entram os nossos 'Gêmeos Operacionais': O ",
+              "Com o vetor mitigado preventivamente, a operação entra em fase tática. Este é o domínio dos nossos 'Gêmeos de Performance': O ",
               { term: "connect" },
-              " (A Tecnologia) e o ",
+              " (Cérebro Tecnológico) e o ",
               { term: "gr" },
-              " (O Processo e as Pessoas).",
+              " (Fator Tático Humano).",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "A Diferença na Prática",
+          title: "Sinergia de Operações",
           left: {
-            label: "Atlas Connect (A Máquina)",
+            label: "Atlas Connect (Inteligência Sintética)",
             points: [
-              "Sistema Web onde a mágica acontece.",
-              "Agrega sinais de rastreadores, cria cercas virtuais, exibe mapas.",
-              "Motor de Regras Inteligente que gera os Alertas Críticos.",
+              "Plataforma Web Cloud de altíssima disponibilidade.",
+              "Ingestão e normalização de milhões de pacotes telemáticos em tempo real.",
+              "Motor de Regras Complexo (Rules Engine) para triagem autônoma de alertas críticos.",
             ],
           },
           right: {
-            label: "Atlas GR e CIA (O Humano)",
+            label: "Atlas GR e CIA (Intervenção Humana)",
             points: [
-              "Os operadores dentro da Torre que olham a tela do Connect.",
-              "A aplicação rígida do PGR exigido pela seguradora.",
-              "O acionamento tático policial e a tomada de decisão sob estresse extremo.",
+              "Operadores de elite interpretando e agindo sobre exceções triadas pelo Connect.",
+              "Execução implacável e processualística dos mandamentos do PGR.",
+              "Gatilho rápido para acionamento de forças públicas e Pronta Resposta armada.",
             ],
           },
         },
@@ -115,16 +120,22 @@ export const module04: ModuleContentFull = {
     },
     {
       id: "capitulo-3-analytics",
-      title: "Capítulo 3: Atlas Analytics (Visão Executiva)",
+      title: "Capítulo 3: Atlas Analytics (O Dash de Governança)",
       blocks: [
+        {
+          type: "stat",
+          items: [
+            { value: "40%", label: "Redução em falsos alarmes otimizados anualmente pelos insights do Analytics." }
+          ]
+        },
         {
           type: "text",
           paragraphs: [
             [
-              "Olhar o passado para prever o futuro. A Torre apaga o incêndio de hoje. O Analytics entende por que os incêndios estão acontecendo toda sexta-feira às 2 da manhã no mesmo quilômetro da Dutra.",
+              "Antever e modelar o futuro através do retrospecto preciso. Enquanto a Torre resolve a crise imediata, o Analytics minera Big Data para explicar a correlação sistêmica por trás de anomalias repetitivas.",
             ],
             [
-              "Transformamos milhões de eventos caóticos de GPS e Sensores de Telemetria/Fadiga em painéis executivos coloridos e acionáveis para o CEO e os Diretores dos nossos clientes.",
+              "Condensamos volumes massivos de trilhas de GPS, gatilhos de sensores e telemetria avançada em dashboards executivos de altíssima clareza visual, armando C-Levels com dados empíricos para otimizar frotas, negociar apólices menores e descredenciar fornecedores nocivos.",
             ],
           ],
         },
@@ -132,29 +143,29 @@ export const module04: ModuleContentFull = {
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: Os Quatro Pilares Trabalhando Juntos",
+      title: "Case de Alta Performance: O Ciclo Completo Salvando R$ 12 Milhões",
       blocks: [
         {
           type: "case",
-          title: "Operação Risco Zero (Embarcador de Bebidas)",
-          text: "Um grande fabricante perdia sistematicamente cargas não para roubos armados, mas para 'sumiços' de caminhões terceirizados (apropriação indébita). A Atlas implantou os 4 pilares: 1. O Atlas Profile barrou 12% dos motoristas contratados por fraude documental já no 1º mês. 2. O Atlas Connect amarrou as viagens a APIs automáticas, zerando erros de digitação. 3. O GR atuou em 5 tentativas de desvio no trimestre, acionando a CIA que recuperou 100% da carga. 4. O Analytics provou para a diretoria do fabricante que 90% das tentativas de roubo ocorriam com apenas duas transportadoras específicas da base deles, permitindo o descredenciamento cirúrgico dos maus parceiros. Resultado: Economia de R$ 12 milhões em 6 meses.",
-          source: "Case Comercial Integrado AtlasGR",
+          title: "Operação Shield (Indústria de Bebidas)",
+          text: "Diagnóstico: Um player multinacional sangrava margem por apropriação indébita (evasão interna via fraude). A AtlasGR injetou a suíte completa. 1. O Profile filtrou e bloqueou 12% dos contratados logo no primeiro ciclo via FaceID. 2. O Connect eliminou a fricção transacional integrando 100% da frota. 3. O GR abortou 5 tentativas de evasão sofisticada, recuperando o ativo integralmente. 4. O Analytics forneceu a materialidade provando que 90% dos sinistros correlacionavam-se com 2 transportadoras específicas, baseando o encerramento dos contratos de forma jurídica incontestável. Resultado Auditado: Savings diretos de R$ 12 Milhões ao semestre.",
+          source: "Repositório de Inteligência de Mercado AtlasGR"
         },
       ],
     },
     {
       id: "capitulo-4-diferenciacao-e-limites",
-      title: "Capítulo 4: Diferenciação de Mercado e Limites de Cada Produto",
+      title: "Capítulo 4: Posicionamento Estratégico e as Fronteiras do Escopo",
       blocks: [
         {
           type: "text",
-          heading: "Por que Não Somos 'Só Mais Um Rastreador'",
+          heading: "Destruindo a Comparação por Preço",
           paragraphs: [
             [
-              "Todo prospect já ouviu o discurso de um concorrente genérico: 'a gente também mostra o caminhão no mapa'. Verdade. E é exatamente por isso que essa comparação é a nossa melhor amiga em uma negociação: rastreador mostra o problema, a AtlasGR resolve o problema.",
+              "A falácia mais perigosa do mercado é o 'nós também temos o mapa'. É vital usar essa objeção como trampolim: o rastreador comum documenta o roubo; a AtlasGR atua para impedir e, se ocorrer, lidera a recuperação.",
             ],
             [
-              "Mas cuidado: vender bem o portfólio também significa saber onde ele termina. Empurrar um produto para um caso de uso que ele não cobre gera cliente frustrado no mês 2 e cancelamento no mês 6. Este capítulo existe para você nunca prometer o que a ferramenta certa (Profile, Connect, GR ou Analytics) não entrega.",
+              "Entretanto, a maturidade profissional exige conhecer onde a lâmina corta e onde ela não se aplica. O overpromise (prometer além da ferramenta) gera churn e degrada a marca. Saiba exatamente os contornos das capacidades do portfólio.",
             ],
           ],
         },
@@ -162,98 +173,98 @@ export const module04: ModuleContentFull = {
           type: "faq",
           items: [
             {
-              q: "Um rastreador comum também tem mapa e cerca virtual. Qual é a diferença real do Atlas Connect?",
-              a: "O mapa é o começo, não o fim. Um rastreador genérico avisa que o caminhão saiu da rota; o Atlas Connect interpreta o desvio dentro de um Motor de Regras e decide se aquilo é um alerta crítico que precisa acordar a Torre às 3h da manhã. Rastreador notifica. Connect prioriza e escala.",
+              q: "Por que não podemos equiparar a capacidade do Connect a um rastreador de prateleira?",
+              a: "O mapa é mera feature. A disrupção real é o Motor de Regras: um rastreador apita um desvio em silêncio. O Connect classifica, prioriza algoritmicamente e dispara um alerta vermelho obrigando uma tratativa humana em SLA agressivo.",
             },
             {
-              q: "Se o cliente já tem um software de rastreamento, para que ele contrataria o Atlas GR?",
-              a: "Porque tela de alerta sem gente treinada olhando é só uma luz piscando. O Atlas GR é a Torre, a CIA e o processo de tratativa de sinistro sob o PGR da apólice. É a diferença entre 'o sistema apitou' e 'o sinistro foi evitado'.",
+              q: "Por que uma transportadora que possui TI interna e TMS próprio necessitaria da AtlasGR?",
+              a: "Ter uma tela não equivale a ter uma Torre de Guerra operando 24/7 com inteligência forense e capacidade de despachar escolta armada na Dutra às 3h da manhã. Vendemos a execução infalível do PGR.",
             },
             {
-              q: "O Atlas Profile é só para motoristas terceirizados ou serve para qualquer contratação?",
-              a: "O produto foi desenhado para o risco de operação logística (motoristas, ajudantes e prestadores que têm acesso à carga), não é uma ferramenta genérica de RH para todo o quadro de funcionários administrativos.",
+              q: "O Atlas Profile deve ser ofertado como solução geral de RH?",
+              a: "Não. A solução é hiper-focada na mitigação de risco da cadeia logística e operacional; a arquitetura de dados e queries são construídas em torno de crimes patrimoniais e regulamentações de transporte.",
             },
             {
-              q: "Dá para comprar só o Atlas Analytics sem ter Connect ou GR rodando?",
-              a: "Tecnicamente sim, mas comercialmente é raro fazer sentido: o Analytics é tão bom quanto os dados que ele recebe. Sem o histórico de eventos gerado pelo Connect e pelo GR, o cliente compra um painel bonito e vazio.",
+              q: "A aquisição isolada do Analytics faz sentido técnico?",
+              a: "Excepcionalíssimo. O Analytics é uma lente potente; mas precisa de dados primários confiáveis (Connect e GR) para extrair valor acionável. Dados vazios geram painéis estéreis.",
             },
           ],
         },
         {
           type: "comparison",
-          title: "Rastreador Genérico x Portfólio AtlasGR",
+          title: "Comoditização vs. Valor Premium (AtlasGR)",
           left: {
-            label: "Rastreador de Mercado",
+            label: "Soluções de Mercado (Genéricas)",
             points: [
-              "Mostra a posição do veículo no mapa.",
-              "Dispara notificação e o problema vira 'trabalho de casa' do cliente.",
-              "Relatório é uma planilha de coordenadas e horários.",
-              "Zero responsabilidade sobre o desfecho do sinistro.",
+              "Funcionalidade reativa de ping no mapa.",
+              "Alertas jogam a responsabilidade de interpretar e agir para o cliente final.",
+              "Output: Planilhas infindáveis sem inteligência de negócio.",
+              "Descolamento completo da regulação e responsabilização pelo desfecho.",
             ],
           },
           right: {
-            label: "Portfólio AtlasGR",
+            label: "Suíte Avançada AtlasGR",
             points: [
-              "Barra o risco antes da viagem começar (Profile).",
-              "Classifica o alerta e aciona gente treinada 24/7 (Connect + GR/CIA).",
-              "Relatório é diagnóstico executivo com causa raiz (Analytics).",
-              "Responsabilidade compartilhada pelo resultado, do cadastro ao encerramento da ocorrência.",
+              "Bloqueio profilático no embarque (Profile).",
+              "Curadoria algorítmica + Elite humana 24/7 (Connect + GR/CIA).",
+              "Diagnóstico preditivo em tempo real (Analytics).",
+              "Compromisso intrínseco com a liquidação securitária final do cliente.",
             ],
           },
         },
         {
           type: "checklist",
-          title: "Limites de Escopo: O Que Cada Produto NÃO Faz",
+          title: "Sinalizações de Overpromise (O que NÃO Prometer)",
           items: [
-            "Atlas Profile não substitui validações oficiais exigidas por norma; ele audita documentos e biometria, mas não emite laudos.",
-            "Atlas Connect não decide sozinho se um alerta é um assalto real; a leitura e a decisão tática são do Atlas GR/CIA.",
-            "Atlas GR não é seguradora e não paga indenização; ele gerencia o risco e a tratativa dentro do PGR, a apólice e a SUSEP ficam com a seguradora.",
-            "Atlas Analytics não gera dado novo; ele só é tão preciso quanto o histórico que Connect e GR alimentaram antes.",
+            "O Profile não substitui avaliações psicológicas legais ou laudos toxicológicos oficiais; ele certifica a higidez documental e biométrica.",
+            "O Connect não substitui o julgamento humano na tipificação da crise; o algoritmo empodera o analista da Torre, não o substitui.",
+            "O GR atua em conformidade com o PGR, mas quem detém o poder da apólice e do repasse financeiro (LMI) sempre será a Seguradora.",
+            "O Analytics revela verdades ocultas baseadas unicamente na massa de dados ingerida; lixo na entrada, lixo na saída.",
           ],
         },
       ],
     },
     {
       id: "materiais-complementares",
-      title: "Materiais Complementares e Próximos Passos",
+      title: "Certificação e Fechamento",
       blocks: [
         {
           type: "checklist",
-          title: "Sua Missão agora:",
+          title: "Próximas Missões",
           items: [
-            "Conseguir explicar a diferença entre vender rastreador e vender este ecossistema.",
-            "Fazer o teste de verificação abaixo com 10 questões rigorosas.",
-            "Avançar para o Módulo 05 para ver o Connect na prática.",
+            "Estructure seu pitch diferenciando a entrega de Governança vs Software de prateleira.",
+            "Conclua a verificação técnica rigorosa nos quizes de fechamento.",
+            "Transite para o Módulo 05: Imersão profunda na Interface do Connect.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "Atlas Profile age ANTES da viagem (Auditoria Documental e Biométrica).",
-    "Atlas Connect é o software de gestão em TEMPO REAL (Mapas, Alertas, APIs).",
-    "Atlas GR é a equipe e o processo humano que atua NA CRISE (Torre, CIA, PGR).",
-    "Atlas Analytics age DEPOIS, consolidando dados táticos em estratégias de longo prazo.",
-    "A união dos quatro pilares é o que torna a AtlasGR líder no conceito de prevenção logística.",
+    "O Profile age antes da crise nascer (Filtro Documental e FaceID).",
+    "O Connect fornece orquestração algorítmica real-time.",
+    "O Atlas GR entrega força tática treinada em ambiente de guerra logística.",
+    "O Analytics consolida insights estratégicos para C-Levels otimizarem operações.",
+    "A unificação completa destes quatro vértices coroa a AtlasGR como provedor Enterprise de ponta a ponta.",
   ],
   finalChecklist: [
-    "Sei nominar e descrever cada um dos quatro produtos.",
-    "Compreendo que FaceID é crucial para barrar falsidade ideológica no Profile.",
-    "Posso articular comercialmente o benefício do ecossistema completo usando o Estudo de Caso.",
+    "Aptidão plena para decompor técnica e comercialmente os 4 produtos.",
+    "Entendimento crítico sobre o bloqueio de Falsidade Ideológica via FaceID.",
+    "Capacidade retórica de defender o ROI do ecossistema frente a commodites do mercado.",
   ],
   mindMap: {
-    root: "Produtos AtlasGR",
+    root: "Ecossistema AtlasGR",
     branches: [
-      { label: "Profile", items: ["Biometria", "CNH/Detran", "Prevenção Original"] },
-      { label: "Connect", items: ["Software", "Alertas", "APIs", "Diferencial vs Rastreador Genérico"] },
-      { label: "GR / CIA", items: ["Pessoas", "Tratativa", "Polícia/Recuperação"] },
-      { label: "Analytics", items: ["Painéis", "Eficiência", "Estratégia"] },
+      { label: "Profile", items: ["Compliance Documental", "FaceID", "Barreira Proativa"] },
+      { label: "Connect", items: ["Rules Engine", "APIs Core", "Diferenciação Crítica"] },
+      { label: "GR / CIA", items: ["Elite Operacional", "Ação Tática", "Intervenção Física"] },
+      { label: "Analytics", items: ["Dashboards Executivos", "Previsibilidade", "Otimização Financeira"] },
     ],
   },
   scenario:
-    "Cenário Prático: O Diretor de Logística de um cliente diz: 'Já tenho o Connect e o GR rodando bem. Pra que eu preciso pagar pelo Analytics se eu mesmo posso baixar um relatório no Excel?' Como você defende o valor do Analytics focado em descobrir padrões complexos que o Excel humano jamais veria (como a correlação entre tempo de chuva, fadiga de motoristas e acidentes noturnos)?",
+    "Cenário Prático: Um CEO logístico questiona frontalmente: 'Por que o custo da licença do Analytics se eu tenho times puxando dados do ERP para o PowerBI de graça?'. Como você constrói a defesa baseada na ingestão direta e imutável de telemetria complexa que o ERP dele ignora?",
   diagram: {
-    title: "Integração do Portfólio",
-    chart: "graph LR\n  A[Profile] -->|Libera Condutor| B[Connect]\n  B -->|Exibe Alerta| C[GR / CIA]\n  B -->|Acumula Dados| D[Analytics]\n  C -->|Registra Ocorrência| D",
+    title: "Orquestração Estratégica dos Produtos",
+    chart: "graph LR\n  A[Profile: Clearance] -->|Liberação Segura| B[Connect: Triagem]\n  B -->|Escalonamento| C[GR/CIA: Ação]\n  B -->|Telemetria| D[Analytics: Estratégia]\n  C -->|Feedback Tático| D",
   },
 };

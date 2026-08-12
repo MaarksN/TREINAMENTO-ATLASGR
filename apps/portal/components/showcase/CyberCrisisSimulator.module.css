@@ -1,0 +1,238 @@
+.container {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #050510;
+  color: #00ffcc;
+  padding: 2rem;
+  border: 1px solid #00ffcc;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.2), inset 0 0 20px rgba(0, 255, 204, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0, 255, 204, 0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 255, 204, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #00ffcc;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+.statusBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(0, 255, 204, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.statusLabel {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.statusValue {
+  font-weight: bold;
+}
+
+.alertPulse {
+  color: #ff3366;
+  text-shadow: 0 0 10px #ff3366;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
+
+.screen {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  min-height: 400px;
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(5, 5, 16, 0.95);
+  text-align: center;
+  z-index: 10;
+}
+
+.overlay h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px currentColor;
+}
+
+.winOverlay {
+  color: #00ffcc;
+}
+
+.lossOverlay {
+  color: #ff3366;
+}
+
+.btnStart {
+  background: transparent;
+  color: inherit;
+  border: 2px solid currentColor;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.btnStart:hover {
+  background: currentColor;
+  color: #050510;
+  box-shadow: 0 0 20px currentColor;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+}
+
+.timerDisplay {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #ff3366;
+  background: rgba(255, 51, 102, 0.1);
+  color: #ff3366;
+}
+
+.timerLabel {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.timerValue {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 0 0 15px #ff3366;
+}
+
+.criticalText {
+  animation: pulse 0.5s infinite alternate;
+}
+
+.threatInfo {
+  background: rgba(0, 255, 204, 0.05);
+  padding: 1.5rem;
+  border-left: 4px solid #ff3366;
+}
+
+.threatInfo h4 {
+  margin: 0 0 0.5rem 0;
+  color: #ff3366;
+}
+
+.progressBar {
+  height: 20px;
+  background: #000;
+  border: 1px solid #ff3366;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #ff3366;
+  transition: width 1s linear;
+  box-shadow: 0 0 10px #ff3366;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.actionBtn {
+  background: rgba(0, 255, 204, 0.1);
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.actionBtn:hover:not(:disabled) {
+  background: rgba(0, 255, 204, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+.actionBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnSuccess {
+  background: rgba(0, 255, 102, 0.2);
+  border-color: #00ff66;
+  color: #00ff66;
+}
+
+.btnDanger {
+  background: rgba(255, 51, 102, 0.1);
+  border-color: #ff3366;
+  color: #ff3366;
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: rgba(255, 51, 102, 0.3);
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+}
+
+.btnFailed {
+  background: rgba(255, 51, 102, 0.8) !important;
+  color: #fff !important;
+}

@@ -9,12 +9,14 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useOnboardingStore } from "@/lib/store";
 import { levelProgress } from "@/lib/gamification";
 import { cn } from "@/lib/utils";
+import { PushNotificationsPanel } from "@/components/innovation/PushNotificationsPanel";
 
 const links = [
   { href: "/trilha", label: "Missões & Módulos" },
   { href: "/produtos", label: "Produtos" },
   { href: "/glossario", label: "Glossário" },
   { href: "/dashboard", label: "Cockpit" },
+  { href: "/ranking", label: "Ranking" },
   { href: "/certificado", label: "Certificado" },
 ];
 
@@ -104,7 +106,7 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
 
         <div className="flex items-center gap-4">
           {mounted && registration && (
-            <Link href="/dashboard" className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-2 border border-border/50 hover:border-atlas-orange/30 transition-colors group">
+            <Link href="/profile" className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-2 border border-border/50 hover:border-atlas-orange/30 transition-colors group">
               <Zap className="w-4 h-4 text-atlas-orange group-hover:animate-pulse" />
               <div className="flex flex-col">
                 <span className="text-[10px] font-bold text-muted uppercase leading-none tracking-widest">{current.title}</span>
@@ -115,6 +117,7 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
 
           <div className="w-px h-6 bg-border/50 hidden sm:block mx-2" />
 
+          <PushNotificationsPanel />
           <ThemeToggle />
           <button
             ref={menuButtonRef}

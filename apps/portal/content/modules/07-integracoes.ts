@@ -6,226 +6,197 @@ const meta = getModuleMeta("07-integracoes")!;
 export const module07: ModuleContentFull = {
   ...meta,
   sources: [
-    "Documentação de Integração de API AtlasGR",
-    "Manuais de Tecnologias Embarcadas (Hardwares)",
+    "Documentação de Integração e Arquitetura API AtlasGR",
+    "Manuais de Tecnologias Embarcadas (Hardwares Agnósticos)",
   ],
   objectives: [
-    "Desmistificar o conceito técnico de APIs e integração de dados B2B.",
-    "Compreender como a Atlas atua como 'Tradutor Universal' de hardwares de terceiros.",
-    "Explicar o benefício comercial de 'zero digitação' proporcionado pela integração.",
-    "Dominar o conceito de comandos remotos bidirecionais (enviar e receber dados).",
-    "Aplicar o checklist de homologação técnica para evitar que erros de integração cheguem à produção.",
+    "Desmistificar o conceito técnico de APIs e integração de dados B2B de forma corporativa.",
+    "Compreender a atuação da Atlas como 'Hub Omnicanal e Tradutor Universal' no ecossistema logístico.",
+    "Explicar o trunfo comercial do 'Zero Digitação', que elimina o erro humano na montagem de PGRs.",
+    "Dominar a importância e os riscos dos comandos remotos bidirecionais (Atuação de risco).",
+    "Aplicar rigorosamente o checklist de homologação técnica antes de subir qualquer integração para a produção.",
   ],
   sections: [
     {
       id: "introducao",
-      title: "Introdução: O Hub Logístico",
+      title: "Introdução: O Hub Logístico Universal",
       blocks: [
         {
+          type: "image",
+          url: "/brand/module_banner.jpg",
+          caption: "Imagem descritiva"
+        },
+        {
+          type: "quote",
+          text: "Sem integração, não existe Torre de Controle. Existe apenas um batalhão de pessoas digitando e errando dados o dia todo.",
+          author: "Arquiteto de Integrações AtlasGR"
+        },
+        {
           type: "text",
-          heading: "Falando Todas as Línguas",
+          heading: "Falando Todas as Línguas Simultaneamente",
           paragraphs: [
             [
-              "Imagine uma sala cheia de pessoas de países diferentes. A transportadora fala Japonês (usando o sistema SSW), o embarcador fala Alemão (usando SAP), o rastreador da carreta fala Mandarim (Sascar) e a isca dentro da carga fala Árabe (Isca Gold). A AtlasGR é o Tradutor Simultâneo.",
+              "O ecossistema logístico é fragmentado e caótico. A transportadora fatura fretes no sistema X (ex: SSW), o grande embarcador exige auditorias no sistema Y (ex: SAP), os rastreadores das carretas transmitem no protocolo A (Sascar) e as iscas secundárias no protocolo B (Isca Gold).",
             ],
             [
-              "A capacidade de conectar todos esses sistemas dispersos em uma única tela (O Connect) e fazê-los trabalhar juntos é o que nos torna essenciais. Sem nós, o cliente precisaria de 15 pessoas digitando dados o dia todo.",
+              "A mágica comercial e operacional da AtlasGR é ser o Tradutor Universal. Nossa plataforma Atlas Connect ingere esses milhares de dados caóticos, padroniza tudo, cruza regras de segurança em tempo real, e exibe o teatro de operações em uma única tela perfeita. É o fim das dezenas de monitores paralelos.",
             ],
           ],
         },
         {
-          type: "callout",
-          variant: "success",
-          title: "O Apelo Comercial",
-          text: [
-            "Integração é a nossa arma de vendas mais letal. Quando dizemos a um CEO que ele poderá demitir planilhas de Excel e erros de digitação, a venda é fechada.",
-          ],
+          type: "stat",
+          items: [
+            { value: "Zero", label: "Digitação necessária após a integração total via API." },
+            { value: "100%", label: "Precisão no vínculo de dados de rastreadores e notas fiscais." }
+          ]
         },
       ],
     },
     {
       id: "capitulo-1-apis",
-      title: "Capítulo 1: A Magia das APIs",
+      title: "Capítulo 1: O Poder Transformador das APIs",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "Você não precisa ser programador para entender uma ",
-              { term: "api" },
-              ". A API (Interface de Programação de Aplicações) é um mensageiro.",
-            ],
-            [
-              "A transportadora fatura a Nota Fiscal no sistema financeiro dela. Imediatamente, a API da Atlas 'bate na porta' do sistema deles, copia a Nota Fiscal, traz para o Connect e CRIA a viagem automaticamente. Zero cliques humanos.",
+              "API (Application Programming Interface) não é um bicho-papão de programador; é simplesmente um 'mensageiro digital blindado'. É o garçom que pega o seu pedido de Nota Fiscal no ERP do cliente e entrega diretamente na cozinha do Atlas Connect.",
             ],
           ],
         },
         {
           type: "comparison",
-          title: "O Antes e o Depois",
+          title: "O Caos vs A Automação Atlas",
           left: {
-            label: "Mundo Sem API (O Passado)",
-            points: ["Assistente imprime a NF no galpão.", "Lê os dados e redigita (e erra a placa) no sistema de rastreamento.", "Avisa o motorista por WhatsApp."],
+            label: "Mundo Analógico (A Dor)",
+            points: ["Assistente imprime notas fiscais e redigita as placas no sistema de monitoramento.", "Erro de digitação causa o espelhamento da carreta errada (Falso Positivo de Risco).", "A seguradora recusa o pagamento do sinistro porque o PGR foi imputado com delay e a carreta já havia saído do galpão."],
           },
           right: {
-            label: "Mundo AtlasGR (O Presente)",
-            points: ["Botão de Faturar pressionado.", "Connect puxa os dados e cruza com a PGR e o Profile em 2 segundos.", "Torre assume o controle da viagem."],
+            label: "Integração Atlas (A Solução)",
+            points: ["A NF-e é faturada no TMS da transportadora.", "Em milissegundos, a API cria a viagem, engata a isca correta, consulta o motorista no Profile e aciona o PGR.", "A viagem é monitorada antes mesmo do motor ligar, sem um único toque no teclado do operador."],
           },
         },
       ],
     },
     {
       id: "capitulo-2-hardwares",
-      title: "Capítulo 2: O Tradutor de Hardwares (Agnosticismo)",
+      title: "Capítulo 2: Agnosticismo e o Tradutor de Hardwares",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A AtlasGR é 'Agnóstica de Hardware'. Isso significa que nós não obrigamos o cliente a jogar os rastreadores dele fora para comprar o nosso. Nós integramos todos eles.",
+              "A estratégia comercial da AtlasGR brilha no seu conceito de 'Agnosticismo de Hardware'. Nós não dizemos ao grande frotista: 'Jogue seus 500 rastreadores caríssimos no lixo e compre os nossos'. Nós dizemos: 'Não importa qual hardware você tenha, nós o conectaremos no Atlas Connect'.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Como funciona a centralização:",
+          title: "A Centralização Absoluta",
           items: [
-            "Um cliente tem uma frota misturada: Caminhões novos com 'Sascar' e antigos com 'OnixSat'.",
-            "Para o cliente rastrear antes da Atlas, ele abria o site da Sascar no Monitor 1 e o site da Onixsat no Monitor 2.",
-            "O Atlas Connect recebe a longitude/latitude dos dois fornecedores e coloca TUDO NA MESMA TELA, no mesmo formato.",
+            "Frotas Híbridas: Se o cliente tem 30 caminhões com Autotrac, 20 com OnixSat e 50 agregados apenas com celular, a Torre da Atlas unifica os 100 veículos no mesmo mapa.",
+            "Sem silos de dados: O gestor logístico do cliente não precisa mais de três telas abertas. O Atlas Connect se torna a única fonte da verdade (Single Source of Truth).",
           ],
         },
       ],
     },
     {
       id: "capitulo-3-bidirecionalidade",
-      title: "Capítulo 3: Comandos Bidirecionais",
+      title: "Capítulo 3: Bidirecionalidade — O Poder de Atuação Remota",
       blocks: [
         {
           type: "text",
           paragraphs: [
             [
-              "A integração não é uma rua de mão única (onde só recebemos dados). Ela é bidirecional. O Operador da Atlas pode, através da NOSSA tela, enviar comandos que vão bater no satélite e chegar no hardware do fabricante terceiro.",
+              "Integrações comuns de mercado apenas 'leem' onde o caminhão está. A integração da AtlasGR é bidirecional de nível tático militar. A plataforma lê a telemetria, mas também envia comandos letais direto ao coração mecânico do veículo, independente do fabricante do hardware.",
             ],
           ],
         },
         {
           type: "timeline",
-          title: "Exemplo Prático de Bloqueio",
+          title: "O Fluxo de um Bloqueio Bidirecional",
           items: [
-            { label: "Torre Atlas", text: "O operador aperta o botão 'Bloquear Combustível' no Atlas Connect." },
-            { label: "API Atlas", text: "O nosso sistema traduz o comando para a linguagem específica daquele fabricante (ex: Autotrac)." },
-            { label: "Satélite", text: "A rede da Autotrac envia o comando." },
-            { label: "Caminhão", text: "O motor do caminhão corta o diesel a milhares de quilômetros de distância." },
+            { label: "1. O Alerta", text: "O sensor acusa desvio crônico de rota para área de risco no Rio de Janeiro." },
+            { label: "2. O Comando", text: "O operador da Torre Atlas clica no botão 'Cortar Combustível' diretamente na nossa interface Connect." },
+            { label: "3. A Tradução", text: "Nossa API traduz o comando para o dialeto do hardware instalado (ex: linguagem OmniLink)." },
+            { label: "4. A Ação", text: "O comando viaja via rede satelital e o motor engasga e trava. Tudo executado e registrado nos nossos logs, sem acessar a plataforma do concorrente." },
           ],
         },
       ],
     },
     {
       id: "estudo-de-caso",
-      title: "Estudo de Caso: A Falha Humana Banida",
+      title: "Estudo de Caso: A Eliminação do Erro Humano",
       blocks: [
         {
           type: "case",
-          title: "O Fator Humano Removido",
-          text: "Em 2022, um grande cliente perdia em média 2 cargas por mês. O motivo? Os assistentes de logística esqueciam de vincular o equipamento 'Isca Móvel' à placa da carreta durante a correria da expedição. Se o rastreador principal fosse derrubado, a isca estava ligada, mas o sistema não sabia em qual carreta ela estava. A Atlas implantou a integração API pesada. A partir de então, a leitura do código de barras da caixa amarrava a Isca à NF e à Placa simultaneamente no Connect. Em 12 meses, os roubos caíram a zero. Retirar a digitação manual tira a principal fonte de erros da segurança.",
-          source: "Laboratório de Integração Tecnológica - TI Atlas",
+          title: "O Fim dos Esquecimentos Fatais",
+          text: "Em 2022, um gigante logístico sofria 2 sinistros graves por mês em eletrônicos. A investigação provou: na loucura do carregamento, o encarregado esquecia de registrar a Isca Móvel na viagem no painel web, deixando a carga secundária cega. A Atlas aplicou a API pesada. A partir de então, o simples bip do leitor de código de barras na caixa criava automaticamente o vínculo inquebrável (NF-e + Isca + Placa) no Connect. Nos 18 meses seguintes, os roubos consumados caíram a zero. Retirar a mão humana do teclado tirou o principal calcanhar de aquiles da segurança.",
+          source: "Case de Sucesso de API - Comercial e Tecnologia AtlasGR",
         },
       ],
     },
     {
       id: "capitulo-4-onboarding-tecnico",
-      title: "Capítulo 4: Homologação e os Erros que Derrubam uma Integração",
+      title: "Capítulo 4: Homologação e o Risco do Fuso Horário",
       blocks: [
         {
           type: "text",
-          heading: "Integração Não é 'Plugou, Funcionou'",
+          heading: "Integração Impecável Requer Homologação Rigorosa",
           paragraphs: [
             [
-              "Todo cliente novo acha que ligar o Connect ao ERP dele é como conectar um fone Bluetooth. Não é. Antes de qualquer integração ir para produção, existe uma fase de homologação — e é justamente essa fase que separa uma Torre de Controle confiável de uma Torre que gera sinistro por falha de dado.",
+              "O maior erro que um Executivo de Contas pode cometer é prometer 'integração pronta para amanhã'. Conectar sistemas complexos exige o Onboarding Técnico, fase de homologação que previne desastres sistêmicos antes que alcancem o ambiente de produção.",
             ],
             [
-              "Um evento de posição errado não é só um detalhe técnico: se a carga sofrer um sinistro e o log do rastreador estiver com o horário trocado, a seguradora e a SUSEP vão questionar a apólice inteira. Por isso o onboarding técnico é tratado com o mesmo rigor de um PGR.",
+              "Um evento gravado com 3 horas de erro por conta de fuso horário mal configurado pode dar margem jurídica para a seguradora negar R$ 4 Milhões de indenização.",
             ],
           ],
         },
         {
           type: "checklist",
-          title: "Checklist de Homologação Pré-Produção",
+          title: "Checklist Crítico de Homologação (O que testamos antes de ir ao ar)",
           items: [
-            "Validar o fuso horário (timezone) de cada fonte de dado — ERP, TMS e cada fabricante de rastreador enviam timestamp do jeito que bem entendem.",
-            "Conferir a ordem das coordenadas GPS (latitude/longitude) recebidas do fabricante antes de plotar no mapa do Connect.",
-            "Rodar um lote de teste com eventos duplicados de propósito, para confirmar que o Connect deduplica e não abre duas viagens para a mesma NF.",
-            "Simular queda de sinal do rastreador e verificar se o alerta de 'perda de comunicação' dispara corretamente na Central 24/7.",
-            "Testar o envio de comando bidirecional (bloqueio/sirene) em ambiente controlado antes de liberar para o operador em campo.",
-            "Validar de ponta a ponta o vínculo Isca/Placa/NF para garantir que nenhum evento fique órfão no sistema.",
+            "Sincronismo de Fuso Horário (Timezone): Garantir que a latitude batida às 14:00 no ERP entre às 14:00 no Connect (evitar caminhões 'viajando no tempo').",
+            "Inversão de Coordenadas: Checar se o fabricante não inverteu Latitude e Longitude, plotando frotas inteiras no oceano.",
+            "Deduplicação de Eventos: Confirmar que a integração não criará 3 viagens repetidas se o TMS do cliente mandar o mesmo comando de faturamento três vezes por erro de conexão local.",
+            "Testes Táticos: Enviar bloqueios e sirenes testes para garantir que a bidirecionalidade não foi podada no firewall do terceiro.",
           ],
         },
         {
           type: "callout",
           variant: "warning",
-          title: "Os Três Vilões da Integração",
+          title: "A Defesa Contra o 'Rastreador Mentiroso'",
           text: [
-            "Na prática, 90% dos chamados de 'o rastreador está mentindo' se resumem a três causas: fuso horário configurado errado no fabricante (a carreta 'viaja no tempo'), latitude e longitude invertidas (o caminhão aparece dirigindo no meio do oceano) e duplicidade de eventos (a mesma viagem é criada duas vezes e a operação vê 'fantasmas' no mapa). Nenhuma dessas é falha do Connect — é dado ruim entrando por uma porta que a gente não fechou direito.",
-          ],
-        },
-        {
-          type: "faq",
-          items: [
-            {
-              q: "Por que não colocamos a integração direto em produção, já que o cliente tem pressa?",
-              a: "Porque um erro de fuso horário só aparece quando alguém compara o horário do evento com o horário real do sinistro — e nesse ponto já é tarde. Homologar antes é mais barato do que explicar depois.",
-            },
-            {
-              q: "Quem faz esse checklist, o comercial ou a TI?",
-              a: "A TI executa os testes técnicos, mas o time comercial/CS precisa saber que ele existe para não prometer 'integração pronta em 1 dia' para o cliente.",
-            },
-            {
-              q: "E se o fabricante do rastreador não seguir nenhum padrão?",
-              a: "É basicamente todos eles. Por isso a Atlas mantém uma camada de tradução própria para cada fabricante homologado — é trabalho de tradutor, não de milagre.",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "materiais-complementares",
-      title: "Materiais Complementares e Fechamento",
-      blocks: [
-        {
-          type: "text",
-          paragraphs: [
-            [
-              "Você não precisa aprender a programar integrações, mas precisa saber vender a ideia delas (o benefício do tempo economizado) com paixão e firmeza.",
-            ],
+            "Quando um cliente reclama que 'O Atlas Connect está mostrando o caminhão no lugar errado', em 99% das vezes o problema é dado corrompido ou atrasado vindo da API do hardware que o cliente instalou. Por isso a homologação deve ser fria, baseada em logs auditáveis.",
           ],
         },
       ],
     },
   ],
   summary: [
-    "APIs conectam sistemas, removendo a necessidade de digitação humana.",
-    "Ser agnóstico significa aceitar e centralizar dados de qualquer hardware/rastreador do mercado no Atlas Connect.",
-    "Bidirecionalidade permite que a Torre Atlas gerencie bloqueios sem sair da própria ferramenta.",
-    "A maior causa de falha em PGRs é o erro humano na digitação/atribuição. A API mata esse erro.",
+    "APIs de integração removem horas de digitação e a chance de erros humanos causarem recusas de seguro.",
+    "Agnosticismo de hardware posiciona a Atlas como concentradora definitiva da gestão, acolhendo qualquer tecnologia do mercado.",
+    "Comandos Bidirecionais capacitam nossa Torre de Controle a atacar ameaças ativamente na própria interface.",
+    "Todo fluxo técnico deve ser precedido por Homologação; erros de timezone ou coordenadas causam o colapso do monitoramento.",
   ],
   finalChecklist: [
-    "Posso explicar o que é uma API para uma pessoa leiga.",
-    "Compreendo o valor comercial de ter uma frota com múltiplos rastreadores em uma só tela.",
-    "Entendo como funciona o envio de comandos remotos (sirene/bloqueio) via API.",
+    "Consigo ilustrar o valor comercial (ROI) gerado pela redução drástica do erro de digitação de PGR.",
+    "Entendo que Bidirecionalidade é a capacidade de enviar comandos de travamento ao invés de apenas ler relatórios.",
+    "Compreendo o papel do Checklist de Homologação para proteger a Atlas contra falhas sistêmicas de terceiros.",
   ],
   mindMap: {
-    root: "Integrações AtlasGR",
+    root: "Ecossistema de Integrações",
     branches: [
-      { label: "Softwares", items: ["APIs", "ERP (Nota Fiscal)", "TMS (Fretes)"] },
-      { label: "Hardwares", items: ["Agnóstico", "Fabricantes (Sascar/etc)"] },
-      { label: "Ações", items: ["Receber Posicionamento", "Enviar Bloqueio", "Zero Digitação", "Homologar Antes de Produção"] },
+      { label: "Integração B2B (APIs)", items: ["Conexão ERP/TMS", "Zero Digitação", "Abertura Automática de Viagem"] },
+      { label: "Hardware Agnóstico", items: ["Hub Centralizador", "Multimarcas de Rastreadores"] },
+      { label: "Ação (Bidirecional)", items: ["Leitura de Telemetria", "Envio de Bloqueio/Sirene"] },
+      { label: "Onboarding Técnico", items: ["Validação de Fuso Horário", "Deduplicação", "Testes Isolados"] },
     ],
   },
   scenario:
-    "Cenário Prático: O cliente diz que o Operador dele prefere usar o sistema do rastreador direto do que o Connect. Explique a ele por que o sistema do rastreador não ajuda em nada quando a apólice de seguro entra na jogada.",
+    "Cenário Prático: O Diretor Comercial de um cliente novo diz: 'Tenho Sascar nos caminhões caros, e Omnilink nos baratos. O seu sistema obriga a trocar tudo? Como eu aciono a Sirene nos baratos?' Como você rebate essa dúvida ressaltando nossos pontos fortes?",
   diagram: {
-    title: "O Hub Omnicanal",
-    chart: "graph TD\n  SistCliente[ERP/TMS Cliente] <-->|APIs de NF/Frete| Connect((Atlas Connect))\n  Rastreador1[Hardware Sascar] -->|Posição GPS| Connect\n  Rastreador2[Hardware Omnilink] -->|Posição GPS| Connect\n  Connect -->|Comandos de Bloqueio| Rastreador1",
+    title: "A Arquitetura Agnóstica Atlas",
+    chart: "graph TD\n  ERP[ERP do Cliente (Notas)] -->|API Inbound| Connect((Atlas Connect))\n  Rast1[Hardware A] -->|Posições| Connect\n  Rast2[Hardware B] -->|Posições| Connect\n  Connect -->|Comandos API Outbound| Rast1\n  Connect -->|Comandos API Outbound| Rast2",
   },
 };

@@ -42,6 +42,7 @@ interface OnboardingState {
   addBadge: (id: string) => void;
   exploreAcademyTool: (id: string) => void;
   saveCreatedAgent: (agent: AgentBlueprint) => void;
+  addXP: (amount: number) => void;
   resetAll: () => void;
 }
 
@@ -171,6 +172,8 @@ export const useOnboardingStore = create<OnboardingState>()(
         }));
         if (isFirstAgent) get().addBadge("arquiteto-agentes");
       },
+
+      addXP: (amount) => set((s) => ({ xp: s.xp + amount })),
 
       resetAll: () =>
         set({

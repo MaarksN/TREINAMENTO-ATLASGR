@@ -78,7 +78,7 @@ export function BadgesGrid({ unlockedBadgeIds }: BadgesGridProps) {
                 </span>
                 {isUnlocked && (
                   <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                    <CheckCircle2Icon size={10} /> Desbloqueada
+                    <CheckCircle2Icon width={10} height={10} /> Desbloqueada
                   </span>
                 )}
               </div>
