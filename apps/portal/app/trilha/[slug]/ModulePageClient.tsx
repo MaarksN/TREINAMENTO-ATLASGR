@@ -4,12 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Brain, CheckCircle2, ClipboardList, Wrench, Compass, Map as MapIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, Brain, CheckCircle2, ClipboardList, Wrench, Compass, Map as MapIcon, Maximize, Minimize } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Badge } from "@/components/ui/Badge";
 import { ContentBlockView } from "@/components/module/ContentBlockView";
+import { PracticeLab } from "@/components/module/PracticeLab";
 import { QuizRunner } from "@/components/quiz/QuizRunner";
 import { moduleMetas, getModuleMeta, getModuleContent } from "@/content/modules";
+import { getPracticeLab } from "@/content/learning-blueprint";
 import { getQuizForModule } from "@/content/quizzes";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
@@ -17,9 +19,7 @@ import { ImmersiveStory } from "@/components/module/ImmersiveStory";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
 import { ModuleRating } from "@/components/module/ModuleRating";
 import { CertificateActions } from "@/components/module/CertificateActions";
-import { Maximize, Minimize } from "lucide-react";
 import type { ModuleContentFull, ModuleSection, ModuleMeta } from "@/lib/types";
-
 import { AccessibilityToolbar } from "@/components/accessibility/AccessibilityToolbar";
 
 type Screen =
@@ -27,6 +27,7 @@ type Screen =
   | { kind: "scenario" }
   | { kind: "objectives" }
   | { kind: "sectionBlock"; section: ModuleSection; chapterIndex: number; block: ModuleSection["blocks"][number]; blockIndex: number; totalBlocks: number }
+  | { kind: "practice" }
   | { kind: "diagram" }
   | { kind: "review" }
   | { kind: "quiz" };
@@ -45,7 +46,7 @@ function buildScreens(content: ModuleContentFull): Screen[] {
       });
     });
   });
-  screens.push({ kind: "diagram" }, { kind: "review" }, { kind: "quiz" });
+  screens.push({ kind: "practice" }, { kind: "diagram" }, { kind: "review" }, { kind: "quiz" });
   return screens;
 }
 
@@ -60,6 +61,10 @@ function getScreenText(screen: Screen | undefined, meta: ModuleMeta, content: Mo
       return `Objetivos do módulo: ${content.objectives.join(". ")}`;
     case "sectionBlock":
       return `${screen.section.title}. ${JSON.stringify(screen.block)}`;
+    case "practice": {
+      const lab = getPracticeLab(meta.slug);
+      return lab ? `Laboratório prático. ${lab.mission}. Cenário: ${lab.scenario}. Entrega: ${lab.deliverable}.` : "Laboratório prático de aplicação.";
+    }
     case "diagram":
       return `Fluxograma Operacional: ${content.diagram?.title || ""}`;
     case "review":
@@ -84,6 +89,7 @@ export function ModulePageClient() {
   const meta = getModuleMeta(params.slug);
   const content = getModuleContent(params.slug);
   const quiz = getQuizForModule(params.slug);
+  const practiceLab = getPracticeLab(params.slug);
   const modProgress = progress[params.slug];
   const idx = moduleMetas.findIndex((m) => m.slug === params.slug);
   const previousReady = moduleMetas.slice(0, idx).reverse().find((m) => m.status === "ready");
@@ -95,8 +101,6 @@ export function ModulePageClient() {
   const isFirstScreen = screenIndex === 0;
   const isQuizScreen = screen?.kind === "quiz";
 
-  // Novo módulo -> volta pra primeira tela em vez de continuar de onde a
-  // navegação anterior parou.
   useEffect(() => {
     queueMicrotask(() => {
       setScreenIndex(0);
@@ -108,6 +112,7 @@ export function ModulePageClient() {
     setScreenIndex((i) => Math.min(i + 1, totalScreens - 1));
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }
+
   function goPrev() {
     setScreenIndex((i) => Math.max(i - 1, 0));
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
@@ -146,32 +151,28 @@ export function ModulePageClient() {
     <div className={`atlas-module-content flex min-h-screen flex-col bg-background text-foreground selection:bg-atlas-orange selection:text-white ${isFocusMode ? "" : "pt-0"}`}>
       {!isFocusMode && <SiteHeader />}
 
-      {/* Barra de progresso por tela (não por scroll) + navegação de saída.
-          Não é sticky: o SiteHeader já é sticky top-0, e empilhar dois
-          elementos sticky no mesmo top-0 faz um cobrir o outro. */}
       {!isFocusMode && (
-      <div className="border-b border-border/50 bg-background">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <Link href="/trilha" className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-muted transition-colors hover:text-atlas-orange">
-            <ArrowLeft size={14} /> <span className="hidden sm:inline">Central de Treinamento</span>
-          </Link>
-          <div className="flex flex-1 items-center gap-1">
-            {screens.map((_, i) => (
-              <span
-                key={i}
-                className="h-1 flex-1 rounded-full transition-colors duration-300"
-                style={{ backgroundColor: i <= screenIndex ? "var(--atlas-orange)" : "var(--border)" }}
-              />
-            ))}
+        <div className="border-b border-border/50 bg-background">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+            <Link href="/trilha" className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-muted transition-colors hover:text-atlas-orange">
+              <ArrowLeft size={14} /> <span className="hidden sm:inline">Central de Treinamento</span>
+            </Link>
+            <div className="flex flex-1 items-center gap-1" aria-label={`Progresso do módulo: tela ${screenIndex + 1} de ${totalScreens}`}>
+              {screens.map((_, i) => (
+                <span
+                  key={i}
+                  className="h-1 flex-1 rounded-full transition-colors duration-300"
+                  style={{ backgroundColor: i <= screenIndex ? "var(--atlas-orange)" : "var(--border)" }}
+                />
+              ))}
+            </div>
+            <span className="shrink-0 text-xs font-bold tabular-nums text-muted">
+              {screenIndex + 1}/{totalScreens}
+            </span>
           </div>
-          <span className="shrink-0 text-xs font-bold tabular-nums text-muted">
-            {screenIndex + 1}/{totalScreens}
-          </span>
         </div>
-      </div>
       )}
 
-      {/* Barra de Acessibilidade (Voz, Legendas & LIBRAS) */}
       <div className="border-b border-border/40 bg-surface-2/40 py-2 print:hidden">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
           <AccessibilityToolbar currentText={getScreenText(screen, meta, content)} />
@@ -193,7 +194,7 @@ export function ModulePageClient() {
               <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-5 pointer-events-none" />
               <div className="absolute -top-32 -right-32 h-[500px] w-[500px] rounded-full bg-atlas-orange/10 blur-[100px] pointer-events-none" />
               <div className="absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full bg-amber-500/10 blur-[80px] pointer-events-none" />
-              
+
               <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
                 <span className="rounded-full border-2 border-atlas-orange/50 bg-atlas-orange/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-atlas-orange shadow-[0_0_15px_rgba(255,86,24,0.3)]">
                   Módulo {String(meta.number).padStart(2, "0")}
@@ -202,24 +203,24 @@ export function ModulePageClient() {
                   {meta.durationMinutes} min
                 </span>
                 {modProgress?.passed && (
-                  <span className="flex items-center gap-1.5 rounded-full border-2 border-emerald-500/50 bg-emerald-500/20 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                  <span className="flex items-center gap-1.5 rounded-full border-2 border-emerald-500/50 bg-emerald-500/20 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-500">
                     <CheckCircle2 size={14} /> Concluído
                   </span>
                 )}
               </div>
-              
+
               <h1 className="relative z-10 mt-8 max-w-4xl text-balance font-display text-5xl font-black leading-tight tracking-tight md:text-7xl text-gradient-title">
                 {content.title}
               </h1>
-              
+
               <p className="relative z-10 mx-auto mt-6 max-w-3xl text-lg md:text-xl font-medium leading-relaxed text-muted/90">
                 {meta.shortDescription}
               </p>
-              
+
               <div className="relative z-10 mt-12 flex items-center justify-center gap-2.5 rounded-2xl bg-surface/80 backdrop-blur-md px-6 py-3 text-xs font-bold text-foreground border border-atlas-orange/20 shadow-lg">
-                <Compass size={18} className="text-atlas-orange animate-pulse" />
+                <Compass size={18} className="text-atlas-orange" />
                 <span>
-                  Estrutura: Contexto, Objetivos, {content.sections.length} Capítulos, Diagrama, Revisão e Simulador.
+                  Estrutura: Contexto, Objetivos, {content.sections.length} Capítulos, Laboratório Prático, Diagrama, Revisão e Simulador.
                 </span>
               </div>
             </div>
@@ -262,6 +263,10 @@ export function ModulePageClient() {
                 <ContentBlockView block={screen.block} index={screen.blockIndex} />
               </div>
             </section>
+          )}
+
+          {screen.kind === "practice" && practiceLab && (
+            <PracticeLab lab={practiceLab} moduleTitle={content.title} />
           )}
 
           {screen.kind === "diagram" && (
@@ -318,7 +323,7 @@ export function ModulePageClient() {
             <div className="atlas-content-card mx-auto max-w-3xl text-center border-2 border-atlas-orange/20 shadow-2xl overflow-hidden relative">
               <div className="absolute top-0 right-0 h-64 w-64 bg-atlas-orange/10 blur-[80px] rounded-full pointer-events-none" />
               <div className="absolute bottom-0 left-0 h-64 w-64 bg-amber-500/10 blur-[80px] rounded-full pointer-events-none" />
-              
+
               <div className="relative z-10">
                 <span className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-atlas-orange to-amber-500 text-white shadow-lg mb-6">
                   <CheckCircle2 size={32} />
@@ -336,68 +341,67 @@ export function ModulePageClient() {
                     {modProgress?.passed ? "Refazer Simulação" : "Iniciar Avaliação"}
                   </button>
                 )}
-              {showQuiz && (
-                <div className="relative z-10 mt-8 text-left">
-                  <QuizRunner
-                    questions={quiz}
-                    title={`Simulador — ${content.title}`}
-                    onFinish={({ score, passed }) => {
-                      completeModuleQuiz(params.slug, score);
-                      if (passed && nextReady) {
-                        setTimeout(() => router.push(`/trilha/${nextReady.slug}`), 1800);
-                      }
-                    }}
-                  />
-                  {modProgress?.passed && (
-                    <div className="mt-12 border-t border-border pt-8 animate-fade-in">
-                      <CertificateActions moduleTitle={content.title} moduleNumber={meta.number} />
-                      <ModuleRating />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+                {showQuiz && (
+                  <div className="relative z-10 mt-8 text-left">
+                    <QuizRunner
+                      questions={quiz}
+                      title={`Simulador — ${content.title}`}
+                      onFinish={({ score, passed }) => {
+                        completeModuleQuiz(params.slug, score);
+                        if (passed && nextReady) {
+                          setTimeout(() => router.push(`/trilha/${nextReady.slug}`), 1800);
+                        }
+                      }}
+                    />
+                    {modProgress?.passed && (
+                      <div className="mt-12 border-t border-border pt-8 animate-fade-in">
+                        <CertificateActions moduleTitle={content.title} moduleNumber={meta.number} />
+                        <ModuleRating />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </motion.div>
       </main>
 
-      {/* Navegação entre telas: sempre visível, fixa na base do conteúdo */}
       {!isFocusMode && (
-      <div className="sticky bottom-0 z-30 border-t border-border/50 bg-background/90 backdrop-blur-xl print:hidden">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          {isFirstScreen ? (
-            previousReady ? (
-              <Link href={`/trilha/${previousReady.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-atlas-orange">
-                <ArrowLeft size={16} /> {previousReady.title}
+        <div className="sticky bottom-0 z-30 border-t border-border/50 bg-background/90 backdrop-blur-xl print:hidden">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            {isFirstScreen ? (
+              previousReady ? (
+                <Link href={`/trilha/${previousReady.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-atlas-orange">
+                  <ArrowLeft size={16} /> {previousReady.title}
+                </Link>
+              ) : (
+                <span />
+              )
+            ) : (
+              <button onClick={goPrev} className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-2.5 text-sm font-bold text-foreground transition-colors hover:border-atlas-orange/50">
+                <ArrowLeft size={16} /> Anterior
+              </button>
+            )}
+
+            {!isQuizScreen ? (
+              <button
+                onClick={goNext}
+                className="inline-flex items-center gap-2 rounded-xl bg-atlas-orange px-6 py-2.5 text-sm font-bold text-white shadow-glow transition-all hover:bg-atlas-orange-2"
+              >
+                Continuar <ArrowRight size={16} />
+              </button>
+            ) : nextReady ? (
+              <Link href={`/trilha/${nextReady.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-atlas-orange">
+                {nextReady.title} <ArrowRight size={16} />
               </Link>
             ) : (
-              <span />
-            )
-          ) : (
-            <button onClick={goPrev} className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-2.5 text-sm font-bold text-foreground transition-colors hover:border-atlas-orange/50">
-              <ArrowLeft size={16} /> Anterior
-            </button>
-          )}
-
-          {!isQuizScreen ? (
-            <button
-              onClick={goNext}
-              className="inline-flex items-center gap-2 rounded-xl bg-atlas-orange px-6 py-2.5 text-sm font-bold text-white shadow-glow transition-all hover:bg-atlas-orange-2"
-            >
-              Continuar <ArrowRight size={16} />
-            </button>
-          ) : nextReady ? (
-            <Link href={`/trilha/${nextReady.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-atlas-orange">
-              {nextReady.title} <ArrowRight size={16} />
-            </Link>
-          ) : (
-            <Link href="/prova-final" className="inline-flex items-center gap-2 text-sm font-semibold text-atlas-orange">
-              Ir para a Prova Final <ArrowRight size={16} />
-            </Link>
-          )}
+              <Link href="/prova-final" className="inline-flex items-center gap-2 text-sm font-semibold text-atlas-orange">
+                Ir para a Prova Final <ArrowRight size={16} />
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
       )}
     </div>
   );
