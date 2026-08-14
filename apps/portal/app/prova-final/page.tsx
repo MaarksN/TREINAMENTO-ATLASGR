@@ -2,75 +2,75 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, Award, Clock, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Award, Clock, ShieldCheck, Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { QuizRunner } from "@/components/quiz/QuizRunner";
-import { getAllBuiltQuestions } from "@/content/quizzes";
+import { buildFinalExam } from "@/content/quizzes";
 import { readyModuleSlugs, moduleMetas } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 
+const FINAL_EXAM_PASS_SCORE = 80;
+const FINAL_EXAM_SECONDS = 45 * 60;
+
 export default function ProvaFinalPage() {
   const { ready, registration } = useRequireRegistration();
-  const progress = useOnboardingStore((s) => s.progress);
-  const examResult = useOnboardingStore((s) => s.examResult);
-  const setExamResult = useOnboardingStore((s) => s.setExamResult);
+  const progress = useOnboardingStore((state) => state.progress);
+  const examResult = useOnboardingStore((state) => state.examResult);
+  const setExamResult = useOnboardingStore((state) => state.setExamResult);
   const [started, setStarted] = useState(false);
+  const [questions] = useState(() => buildFinalExam(2));
 
   if (!ready || !registration) return null;
 
-  const readySlugs = readyModuleSlugs;
-  const allDone = readySlugs.every((slug) => progress[slug]?.completed);
-  const pendingModules = moduleMetas.filter((m) => readySlugs.includes(m.slug) && !progress[m.slug]?.completed);
-  const questions = getAllBuiltQuestions();
+  const allDone = readyModuleSlugs.every((slug) => progress[slug]?.passed);
+  const pendingModules = moduleMetas.filter(
+    (courseModule) => readyModuleSlugs.includes(courseModule.slug) && !progress[courseModule.slug]?.passed,
+  );
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-atlas-orange selection:text-white pb-20">
       <SiteHeader />
 
-      <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-        <Link href="/trilha" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted hover:text-atlas-orange transition-colors mb-6">
-          <ArrowLeft size={14} /> Voltar para a Central de Treinamento
+      <main id="main-content" className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
+        <Link href="/trilha" className="mb-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted transition-colors hover:text-atlas-orange">
+          <ArrowLeft size={14} aria-hidden="true" /> Voltar para a Academia
         </Link>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 border-b border-border/50 pb-6">
+        <header className="mb-8 flex flex-col gap-5 border-b border-border/50 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <Badge variant="orange" className="mb-2">Certificação Profissional Enterprise</Badge>
-            <h1 className="font-display text-3xl sm:text-4xl font-black tracking-tight text-foreground">
-              Exame Oficial de Qualificação
-            </h1>
-            <p className="mt-2 text-sm sm:text-base text-muted max-w-2xl leading-relaxed">
-              Avaliação final consolidada com questões sorteadas dos 15 módulos operacionais. Exige aproveitamento mínimo de <strong className="text-foreground">80%</strong> para emissão do Certificado Oficial com Hash de Autenticidade.
+            <Badge variant="orange" className="mb-2">Avaliação de domínio</Badge>
+            <h1 className="font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">Prova Final da Academia ATLASGR</h1>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+              Uma prova equilibrada com <strong className="text-foreground">2 questões de cada um dos 15 módulos</strong>. São {questions.length} itens no total e aproveitamento mínimo de <strong className="text-foreground">{FINAL_EXAM_PASS_SCORE}%</strong>.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 bg-surface-2 p-4 rounded-2xl border border-border/60 shrink-0">
-            <Clock className="w-8 h-8 text-atlas-orange" />
+          <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-border/60 bg-surface-2 p-4">
+            <Clock className="h-8 w-8 text-atlas-orange" aria-hidden="true" />
             <div>
-              <span className="block text-[10px] font-bold uppercase tracking-wider text-muted">Tempo Limite</span>
-              <span className="block text-sm font-bold text-foreground">60 Minutos</span>
+              <span className="block text-[10px] font-bold uppercase tracking-wider text-muted">Tempo limite</span>
+              <span className="block text-sm font-bold text-foreground">45 minutos</span>
             </div>
           </div>
-        </div>
+        </header>
 
         {!allDone && (
           <Card variant="elevated" className="border-amber-500/40 bg-amber-500/10 p-6">
             <div className="flex items-start gap-4">
-              <AlertTriangle size={24} className="mt-0.5 shrink-0 text-amber-500" />
+              <AlertTriangle size={24} className="mt-0.5 shrink-0 text-amber-500" aria-hidden="true" />
               <div>
-                <h3 className="font-display font-bold text-base text-amber-600 dark:text-amber-400">Conclusão de Trilhas Pendente</h3>
-                <p className="mt-1 text-sm text-amber-700/90 dark:text-amber-300/90 leading-relaxed">
-                  Para liberar a realização do Exame Oficial, conclua a leitura e os simuladores dos módulos restantes:
+                <h2 className="font-display text-base font-bold text-amber-700 dark:text-amber-300">Ainda faltam módulos para validar</h2>
+                <p className="mt-1 text-sm leading-relaxed text-amber-800/90 dark:text-amber-200/90">
+                  A prova final só é liberada depois que todos os simuladores de módulo atingirem o mínimo de aprovação. Isso evita transformar a prova em atalho para pular a formação.
                 </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {pendingModules.map((m) => (
-                    <Link key={m.slug} href={`/trilha/${m.slug}`}>
-                      <Badge variant="muted" className="hover:border-atlas-orange transition-colors">
-                        {m.title}
-                      </Badge>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {pendingModules.map((courseModule) => (
+                    <Link key={courseModule.slug} href={`/trilha/${courseModule.slug}`}>
+                      <Badge variant="muted" className="transition-colors hover:border-atlas-orange">{courseModule.title}</Badge>
                     </Link>
                   ))}
                 </div>
@@ -79,51 +79,46 @@ export default function ProvaFinalPage() {
           </Card>
         )}
 
-        {(allDone || true) && !started && !examResult && (
-          <Card variant="elevated" className="p-8 text-center bg-surface border-border/60 shadow-xl">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-atlas-orange/10 text-atlas-orange mb-6 border border-atlas-orange/20">
-              <ShieldCheck size={32} />
+        {allDone && !started && !examResult && (
+          <Card variant="elevated" className="bg-surface p-8 text-center shadow-xl border-border/60">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-3xl border border-atlas-orange/20 bg-atlas-orange/10 text-atlas-orange">
+              <ShieldCheck size={32} aria-hidden="true" />
             </div>
-
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Pronto para o Desafio Final?</h2>
-            <p className="text-sm text-muted max-w-lg mx-auto leading-relaxed mb-8">
-              A prova possui {questions.length} questões técnicas sobre Gerenciamento de Risco, Sistema Connect, Atlas Profile, PGR e Procedimento Operacional Padrão.
+            <h2 className="font-display text-2xl font-bold text-foreground">Pronto para integrar tudo o que aprendeu?</h2>
+            <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-muted">
+              A seleção é balanceada por módulo e muda a cada nova prova. O objetivo é verificar julgamento aplicado, não decorar a posição de respostas.
             </p>
-
-            <div className="flex justify-center">
+            <div className="mt-8 flex justify-center">
               <Button size="xl" variant="primary" onClick={() => setStarted(true)} leftIcon={<Sparkles size={20} />}>
-                Iniciar Exame Oficial ({questions.length} Questões)
+                Iniciar prova ({questions.length} questões)
               </Button>
             </div>
           </Card>
         )}
 
         {examResult && !started && (
-          <Card variant="elevated" className="p-8 text-center bg-surface border-border/60 shadow-2xl">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-atlas-orange/10 text-atlas-orange mb-6 border border-atlas-orange/30">
-              <Award size={40} className={examResult.passed ? "text-atlas-orange" : "text-muted"} />
+          <Card variant="elevated" className="bg-surface p-8 text-center shadow-2xl border-border/60">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-atlas-orange/30 bg-atlas-orange/10">
+              <Award size={40} className={examResult.passed ? "text-atlas-orange" : "text-muted"} aria-hidden="true" />
             </div>
-
-            <Badge variant={examResult.passed ? "success" : "orange"} className="mb-3 px-3 py-1 font-bold text-xs uppercase">
-              {examResult.passed ? "Aprovado na Certificação" : "Reprovado — Tente Novamente"}
+            <Badge variant={examResult.passed ? "success" : "orange"} className="mb-3 px-3 py-1 text-xs font-bold uppercase">
+              {examResult.passed ? "Domínio final validado" : "Revisão recomendada"}
             </Badge>
-
-            <h2 className="font-display text-4xl font-black text-foreground mb-2">{examResult.score}% de Aproveitamento</h2>
-            <p className="text-sm font-medium text-muted mb-8">
-              Você acertou <strong className="text-foreground">{examResult.correct}</strong> de <strong className="text-foreground">{examResult.totalQuestions}</strong> questões do Exame Oficial.
+            <h2 className="font-display text-4xl font-black text-foreground">{examResult.score}% de aproveitamento</h2>
+            <p className="mt-2 text-sm font-medium text-muted">
+              {examResult.correct} acertos em {examResult.totalQuestions} questões.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               {examResult.passed ? (
                 <Link href="/certificado">
-                  <Button size="lg" variant="primary" leftIcon={<Award size={18} />}>
-                    Emitir Certificado Digital Oficial
-                  </Button>
+                  <Button size="lg" variant="primary" leftIcon={<Award size={18} />}>Acessar certificado da Academia</Button>
                 </Link>
               ) : (
-                <Button size="lg" variant="outline" onClick={() => setStarted(true)}>
-                  Refazer Exame Oficial
-                </Button>
+                <>
+                  <Link href="/ranking"><Button size="lg" variant="outline">Revisar mapa de domínio</Button></Link>
+                  <Button size="lg" variant="primary" onClick={() => setStarted(true)}>Refazer prova</Button>
+                </>
               )}
             </div>
           </Card>
@@ -133,10 +128,10 @@ export default function ProvaFinalPage() {
           <div className="mt-6">
             <QuizRunner
               questions={questions}
-              title="Exame Oficial de Qualificação AtlasGR"
-              timeLimitSeconds={3600}
-              onFinish={({ score, correct, total, passed }) => {
-                const isApproved = score >= 80;
+              title="Prova Final — Academia ATLASGR"
+              timeLimitSeconds={FINAL_EXAM_SECONDS}
+              onFinish={({ score, correct, total }) => {
+                const isApproved = score >= FINAL_EXAM_PASS_SCORE;
                 setExamResult({ score, correct, totalQuestions: total, passed: isApproved, date: new Date().toISOString() });
                 setStarted(false);
               }}
