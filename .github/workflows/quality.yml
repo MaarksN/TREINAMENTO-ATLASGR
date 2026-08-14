@@ -3,14 +3,12 @@ name: Quality Gate
 on:
   pull_request:
     branches: [main]
-  push:
-    branches-ignore: [main]
 
 permissions:
   contents: read
 
 concurrency:
-  group: quality-${{ github.ref }}
+  group: quality-pr-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
@@ -19,12 +17,12 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
