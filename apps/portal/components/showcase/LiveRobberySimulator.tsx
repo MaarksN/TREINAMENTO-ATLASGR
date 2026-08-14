@@ -1,131 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import styles from './LiveRobberySimulator.module.css';
+"use client";
 
-const LiveRobberySimulator: React.FC = () => {
-  const [gameState, setGameState] = useState<'idle' | 'active' | 'resolved' | 'failed'>('idle');
+import { useState } from "react";
+import styles from "./LiveRobberySimulator.module.css";
+
+type GameState = "idle" | "active" | "resolved" | "failed";
+type Message = { sender: "system" | "user" | "prf"; text: string };
+
+export default function LiveRobberySimulator() {
+  const [gameState, setGameState] = useState<GameState>("idle");
   const [signalLost, setSignalLost] = useState(false);
-  const [messages, setMessages] = useState<{ sender: 'system' | 'user' | 'prf', text: string }[]>([]);
-  const [truckLocked, setTruckLocked] = useState(false);
-  const [prfContacted, setPrfContacted] = useState(false);
-  
-  useEffect(() => {
-    if (gameState === 'active' && !signalLost) {
-      const timer = setTimeout(() => {
-        setSignalLost(true);
-        addMessage('system', 'ALERT: TRUCK SIGNAL LOST ON HIGHWAY BR-116. SUSPECTED JAMMER ACTIVITY.');
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [gameState, signalLost]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [contextValidated, setContextValidated] = useState(false);
+  const [protocolEscalated, setProtocolEscalated] = useState(false);
 
-  useEffect(() => {
-    if (truckLocked && prfContacted && gameState === 'active') {
-      setTimeout(() => {
-        setGameState('resolved');
-        addMessage('system', 'INCIDENT RESOLVED. CARGO SECURED.');
-      }, 2000);
-    }
-  }, [truckLocked, prfContacted, gameState]);
+  function addMessage(sender: Message["sender"], text: string) {
+    setMessages((current) => [...current, { sender, text }]);
+  }
 
-  const addMessage = (sender: 'system' | 'user' | 'prf', text: string) => {
-    setMessages(prev => [...prev, { sender, text }]);
-  };
+  function startGame() {
+    setGameState("active");
+    setSignalLost(true);
+    setContextValidated(false);
+    setProtocolEscalated(false);
+    setMessages([
+      { sender: "system", text: "ALERTA: perda de comunicação identificada durante uma viagem. A causa ainda não foi confirmada." },
+    ]);
+  }
 
-  const startGame = () => {
-    setGameState('active');
-    setSignalLost(false);
-    setTruckLocked(false);
-    setPrfContacted(false);
-    setMessages([{ sender: 'system', text: 'MONITORING TRUCK CONVOY ALPHA-7...' }]);
-  };
+  function handleValidateContext() {
+    if (!signalLost || contextValidated || gameState !== "active") return;
+    setContextValidated(true);
+    addMessage("user", "Validando última atualização, viagem, rota, contexto e regra operacional vigente.");
+    addMessage("system", "Contexto validado. O alerta permanece relevante e exige tratamento conforme o procedimento da operação.");
+  }
 
-  const handleContactPRF = () => {
-    if (!signalLost || prfContacted || gameState !== 'active') return;
-    
-    addMessage('user', 'INITIATING EMERGENCY COMMS TO PRF...');
-    setPrfContacted(true);
-    
-    setTimeout(() => {
-      addMessage('prf', 'PRF UNIT RESPONDING. LOCATION RECEIVED. DISPATCHING INTERCEPTORS.');
-    }, 1500);
-  };
+  function handleEscalate() {
+    if (!contextValidated || protocolEscalated || gameState !== "active") return;
+    setProtocolEscalated(true);
+    addMessage("user", "Escalando o evento pelo fluxo definido, com evidências e estado atual.");
+    addMessage("prf", "Escalonamento registrado. A continuidade deve seguir o procedimento e as autoridades/áreas previstas para esta operação.");
+    setGameState("resolved");
+  }
 
-  const handleLockTruck = () => {
-    if (!signalLost || truckLocked || gameState !== 'active') return;
-    
-    addMessage('user', 'SENDING OVERRIDE COMMAND: LOCKDOWN ACTUATORS...');
-    setTruckLocked(true);
-    
-    setTimeout(() => {
-      addMessage('system', 'LOCKDOWN CONFIRMED. ENGINE IMMOBILIZED. DOORS SECURED.');
-    }, 1000);
-  };
-
-  const handleIgnore = () => {
-    if (!signalLost || gameState !== 'active') return;
-    
-    addMessage('user', 'DISMISSING ALERT. CONTINUING STANDARD MONITORING...');
-    
-    setTimeout(() => {
-      setGameState('failed');
-      addMessage('system', 'CRITICAL FAILURE: CARGO HIJACKED. LAST KNOWN POSITION LOST.');
-    }, 2000);
-  };
+  function handleIgnore() {
+    if (!signalLost || gameState !== "active") return;
+    addMessage("user", "Alerta ignorado sem validação ou registro adequado.");
+    addMessage("system", "Falha de processo: um sinal relevante ficou sem tratamento e sem responsável definido.");
+    setGameState("failed");
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>LIVE ROBBERY SIMULATOR</h2>
+        <h2 className={styles.title}>SIMULADOR DE DECISÃO OPERACIONAL</h2>
         <div className={styles.statusBox}>
           <div className={`${styles.indicator} ${signalLost ? styles.indicatorRed : styles.indicatorGreen}`} />
-          <span>{signalLost ? 'SIGNAL LOST' : 'SIGNAL STABLE'}</span>
+          <span>{signalLost ? "ALERTA EM TRATAMENTO" : "PRONTO"}</span>
         </div>
       </div>
 
       <div className={styles.interface}>
         <div className={styles.mapSection}>
-          <div className={styles.mapGrid}></div>
-          <div className={`${styles.truckMarker} ${signalLost ? styles.truckBlink : ''}`} />
+          <div className={styles.mapGrid} />
+          <div className={`${styles.truckMarker} ${signalLost ? styles.truckBlink : ""}`} />
           {signalLost && <div className={styles.jammerRadius} />}
         </div>
 
         <div className={styles.radioTerminal}>
-          <div className={styles.terminalHeader}>TACTICAL RADIO COMMS</div>
+          <div className={styles.terminalHeader}>REGISTRO DO EVENTO</div>
           <div className={styles.terminalBody}>
-            {messages.map((msg, idx) => (
-              <div key={idx} className={`${styles.message} ${styles[`msg-${msg.sender}`]}`}>
-                <span className={styles.sender}>[{msg.sender.toUpperCase()}]:</span> {msg.text}
+            {messages.map((message, index) => (
+              <div key={`${message.sender}-${index}`} className={`${styles.message} ${styles[`msg-${message.sender}`]}`}>
+                <span className={styles.sender}>[{message.sender === "system" ? "SISTEMA" : message.sender === "user" ? "ALUNO" : "ESCALADA"}]:</span> {message.text}
               </div>
             ))}
           </div>
-          
+
           <div className={styles.controls}>
-            {gameState === 'idle' ? (
-              <button className={styles.primaryBtn} onClick={startGame}>START PATROL</button>
-            ) : gameState === 'resolved' || gameState === 'failed' ? (
-              <button className={styles.primaryBtn} onClick={startGame}>RESTART SIMULATOR</button>
+            {gameState === "idle" ? (
+              <button className={styles.primaryBtn} onClick={startGame}>INICIAR CENÁRIO</button>
+            ) : gameState === "resolved" || gameState === "failed" ? (
+              <button className={styles.primaryBtn} onClick={startGame}>REFAZER SIMULAÇÃO</button>
             ) : (
               <div className={styles.actionPanel}>
-                <button 
-                  className={styles.tacticalBtn} 
-                  onClick={handleContactPRF}
-                  disabled={!signalLost || prfContacted}
+                <button
+                  className={styles.tacticalBtn}
+                  onClick={handleValidateContext}
+                  disabled={contextValidated}
                 >
-                  CONTACT PRF
+                  VALIDAR CONTEXTO E REGRA
                 </button>
-                <button 
-                  className={styles.tacticalBtn} 
-                  onClick={handleLockTruck}
-                  disabled={!signalLost || truckLocked}
+                <button
+                  className={styles.tacticalBtn}
+                  onClick={handleEscalate}
+                  disabled={!contextValidated || protocolEscalated}
                 >
-                  REMOTE LOCKDOWN
+                  ESCALAR CONFORME PROTOCOLO
                 </button>
-                <button 
-                  className={`${styles.tacticalBtn} ${styles.dangerBtn}`} 
+                <button
+                  className={`${styles.tacticalBtn} ${styles.dangerBtn}`}
                   onClick={handleIgnore}
-                  disabled={!signalLost}
                 >
-                  DISMISS ALERT
+                  IGNORAR ALERTA
                 </button>
               </div>
             )}
@@ -133,15 +109,18 @@ const LiveRobberySimulator: React.FC = () => {
         </div>
       </div>
 
-      {(gameState === 'resolved' || gameState === 'failed') && (
+      {(gameState === "resolved" || gameState === "failed") && (
         <div className={styles.resultBanner}>
-          <h3 className={gameState === 'resolved' ? styles.textSuccess : styles.textDanger}>
-            {gameState === 'resolved' ? 'MISSION ACCOMPLISHED' : 'MISSION FAILED'}
+          <h3 className={gameState === "resolved" ? styles.textSuccess : styles.textDanger}>
+            {gameState === "resolved" ? "DECISÃO RESPONSÁVEL" : "FALHA DE TRATAMENTO"}
           </h3>
+          <p>
+            {gameState === "resolved"
+              ? "Você separou alerta de conclusão, validou contexto e escalou com rastreabilidade."
+              : "Alertas relevantes não devem ser descartados sem validação, procedimento e responsável."}
+          </p>
         </div>
       )}
     </div>
   );
-};
-
-export default LiveRobberySimulator;
+}
