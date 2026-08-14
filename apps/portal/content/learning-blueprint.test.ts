@@ -3,13 +3,13 @@ import { moduleMetas } from "@/content/modules";
 import { getPracticeLab, getRoleTrack, practiceLabs, roleTracks } from "@/content/learning-blueprint";
 
 describe("Academia ATLASGR learning blueprint", () => {
-  const readyModules = moduleMetas.filter((module) => module.status === "ready");
-  const validSlugs = new Set(readyModules.map((module) => module.slug));
+  const readyModules = moduleMetas.filter((courseModule) => courseModule.status === "ready");
+  const validSlugs = new Set(readyModules.map((courseModule) => courseModule.slug));
 
   it("gives every ready module a complete applied-practice lab", () => {
-    for (const module of readyModules) {
-      const lab = getPracticeLab(module.slug);
-      expect(lab, `missing practice lab for ${module.slug}`).toBeDefined();
+    for (const courseModule of readyModules) {
+      const lab = getPracticeLab(courseModule.slug);
+      expect(lab, `missing practice lab for ${courseModule.slug}`).toBeDefined();
       expect(lab?.mission.length).toBeGreaterThan(20);
       expect(lab?.scenario.length).toBeGreaterThan(20);
       expect(lab?.deliverable.length).toBeGreaterThan(20);
