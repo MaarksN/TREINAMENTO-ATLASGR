@@ -22,7 +22,6 @@
     "infra:down": "docker compose -f docker-compose.opensource.yml down"
   },
   "devDependencies": {
-    "serve": "^14.2.4",
     "turbo": "^2.10.9"
   },
   "packageManager": "npm@11.11.0",
