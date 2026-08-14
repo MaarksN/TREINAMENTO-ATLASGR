@@ -19,7 +19,21 @@ export type ContentBlock =
   | { type: "faq"; items: { q: string; a: string }[] }
   | { type: "stat"; items: { value: string; label: string }[] }
   | { type: "quote"; text: string; author?: string }
-  | { type: "image"; url: string; caption?: string; alt?: string };
+  | { type: "image"; url: string; caption?: string; alt?: string; credit?: string }
+  | {
+      type: "video";
+      youtubeId: string;
+      title: string;
+      caption: string;
+      transcript?: string[];
+      source?: string;
+    }
+  | {
+      type: "audio";
+      title: string;
+      text: string;
+      caption?: string;
+    };
 
 export interface ModuleSection {
   id: string;
