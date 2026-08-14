@@ -55,7 +55,7 @@ export function playUiSound(effect: SoundEffect = "click") {
       osc.start(now);
       osc.stop(now + 0.08);
     } else if (effect === "success") {
-      const notes = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+      const notes = [523.25, 659.25, 783.99, 1046.5];
       notes.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -89,7 +89,7 @@ export function playUiSound(effect: SoundEffect = "click") {
         osc.stop(now + idx * 0.07 + 0.25);
       });
     }
-  } catch (err) {
+  } catch {
     // Ignore audio autoplay restrictions gracefully
   }
 }
