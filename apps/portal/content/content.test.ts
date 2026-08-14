@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { glossary } from "./glossary";
 import { moduleMetas, getModuleContent, readyModuleSlugs } from "./modules";
-import { getAllBuiltQuestions, getQuizForModule } from "./quizzes";
+import { buildFinalExam, getAllBuiltQuestions, getQuizForModule } from "./quizzes";
 import type { ContentBlock, Paragraph } from "@/lib/types";
 
 function collectTermRefs(paragraphs: Paragraph[]): string[] {
@@ -123,8 +123,16 @@ describe("quizzes", () => {
     }
   });
 
-  it("the final exam pool has one set of questions per ready module (150 total for 15 modules)", () => {
+  it("keeps a 150-question source pool with 10 questions per module", () => {
     expect(getAllBuiltQuestions()).toHaveLength(readyModuleSlugs.length * 10);
+  });
+
+  it("builds a balanced 30-question final exam with two questions from every module", () => {
+    const exam = buildFinalExam(2);
+    expect(exam).toHaveLength(readyModuleSlugs.length * 2);
+    for (const slug of readyModuleSlugs) {
+      expect(exam.filter((q) => q.moduleSlug === slug)).toHaveLength(2);
+    }
   });
 
   it("has no duplicate question ids across the full pool", () => {
