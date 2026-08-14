@@ -37,8 +37,12 @@ export function VideoLesson({ youtubeId, title, caption, transcript = [] }: Vide
               src={`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`}
               alt=""
               loading="lazy"
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+              }}
               className="absolute inset-0 h-full w-full object-cover opacity-65 transition-transform duration-500 group-hover:scale-[1.02]"
             />
+            <div className="absolute inset-0 bg-gradient-to-br from-atlas-graphite via-black/30 to-atlas-orange/20" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
             <span className="relative z-10 inline-flex h-20 w-20 items-center justify-center rounded-full bg-atlas-orange text-white shadow-2xl transition-transform duration-200 group-hover:scale-105">
               <Play size={34} fill="currentColor" aria-hidden="true" />
