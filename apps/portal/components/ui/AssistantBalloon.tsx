@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Sparkles, X, Volume2, ShieldCheck, Trophy } from "lucide-react";
+import { Sparkles, X, Trophy } from "lucide-react";
 import { playUiSound } from "@/lib/soundEngine";
 import { useOnboardingStore } from "@/lib/store";
 
@@ -67,10 +67,8 @@ export function AssistantBalloon() {
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
             className="mb-3 max-w-sm rounded-3xl bg-surface/95 border-2 border-atlas-orange/40 p-5 shadow-2xl shadow-atlas-orange/20 backdrop-blur-xl relative"
           >
-            {/* Seta do balão */}
             <div className="absolute -bottom-2 right-6 h-4 w-4 rotate-45 border-b-2 border-r-2 border-atlas-orange/40 bg-surface" />
 
-            {/* Cabeçalho do Balão */}
             <div className="flex items-center justify-between border-b border-border/50 pb-2.5 mb-2.5">
               <div className="flex items-center gap-2">
                 <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-atlas text-white shadow-sm">
@@ -90,12 +88,10 @@ export function AssistantBalloon() {
               </button>
             </div>
 
-            {/* Mensagem Interativa */}
             <p className="text-xs sm:text-sm font-medium leading-relaxed text-foreground/90 my-2">
               &ldquo;{currentMsg}&rdquo;
             </p>
 
-            {/* Controles de Próxima Dica / XP */}
             <div className="mt-3 flex items-center justify-between pt-2 border-t border-border/40">
               <span className="text-[10px] font-bold uppercase text-muted tracking-widest flex items-center gap-1">
                 <Trophy size={12} className="text-atlas-orange" /> {xp} XP Acumulados
@@ -114,7 +110,6 @@ export function AssistantBalloon() {
         )}
       </AnimatePresence>
 
-      {/* Botão de Ativação do Avatar Flutuante */}
       <motion.button
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
