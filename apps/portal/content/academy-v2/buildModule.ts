@@ -45,11 +45,18 @@ function paragraph(text: string): string[] {
 }
 
 function chapterBlocks(chapter: ChapterInput): ContentBlock[] {
+  const narration = `${chapter.heading}. ${chapter.paragraphs.join(" ")} Por que isso importa: ${chapter.whyItMatters}`;
   const blocks: ContentBlock[] = [
     {
       type: "text",
       heading: chapter.heading,
       paragraphs: chapter.paragraphs.map(paragraph),
+    },
+    {
+      type: "audio",
+      title: `Microaula em áudio — ${chapter.title}`,
+      caption: "Ouça, feche o texto e tente reconstruir a ideia central com suas próprias palavras.",
+      text: narration,
     },
     {
       type: "callout",
