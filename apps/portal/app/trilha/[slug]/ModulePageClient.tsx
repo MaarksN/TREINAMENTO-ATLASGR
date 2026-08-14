@@ -14,6 +14,7 @@ import {
   Map as MapIcon,
   Maximize,
   Minimize,
+  Sparkles,
   Wrench,
 } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -27,6 +28,7 @@ import { getQuizForModule } from "@/content/quizzes";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { ImmersiveStory } from "@/components/module/ImmersiveStory";
+import { ImmersiveLessonStage } from "@/components/module/ImmersiveLessonStage";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
 import { ModuleRating } from "@/components/module/ModuleRating";
 import { CertificateActions } from "@/components/module/CertificateActions";
@@ -168,11 +170,11 @@ export function ModulePageClient() {
             <ArrowLeft size={16} /> Voltar para a trilha
           </Link>
           <div className="mt-8 flex items-center gap-3">
-            <Badge variant="muted" className="gap-2 bg-surface-2 text-foreground border-border px-3 py-1"><Wrench size={14} /> Em construção</Badge>
-            <span className="text-sm font-semibold tracking-widest text-atlas-orange uppercase">Módulo {String(meta.number).padStart(2, "0")}</span>
+            <Badge variant="muted" className="gap-2 border-border bg-surface-2 px-3 py-1 text-foreground"><Wrench size={14} /> Em construção</Badge>
+            <span className="text-sm font-semibold uppercase tracking-widest text-atlas-orange">Módulo {String(meta.number).padStart(2, "0")}</span>
           </div>
-          <h1 className="mt-6 font-display text-4xl md:text-5xl font-bold">{meta.title}</h1>
-          <p className="mt-4 text-lg text-muted max-w-2xl leading-relaxed">{meta.shortDescription}</p>
+          <h1 className="mt-6 text-balance font-display text-4xl font-black tracking-[-0.035em] md:text-5xl">{meta.title}</h1>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">{meta.shortDescription}</p>
         </main>
       </div>
     );
@@ -190,10 +192,11 @@ export function ModulePageClient() {
             </Link>
             <div className="flex flex-1 items-center gap-1" aria-label={`Progresso do módulo: tela ${screenIndex + 1} de ${totalScreens}`}>
               {screens.map((_, index) => (
-                <span
+                <motion.span
                   key={index}
-                  className="h-1 flex-1 rounded-full transition-colors duration-300"
-                  style={{ backgroundColor: index <= screenIndex ? "var(--atlas-orange)" : "var(--border)" }}
+                  className="h-1 flex-1 rounded-full"
+                  animate={{ scaleY: index === screenIndex ? 1.8 : 1, backgroundColor: index <= screenIndex ? "var(--atlas-orange)" : "var(--border)" }}
+                  transition={{ duration: 0.25 }}
                 />
               ))}
             </div>
@@ -219,76 +222,108 @@ export function ModulePageClient() {
       <main id="main-content" className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-8 sm:px-6 sm:py-10">
         <motion.div
           key={`${params.slug}-${screenIndex}`}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 22, scale: 0.992 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.46, ease: [0.16, 1, 0.3, 1] }}
           className="flex-1"
         >
           {screen.kind === "cover" && (
-            <section className="relative mb-8 flex flex-col items-center justify-center overflow-hidden rounded-3xl border-2 border-atlas-orange/20 bg-gradient-to-b from-surface via-surface to-atlas-orange/5 px-6 pb-12 pt-16 text-center shadow-2xl">
-              <div className="absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-5 pointer-events-none" />
-              <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-atlas-orange/10 blur-[100px] pointer-events-none" />
-              <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
-                <span className="rounded-full border-2 border-atlas-orange/50 bg-atlas-orange/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-atlas-orange">Módulo {String(meta.number).padStart(2, "0")}</span>
-                <span className="rounded-full border border-border bg-surface-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-muted">{meta.durationMinutes} min</span>
-                {modProgress?.passed && <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-500"><CheckCircle2 size={14} /> Validado</span>}
-              </div>
-              <h1 className="relative z-10 mt-8 max-w-4xl text-balance font-display text-5xl font-black leading-tight tracking-tight text-gradient-title md:text-7xl">{content.title}</h1>
-              <p className="relative z-10 mx-auto mt-6 max-w-3xl text-lg font-medium leading-relaxed text-muted md:text-xl">{meta.shortDescription}</p>
-              <div className="relative z-10 mt-10 flex items-center gap-2.5 rounded-2xl border border-atlas-orange/20 bg-surface/80 px-5 py-3 text-xs font-bold text-foreground backdrop-blur-md">
+            <motion.section
+              initial={{ opacity: 0, scale: 0.985 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="relative mb-8 flex min-h-[62vh] flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-atlas-orange/20 bg-gradient-to-b from-surface via-surface to-atlas-orange/5 px-6 pb-12 pt-16 text-center shadow-[0_35px_100px_-50px_rgba(255,86,24,0.5)]"
+              style={{ perspective: "1500px" }}
+            >
+              <div className="pointer-events-none absolute inset-0 bg-[url('/brand/grid-pattern.svg')] opacity-[0.045]" />
+              <motion.div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-atlas-orange/10 blur-[100px]" animate={{ scale: [1, 1.1, 1], x: [0, -20, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
+              <motion.div className="pointer-events-none absolute -bottom-44 -left-36 h-[420px] w-[420px] rounded-full bg-amber-500/[0.08] blur-[110px]" animate={{ scale: [1.05, 0.95, 1.05], x: [0, 24, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
+
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }} className="relative z-10 flex flex-wrap items-center justify-center gap-3">
+                <span className="rounded-full border border-atlas-orange/45 bg-atlas-orange/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-atlas-orange">Módulo {String(meta.number).padStart(2, "0")}</span>
+                <span className="rounded-full border border-border bg-surface-2 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-muted">{meta.durationMinutes} min</span>
+                {modProgress?.passed && <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-500"><CheckCircle2 size={14} /> Validado</span>}
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 28, rotateX: 8 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 mt-8 max-w-4xl text-balance font-display text-5xl font-black leading-[0.98] tracking-[-0.05em] text-gradient-title md:text-7xl"
+                style={{ transformOrigin: "50% 100%" }}
+              >
+                {content.title}
+              </motion.h1>
+              <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }} className="relative z-10 mx-auto mt-6 max-w-3xl text-balance text-lg font-medium leading-relaxed text-muted md:text-xl">{meta.shortDescription}</motion.p>
+              <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.34 }} className="relative z-10 mt-10 flex items-center gap-2.5 rounded-2xl border border-atlas-orange/20 bg-surface/80 px-5 py-3 text-xs font-bold text-foreground backdrop-blur-md">
                 <Compass size={18} className="text-atlas-orange" />
                 Contexto → microaulas multimídia → prática → revisão → simulador
-              </div>
-            </section>
+              </motion.div>
+            </motion.section>
           )}
 
           {screen.kind === "scenario" && <ImmersiveStory story={content.scenario} className="mt-2" />}
 
           {screen.kind === "objectives" && (
-            <section className="atlas-objectives-panel">
-              <div className="atlas-objectives-heading">
-                <span><Brain size={22} aria-hidden="true" /></span>
-                <div><p>Mapa deste módulo</p><h2>O que você vai dominar</h2></div>
+            <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="relative overflow-hidden rounded-[2rem] border border-atlas-orange/20 bg-surface p-5 shadow-[0_30px_90px_-48px_rgba(255,86,24,0.4)] sm:p-8">
+              <div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-atlas-orange/[0.08] blur-[80px]" />
+              <div className="relative z-10 flex items-start gap-4 border-b border-border/60 pb-6">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-atlas-orange to-amber-500 text-white shadow-lg"><Brain size={22} aria-hidden="true" /></span>
+                <div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-atlas-orange">Mapa deste módulo</p><h2 className="mt-1 text-balance font-display text-3xl font-black tracking-[-0.035em] text-foreground sm:text-4xl">O que você vai dominar</h2></div>
               </div>
-              <div className="atlas-objectives-grid">
+              <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }} className="relative z-10 mt-6 grid gap-4 md:grid-cols-2">
                 {content.objectives.map((objective, index) => (
-                  <article key={objective}><span>{String(index + 1).padStart(2, "0")}</span><p>{objective}</p></article>
+                  <motion.article
+                    key={objective}
+                    variants={{ hidden: { opacity: 0, y: 18, rotateX: 5 }, visible: { opacity: 1, y: 0, rotateX: 0 } }}
+                    transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -5, rotateX: -1.5, rotateY: index % 2 === 0 ? 1.5 : -1.5 }}
+                    className="group relative min-h-36 overflow-hidden rounded-2xl border border-border/80 bg-background/75 p-5 shadow-[0_18px_45px_-32px_rgba(0,0,0,0.38)] backdrop-blur-sm transition-colors hover:border-atlas-orange/35"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-atlas-orange/55 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-xl bg-atlas-orange/10 px-2 text-xs font-black tracking-wider text-atlas-orange">{String(index + 1).padStart(2, "0")}</span>
+                    <p className="mt-4 text-pretty text-[15px] font-bold leading-relaxed tracking-[-0.01em] text-foreground sm:text-base">{objective}</p>
+                  </motion.article>
                 ))}
-              </div>
-            </section>
+              </motion.div>
+            </motion.section>
           )}
 
           {screen.kind === "section" && (
-            <section className="atlas-lesson-section">
-              <header className="atlas-lesson-heading">
-                <span>{String(screen.chapterIndex + 1).padStart(2, "0")}</span>
-                <div>
-                  <p className="text-xs uppercase font-bold text-atlas-orange tracking-wider">Microaula {screen.chapterIndex + 1} de {content.sections.length}</p>
-                  <h2>{screen.section.title}</h2>
-                </div>
-              </header>
-              <div className="atlas-block-stack mt-6 space-y-6">
+            <ImmersiveLessonStage chapterIndex={screen.chapterIndex} totalChapters={content.sections.length} title={screen.section.title}>
+              <div className="space-y-6">
                 {screen.section.blocks.map((block, index) => (
-                  <ContentBlockView key={`${screen.section.id}-${index}`} block={block} index={index} />
+                  <motion.div
+                    key={`${screen.section.id}-${index}`}
+                    initial={{ opacity: 0, y: 18, z: -16 }}
+                    animate={{ opacity: 1, y: 0, z: 0 }}
+                    transition={{ duration: 0.5, delay: Math.min(index * 0.055, 0.2), ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -2 }}
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    <ContentBlockView block={block} index={index} />
+                  </motion.div>
                 ))}
               </div>
-            </section>
+            </ImmersiveLessonStage>
           )}
 
           {screen.kind === "practice" && practiceLab && <PracticeLab lab={practiceLab} moduleTitle={content.title} />}
 
           {screen.kind === "diagram" && (
-            <section>
-              <div className="atlas-lesson-heading">
-                <span><MapIcon size={28} aria-hidden="true" /></span>
-                <div><p>Integração visual</p><h2>{content.diagram.title}</h2></div>
-              </div>
+            <section className="space-y-6">
+              <motion.div initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.45 }} className="flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-atlas-orange/10 text-atlas-orange"><MapIcon size={24} aria-hidden="true" /></span>
+                <div><p className="text-[10px] font-black uppercase tracking-[0.2em] text-atlas-orange">Integração visual</p><h2 className="mt-1 text-balance font-display text-3xl font-black tracking-[-0.035em] text-foreground sm:text-4xl">Veja o processo como sistema</h2><p className="mt-2 max-w-2xl text-sm font-medium leading-relaxed text-muted">Use o mapa para enxergar sequência, decisão, dependências e pontos de controle. Aumente o zoom quando precisar inspecionar um trecho.</p></div>
+              </motion.div>
               <MermaidViewer title={content.diagram.title} chart={content.diagram.chart} />
             </section>
           )}
 
           {screen.kind === "review" && (
-            <div className="space-y-8">
+            <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="space-y-8">
               <section className="atlas-summary-card">
                 <div className="atlas-summary-heading">
                   <span><ClipboardList size={22} aria-hidden="true" /></span>
@@ -305,20 +340,21 @@ export function ModulePageClient() {
 
               <section className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
                 <p className="text-xs font-black uppercase tracking-widest text-atlas-orange">Fontes deste módulo</p>
-                <h2 className="mt-2 font-display text-2xl font-black text-foreground">De onde o conteúdo foi construído</h2>
+                <h2 className="mt-2 text-balance font-display text-2xl font-black tracking-[-0.025em] text-foreground">De onde o conteúdo foi construído</h2>
                 <ul className="mt-5 space-y-3">
                   {content.sources.map((source) => <li key={source} className="flex gap-3 text-sm font-medium leading-relaxed text-muted"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-atlas-orange" />{source}</li>)}
                 </ul>
               </section>
-            </div>
+            </motion.div>
           )}
 
           {screen.kind === "quiz" && (
-            <section className="atlas-content-card relative mx-auto max-w-3xl overflow-hidden border-2 border-atlas-orange/20 text-center shadow-2xl">
-              <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-atlas-orange/10 blur-[80px] pointer-events-none" />
+            <motion.section initial={{ opacity: 0, y: 24, scale: 0.985 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.55 }} className="atlas-content-card relative mx-auto max-w-3xl overflow-hidden border-2 border-atlas-orange/20 text-center shadow-2xl">
+              <motion.div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-atlas-orange/10 blur-[80px]" animate={{ scale: [1, 1.12, 1] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
               <div className="relative z-10">
-                <span className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-atlas-orange to-amber-500 text-white shadow-lg"><CheckCircle2 size={32} /></span>
-                <h2 className="font-display text-3xl font-black text-gradient-title sm:text-4xl">Simulador de decisão</h2>
+                <motion.span whileHover={{ rotateY: 15, rotateX: -8 }} className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-atlas-orange to-amber-500 text-white shadow-lg" style={{ transformStyle: "preserve-3d" }}><CheckCircle2 size={32} /></motion.span>
+                <p className="mb-2 inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-atlas-orange"><Sparkles size={13} /> validação de domínio</p>
+                <h2 className="text-balance font-display text-3xl font-black tracking-[-0.04em] text-gradient-title sm:text-4xl">Simulador de decisão</h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg font-medium leading-relaxed text-muted">As questões usam cenários do currículo novo. É necessário atingir 70% para validar o módulo.</p>
                 {!showQuiz && (
                   <button onClick={() => setShowQuiz(true)} className="relative z-10 mt-8 rounded-xl bg-gradient-to-r from-atlas-orange to-amber-500 px-10 py-5 font-black uppercase tracking-widest text-white shadow-lg transition-transform hover:scale-[1.02]">
@@ -339,7 +375,7 @@ export function ModulePageClient() {
                   </div>
                 )}
               </div>
-            </section>
+            </motion.section>
           )}
         </motion.div>
       </main>
