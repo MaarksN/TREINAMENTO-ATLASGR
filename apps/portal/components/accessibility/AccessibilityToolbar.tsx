@@ -27,9 +27,11 @@ export function AccessibilityToolbar({ currentText }: AccessibilityToolbarProps)
 
   useEffect(() => {
     synthRef.current?.cancel();
-    setIsPlaying(false);
-    setIsPaused(false);
-    setActiveSubtitle("");
+    queueMicrotask(() => {
+      setIsPlaying(false);
+      setIsPaused(false);
+      setActiveSubtitle("");
+    });
   }, [currentText]);
 
   function speakText(textToSpeak: string) {
