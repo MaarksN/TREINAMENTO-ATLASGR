@@ -11,6 +11,15 @@ declare global {
   }
 }
 
+const widgetMarkup = `
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+`;
+
 export function VLibrasWidget() {
   const [loaded, setLoaded] = useState(false);
 
@@ -20,21 +29,18 @@ export function VLibrasWidget() {
       new window.VLibras.Widget("https://vlibras.gov.br/app");
       setLoaded(true);
     } catch {
-      // O botão oficial permanece no DOM; em caso de indisponibilidade externa,
-      // o restante da Academia continua funcionando normalmente.
+      // A indisponibilidade do serviço externo de LIBRAS não deve impedir
+      // o uso do restante da Academia.
     }
   }, [loaded]);
 
   return (
     <>
-      <div id="vlibras-widget-container" aria-label="Intérprete virtual de LIBRAS">
-        <div vw="true" className="enabled">
-          <div vw-access-button="true" className="active" />
-          <div vw-plugin-wrapper="true">
-            <div className="vw-plugin-top-wrapper" />
-          </div>
-        </div>
-      </div>
+      <div
+        id="vlibras-widget-container"
+        aria-label="Intérprete virtual de LIBRAS"
+        dangerouslySetInnerHTML={{ __html: widgetMarkup }}
+      />
       <Script
         id="vlibras-script"
         src="https://vlibras.gov.br/app/vlibras-plugin.js"
