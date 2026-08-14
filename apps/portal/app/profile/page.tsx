@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { User, Mail, Shield, Target, Award, Clock, Flame, Zap } from "lucide-react";
+import Link from "next/link";
+import { Award, BookOpen, Clock, Flame, Mail, Shield, Target, Zap } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { useOnboardingStore } from "@/lib/store";
@@ -11,143 +11,129 @@ import { moduleMetas, readyModuleSlugs } from "@/content/modules";
 
 export default function ProfilePage() {
   const { ready, registration } = useRequireRegistration();
-  const xp = useOnboardingStore((s) => s.xp);
-  const progress = useOnboardingStore((s) => s.progress);
-  const streakDays = useOnboardingStore((s) => s.streakDays);
+  const xp = useOnboardingStore((state) => state.xp);
+  const progress = useOnboardingStore((state) => state.progress);
+  const streakDays = useOnboardingStore((state) => state.streakDays);
 
   if (!ready || !registration) return null;
 
   const { current, next, pct } = levelProgress(xp);
   const completedReady = readyModuleSlugs.filter((slug) => progress[slug]?.passed).length;
-  
+  const evaluated = readyModuleSlugs.filter((slug) => typeof progress[slug]?.bestScore === "number");
+  const averageScore = evaluated.length
+    ? Math.round(evaluated.reduce((sum, slug) => sum + (progress[slug]?.bestScore ?? 0), 0) / evaluated.length)
+    : 0;
   const studiedMinutes = readyModuleSlugs
     .filter((slug) => progress[slug]?.passed)
-    .reduce((sum, slug) => sum + (moduleMetas.find((m) => m.slug === slug)?.durationMinutes ?? 0), 0);
+    .reduce((sum, slug) => sum + (moduleMetas.find((courseModule) => courseModule.slug === slug)?.durationMinutes ?? 0), 0);
   const studiedHours = (studiedMinutes / 60).toFixed(1);
+  const nextModule = moduleMetas.find((courseModule) => courseModule.status === "ready" && !progress[courseModule.slug]?.passed);
 
   const initials = registration.nomeCompleto
     .split(" ")
     .slice(0, 2)
-    .map(n => n[0])
+    .map((name) => name[0])
     .join("")
     .toUpperCase();
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-atlas-orange">
+    <div className="min-h-screen bg-background text-foreground selection:bg-atlas-orange selection:text-white">
       <SiteHeader />
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          {/* Coluna Esquerda - Perfil Principal */}
+      <main id="main-content" className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="space-y-6">
-            <PremiumCard className="p-8 text-center relative overflow-hidden" withGlow>
+            <PremiumCard className="relative overflow-hidden p-8 text-center" withGlow>
               <div className="absolute inset-0 bg-gradient-to-b from-atlas-orange/10 to-transparent opacity-50" />
               <div className="relative z-10">
-                <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-32 h-32 mx-auto bg-surface-2 border-4 border-atlas-orange rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(255,86,24,0.3)]">
-                  <span className="text-4xl font-display font-bold text-atlas-orange">{initials}</span>
-                </motion.div>
-                
-                <h1 className="font-display text-2xl font-bold mb-1">{registration.nomeCompleto}</h1>
-                <p className="text-atlas-orange font-bold text-sm tracking-widest uppercase mb-4">{current.title}</p>
-                
-                <div className="bg-surface-2 rounded-lg p-4 space-y-3 text-left border border-border">
-                  <div className="flex items-center gap-3 text-sm">
-                    <Mail className="w-4 h-4 text-muted" />
-                    <span className="text-muted">{registration.email}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Shield className="w-4 h-4 text-muted" />
-                    <span className="text-muted">{registration.cargo}</span>
-                  </div>
+                <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full border-4 border-atlas-orange bg-surface-2 shadow-[0_0_30px_rgba(255,86,24,0.25)]">
+                  <span className="font-display text-4xl font-black text-atlas-orange">{initials}</span>
+                </div>
+                <h1 className="font-display text-2xl font-black">{registration.nomeCompleto}</h1>
+                <p className="mt-1 text-sm font-bold text-atlas-orange">{registration.cargo}</p>
+                <p className="mt-1 text-xs font-semibold text-muted">{registration.departamento}</p>
+
+                <div className="mt-6 space-y-3 rounded-2xl border border-border bg-background p-4 text-left">
+                  <div className="flex items-center gap-3 text-sm"><Mail className="h-4 w-4 text-muted" aria-hidden="true" /><span className="break-all text-muted">{registration.email}</span></div>
+                  <div className="flex items-center gap-3 text-sm"><Shield className="h-4 w-4 text-muted" aria-hidden="true" /><span className="text-muted">Nível de aprendizagem: {current.title}</span></div>
                 </div>
               </div>
             </PremiumCard>
 
             <PremiumCard className="p-6">
-              <h3 className="font-display font-bold text-lg mb-4 flex items-center gap-2">
-                <Target className="text-atlas-orange w-5 h-5" /> Status Atual
-              </h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-end mb-2">
-                  <div>
-                    <p className="text-xs text-muted font-bold uppercase tracking-widest">Nível XP</p>
-                    <p className="font-bold text-2xl text-foreground">{xp}</p>
-                  </div>
-                  {next && <p className="text-xs text-muted">Faltam {next.minXp - xp} XP</p>}
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-[11px] font-black uppercase tracking-widest text-muted">Progressão de aprendizagem</p>
+                  <p className="mt-1 font-display text-2xl font-black text-foreground">{xp} XP</p>
                 </div>
-                <div className="relative h-3 bg-surface-2 rounded-full overflow-hidden border border-border">
-                  <motion.div
-                    className="absolute top-0 left-0 h-full bg-atlas-orange"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${pct}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                  >
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:15px_15px] animate-[pulse_2s_linear_infinite]" />
-                  </motion.div>
-                </div>
+                <Target className="h-6 w-6 text-atlas-orange" aria-hidden="true" />
               </div>
+              <div className="mt-4 h-3 overflow-hidden rounded-full bg-border">
+                <div className="h-full rounded-full bg-atlas-orange" style={{ width: `${pct}%` }} />
+              </div>
+              <p className="mt-3 text-xs font-semibold text-muted">
+                {next ? `${next.minXp - xp} XP para ${next.title}` : "Maior nível de XP alcançado"}
+              </p>
             </PremiumCard>
           </div>
 
-          {/* Coluna Direita - Estatísticas e Conquistas */}
-          <div className="lg:col-span-2 space-y-6">
-            <h2 className="font-display text-2xl font-bold mb-6 flex items-center gap-2">
-              <Zap className="text-atlas-orange" /> Desempenho Operacional
-            </h2>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <PremiumCard className="p-6 text-center hover:scale-105 transition-transform cursor-default">
-                <div className="w-12 h-12 mx-auto bg-atlas-orange/10 rounded-full flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-atlas-orange" />
-                </div>
-                <p className="text-3xl font-display font-bold mb-1">{completedReady}</p>
-                <p className="text-xs text-muted font-bold uppercase tracking-widest">Módulos Feitos</p>
-              </PremiumCard>
-              
-              <PremiumCard className="p-6 text-center hover:scale-105 transition-transform cursor-default">
-                <div className="w-12 h-12 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center mb-4">
-                  <Clock className="w-6 h-6 text-emerald-400" />
-                </div>
-                <p className="text-3xl font-display font-bold mb-1">{studiedHours}h</p>
-                <p className="text-xs text-muted font-bold uppercase tracking-widest">Tempo de Treino</p>
-              </PremiumCard>
+          <div className="space-y-6">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-atlas-orange">Seu aprendizado</p>
+              <h2 className="mt-2 font-display text-3xl font-black">Progresso que representa domínio</h2>
+              <p className="mt-2 max-w-2xl text-sm font-medium leading-relaxed text-muted">
+                As métricas abaixo usam módulos aprovados e resultados registrados. Elas não simulam desempenho de colegas nem substituem avaliação profissional da liderança.
+              </p>
+            </div>
 
-              <PremiumCard className="p-6 text-center hover:scale-105 transition-transform cursor-default sm:col-span-2 md:col-span-1">
-                <div className="w-12 h-12 mx-auto bg-red-500/10 rounded-full flex items-center justify-center mb-4">
-                  <Flame className="w-6 h-6 text-red-500" />
-                </div>
-                <p className="text-3xl font-display font-bold mb-1">{streakDays.length}</p>
-                <p className="text-xs text-muted font-bold uppercase tracking-widest">Dias em Sequência</p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <PremiumCard className="p-5 text-center">
+                <Award className="mx-auto h-6 w-6 text-atlas-orange" aria-hidden="true" />
+                <p className="mt-3 font-display text-3xl font-black">{completedReady}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-muted">módulos validados</p>
+              </PremiumCard>
+              <PremiumCard className="p-5 text-center">
+                <Target className="mx-auto h-6 w-6 text-atlas-orange" aria-hidden="true" />
+                <p className="mt-3 font-display text-3xl font-black">{averageScore || "–"}{averageScore ? "%" : ""}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-muted">média avaliada</p>
+              </PremiumCard>
+              <PremiumCard className="p-5 text-center">
+                <Clock className="mx-auto h-6 w-6 text-atlas-orange" aria-hidden="true" />
+                <p className="mt-3 font-display text-3xl font-black">{studiedHours}h</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-muted">carga validada</p>
+              </PremiumCard>
+              <PremiumCard className="p-5 text-center">
+                <Flame className="mx-auto h-6 w-6 text-atlas-orange" aria-hidden="true" />
+                <p className="mt-3 font-display text-3xl font-black">{streakDays.length}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wider text-muted">dias em sequência</p>
               </PremiumCard>
             </div>
 
-            <PremiumCard className="p-6 mt-8">
-              <h3 className="font-display font-bold text-lg mb-6 flex items-center gap-2">
-                <Award className="text-atlas-orange w-5 h-5" /> Distintivos & Conquistas
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { name: "Primeiro Login", desc: "Acessou o portal", active: true, icon: Zap },
-                  { name: "Estudioso", desc: "Completou 1 módulo", active: completedReady >= 1, icon: Target },
-                  { name: "Veterano", desc: "Nível Avançado", active: xp >= 1000, icon: Shield },
-                  { name: "Invicto", desc: "5 dias seguidos", active: streakDays.length >= 5, icon: Flame },
-                ].map((badge, i) => (
-                  <div key={i} className={`p-4 rounded-xl border text-center transition-all ${
-                    badge.active ? "bg-surface-2 border-atlas-orange/30 shadow-[0_0_15px_rgba(255,86,24,0.1)]" : "bg-surface/50 border-border opacity-50 grayscale"
-                  }`}>
-                    <div className={`w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-3 ${
-                      badge.active ? "bg-atlas-orange/20 text-atlas-orange" : "bg-surface-3 text-muted"
-                    }`}>
-                      <badge.icon className="w-5 h-5" />
-                    </div>
-                    <p className="font-bold text-sm mb-1">{badge.name}</p>
-                    <p className="text-[10px] text-muted leading-tight">{badge.desc}</p>
-                  </div>
-                ))}
+            <PremiumCard className="p-6 sm:p-7">
+              <div className="flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-atlas-orange/10 text-atlas-orange"><Zap size={22} aria-hidden="true" /></span>
+                <div className="flex-1">
+                  <p className="text-xs font-black uppercase tracking-widest text-atlas-orange">Melhor próxima ação</p>
+                  {nextModule ? (
+                    <>
+                      <h3 className="mt-2 font-display text-xl font-black">{nextModule.title}</h3>
+                      <p className="mt-2 text-sm font-medium leading-relaxed text-muted">Conclua a microaula, execute o laboratório prático e valide o módulo no simulador.</p>
+                      <Link href={`/trilha/${nextModule.slug}`} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-atlas-orange px-5 py-3 text-sm font-black text-white">
+                        <BookOpen size={16} aria-hidden="true" /> Continuar formação
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="mt-2 font-display text-xl font-black">Currículo validado</h3>
+                      <p className="mt-2 text-sm font-medium leading-relaxed text-muted">Todos os módulos foram aprovados. Use a prova final para integrar os conhecimentos.</p>
+                      <Link href="/prova-final" className="mt-5 inline-flex items-center gap-2 rounded-xl bg-atlas-orange px-5 py-3 text-sm font-black text-white">
+                        <Award size={16} aria-hidden="true" /> Ir para a prova final
+                      </Link>
+                    </>
+                  )}
+                </div>
               </div>
             </PremiumCard>
           </div>
-
         </div>
       </main>
     </div>
