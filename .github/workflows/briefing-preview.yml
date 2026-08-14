@@ -1,0 +1,28 @@
+name: Academy Briefing Build
+
+on:
+  push:
+    branches:
+      - agent/academy-mastery-experience
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-briefing-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: academy-v2-briefing-build
+          path: apps/portal/out
+          if-no-files-found: error
+          retention-days: 1
