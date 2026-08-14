@@ -37,3 +37,15 @@ export function shuffle<T>(arr: T[]): T[] {
   }
   return copy;
 }
+
+/**
+ * Cria uma prova equilibrada em vez de sortear de um pool único e correr o
+ * risco de super-representar alguns módulos. O padrão usa duas questões de
+ * cada um dos 15 módulos: 30 itens no total.
+ */
+export function buildFinalExam(questionsPerModule = 2): QuizQuestion[] {
+  const selected = Object.values(quizzesByModule).flatMap((questions) =>
+    shuffle(questions).slice(0, Math.max(1, Math.min(questionsPerModule, questions.length))),
+  );
+  return shuffle(selected);
+}
