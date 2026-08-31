@@ -18,16 +18,20 @@ const CyberCrisisSimulator: React.FC = () => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
     } else if (timeLeft === 0 && isActive) {
-      setGameState('lost');
-      setIsActive(false);
+      setTimeout(() => {
+        setGameState('lost');
+        setIsActive(false);
+      }, 0);
     }
     return () => clearInterval(interval);
   }, [isActive, timeLeft]);
 
   useEffect(() => {
     if (actions.isolateNetwork && actions.alertDPO && !actions.paidRansom && gameState === 'playing') {
-      setGameState('won');
-      setIsActive(false);
+      setTimeout(() => {
+        setGameState('won');
+        setIsActive(false);
+      }, 0);
     }
   }, [actions, gameState]);
 

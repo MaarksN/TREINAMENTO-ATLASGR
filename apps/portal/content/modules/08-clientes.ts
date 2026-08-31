@@ -15,7 +15,9 @@ export const module08: ModuleContentFull = {
     "Traduzir as funcionalidades brutas dos nossos softwares na solução exata dessas dores corporativas.",
     "Compreender a dinâmica de poder entre Embarcador (Dono da carga), Seguradora e Transportadora.",
     "Dominar a priorização tática de atendimento (Enterprise vs Padrão) baseada em SLA e SLAs de Criticidade.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -147,13 +149,55 @@ export const module08: ModuleContentFull = {
         },
       ],
     },
-  ],
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** O mercado B2B possui atores com dores diametralmente opostas (foco em segurança vs foco em pontualidade).",
+                    "**O Problema (Dor do Cliente):** Uma abordagem comercial ou operacional única falha em entregar o valor percebido que o cliente exige."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** A AtlasGR adapta sua entrega de valor, oferecendo controle rigoroso (para Transportadoras) e visibilidade analítica (para Embarcadores).",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          }
+],
   summary: [
     "A venda B2B de sucesso mapeia a dor (Segurança vs Gestão de Prazo) para o produto exato.",
     "A AtlasGR é a interface que garante a sobrevivência da transportadora perante a seguradora.",
     "O Atlas Analytics é a principal ferramenta de retenção de embarcadores que buscam visibilidade da eficiência.",
     "O Atendimento Operacional da Torre de Controle é segmentado contratualmente, ditando os níveis agressivos de SLA (Enterprise x Standard).",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Adapto o discurso do AtlasGR baseado no público (Transportador vs Embarcador).",
     "Consigo apresentar soluções de rentabilidade (Tempo) ao invés de apenas segurança para clientes de baixo risco.",

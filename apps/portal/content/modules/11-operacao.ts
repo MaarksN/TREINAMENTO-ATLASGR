@@ -16,7 +16,9 @@ export const module11: ModuleContentFull = {
     "Decorar e aplicar as réguas de tempo (SLA) de tratativa e escalonamento.",
     "Internalizar a cultura de NUNCA encerrar um alerta por intuição ou pena do motorista.",
     "Executar a passagem de turno (handover) sem perder contexto de ocorrências em andamento.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -208,6 +210,46 @@ export const module11: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A Torre de Controle é o ambiente de reação onde protocolos de segurança são testados na prática.",
+                    "**O Problema (Dor do Cliente):** Alertas críticos (Paradas Indevidas, Perda de Sinal) podem escalar rapidamente para sinistros de grande monta."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** Operadores seguem um SLA rigoroso, aplicando ações preventivas (bloqueio, senha) e acionando a C.I.A para pronta resposta.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Considerações Finais",
@@ -236,7 +278,9 @@ export const module11: ModuleContentFull = {
     "Tempo é a variável crítica. SLAs de 10min (início) e 45min (resolução) devem ser seguidos de maneira religiosa.",
     "A contra-senha é um artifício de segurança inquebrável, superior à intuição, para validar o ambiente do motorista.",
     "Falhas de conduta como 'enforcar alertas' ou ignorar regras em passagens de turno geram demissões técnicas imediatas.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Compreendo a dinâmica entre o tempo de resposta (SLA) e a escalada de um sinistro.",
     "Entendi que empatia e intuição não substituem a contra-senha em hipótese alguma.",

@@ -15,7 +15,9 @@ export const module05: ModuleContentFull = {
     "Interiorizar a matriz de regras preditivas do Motor de Regras e seu critério inegociável de priorização.",
     "Dominar o modelo mental entre o Monitoramento Passivo na Grade e a Execução Ativa e Ágil na Fila de Alertas.",
     "Triar e diagnosticar complexidades técnicas, separando ruído de sinal (Jammer vs. Sombra) sem nunca negligenciar um risco fatal.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -183,6 +185,46 @@ export const module05: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A gestão de milhares de viagens simultâneas exige tecnologia de ponta e interfaces intuitivas.",
+                    "**O Problema (Dor do Cliente):** Sistemas lentos ou confusos atrasam a tomada de decisão em momentos onde cada segundo conta."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** O Atlas Connect entrega telemetria em tempo real, automação de comandos (macros) e priorização inteligente de alertas.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Considerações Finais e Mentoria On-the-Job",
@@ -211,7 +253,9 @@ export const module05: ModuleContentFull = {
     "O entendimento cristalino da dicotomia Grade (Visão Passiva) vs Fila de Alertas (Visão Ativa) previne gargalos.",
     "A estrutura do SM é a garantia algorítmica de que humano, máquina e regras viajam entrelaçados.",
     "A aderência cega ao Sistema de Níveis de Prioridade do Motor IA não é negociável.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Compreendo a arquitetura de prioridade da Fila de Alertas.",
     "Sei enumerar e descrever o lifecycle impecável de um SM.",

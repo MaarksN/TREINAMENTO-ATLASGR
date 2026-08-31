@@ -15,7 +15,9 @@ export const module15: ModuleContentFull = {
     "Explicar a dinâmica da prova final (corte de 70% e cenários táticos).",
     "Consolidar a responsabilidade corporativa adquirida com o conhecimento.",
     "Aplicar uma estratégia eficiente de tempo e resposta durante as 150 questões da prova final.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -158,6 +160,46 @@ export const module15: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A excelência operacional na AtlasGR exige domínio completo de sistemas, processos e cultura.",
+                    "**O Problema (Dor do Cliente):** Dúvidas ou hesitações na operação real podem custar vidas e causar prejuízos milionários."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** A certificação final valida a proficiência teórica e o preparo psicológico do colaborador para assumir a linha de frente.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Encerramento Definitivo e Partida",
@@ -182,8 +224,10 @@ export const module15: ModuleContentFull = {
     "Revisitamos de maneira irretocável a integração vertical sistêmica AtlasGR — antecipando e sanando vulnerabilidades macro.",
     "Direcionamos a cultura inflexível da Privacidade Legal e Compliance Corporativo a todos os instantes e manuseios sistêmicos diários.",
     "Destacamos o pilar fundamental: O conhecimento é mero espectro; A aplicação reativa (dentro do corte avaliativo de exatos 70%) solidifica o operador no seleto grupo logístico nacional.",
-    "Rigorosa otimização e controle psíquico do relógio é imprescindível para vencer as extenuantes barreiras intelectuais dos múltiplos blocos das 150 questões de campo."
-  ],
+    "Rigorosa otimização e controle psíquico do relógio é imprescindível para vencer as extenuantes barreiras intelectuais dos múltiplos blocos das 150 questões de campo.",
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Mentalidade preparada inteiramente quanto à estruturação e arquitetura pericial das quatro soluções do nosso portfólio massivo.",
     "Absoluta fixação técnica quanto às prerrogativas extremas das camadas de Torre Reativa contra a letalidade proativa do efetivo de rua (C.I.A).",

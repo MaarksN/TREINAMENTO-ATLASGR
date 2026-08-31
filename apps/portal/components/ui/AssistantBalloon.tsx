@@ -44,9 +44,11 @@ export function AssistantBalloon() {
   const currentMsg = messages[msgIndex % messages.length];
 
   useEffect(() => {
-    setMsgIndex(0);
-    setIsOpen(true);
-    playUiSound("pop");
+    setTimeout(() => {
+      setMsgIndex(0);
+      setIsOpen(true);
+      playUiSound("pop");
+    }, 0);
   }, [pathname]);
 
   function nextMessage() {

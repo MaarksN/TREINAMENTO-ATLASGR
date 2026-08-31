@@ -5,6 +5,10 @@ const LiveRobberySimulator: React.FC = () => {
   const [gameState, setGameState] = useState<'idle' | 'active' | 'resolved' | 'failed'>('idle');
   const [signalLost, setSignalLost] = useState(false);
   const [messages, setMessages] = useState<{ sender: 'system' | 'user' | 'prf', text: string }[]>([]);
+
+  const addMessage = React.useCallback((sender: 'system' | 'user' | 'prf', text: string) => {
+    setMessages(prev => [...prev, { sender, text }]);
+  }, []);
   const [truckLocked, setTruckLocked] = useState(false);
   const [prfContacted, setPrfContacted] = useState(false);
   
@@ -27,9 +31,7 @@ const LiveRobberySimulator: React.FC = () => {
     }
   }, [truckLocked, prfContacted, gameState]);
 
-  const addMessage = (sender: 'system' | 'user' | 'prf', text: string) => {
-    setMessages(prev => [...prev, { sender, text }]);
-  };
+
 
   const startGame = () => {
     setGameState('active');

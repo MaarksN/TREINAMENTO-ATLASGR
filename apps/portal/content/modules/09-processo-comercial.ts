@@ -15,7 +15,9 @@ export const module09: ModuleContentFull = {
     "Aprender as técnicas avançadas de contorno de objeções de preço e escopo operacional.",
     "Reconhecer que a Torre de Operações dita o sucesso ou o fracasso no momento crucial da Renovação (Prevenção de Churn).",
     "Aprender a agir preditivamente aos sinais de alerta de cancelamento de clientes estratégicos.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -151,13 +153,55 @@ export const module09: ModuleContentFull = {
         },
       ],
     },
-  ],
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** Vendas complexas B2B (Enterprise) exigem mapeamento profundo dos tomadores de decisão.",
+                    "**O Problema (Dor do Cliente):** Desconhecimento das dores reais do lead resulta em objeções intransponíveis e churn precoce."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** Nosso processo aplica SPIN Selling e inteligência de mercado para posicionar a AtlasGR como parceira estratégica insubstituível.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          }
+],
   summary: [
     "Foco no ICP elimina esforços estéreis em vendas logísticas corporativas.",
     "O pipeline é alimentado pela identificação cirúrgica dos gatilhos de crise do mercado (roubos ou pressão de seguradoras).",
     "Objeções baseadas em custo devem ser imediatamente pivotadas para discussões baseadas em blindagem de risco e auditoria corporativa.",
     "A Torre Operacional é a principal barreira contra o churn, construindo a argumentação tática que sustenta a renovação milionária de fim de ano.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Posso descrever a diferença entre o trabalho focado de pipeline (SDR) e o fechamento estratégico (Closer).",
     "Conheço a argumentação para desconstruir o apelo ilusório de fornecedores focados puramente em preço.",

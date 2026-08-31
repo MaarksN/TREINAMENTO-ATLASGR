@@ -9,6 +9,12 @@ import type { GlossaryTerm } from "@/lib/types";
 // uma definição incorreta.
 export const glossary: GlossaryTerm[] = [
   {
+    id: "Atlas Analytics",
+    term: "Atlas Analytics",
+    definition: "O produto de inteligência de dados da AtlasGR (dashboards B.I, relatórios e KPIs direcionados).",
+  },
+
+  {
     id: "pgr",
     term: "PGR (Plano de Gerenciamento de Risco)",
     definition:

@@ -16,7 +16,9 @@ export const module10: ModuleContentFull = {
     "Diferenciar rigorosamente o documento fiscal (NF-e) do documento legal logístico (CT-e).",
     "Assimilar métricas decisivas (KPIs) como SLA, ETA e OTD na avaliação gerencial de sucesso da operação.",
     "Distinguir pares de conceitos perigosos como LMI x Sublimite, fundamentais no crivo da seguradora.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -159,13 +161,55 @@ export const module10: ModuleContentFull = {
         },
       ],
     },
-  ],
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A logística e o gerenciamento de risco possuem um dialeto próprio e altamente técnico.",
+                    "**O Problema (Dor do Cliente):** Erros de comunicação ou má interpretação de jargões podem causar falhas catastróficas na Torre de Controle."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** A fluência absoluta nos termos técnicos garante agilidade e precisão letal nas tratativas de ocorrências críticas.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          }
+],
   summary: [
     "Isca móvel garante uma camada redundante (plano B) perante a remoção bruta do rastreador primário fixo.",
     "Categorizar precipuamente uma Área de Sombra como Ataque Jammer é inflacionar artificialmente o pânico e as ferramentas policias no estado.",
     "A nota fiscal (NF-e) dita o valor da carga; CT-e lida unicamente com a burocracia do frete.",
     "Um evento anômalo só ganha a classificação definitiva de Sinistro após validações da perícia (apólice e corretagem); para a Torre, inicia-se apenas como Ocorrência.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Distingo perfeitamente causas orgânicas (Área de Sombra) de intervenções criminais (Jammer).",
     "Não caio na armadilha de trocar os termos referentes ao valor da mercadoria (NF-e) com o documento do transportador (CT-e).",
