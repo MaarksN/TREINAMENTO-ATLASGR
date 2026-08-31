@@ -10,7 +10,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Fundamentos",
     imageUrl: "/brand/module_banner.jpg",
-    imageCaption: "Cultura Organizacional e Propósito AtlasGR",
+    imageCaption: "Cultura organizacional e propósito ATLASGR",
   },
   {
     slug: "02-mercado-logistica",
@@ -21,7 +21,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Fundamentos",
     imageUrl: "/brand/modules/02-logistica.svg",
-    imageCaption: "Cadeia de Suprimentos e Rodovias Nacionais",
+    imageCaption: "Fluxos e atores da cadeia logística",
   },
   {
     slug: "03-gerenciamento-risco",
@@ -32,7 +32,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Fundamentos",
     imageUrl: "/brand/modules/03-risco.svg",
-    imageCaption: "Prevenção de Perdas, PGR e Monitoramento",
+    imageCaption: "Camadas de prevenção, sinal e decisão",
   },
   {
     slug: "04-produtos-atlasgr",
@@ -43,7 +43,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Soluções ATLASGR",
     imageUrl: "/brand/modules/04-produtos.svg",
-    imageCaption: "Ecossistema de Soluções AtlasGR",
+    imageCaption: "Mapa de capacidades do portfólio ATLASGR",
   },
   {
     slug: "05-software-logistico",
@@ -54,7 +54,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Soluções ATLASGR",
     imageUrl: "/brand/modules/05-connect.svg",
-    imageCaption: "Torre de Controle Atlas Connect em Tempo Real",
+    imageCaption: "Visibilidade operacional e contexto de decisão no Atlas Connect",
   },
   {
     slug: "06-atlas-profile",
@@ -65,7 +65,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Soluções ATLASGR",
     imageUrl: "/brand/modules/06-profile.svg",
-    imageCaption: "Biometria e Análise Cadastral Inteligente",
+    imageCaption: "Consulta cadastral e decisão informada no Atlas Profile",
   },
   {
     slug: "07-integracoes",
@@ -76,7 +76,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Soluções ATLASGR",
     imageUrl: "/brand/modules/07-integracoes.svg",
-    imageCaption: "Conectores de API, ERP, TMS e Telemetria Multimarcas",
+    imageCaption: "Fluxo de dados entre sistemas e integrações",
   },
   {
     slug: "08-clientes",
@@ -87,7 +87,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Mercado e clientes",
     imageUrl: "/brand/modules/08-clientes.svg",
-    imageCaption: "Perfis de Embarcadores e Transportadoras Atendidas",
+    imageCaption: "Perfis de clientes e contexto operacional",
   },
   {
     slug: "09-processo-comercial",
@@ -98,7 +98,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Mercado e clientes",
     imageUrl: "/brand/modules/09-comercial.svg",
-    imageCaption: "Funil Comercial B2B e Qualificação de Leadd",
+    imageCaption: "Pesquisa, descoberta, qualificação e handoff comercial",
   },
   {
     slug: "10-termos-tecnicos",
@@ -109,7 +109,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Excelência operacional",
     imageUrl: "/brand/modules/10-glossario.svg",
-    imageCaption: "Dicionário de Jargões e Termos de Operação Logística",
+    imageCaption: "Termos técnicos traduzidos em significado operacional",
   },
   {
     slug: "11-operacao",
@@ -120,7 +120,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Excelência operacional",
     imageUrl: "/brand/modules/11-operacao.svg",
-    imageCaption: "Procedimento Operacional Padrão (POP) e Pronta Resposta",
+    imageCaption: "Priorização, evidência, comunicação e handoff",
   },
   {
     slug: "12-compliance",
@@ -131,7 +131,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Excelência operacional",
     imageUrl: "/brand/modules/12-compliance.svg",
-    imageCaption: "Proteção de Dados, LGPD e Segurança da Informação",
+    imageCaption: "Privacidade, segurança da informação e rastreabilidade",
   },
   {
     slug: "13-tecnologia",
@@ -142,7 +142,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Excelência operacional",
     imageUrl: "/brand/modules/13-tecnologia.svg",
-    imageCaption: "Inteligência Artificial, Predição de Risco e Analytics",
+    imageCaption: "Sensoriamento, conectividade, sistema e decisão",
   },
   {
     slug: "14-casos-reais",
@@ -153,7 +153,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Excelência operacional",
     imageUrl: "/brand/modules/14-casos.svg",
-    imageCaption: "Central de Investigação C.I.A e Recuperação de Carga",
+    imageCaption: "Aprendizagem estruturada a partir de casos",
   },
   {
     slug: "15-preparacao-final",
@@ -164,7 +164,7 @@ export const moduleMetas: ModuleMeta[] = [
     status: "ready",
     category: "Conclusão",
     imageUrl: "/brand/modules/15-preparacao.svg",
-    imageCaption: "Certificação Profissional e Formação Operacional",
+    imageCaption: "Síntese, aplicação e validação de domínio",
   },
 ];
 

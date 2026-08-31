@@ -16,6 +16,7 @@ import {
 import type { ContentBlock } from "@/lib/types";
 import { RichParagraph } from "./RichText";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/Accordion";
+import { AudioLesson, VideoLesson } from "@/components/media/LessonMedia";
 
 const calloutStyles = {
   info: { icon: Info, label: "Ponto de atenção" },
@@ -318,12 +319,32 @@ export function ContentBlockView({ block, index = 0 }: { block: ContentBlock; in
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={viewport}
           transition={{ ...blockTransition, duration: 0.6 }}
-          className="atlas-image-card"
+          className="atlas-image-card overflow-hidden rounded-3xl border border-border bg-surface shadow-lg"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={block.url} alt={block.alt || block.caption || "Imagem do módulo"} className="w-full h-auto object-cover rounded-2xl" />
-          {block.caption && <figcaption className="atlas-image-caption">{block.caption}</figcaption>}
+          <img src={block.url} alt={block.alt || block.caption || "Imagem educacional do módulo"} className="aspect-[16/8] w-full object-cover" loading="lazy" />
+          {(block.caption || block.credit) && (
+            <figcaption className="border-t border-border p-4 sm:p-5">
+              {block.caption && <p className="text-sm font-semibold leading-relaxed text-foreground">{block.caption}</p>}
+              {block.credit && <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-muted">Fonte visual: {block.credit}</p>}
+            </figcaption>
+          )}
         </motion.figure>
+      );
+
+    case "video":
+      return (
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={viewport} transition={blockTransition}>
+          <VideoLesson youtubeId={block.youtubeId} title={block.title} caption={block.caption} transcript={block.transcript} />
+          {block.source && <p className="mt-2 px-2 text-[11px] font-semibold text-muted">Fonte: {block.source}</p>}
+        </motion.div>
+      );
+
+    case "audio":
+      return (
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={viewport} transition={blockTransition}>
+          <AudioLesson title={block.title} text={block.text} caption={block.caption} />
+        </motion.div>
       );
 
     default:
