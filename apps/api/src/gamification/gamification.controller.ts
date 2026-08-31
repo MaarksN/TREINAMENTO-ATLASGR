@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { GamificationService } from './gamification.service';
 
 @Controller('gamification')
@@ -9,4 +9,13 @@ export class GamificationController {
   getProfile(@Param('userId') userId: string) {
     return this.gamificationService.getProfile(userId);
   }
+
+  @Post(':userId/quiz')
+  async completeQuiz(
+    @Param('userId') userId: string, 
+    @Body() body: { moduleId: string, score: number }
+  ) {
+    return this.gamificationService.completeQuiz(userId, body.moduleId, body.score);
+  }
 }
+

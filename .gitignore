@@ -53,5 +53,8 @@ storybook-static/
 # Agents & AI tools
 .claude/
 .windsurf/
-.agents/
 skills-lock.json
+
+# SQLite
+*.db
+*.db-journal
