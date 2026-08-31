@@ -15,7 +15,9 @@ export const module06: ModuleContentFull = {
     "Relacionar a prática do Profile às exigências de anonimização e privacidade da LGPD.",
     "Interpretar perfeitamente os status gerados pelo sistema, garantindo conformidade.",
     "Aplicar corretamente o processo de contestação quando o candidato questiona um antecedente.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -196,13 +198,55 @@ export const module06: ModuleContentFull = {
         },
       ],
     },
-  ],
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A vulnerabilidade humana é a principal porta de entrada para fraudes no transporte de cargas.",
+                    "**O Problema (Dor do Cliente):** Criminosos usam identidades falsas para assumir cargas milionárias diretamente na origem."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** O Atlas Profile aplica biometria facial, OCR e background check em segundos, neutralizando o risco antes do embarque.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          }
+],
   summary: [
     "Profile varre antecedentes criminais, documentação de trânsito e fraudes em milissegundos via integrações massivas.",
     "O FaceID (Prova de vida biométrica) é a única vacina definitiva contra quadrilhas especializadas em falsidade ideológica.",
     "O Atlas blinda o cliente e a si mesmo contra processos trabalhistas e de danos morais, fornecendo um sinal verde/vermelho ao invés de dados criminais brutos.",
     "Cada motorista fraudulento bloqueado representa milhões em passivo evitado para a seguradora e para o embarcador.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Compreendo o papel crítico do FaceID com Liveness contra a fraude documental.",
     "Domino a fronteira entre dado essencial (status) e dado sensível (ficha criminal) regida pela LGPD.",

@@ -108,11 +108,37 @@ export function AccessibilityToolbar({ currentText }: AccessibilityToolbarProps)
   }
 
   function toggleLibras() {
-    const accessButton = document.querySelector<HTMLElement>("[vw-access-button]");
-    if (accessButton) {
-      accessButton.click();
-      setLibrasActive((active) => !active);
-      return;
+    setLibrasActive((prev) => !prev);
+
+    // Injetar script do VLibras dinamicamente se ainda não existir no DOM
+    if (!document.getElementById("vlibras-script")) {
+      const script = document.createElement("script");
+      script.id = "vlibras-script";
+      script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
+      script.async = true;
+      script.onload = () => {
+        // @ts-expect-error type missing
+        if (window.VLibras) {
+          // @ts-expect-error type missing
+          new window.VLibras.Widget("https://vlibras.gov.br/app");
+        }
+      };
+      document.body.appendChild(script);
+
+      // Injetar elementos div exigidos pelo VLibras
+      if (!document.getElementById("vlibras-widget-container")) {
+        const container = document.createElement("div");
+        container.id = "vlibras-widget-container";
+        container.innerHTML = `
+          <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+              <div class="vw-plugin-top-wrapper"></div>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(container);
+      }
     }
 
     const widget = document.getElementById("vlibras-widget-container");

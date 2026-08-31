@@ -16,7 +16,9 @@ export const module04: ModuleContentFull = {
     "Descrever a orquestração algorítmica e operacional em tempo real conduzida pelo Atlas Connect e GR.",
     "Demonstrar o poder preditivo e analítico do Atlas Analytics em painéis de nível diretivo.",
     "Contrastar agressivamente a suíte corporativa AtlasGR frente a soluções comoditizadas de 'rastreamento simples'.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -224,6 +226,46 @@ export const module04: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** Diferentes perfis de clientes exigem abordagens de segurança e visibilidade distintas.",
+                    "**O Problema (Dor do Cliente):** Soluções fragmentadas deixam pontos cegos na operação, da contratação do motorista à entrega final."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** A suíte completa (Profile, Connect, GR, Analytics) oferece uma barreira 360º unificada e de altíssima performance.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Certificação e Fechamento",
@@ -246,7 +288,9 @@ export const module04: ModuleContentFull = {
     "O Atlas GR entrega força tática treinada em ambiente de guerra logística.",
     "O Analytics consolida insights estratégicos para C-Levels otimizarem operações.",
     "A unificação completa destes quatro vértices coroa a AtlasGR como provedor Enterprise de ponta a ponta.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Aptidão plena para decompor técnica e comercialmente os 4 produtos.",
     "Entendimento crítico sobre o bloqueio de Falsidade Ideológica via FaceID.",

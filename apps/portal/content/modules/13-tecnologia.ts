@@ -16,7 +16,9 @@ export const module13: ModuleContentFull = {
     "Descrever como o Atlas Analytics entrega valor executivo e gera retenção.",
     "Entender que a IA não demite o bom operador, mas potencializa sua eficiência.",
     "Reconhecer os limites da IA (falso positivo e viés de dados) e por que a decisão final é sempre humana.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -202,6 +204,46 @@ export const module13: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** O volume de dados gerado por milhões de viagens excede a capacidade de análise puramente humana.",
+                    "**O Problema (Dor do Cliente):** A dependência exclusiva de processos manuais torna a prevenção lenta e reativa."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** Implementamos modelos de Inteligência Artificial e Analytics avançado para predizer anomalias e otimizar rotas preventivamente.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Próximos Passos Táticos",
@@ -222,7 +264,9 @@ export const module13: ModuleContentFull = {
     "Sistemas de Safety, notadamente aqueles para detecção de anomalias faciais (Fadiga) representam a vanguarda na preservação integral da cadeia patrimonial e biológica.",
     "Atlas Analytics consubstancia o pináculo valorativo da oferta da AtlasGR, conferindo rentabilidade a diretores (C-Level).",
     "Modelos de IA aprendem padrões, o ser humano delibera o contexto das exceções.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Possuo proficiência discursiva entre a mecânica Reativa e a metodologia Preditiva inerentes ao escopo da AtlasGR.",
     "Entendo o funcionamento orgânico e mecânico dos sensores de Safety de Cabine.",

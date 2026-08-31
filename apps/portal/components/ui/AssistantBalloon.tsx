@@ -44,11 +44,11 @@ export function AssistantBalloon() {
   const currentMsg = messages[msgIndex % messages.length];
 
   useEffect(() => {
-    playUiSound("pop");
-    queueMicrotask(() => {
+    setTimeout(() => {
       setMsgIndex(0);
       setIsOpen(true);
-    });
+      playUiSound("pop");
+    }, 0);
   }, [pathname]);
 
   function nextMessage() {

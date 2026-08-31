@@ -1,33 +1,37 @@
-"use client";
+import React, { useState, useEffect } from 'react';
+import styles from './CyberCrisisSimulator.module.css';
 
-import { useState } from "react";
-import styles from "./CyberCrisisSimulator.module.css";
+const CyberCrisisSimulator: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState(30);
+  const [isActive, setIsActive] = useState(false);
+  const [gameState, setGameState] = useState<'idle' | 'playing' | 'won' | 'lost'>('idle');
+  const [actions, setActions] = useState({
+    isolateNetwork: false,
+    alertDPO: false,
+    paidRansom: false,
+  });
 
-type GameState = "idle" | "playing" | "won" | "lost";
-type ActionKey = "contain" | "report" | "improvise";
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isActive && timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0 && isActive) {
+      setTimeout(() => {
+        setGameState('lost');
+        setIsActive(false);
+      }, 0);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, timeLeft]);
 
-const initialActions = {
-  contain: false,
-  report: false,
-  improvise: false,
-};
-
-export default function CyberCrisisSimulator() {
-  const [gameState, setGameState] = useState<GameState>("idle");
-  const [actions, setActions] = useState(initialActions);
-
-  function startGame() {
-    setGameState("playing");
-    setActions(initialActions);
-  }
-
-  function handleAction(action: ActionKey) {
-    if (gameState !== "playing") return;
-
-    if (action === "improvise") {
-      setActions((current) => ({ ...current, improvise: true }));
-      setGameState("lost");
-      return;
+  useEffect(() => {
+    if (actions.isolateNetwork && actions.alertDPO && !actions.paidRansom && gameState === 'playing') {
+      setTimeout(() => {
+        setGameState('won');
+        setIsActive(false);
+      }, 0);
     }
 
     const nextActions = { ...actions, [action]: true };

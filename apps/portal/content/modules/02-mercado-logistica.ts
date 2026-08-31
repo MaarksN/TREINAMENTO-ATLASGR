@@ -16,7 +16,9 @@ export const module02: ModuleContentFull = {
     "Correlacionar tipologias de carga com curvas de atratividade criminal e vetores de ataque.",
     "Mapear zonas de exclusão, clusters de risco e arquitetura de sistemas integradores logísticos.",
     "Diagnosticar os impactos catastróficos de rupturas de cadeia em modais estruturais sobre o fluxo do gerenciamento de risco.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -216,6 +218,46 @@ export const module02: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A cadeia de suprimentos depende da sincronia perfeita entre Embarcadores, Transportadoras e Operadores Logísticos.",
+                    "**O Problema (Dor do Cliente):** Rupturas de visibilidade, roubos e acidentes geram perdas catastróficas e quebra de SLAs."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** O ecossistema AtlasGR integra TMS, monitoramento e inteligência preditiva para blindar o ativo e garantir o 'On Time Delivery'.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Recursos Complementares e Consolidação",
@@ -244,7 +286,9 @@ export const module02: ModuleContentFull = {
     "A atratividade do ativo dita o grau de blindagem exigido pelo PGR.",
     "A orquestração logística opera sobre integrações de altíssimo desempenho (TMS + Atlas Connect).",
     "As geofences de metrópoles atuam como disparadores de contingências automatizadas.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Distingo com precisão o papel tático do Embarcador, Transportadora e Operador.",
     "Compreendo a necessidade crítica de iscas secundárias em ativos de alta atratividade.",

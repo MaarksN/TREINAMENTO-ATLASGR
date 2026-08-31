@@ -16,7 +16,9 @@ export const module12: ModuleContentFull = {
     "Assumir a postura de tolerância zero com o vazamento de informações operacionais.",
     "Compreender o uso restrito e monitorado dos ativos da empresa.",
     "Executar corretamente o protocolo de resposta a incidentes nas primeiras horas após a suspeita de um vazamento de dados.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -191,6 +193,46 @@ export const module12: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A AtlasGR lida com volumes massivos de dados sensíveis, geolocalização e informações financeiras.",
+                    "**O Problema (Dor do Cliente):** Vazamentos de dados ou ataques de engenharia social violam a LGPD e destroem a credibilidade corporativa."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** Estabelecemos políticas de Zero Trust, sigilo absoluto e protocolos de contingência para garantir a segurança da informação.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Considerações Finais",
@@ -211,7 +253,9 @@ export const module12: ModuleContentFull = {
     "A aplicação da LGPD e as normas de restrição ao tratamento de dados (Need-to-Know) devem guiar permanentemente seu agir.",
     "Engenharia Social abusa do viés de obediência e da criação de falsas urgências; nunca viole protocolos por imposição telefônica.",
     "O compartilhamento impróprio, como o envio de fotos ou capturas de telas internas para redes ou grupos informais, resultará impreterivelmente na demissão sem justa causa.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Identifico e repilo claramente tentativas coercitivas de Engenharia Social.",
     "Compreendo profundamente as obrigações pessoais e criminais ligadas à manutenção e privacidade de senhas.",

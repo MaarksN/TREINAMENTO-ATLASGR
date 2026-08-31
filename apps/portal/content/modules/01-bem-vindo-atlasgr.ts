@@ -17,7 +17,9 @@ export const module01: ModuleContentFull = {
     "Assimilar as políticas rígidas de compliance corporativo e ética empresarial em operações de alto risco.",
     "Conhecer a trilha de desenvolvimento contínuo e os recursos da Universidade Corporativa.",
     "Reconhecer falhas operacionais críticas durante a integração e dominar a matriz de avaliação do período de experiência.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -197,6 +199,46 @@ export const module01: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** A cultura corporativa é o alicerce que sustenta operações logísticas de alto risco.",
+                    "**O Problema (Dor do Cliente):** A ausência de alinhamento ético e operacional pode resultar em hesitação durante crises, custando milhões em ativos."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** A AtlasGR instaura 5 Valores inegociáveis e a mentalidade de 'Atitude de Dono', garantindo resoluções assertivas sob pressão extrema.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Materiais Complementares e Certificação",
@@ -226,7 +268,9 @@ export const module01: ModuleContentFull = {
     "Os 5 pilares fundamentais são os filtros absolutos para decisões críticas sob estresse.",
     "A sinergia entre as 5 diretorias blinda o SLA entregue ao cliente final.",
     "A Atitude de Dono transforma operadores passivos em analistas preventivos formidáveis.",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Compreendo visceralmente o propósito e o código ético da AtlasGR.",
     "Domino a função estratégica da TI, DHO, Comercial, R.I. e Operações.",

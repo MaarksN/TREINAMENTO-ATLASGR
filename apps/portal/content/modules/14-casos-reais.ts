@@ -15,7 +15,9 @@ export const module14: ModuleContentFull = {
     "Consolidar a argumentação do 'Preço do Fracasso' para justificar a rigidez do PGR.",
     "Validar a prontidão tática antes do módulo final de certificação.",
     "Identificar os fatores técnicos e humanos que garantem uma recuperação de carga bem-sucedida em tempo recorde.",
-  ],
+      "Dominar a tríade metodológica da AtlasGR (Contexto, Problema, Solução) para resolução de problemas complexos.",
+      "Incorporar a visão de longo prazo e as exigências corporativas de nível Enterprise em todas as tratativas."
+],
   sections: [
     {
       id: "introducao",
@@ -161,6 +163,46 @@ export const module14: ModuleContentFull = {
         },
       ],
     },
+      {
+            id: "analise-arquitetura-solucao",
+            title: "Arquitetura da Solução: A Tríade de Alta Performance",
+            blocks: [
+              {
+                type: "text",
+                heading: "Metodologia Aplicada AtlasGR",
+                paragraphs: [
+                  [
+                    "Para compreendermos a magnitude da nossa operação, aplicamos a estrutura de raciocínio lógico que guia o desenvolvimento de nossos produtos e processos. Esta é a visão corporativa exigida de todos os especialistas da AtlasGR."
+                  ]
+                ]
+              },
+              {
+                type: "comparison",
+                title: "Desconstrução Estratégica (Contexto vs. Solução)",
+                left: {
+                  label: "O Cenário e a Ameaça",
+                  points: [
+                    "**Contexto Operacional:** O crime organizado adapta constantemente suas táticas de intercepção e fraude.",
+                    "**O Problema (Dor do Cliente):** O conhecimento teórico sem contexto prático não prepara o operador para o caos de um sinistro real."
+                  ]
+                },
+                right: {
+                  label: "A Resposta AtlasGR",
+                  points: [
+                    "**A Solução Tecnológica/Processual:** Dissecamos vitórias e falhas reais, aplicando engenharia reversa para aprimorar continuamente nossos protocolos táticos.",
+                    "**Impacto Gerado:** Redução drástica de perdas, garantia de SLA e proteção absoluta do ecossistema logístico."
+                  ]
+                }
+              },
+              {
+                type: "faq",
+                items: [
+                  { q: "Como essa metodologia se aplica na minha rotina?", a: "Toda decisão que você tomar deve ser guiada por esta lógica: entender o contexto da viagem, identificar rapidamente o problema (anomalia) e aplicar a solução (protocolo) com precisão milimétrica." },
+                  { q: "O que acontece se pularmos a etapa do problema e formos direto à solução?", a: "Agir sem entender a real 'dor' ou causa raiz gera falsos positivos e atrito com o cliente. A análise pericial é inegociável." }
+                ]
+              }
+            ]
+          },
     {
       id: "materiais-complementares",
       title: "Resumo Conclusivo",
@@ -189,7 +231,9 @@ export const module14: ModuleContentFull = {
     "Viés de empatia falho gerou ruína logística avassaladora de 800 mil por subversão no recolhimento da Contra-Senha legal.",
     "Decisões de resgate que ignoram e suplantam o Motor de Regras e evidências em vídeo são ações indiscutivelmente inaceitáveis.",
     "Redução crônica em acidentes passivos economizou margens superiores de noventa milhões anuais em apólices comerciais com foco macro (Combustível).",
-  ],
+      "A metodologia de Contexto-Problema-Solução assegura que a tecnologia atue como um facilitador estratégico.",
+      "Nossos padrões seguem frameworks rigorosos de governança Enterprise, onde falhas processuais não têm espaço."
+],
   finalChecklist: [
     "Categorizo exatamente por que a quebra deliberada de Contra-Senha causou o repúdio securitário da carga.",
     "Desenvolvi fluência e familiaridade com a aplicabilidade das Câmeras (DMS) e Rastreadores Ocultos nas tratativas táticas diárias.",

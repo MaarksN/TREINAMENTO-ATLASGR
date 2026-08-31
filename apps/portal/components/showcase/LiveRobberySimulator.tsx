@@ -1,10 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import styles from "./LiveRobberySimulator.module.css";
+const LiveRobberySimulator: React.FC = () => {
+  const [gameState, setGameState] = useState<'idle' | 'active' | 'resolved' | 'failed'>('idle');
+  const [signalLost, setSignalLost] = useState(false);
+  const [messages, setMessages] = useState<{ sender: 'system' | 'user' | 'prf', text: string }[]>([]);
 
-type GameState = "idle" | "active" | "resolved" | "failed";
-type Message = { sender: "system" | "user" | "prf"; text: string };
+  const addMessage = React.useCallback((sender: 'system' | 'user' | 'prf', text: string) => {
+    setMessages(prev => [...prev, { sender, text }]);
+  }, []);
+  const [truckLocked, setTruckLocked] = useState(false);
+  const [prfContacted, setPrfContacted] = useState(false);
+  
+  useEffect(() => {
+    if (gameState === 'active' && !signalLost) {
+      const timer = setTimeout(() => {
+        setSignalLost(true);
+        addMessage('system', 'ALERT: TRUCK SIGNAL LOST ON HIGHWAY BR-116. SUSPECTED JAMMER ACTIVITY.');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [gameState, signalLost]);
 
 export default function LiveRobberySimulator() {
   const [gameState, setGameState] = useState<GameState>("idle");
@@ -13,9 +28,7 @@ export default function LiveRobberySimulator() {
   const [contextValidated, setContextValidated] = useState(false);
   const [protocolEscalated, setProtocolEscalated] = useState(false);
 
-  function addMessage(sender: Message["sender"], text: string) {
-    setMessages((current) => [...current, { sender, text }]);
-  }
+
 
   function startGame() {
     setGameState("active");
