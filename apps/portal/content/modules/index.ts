@@ -1,39 +1,48 @@
 import type { ModuleContentFull } from "@/lib/types";
 import { moduleMetas, getModuleMeta } from "./meta";
-import { module01 } from "./01-bem-vindo-atlasgr";
-import { module02 } from "./02-mercado-logistica";
-import { module03 } from "./03-gerenciamento-risco";
-import { module04 } from "./04-produtos-atlasgr";
-import { module05 } from "./05-software-logistico";
-import { module06 } from "./06-atlas-profile";
-import { module07 } from "./07-integracoes";
-import { module08 } from "./08-clientes";
-import { module09 } from "./09-processo-comercial";
-import { module10 } from "./10-termos-tecnicos";
-import { module11 } from "./11-operacao";
-import { module12 } from "./12-compliance";
-import { module13 } from "./13-tecnologia";
-import { module14 } from "./14-casos-reais";
-import { module15 } from "./15-preparacao-final";
+import {
+  academyModule01,
+  academyModule02,
+  academyModule03,
+  academyModule04,
+  academyModule05,
+} from "@/content/academy-v2/fundamentos";
+import {
+  academyModule06,
+  academyModule07,
+  academyModule08,
+  academyModule09,
+  academyModule10,
+} from "@/content/academy-v2/negocios";
+import {
+  academyModule11,
+  academyModule12,
+  academyModule13,
+  academyModule14,
+  academyModule15,
+} from "@/content/academy-v2/operacao";
 
 export { moduleMetas, getModuleMeta };
 
+// O conteúdo legado permanece no repositório apenas para histórico e comparação.
+// A aplicação usa exclusivamente o currículo Academy V2 abaixo, revisado para
+// linguagem baseada em evidência, aplicação prática e acessibilidade multimídia.
 const fullModules: Record<string, ModuleContentFull> = {
-  [module01.slug]: module01,
-  [module02.slug]: module02,
-  [module03.slug]: module03,
-  [module04.slug]: module04,
-  [module05.slug]: module05,
-  [module06.slug]: module06,
-  [module07.slug]: module07,
-  [module08.slug]: module08,
-  [module09.slug]: module09,
-  [module10.slug]: module10,
-  [module11.slug]: module11,
-  [module12.slug]: module12,
-  [module13.slug]: module13,
-  [module14.slug]: module14,
-  [module15.slug]: module15,
+  [academyModule01.slug]: academyModule01,
+  [academyModule02.slug]: academyModule02,
+  [academyModule03.slug]: academyModule03,
+  [academyModule04.slug]: academyModule04,
+  [academyModule05.slug]: academyModule05,
+  [academyModule06.slug]: academyModule06,
+  [academyModule07.slug]: academyModule07,
+  [academyModule08.slug]: academyModule08,
+  [academyModule09.slug]: academyModule09,
+  [academyModule10.slug]: academyModule10,
+  [academyModule11.slug]: academyModule11,
+  [academyModule12.slug]: academyModule12,
+  [academyModule13.slug]: academyModule13,
+  [academyModule14.slug]: academyModule14,
+  [academyModule15.slug]: academyModule15,
 };
 
 export function getModuleContent(slug: string): ModuleContentFull | undefined {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Award, Lock, ShieldCheck, Sparkles, Star, Trophy, Zap } from "lucide-react";
+import { Lock, Sparkles, Trophy } from "lucide-react";
 import { BADGES, BadgeDef } from "@/lib/gamification";
 import { cn } from "@/lib/utils";
 
@@ -49,28 +49,26 @@ export function BadgesGrid({ unlockedBadgeIds }: BadgesGridProps) {
               "relative flex items-start gap-4 rounded-2xl p-4 border transition-all duration-300",
               isUnlocked
                 ? `${tierStyle.bg} ${tierStyle.border} shadow-sm hover:scale-[1.02]`
-                : "bg-surface-2/30 border-border/40 opacity-60 grayscale-[0.6]"
+                : "bg-surface-2/30 border-border/40 opacity-60 grayscale-[0.6]",
             )}
           >
-            {/* Ícone de Conquista */}
             <div
               className={cn(
                 "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border/50 shadow-sm",
-                isUnlocked ? tierStyle.iconBg : "bg-surface-2 text-muted"
+                isUnlocked ? tierStyle.iconBg : "bg-surface-2 text-muted",
               )}
             >
               {isUnlocked ? (
                 badge.tier === "holographic" ? (
-                  <Sparkles size={22} className="animate-pulse" />
+                  <Sparkles size={22} className="animate-pulse" aria-hidden="true" />
                 ) : (
-                  <Trophy size={22} />
+                  <Trophy size={22} aria-hidden="true" />
                 )
               ) : (
-                <Lock size={18} />
+                <Lock size={18} aria-hidden="true" />
               )}
             </div>
 
-            {/* Informações da Medalha */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <span className={cn("text-xs font-bold uppercase tracking-wider", isUnlocked ? tierStyle.text : "text-muted")}>
