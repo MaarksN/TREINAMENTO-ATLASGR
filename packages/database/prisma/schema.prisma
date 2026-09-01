@@ -8,13 +8,24 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  name      String
-  role      String   @default("COLLABORATOR") // "ADMIN", "COLLABORATOR"
-  tenantId  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                String   @id @default(uuid())
+  email             String   @unique
+  password          String
+  name              String
+  cpf               String?  @unique
+  role              String   @default("COLLABORATOR") // "ADMIN", "COLLABORATOR"
+  cargo             String?
+  departamento      String?
+  gestor            String?
+  telefone          String?
+  empresa           String?
+  cidade            String?
+  estado            String?
+  consentimentoLGPD Boolean  @default(true)
+  aceiteTermos      Boolean  @default(true)
+  tenantId          String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   // Gamification Relations
   gamificationProfile GamificationProfile?

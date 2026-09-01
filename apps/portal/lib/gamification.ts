@@ -51,4 +51,5 @@ export const BADGES: BadgeDef[] = [
   { id: "streak-3", label: "Vigilância Constante", description: "Acessou o Cockpit por 3 dias consecutivos.", tier: "silver" },
   { id: "explorador-ia", label: "Explorador de IA", description: "Explorou três ferramentas da Academia ATLASGR.", tier: "silver" },
   { id: "arquiteto-agentes", label: "Arquiteto de Agentes", description: "Criou o primeiro agente orientado por prompt.", tier: "gold" },
+  { id: "curioso-noturno", label: "Curioso Noturno", description: "Completou uma missão após a meia-noite. Shh!", tier: "holographic" },
 ];

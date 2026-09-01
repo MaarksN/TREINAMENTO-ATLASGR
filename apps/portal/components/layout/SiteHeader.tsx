@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, Rocket, Zap } from "lucide-react";
+import { Menu, X, Rocket } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useOnboardingStore } from "@/lib/store";
@@ -117,15 +117,31 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
         )}
 
         <div className="flex items-center gap-4">
-          {mounted && registration && (
-            <Link href="/profile" className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-2 border border-border/50 hover:border-atlas-orange/30 transition-colors group">
-              <Zap className="w-4 h-4 text-atlas-orange group-hover:animate-pulse" />
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-muted uppercase leading-none tracking-widest">{current.title}</span>
-                <span className="text-xs font-bold leading-none mt-1">Lvl {current.level} <span className="text-muted font-normal">• {xp} XP</span></span>
-              </div>
-            </Link>
-          )}
+          {mounted && registration && (() => {
+            const getTierColor = (level: number) => {
+              if (level === 1) return "border-[#CD7F32] from-[#CD7F32]/20 to-transparent"; // Bronze
+              if (level === 2) return "border-[#C0C0C0] from-[#C0C0C0]/20 to-transparent"; // Silver
+              if (level === 3) return "border-[#FFD700] from-[#FFD700]/20 to-transparent"; // Gold
+              if (level === 4) return "border-[#b9f2ff] from-[#b9f2ff]/20 to-transparent"; // Platinum
+              return "border-atlas-orange from-atlas-orange/20 to-transparent"; // Holographic
+            };
+            const tierStyle = getTierColor(current.level);
+            
+            return (
+              <Link href="/profile" className="hidden sm:flex items-center gap-3 px-2 py-1.5 rounded-full bg-surface-2 border border-border/50 hover:bg-surface transition-colors group">
+                <div className={`relative flex h-8 w-8 items-center justify-center rounded-full border-2 bg-gradient-to-br bg-background font-display font-bold text-xs uppercase ${tierStyle}`}>
+                  {registration.nomeCompleto.charAt(0)}
+                  <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-atlas-graphite text-[8px] font-black text-white shadow-sm ring-1 ring-border">
+                    {current.level}
+                  </div>
+                </div>
+                <div className="flex flex-col pr-3">
+                  <span className="text-[10px] font-bold text-muted uppercase leading-none tracking-widest group-hover:text-atlas-orange transition-colors">{current.title}</span>
+                  <span className="text-xs font-bold leading-none mt-1">{xp} <span className="font-normal text-muted">XP</span></span>
+                </div>
+              </Link>
+            );
+          })()}
 
           <div className="w-px h-6 bg-border/50 hidden sm:block mx-2" />
 
