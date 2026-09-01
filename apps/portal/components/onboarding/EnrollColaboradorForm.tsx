@@ -3,83 +3,87 @@
 import { useState } from "react";
 import { UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { useOnboardingStore } from "@/lib/store";
-import type { RegistrationData } from "@/lib/types";
 
-const fields: { key: keyof typeof emptyForm; label: string; required?: boolean; type?: string }[] = [
+const fields: { key: string; label: string; required?: boolean; type?: string }[] = [
   { key: "nomeCompleto", label: "Nome completo", required: true },
+  { key: "email", label: "E-mail", required: true, type: "email" },
+  { key: "senha", label: "Senha (padrão: Atlas@123)", type: "password" },
   { key: "cpf", label: "CPF", required: true },
   { key: "cargo", label: "Cargo", required: true },
   { key: "departamento", label: "Departamento", required: true },
   { key: "gestor", label: "Gestor(a) responsável" },
-  { key: "email", label: "E-mail", required: true, type: "email" },
   { key: "telefone", label: "Telefone" },
-  { key: "empresa", label: "Empresa", required: true },
+  { key: "empresa", label: "Empresa" },
   { key: "cidade", label: "Cidade" },
   { key: "estado", label: "Estado" },
 ];
 
-const emptyForm = {
+const emptyForm: Record<string, string> = {
   nomeCompleto: "",
+  email: "",
+  senha: "",
   cpf: "",
   cargo: "",
   departamento: "",
   gestor: "",
-  email: "",
   telefone: "",
   empresa: "ATLASGR",
   cidade: "",
   estado: "",
 };
 
-function isValidCpf(value: string) {
-  const digits = value.replace(/\D/g, "");
-  if (digits.length !== 11) return false;
-  if (/^(\d)\1{10}$/.test(digits)) return false; // todos os dígitos iguais
-  return true;
-}
-
-// Cadastro exclusivo do Administrador — o colaborador nunca preenche este
-// formulário; ele só faz o "primeiro acesso" (ver AccessModal).
-export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: (accessCode: string) => void }) {
-  const enrollColaborador = useOnboardingStore((s) => s.enrollColaborador);
-  const enrolled = useOnboardingStore((s) => s.enrolled);
+// Cadastro exclusivo do Administrador — grava diretamente na API NestJS
+export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: () => void }) {
   const [form, setForm] = useState(emptyForm);
   const [submitted, setSubmitted] = useState(false);
-  const [lastCode, setLastCode] = useState<string | null>(null);
-
-  const missingRequired = fields.filter((f) => f.required && !form[f.key].trim());
-  const cpfInvalid = !!form.cpf.trim() && !isValidCpf(form.cpf);
-  const isDuplicateName =
-    !!form.nomeCompleto.trim() &&
-    enrolled.some((c) => c.nomeCompleto.trim().toLowerCase() === form.nomeCompleto.trim().toLowerCase());
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  function handleSubmit() {
+  const missingRequired = fields.filter((f) => f.required && !form[f.key]?.trim());
+
+  async function handleSubmit() {
     setSubmitted(true);
-    if (missingRequired.length > 0 || cpfInvalid || isDuplicateName) return;
+    setSuccessMsg(null);
+    setErrorMsg(null);
+    if (missingRequired.length > 0) return;
 
     setIsSubmitting(true);
-    
-    // Simula rede real para mostrar o estado de loading e feedback
-    setTimeout(() => {
-      const data: RegistrationData = {
-        ...form,
-        dataHora: new Date().toISOString(),
-        userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
-        consentimentoLGPD: true,
-        aceiteTermos: true,
-      };
-      const record = enrollColaborador(data);
-      setLastCode(record.accessCode);
-      onEnrolled?.(record.accessCode);
+    try {
+      const res = await fetch("http://localhost:3001/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          password: form.senha || "Atlas@123",
+          name: form.nomeCompleto,
+          cpf: form.cpf,
+          cargo: form.cargo,
+          departamento: form.departamento,
+          gestor: form.gestor,
+          telefone: form.telefone,
+          empresa: form.empresa,
+          cidade: form.cidade,
+          estado: form.estado,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || "Erro ao cadastrar colaborador.");
+      }
+
+      const created = await res.json();
+      setSuccessMsg(`Colaborador "${created.name}" cadastrado! Acesso: ${created.email}`);
+      onEnrolled?.();
       setForm(emptyForm);
       setSubmitted(false);
+    } catch (err: any) {
+      setErrorMsg(err.message ?? "Erro inesperado. Tente novamente.");
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   }
-
 
   return (
     <div>
@@ -99,21 +103,18 @@ export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: (accessCode
       </div>
 
       {submitted && missingRequired.length > 0 && (
-        <p className="mt-3 text-xs text-red-500">Preencha os campos obrigatórios: {missingRequired.map((f) => f.label).join(", ")}.</p>
-      )}
-      {submitted && cpfInvalid && (
-        <p className="mt-3 text-xs text-red-500">CPF inválido — informe os 11 dígitos (com ou sem pontuação).</p>
-      )}
-      {submitted && isDuplicateName && (
         <p className="mt-3 text-xs text-red-500">
-          Já existe um colaborador cadastrado com esse nome. Use o nome completo para diferenciar (ex.: sobrenome do meio) —
-          a seleção de &ldquo;primeiro acesso&rdquo; é feita só pelo nome.
+          Preencha os campos obrigatórios: {missingRequired.map((f) => f.label).join(", ")}.
         </p>
       )}
 
-      {lastCode && (
+      {errorMsg && (
+        <p className="mt-3 rounded-lg bg-red-500/10 px-3 py-2 text-xs text-red-500">{errorMsg}</p>
+      )}
+
+      {successMsg && (
         <p className="mt-3 rounded-lg bg-emerald-500/10 px-3 py-2 text-xs text-emerald-600 dark:text-emerald-400">
-          Colaborador cadastrado! Código de acesso: <strong>{lastCode}</strong>
+          ✅ {successMsg}
         </p>
       )}
 

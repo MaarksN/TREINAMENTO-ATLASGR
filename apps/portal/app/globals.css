@@ -204,3 +204,60 @@ body {
     font-family: var(--font-sans), sans-serif;
   }
 }
+
+/* ── Custom Scrollbar (Item 24) ─────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* ── Animação reveal-up (para mobile menu) ──────────────────── */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up {
+  animation: revealUp 0.2s var(--ease-premium) both;
+}
+
+/* ── Glow shadow utilitário ─────────────────────────────────── */
+@layer utilities {
+  .shadow-glow {
+    box-shadow: 0 4px 14px -3px rgba(255, 86, 24, 0.4), 0 0 0 1px rgba(255, 86, 24, 0.1);
+  }
+}
+

@@ -93,6 +93,7 @@ export class QuizService {
         data: {
           id: userId,
           email: `${userId}@atlasgr.com`,
+          password: 'temp_password_hash',
           name: userId,
           gamificationProfile: {
             create: { xp: 0, level: 1 }

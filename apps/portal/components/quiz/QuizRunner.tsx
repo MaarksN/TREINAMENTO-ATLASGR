@@ -113,25 +113,47 @@ export function QuizRunner({
   if (done && result) {
     if (reviewStep === 0) {
       return (
-        <Card className="p-8 text-center">
-          {result.passed ? (
-            <PartyPopper className="mx-auto mb-3 text-atlas-orange" size={40} />
-          ) : (
-            <XCircle className="mx-auto mb-3 text-red-500" size={40} />
-          )}
-          <h3 className="font-display text-2xl font-bold">{result.score}%</h3>
-          <p className="mt-1 text-muted">
-            {result.correctCount} de {result.total} corretas — {result.passed ? "aprovado!" : `é necessário pelo menos ${passThreshold}%`}
-          </p>
-          <div className="mt-6 flex justify-center gap-4">
-            <Button onClick={() => setReviewStep(1)}>Ver Correção</Button>
-            {!result.passed && (
-              <Button variant="outline" onClick={retry}>
-                <RotateCcw size={16} /> Tentar novamente
-              </Button>
+        <motion.div
+          initial={result.passed ? { scale: 0.8, opacity: 0 } : { x: 0 }}
+          animate={result.passed ? { scale: 1, opacity: 1 } : { x: [0, -12, 12, -8, 8, -4, 4, 0] }}
+          transition={result.passed ? { type: "spring", stiffness: 200, damping: 15 } : { duration: 0.5 }}
+        >
+          <Card className="p-8 text-center">
+            {result.passed ? (
+              <motion.div
+                initial={{ rotate: -20, scale: 0 }}
+                animate={{ rotate: 0, scale: 1 }}
+                transition={{ type: "spring", delay: 0.15 }}
+              >
+                <PartyPopper className="mx-auto mb-3 text-atlas-orange" size={48} />
+              </motion.div>
+            ) : (
+              <XCircle className="mx-auto mb-3 text-red-500" size={48} />
             )}
-          </div>
-        </Card>
+            <h3 className="font-display text-4xl font-black">{result.score}%</h3>
+            <p className="mt-2 text-muted">
+              {result.correctCount} de {result.total} corretas — {result.passed ? "aprovado! 🎉" : `é necessário pelo menos ${passThreshold}%`}
+            </p>
+            {result.passed && (
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-3 text-sm font-bold text-emerald-500"
+              >
+                +{100} XP depositados na sua conta
+              </motion.p>
+            )}
+            <div className="mt-6 flex justify-center gap-4">
+              <Button onClick={() => setReviewStep(1)}>Ver Correção</Button>
+              {!result.passed && (
+                <Button variant="outline" onClick={retry}>
+                  <RotateCcw size={16} /> Tentar novamente
+                </Button>
+              )}
+            </div>
+          </Card>
+        </motion.div>
       );
     }
 

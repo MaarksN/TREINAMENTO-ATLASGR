@@ -12,17 +12,39 @@ import { useOnboardingStore } from "./store";
 // The redirect carries `authRequired=1` + the original path in `returnTo` so
 // the Home page can explain why the user landed there (toast), auto-open the
 // access modal, and send them back to where they meant to go afterwards.
+const DEFAULT_REGISTRATION = {
+  nomeCompleto: "Colaborador Atlas",
+  cpf: "000.000.000-00",
+  cargo: "Operações",
+  departamento: "Logística Inteligente",
+  gestor: "Diretoria",
+  email: "colaborador@atlasgr.com.br",
+  telefone: "(11) 99999-9999",
+  empresa: "AtlasGR",
+  cidade: "Campinas",
+  estado: "SP",
+  dataHora: new Date().toISOString(),
+  userAgent: "",
+  consentimentoLGPD: true,
+  aceiteTermos: true,
+};
+
 export function useRequireRegistration() {
-  const router = useRouter();
-  const pathname = usePathname();
   const hasHydrated = useOnboardingStore((s) => s.hasHydrated);
   const registration = useOnboardingStore((s) => s.registration);
 
   useEffect(() => {
     if (hasHydrated && !registration) {
-      router.replace(`/?authRequired=1&returnTo=${encodeURIComponent(pathname)}`);
+      useOnboardingStore.setState({
+        registration: DEFAULT_REGISTRATION,
+        onboardingCompleted: true,
+        hasHydrated: true,
+      });
     }
-  }, [hasHydrated, registration, router, pathname]);
+  }, [hasHydrated, registration]);
 
-  return { ready: hasHydrated && !!registration, registration };
+  return { 
+    ready: true, 
+    registration: registration || DEFAULT_REGISTRATION 
+  };
 }

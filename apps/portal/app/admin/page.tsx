@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Download, Search, Trash2, TrendingDown, TrendingUp, UserCheck, Users } from "lucide-react";
+import { Download, Search, TrendingDown, TrendingUp, UserCheck, Users } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -19,22 +19,42 @@ const statusLabel: Record<SeedCollaborator["status"], { label: string; variant: 
   "nao-iniciado": { label: "Não iniciado", variant: "muted" },
 };
 
+interface ApiUser {
+  id: string;
+  email: string;
+  name: string;
+  cargo?: string;
+  departamento?: string;
+  createdAt: string;
+  gamificationProfile?: { xp: number };
+}
+
 export default function AdminPage() {
   const router = useRouter();
   const registration = useOnboardingStore((s) => s.registration);
   const examResult = useOnboardingStore((s) => s.examResult);
-  const enrolled = useOnboardingStore((s) => s.enrolled);
-  const removeColaborador = useOnboardingStore((s) => s.removeColaborador);
   const startSessionAs = useOnboardingStore((s) => s.startSessionAs);
   const [query, setQuery] = useState("");
+  const [apiUsers, setApiUsers] = useState<ApiUser[]>([]);
+
+  const fetchUsers = useCallback(() => {
+    fetch("http://localhost:3001/users")
+      .then((r) => r.json())
+      .then(setApiUsers)
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   const rows: SeedCollaborator[] = useMemo(() => {
     const you: SeedCollaborator[] = registration
       ? [
           {
-            nome: `${registration.nomeCompleto} (sessão atual)`,
-            cargo: registration.cargo,
-            departamento: registration.departamento,
+            nome: `${(registration as any).nomeCompleto} (sessão atual)`,
+            cargo: (registration as any).cargo,
+            departamento: (registration as any).departamento,
             status: examResult?.passed ? "concluido" : "andamento",
             progresso: examResult?.passed ? 100 : 40,
             notaMedia: examResult?.score ?? 0,
@@ -68,10 +88,6 @@ export default function AdminPage() {
     URL.revokeObjectURL(url);
   }
 
-  function handleSimulateAccess(id: string) {
-    if (startSessionAs(id)) router.push("/trilha");
-  }
-
   return (
     <AdminGate>
     <div className="min-h-screen">
@@ -97,30 +113,21 @@ export default function AdminPage() {
             O autocadastro foi removido: apenas o Administrador cadastra colaboradores. Após o cadastro, o colaborador
             faz o &ldquo;primeiro acesso&rdquo; na Home selecionando o próprio nome.
           </p>
-          <EnrollColaboradorForm />
+          <EnrollColaboradorForm onEnrolled={fetchUsers} />
 
-          {enrolled.length > 0 && (
+          {apiUsers.length > 0 && (
             <div className="mt-6 space-y-2 border-t border-border pt-5">
-              <p className="mb-2 text-xs font-semibold text-muted">Colaboradores cadastrados ({enrolled.length})</p>
-              {enrolled.map((c) => (
+              <p className="mb-2 text-xs font-semibold text-muted">Colaboradores cadastrados ({apiUsers.length})</p>
+              {apiUsers.map((c) => (
                 <div key={c.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-surface-2 px-3 py-2">
                   <div>
-                    <p className="text-sm font-medium text-foreground">{c.nomeCompleto}</p>
+                    <p className="text-sm font-medium text-foreground">{c.name}</p>
                     <p className="text-xs text-muted">
-                      {c.cargo} · {c.departamento} · código {c.accessCode}
+                      {c.cargo} · {c.departamento} · {c.email}
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" onClick={() => handleSimulateAccess(c.id)}>
-                      Simular acesso
-                    </Button>
-                    <button
-                      onClick={() => removeColaborador(c.id)}
-                      aria-label={`Remover ${c.nomeCompleto}`}
-                      className="rounded-lg p-2 text-muted transition hover:bg-red-500/10 hover:text-red-500"
-                    >
-                      <Trash2 size={14} />
-                    </button>
+                    <Badge variant="muted">{c.gamificationProfile?.xp ?? 0} XP</Badge>
                   </div>
                 </div>
               ))}

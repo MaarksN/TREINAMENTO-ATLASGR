@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Award, BarChart3, BookOpen, ChevronRight, Clock, Compass, Target, Trophy } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PremiumCard } from "@/components/ui/PremiumCard";
-import { CategoryRadar } from "@/components/charts/CategoryRadar";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { moduleMetas, readyModuleSlugs } from "@/content/modules";
@@ -104,19 +103,13 @@ export default function DashboardPage() {
           <PremiumCard className="p-6 sm:p-8">
             <p className="text-xs font-black uppercase tracking-widest text-atlas-orange">Leitura rápida</p>
             <h2 className="mt-2 font-display text-2xl font-black">Onde consolidar conhecimento</h2>
-            {categoryMastery.length > 0 && categoryMastery.some(c => c.score > 0 || c.passed > 0) ? (
-              <div className="mt-6">
-                <CategoryRadar data={categoryMastery} />
+            <div className="mt-8 flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/60 bg-surface-2/30 px-6 py-10 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-atlas-orange/10 text-atlas-orange">
+                <Compass size={24} aria-hidden="true" />
               </div>
-            ) : (
-              <div className="mt-8 flex flex-col items-center justify-center rounded-2xl border border-dashed border-border/60 bg-surface-2/30 px-6 py-10 text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-atlas-orange/10 text-atlas-orange">
-                  <Compass size={24} aria-hidden="true" />
-                </div>
-                <h3 className="mt-4 font-display text-lg font-black text-foreground">Sua jornada começa aqui</h3>
-                <p className="mt-2 max-w-sm text-sm font-medium text-muted">Você ainda não validou nenhum conhecimento. Navegue até a trilha e complete seu primeiro módulo para gerar insights!</p>
-              </div>
-            )}
+              <h3 className="mt-4 font-display text-lg font-black text-foreground">Sua jornada começa aqui</h3>
+              <p className="mt-2 max-w-sm text-sm font-medium text-muted">Navegue até a trilha e complete seu primeiro módulo para gerar novos indicadores e validar suas competências!</p>
+            </div>
 
             {(strongest || needsReview) && (
               <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">

@@ -7,6 +7,8 @@ import { AssistantBalloon } from "@/components/ui/AssistantBalloon";
 import { AICopilot } from "@/components/innovation/AICopilot";
 import { VLibrasWidget } from "@/components/accessibility/VLibrasWidget";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { XPNotifier } from "@/components/gamification/XPNotifier";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -78,10 +80,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider>
           {children}
           <SiteFooter />
+          <XPNotifier />
           <Toaster />
           <AssistantBalloon />
           <AICopilot />
           <VLibrasWidget />
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>

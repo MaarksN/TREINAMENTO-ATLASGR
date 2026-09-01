@@ -33,6 +33,7 @@ export class GamificationService {
         data: {
           id: userId,
           email: `${userId}@atlasgr.com`,
+          password: 'temp_password_hash',
           name: userId,
           gamificationProfile: {
             create: { xp: 0, level: 1 }
@@ -68,6 +69,7 @@ export class GamificationService {
         data: {
           id: userId,
           email: `${userId}@atlasgr.com`,
+          password: 'temp_password_hash',
           name: userId,
           gamificationProfile: {
             create: { xp: 0, level: 1, currentStreak: 1, longestStreak: 1, lastActiveDate: new Date() }
