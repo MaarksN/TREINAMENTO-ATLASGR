@@ -78,11 +78,14 @@ export interface GlossaryTerm {
   atlasUsage?: string;
 }
 
-export interface QuizQuestion {
+export interface QuizQuestionClient {
   id: string;
   moduleSlug: string;
   question: string;
   options: string[];
+}
+
+export interface QuizQuestion extends QuizQuestionClient {
   correctIndex: number;
   explanation: string;
   reference: string;

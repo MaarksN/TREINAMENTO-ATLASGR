@@ -54,23 +54,32 @@ export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: (accessCode
     !!form.nomeCompleto.trim() &&
     enrolled.some((c) => c.nomeCompleto.trim().toLowerCase() === form.nomeCompleto.trim().toLowerCase());
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   function handleSubmit() {
     setSubmitted(true);
     if (missingRequired.length > 0 || cpfInvalid || isDuplicateName) return;
 
-    const data: RegistrationData = {
-      ...form,
-      dataHora: new Date().toISOString(),
-      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
-      consentimentoLGPD: true,
-      aceiteTermos: true,
-    };
-    const record = enrollColaborador(data);
-    setLastCode(record.accessCode);
-    onEnrolled?.(record.accessCode);
-    setForm(emptyForm);
-    setSubmitted(false);
+    setIsSubmitting(true);
+    
+    // Simula rede real para mostrar o estado de loading e feedback
+    setTimeout(() => {
+      const data: RegistrationData = {
+        ...form,
+        dataHora: new Date().toISOString(),
+        userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
+        consentimentoLGPD: true,
+        aceiteTermos: true,
+      };
+      const record = enrollColaborador(data);
+      setLastCode(record.accessCode);
+      onEnrolled?.(record.accessCode);
+      setForm(emptyForm);
+      setSubmitted(false);
+      setIsSubmitting(false);
+    }, 600);
   }
+
 
   return (
     <div>
@@ -108,8 +117,8 @@ export function EnrollColaboradorForm({ onEnrolled }: { onEnrolled?: (accessCode
         </p>
       )}
 
-      <Button className="mt-4" onClick={handleSubmit}>
-        <UserPlus size={16} /> Cadastrar colaborador
+      <Button className="mt-4" onClick={handleSubmit} isLoading={isSubmitting}>
+        {!isSubmitting && <UserPlus size={16} />} Cadastrar colaborador
       </Button>
     </div>
   );

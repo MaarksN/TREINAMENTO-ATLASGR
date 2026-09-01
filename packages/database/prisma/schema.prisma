@@ -81,5 +81,18 @@ model ModuleProgress {
   user        User     @relation(fields: [userId], references: [id])
   module      Module   @relation(fields: [moduleId], references: [id])
 
+  answers     QuizAnswer[]
+
   @@unique([userId, moduleId])
+}
+
+model QuizAnswer {
+  id               String         @id @default(uuid())
+  moduleProgressId String
+  questionId       String
+  selectedOption   Int
+  isCorrect        Boolean
+  createdAt        DateTime       @default(now())
+
+  moduleProgress   ModuleProgress @relation(fields: [moduleProgressId], references: [id], onDelete: Cascade)
 }

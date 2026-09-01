@@ -8,17 +8,32 @@ import { AtlasMedalGold, AtlasMedalSilver, AtlasSecurityIcon } from "@/component
 import { cn } from "@/lib/utils";
 import { useOnboardingStore } from "@/lib/store";
 import { levelProgress, BADGES } from "@/lib/gamification";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function GamificationDashboard() {
-  const { xp, streakDays } = useOnboardingStore();
-  const { current, next, pct } = levelProgress(xp);
+  const { xp: localXp, streakDays: localStreakDays, registration } = useOnboardingStore();
+  const userId = (registration as any)?.userId;
 
-  // Real backend integration hook placeholder for future use
-    useEffect(() => {
-    // In the future this will fetch from the NestJS /gamification/:userId/profile endpoint
-    // fetch('http://localhost:3001/gamification/user-id/profile').then(...)
-  }, []);
+  const [realProfile, setRealProfile] = useState<{ xp: number; currentStreak: number } | null>(null);
+
+  // Integrar com o backend para buscar dados imutáveis/reais de engajamento
+  useEffect(() => {
+    if (userId) {
+      fetch(`http://localhost:3001/gamification/${userId}/profile`)
+        .then(r => r.json())
+        .then(data => {
+          if (data && typeof data.xp === 'number') {
+            setRealProfile(data);
+          }
+        })
+        .catch(console.error);
+    }
+  }, [userId]);
+
+  const displayXp = realProfile?.xp ?? localXp;
+  const displayStreak = realProfile?.currentStreak ?? localStreakDays.length;
+
+  const { current, next, pct } = levelProgress(displayXp);
 
   const renderBadgeIcon = (tier: string) => {
     switch(tier) {
@@ -49,11 +64,11 @@ export function GamificationDashboard() {
             </div>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
               <Badge variant="orange" className="text-sm px-4 py-1.5 flex gap-2 items-center">
-                <AtlasMedalGold className="w-4 h-4" /> {xp} XP Acumulado
+                <AtlasMedalGold className="w-4 h-4" /> {displayXp} XP Acumulado
               </Badge>
               {next && (
                 <span className="text-sm text-muted font-medium bg-surface-2 px-3 py-1 rounded-full border border-border/50">
-                  {next.minXp - xp} XP para Lvl {next.level}
+                  {next.minXp - displayXp} XP para Lvl {next.level}
                 </span>
               )}
             </div>
@@ -72,7 +87,7 @@ export function GamificationDashboard() {
             <span className="text-lg font-bold font-display">Sequência Diária</span>
           </div>
           <div className="text-5xl font-bold font-display tracking-tight text-foreground">
-            {streakDays.length} <span className="text-2xl text-muted">dias</span>
+            {displayStreak} <span className="text-2xl text-muted">dias</span>
           </div>
           <p className="text-sm text-muted mt-4 font-medium leading-relaxed">
             Faça login todos os dias para não perder sua sequência e ganhar multiplicadores de XP.

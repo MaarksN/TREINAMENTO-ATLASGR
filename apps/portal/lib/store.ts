@@ -95,7 +95,11 @@ export const useOnboardingStore = create<OnboardingState>()(
         if (!record) return false;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { id: _id, enrolledAt: _enrolledAt, accessCode: _accessCode, ...registrationData } = record;
-        set({ registration: registrationData });
+        
+        // Registrar a sessão real no banco
+        fetch(`http://localhost:3001/gamification/${id}/session`, { method: 'POST' }).catch(() => {});
+
+        set({ registration: {...registrationData, userId: id } as any });
         get().touchStreak();
         get().addBadge("primeiro-passo");
         return true;
@@ -128,6 +132,17 @@ export const useOnboardingStore = create<OnboardingState>()(
           },
           xp: s.xp + xpGain,
         }));
+        
+        // Sincronizar com o backend NestJS para garantir imutabilidade e persistência real
+        // registration.userId should be populated in startSessionAs
+        const userId = (get().registration as any)?.userId;
+        if (userId) {
+          fetch(`http://localhost:3001/gamification/${userId}/quiz`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ moduleId: slug, score }),
+          }).catch(() => {});
+        }
 
         get().touchStreak();
         if (score === 100) get().addBadge("nota-maxima");

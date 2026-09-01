@@ -17,5 +17,10 @@ export class GamificationController {
   ) {
     return this.gamificationService.completeQuiz(userId, body.moduleId, body.score);
   }
+
+  @Post(':userId/session')
+  async registerSession(@Param('userId') userId: string) {
+    return this.gamificationService.registerSession(userId);
+  }
 }
 

@@ -103,13 +103,10 @@ export default function DashboardPage() {
           <PremiumCard className="p-6 sm:p-8">
             <p className="text-xs font-black uppercase tracking-widest text-atlas-orange">Leitura rápida</p>
             <h2 className="mt-2 font-display text-2xl font-black">Onde consolidar conhecimento</h2>
-            <div className="mt-6 space-y-4">
-              {categoryMastery.map((item) => (
-                <div key={item.category}>
-                  <div className="mb-2 flex items-center justify-between gap-3 text-xs"><span className="font-bold text-foreground">{item.category}</span><span className="font-bold tabular-nums text-muted">{item.score ? `${item.score}%` : `${item.passed}/${item.total}`}</span></div>
-                  <div className="h-2 overflow-hidden rounded-full bg-border"><div className="h-full rounded-full bg-atlas-orange" style={{ width: `${item.score || Math.round((item.passed / item.total) * 100)}%` }} /></div>
-                </div>
-              ))}
+            <div className="mt-6">
+              <p className="text-sm font-medium leading-relaxed text-muted">
+                Este painel prioriza dados puros e limpos de seu domínio. Conforme você valida módulos de diferentes categorias, a identificação das suas áreas mais consistentes ou daquelas que demandam maior atenção acontecerá de forma transparente.
+              </p>
             </div>
 
             {(strongest || needsReview) && (

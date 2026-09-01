@@ -56,5 +56,66 @@ export class GamificationService {
 
     return { progress, profile, xpEarned, passed };
   }
+
+  async registerSession(userId: string) {
+    let user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      include: { gamificationProfile: true }
+    });
+
+    if (!user) {
+      user = await this.prisma.user.create({
+        data: {
+          id: userId,
+          email: `${userId}@atlasgr.com`,
+          name: userId,
+          gamificationProfile: {
+            create: { xp: 0, level: 1, currentStreak: 1, longestStreak: 1, lastActiveDate: new Date() }
+          }
+        },
+        include: { gamificationProfile: true }
+      });
+      return user.gamificationProfile;
+    }
+
+    let profile = user.gamificationProfile;
+    if (!profile) {
+      profile = await this.prisma.gamificationProfile.create({
+        data: { userId, xp: 0, level: 1, currentStreak: 1, longestStreak: 1, lastActiveDate: new Date() }
+      });
+      return profile;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const lastActive = new Date(profile.lastActiveDate);
+    lastActive.setHours(0, 0, 0, 0);
+
+    const diffTime = Math.abs(today.getTime() - lastActive.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    let newStreak = profile.currentStreak;
+    if (diffDays === 1) {
+      newStreak += 1;
+    } else if (diffDays > 1) {
+      newStreak = 1;
+    }
+
+    const newLongestStreak = Math.max(profile.longestStreak, newStreak);
+
+    if (diffDays >= 1) {
+      profile = await this.prisma.gamificationProfile.update({
+        where: { userId },
+        data: {
+          currentStreak: newStreak,
+          longestStreak: newLongestStreak,
+          lastActiveDate: new Date()
+        }
+      });
+    }
+
+    return profile;
+  }
 }
 
