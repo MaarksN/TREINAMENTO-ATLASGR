@@ -396,7 +396,19 @@ export function ModulePageClient() {
                         }}
                       />
                     ) : (
-                      <p className="text-center text-muted">Carregando questões...</p>
+                      <div className="space-y-4 py-8">
+                        <div className="h-6 w-3/4 animate-pulse rounded-lg bg-border/50" />
+                        <div className="h-4 w-full animate-pulse rounded-lg bg-border/30" />
+                        <div className="h-4 w-5/6 animate-pulse rounded-lg bg-border/30" />
+                        <div className="mt-8 grid gap-3">
+                          <div className="h-14 w-full animate-pulse rounded-xl bg-surface-2" />
+                          <div className="h-14 w-full animate-pulse rounded-xl bg-surface-2" />
+                          <div className="h-14 w-full animate-pulse rounded-xl bg-surface-2" />
+                        </div>
+                        <div className="mt-6 flex justify-center">
+                          <div className="h-4 w-32 animate-pulse rounded-full bg-atlas-orange/20" />
+                        </div>
+                      </div>
                     )}
                     {modProgress?.passed && <div className="mt-12 border-t border-border pt-8"><CertificateActions moduleTitle={content.title} moduleNumber={meta.number} /><ModuleRating /></div>}
                   </div>

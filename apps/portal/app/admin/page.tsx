@@ -134,7 +134,7 @@ export default function AdminPage() {
           funcional de verdade, com os colaboradores que você cadastrar.
         </Card>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {[
             { label: "Colaboradores", value: total },
             { label: "Em andamento", value: andamento },
@@ -143,85 +143,87 @@ export default function AdminPage() {
             { label: "Nota média", value: `${notaMedia || 0}%` },
             { label: "Tempo médio", value: `${tempoMedio}min` },
           ].map((k) => (
-            <Card key={k.label} className="p-4 text-center">
-              <p className="font-display text-2xl font-bold text-gradient-atlas">{k.value}</p>
-              <p className="mt-1 text-xs text-muted">{k.label}</p>
+            <Card key={k.label} className="flex flex-col items-center justify-center p-6 text-center shadow-sm transition-shadow hover:shadow-md">
+              <p className="font-display text-3xl font-black text-gradient-atlas">{k.value}</p>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-muted">{k.label}</p>
             </Card>
           ))}
         </div>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-3">
-          <Card className="p-5">
-            <p className="mb-3 flex items-center gap-2 font-display font-semibold text-red-500"><TrendingDown size={16} /> Questões mais erradas</p>
-            <ul className="space-y-2 text-sm">
+        <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          <Card className="flex flex-col p-6 shadow-sm">
+            <p className="mb-4 flex items-center gap-2 font-display font-semibold text-red-500"><TrendingDown size={18} /> Questões mais erradas</p>
+            <ul className="flex-1 space-y-4 text-sm">
               {demoKpis.questoesMaisErradas.map((q) => (
-                <li key={q.pergunta} className="flex justify-between gap-2 text-muted">
-                  <span className="line-clamp-2">{q.pergunta}</span>
-                  <span className="shrink-0 font-semibold text-red-500">{q.errosPct}%</span>
+                <li key={q.pergunta} className="flex items-start justify-between gap-4 text-muted">
+                  <span className="line-clamp-2 leading-relaxed">{q.pergunta}</span>
+                  <span className="shrink-0 rounded-md bg-red-500/10 px-2 py-1 font-semibold text-red-500">{q.errosPct}%</span>
                 </li>
               ))}
             </ul>
           </Card>
-          <Card className="p-5">
-            <p className="mb-3 flex items-center gap-2 font-display font-semibold text-emerald-500"><TrendingUp size={16} /> Questões mais acertadas</p>
-            <ul className="space-y-2 text-sm">
+          <Card className="flex flex-col p-6 shadow-sm">
+            <p className="mb-4 flex items-center gap-2 font-display font-semibold text-emerald-500"><TrendingUp size={18} /> Questões mais acertadas</p>
+            <ul className="flex-1 space-y-4 text-sm">
               {demoKpis.questoesMaisAcertadas.map((q) => (
-                <li key={q.pergunta} className="flex justify-between gap-2 text-muted">
-                  <span className="line-clamp-2">{q.pergunta}</span>
-                  <span className="shrink-0 font-semibold text-emerald-500">{q.acertosPct}%</span>
+                <li key={q.pergunta} className="flex items-start justify-between gap-4 text-muted">
+                  <span className="line-clamp-2 leading-relaxed">{q.pergunta}</span>
+                  <span className="shrink-0 rounded-md bg-emerald-500/10 px-2 py-1 font-semibold text-emerald-600 dark:text-emerald-400">{q.acertosPct}%</span>
                 </li>
               ))}
             </ul>
           </Card>
-          <Card className="p-5">
-            <p className="mb-3 font-display font-semibold">Engajamento e abandono</p>
-            <div className="space-y-3 text-sm">
+          <Card className="flex flex-col p-6 shadow-sm">
+            <p className="mb-4 font-display font-semibold text-foreground">Engajamento e abandono</p>
+            <div className="flex-1 space-y-6 text-sm">
               <div>
-                <div className="mb-1 flex justify-between text-xs text-muted"><span>Engajamento</span><span>{demoKpis.engajamentoPct}%</span></div>
-                <div className="h-2 rounded-full bg-surface-2"><div className="h-full rounded-full bg-gradient-atlas" style={{ width: `${demoKpis.engajamentoPct}%` }} /></div>
+                <div className="mb-2 flex justify-between font-medium text-muted"><span>Taxa de Engajamento</span><span className="text-foreground">{demoKpis.engajamentoPct}%</span></div>
+                <div className="h-2.5 overflow-hidden rounded-full bg-surface-2"><div className="h-full rounded-full bg-gradient-atlas transition-all" style={{ width: `${demoKpis.engajamentoPct}%` }} /></div>
               </div>
               <div>
-                <div className="mb-1 flex justify-between text-xs text-muted"><span>Abandono</span><span>{demoKpis.abandonoPct}%</span></div>
-                <div className="h-2 rounded-full bg-surface-2"><div className="h-full rounded-full bg-red-400" style={{ width: `${demoKpis.abandonoPct}%` }} /></div>
+                <div className="mb-2 flex justify-between font-medium text-muted"><span>Taxa de Abandono</span><span className="text-foreground">{demoKpis.abandonoPct}%</span></div>
+                <div className="h-2.5 overflow-hidden rounded-full bg-surface-2"><div className="h-full rounded-full bg-red-500/80 transition-all" style={{ width: `${demoKpis.abandonoPct}%` }} /></div>
               </div>
             </div>
           </Card>
         </div>
 
-        <Card className="mt-6 p-5">
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <p className="font-display font-semibold">Base analítica (demonstração)</p>
-            <div className="relative w-56">
-              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar por nome..."
-                className="h-9 w-full rounded-full border border-border bg-surface-2 pl-9 pr-3 text-sm outline-none focus:border-atlas-orange"
-              />
+        <Card className="mt-8 overflow-hidden shadow-sm">
+          <div className="border-b border-border p-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="font-display text-lg font-semibold text-foreground">Base analítica (demonstração)</p>
+              <div className="relative w-full sm:w-72">
+                <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" />
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Buscar colaborador..."
+                  className="h-10 w-full rounded-lg border border-border bg-surface-2 pl-10 pr-4 text-sm text-foreground placeholder:text-muted outline-none transition focus:border-atlas-orange focus:ring-1 focus:ring-atlas-orange"
+                />
+              </div>
             </div>
           </div>
-          <div className="overflow-x-auto hidden md:block">
-            <table className="w-full min-w-[640px] text-left text-sm">
-              <thead>
-                <tr className="border-b border-border text-xs text-muted">
-                  <th className="pb-2 pr-4">Nome</th>
-                  <th className="pb-2 pr-4">Cargo</th>
-                  <th className="pb-2 pr-4">Status</th>
-                  <th className="pb-2 pr-4">Progresso</th>
-                  <th className="pb-2 pr-4">Nota média</th>
-                  <th className="pb-2">Último acesso</th>
+          <div className="hidden w-full overflow-x-auto md:block">
+            <table className="w-full min-w-[800px] text-left text-sm">
+              <thead className="bg-surface-2/50 text-xs uppercase text-muted">
+                <tr>
+                  <th className="px-6 py-4 font-semibold">Colaborador</th>
+                  <th className="px-6 py-4 font-semibold">Cargo</th>
+                  <th className="px-6 py-4 font-semibold">Status</th>
+                  <th className="px-6 py-4 font-semibold">Progresso</th>
+                  <th className="px-6 py-4 font-semibold">Nota média</th>
+                  <th className="px-6 py-4 font-semibold">Último acesso</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-border">
                 {filtered.map((r) => (
-                  <tr key={r.nome} className="border-b border-border/60 last:border-none">
-                    <td className="py-2.5 pr-4 font-medium">{r.nome}</td>
-                    <td className="py-2.5 pr-4 text-muted">{r.cargo}</td>
-                    <td className="py-2.5 pr-4"><Badge variant={statusLabel[r.status].variant}>{statusLabel[r.status].label}</Badge></td>
-                    <td className="py-2.5 pr-4 text-muted">{r.progresso}%</td>
-                    <td className="py-2.5 pr-4 text-muted">{r.notaMedia}%</td>
-                    <td className="py-2.5 text-muted">{r.ultimoAcesso}</td>
+                  <tr key={r.nome} className="transition-colors hover:bg-surface-2/30">
+                    <td className="px-6 py-4 font-medium text-foreground">{r.nome}</td>
+                    <td className="px-6 py-4 text-muted">{r.cargo}</td>
+                    <td className="px-6 py-4"><Badge variant={statusLabel[r.status].variant}>{statusLabel[r.status].label}</Badge></td>
+                    <td className="px-6 py-4 font-medium text-muted">{r.progresso}%</td>
+                    <td className="px-6 py-4 font-medium text-muted">{r.notaMedia}%</td>
+                    <td className="px-6 py-4 text-muted">{r.ultimoAcesso}</td>
                   </tr>
                 ))}
               </tbody>

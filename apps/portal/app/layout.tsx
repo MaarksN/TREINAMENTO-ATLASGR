@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/Toaster";
 import { AssistantBalloon } from "@/components/ui/AssistantBalloon";
 import { AICopilot } from "@/components/innovation/AICopilot";
 import { VLibrasWidget } from "@/components/accessibility/VLibrasWidget";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <ThemeProvider>
           {children}
+          <SiteFooter />
           <Toaster />
           <AssistantBalloon />
           <AICopilot />
