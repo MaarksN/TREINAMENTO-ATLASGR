@@ -1,4 +1,4 @@
-import type { QuizQuestion } from "../../../../portal/lib/types";
+import type { QuizQuestion } from "@/lib/types";
 
 export function question(
   moduleSlug: string,

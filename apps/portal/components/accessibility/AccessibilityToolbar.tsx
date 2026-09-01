@@ -117,10 +117,8 @@ export function AccessibilityToolbar({ currentText }: AccessibilityToolbarProps)
       script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
       script.async = true;
       script.onload = () => {
-        // @ts-expect-error type missing
-        if (window.VLibras) {
-          // @ts-expect-error type missing
-          new window.VLibras.Widget("https://vlibras.gov.br/app");
+        if ((window as any).VLibras) {
+          new (window as any).VLibras.Widget("https://vlibras.gov.br/app");
         }
       };
       document.body.appendChild(script);

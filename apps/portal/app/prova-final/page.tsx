@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { AlertTriangle, ArrowLeft, Award, Clock, ShieldCheck, Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -8,7 +9,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { QuizRunner } from "@/components/quiz/QuizRunner";
-import { buildFinalExam } from "@/content/quizzes";
+import type { QuizQuestionClient } from "@/lib/types";
 import { readyModuleSlugs, moduleMetas } from "@/content/modules";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
@@ -22,7 +23,14 @@ export default function ProvaFinalPage() {
   const examResult = useOnboardingStore((state) => state.examResult);
   const setExamResult = useOnboardingStore((state) => state.setExamResult);
   const [started, setStarted] = useState(false);
-  const [questions] = useState(() => buildFinalExam(2));
+  const [questions, setQuestions] = useState<QuizQuestionClient[] | null>(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/quiz/final-exam')
+      .then(res => res.json())
+      .then(setQuestions)
+      .catch(console.error);
+  }, []);
 
   if (!ready || !registration) return null;
 
@@ -45,7 +53,7 @@ export default function ProvaFinalPage() {
             <Badge variant="orange" className="mb-2">Avaliação de domínio</Badge>
             <h1 className="font-display text-3xl font-black tracking-tight text-foreground sm:text-4xl">Prova Final da Academia ATLASGR</h1>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-              Uma prova equilibrada com <strong className="text-foreground">2 questões de cada um dos 15 módulos</strong>. São {questions.length} itens no total e aproveitamento mínimo de <strong className="text-foreground">{FINAL_EXAM_PASS_SCORE}%</strong>.
+              Uma prova equilibrada com <strong className="text-foreground">2 questões de cada um dos 15 módulos</strong>. São {questions?.length ?? 30} itens no total e aproveitamento mínimo de <strong className="text-foreground">{FINAL_EXAM_PASS_SCORE}%</strong>.
             </p>
           </div>
 
@@ -89,8 +97,8 @@ export default function ProvaFinalPage() {
               A seleção é balanceada por módulo e muda a cada nova prova. O objetivo é verificar julgamento aplicado, não decorar a posição de respostas.
             </p>
             <div className="mt-8 flex justify-center">
-              <Button size="xl" variant="primary" onClick={() => setStarted(true)} leftIcon={<Sparkles size={20} />}>
-                Iniciar prova ({questions.length} questões)
+              <Button size="xl" variant="primary" onClick={() => setStarted(true)} leftIcon={<Sparkles size={20} />} disabled={!questions}>
+                {questions ? `Iniciar prova (${questions.length} questões)` : "Carregando prova..."}
               </Button>
             </div>
           </Card>
@@ -124,16 +132,24 @@ export default function ProvaFinalPage() {
           </Card>
         )}
 
-        {started && (
+        {started && questions && (
           <div className="mt-6">
             <QuizRunner
               questions={questions}
               title="Prova Final — Academia ATLASGR"
               timeLimitSeconds={FINAL_EXAM_SECONDS}
-              onFinish={({ score, correct, total }) => {
-                const isApproved = score >= FINAL_EXAM_PASS_SCORE;
-                setExamResult({ score, correct, totalQuestions: total, passed: isApproved, date: new Date().toISOString() });
+              passThreshold={FINAL_EXAM_PASS_SCORE}
+              onSubmit={async (answers) => {
+                const userId = (registration as any)?.userId || (registration as any)?.id;
+                const res = await fetch(`http://localhost:3001/quiz/final-exam/submit`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ userId, answers })
+                });
+                const data = await res.json();
+                setExamResult({ score: data.score, correct: data.correctCount, totalQuestions: data.total, passed: data.passed, date: new Date().toISOString() });
                 setStarted(false);
+                return data;
               }}
             />
           </div>

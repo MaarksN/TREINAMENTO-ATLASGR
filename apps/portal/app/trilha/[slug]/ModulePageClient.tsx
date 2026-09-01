@@ -24,7 +24,7 @@ import { PracticeLab } from "@/components/module/PracticeLab";
 import { QuizRunner } from "@/components/quiz/QuizRunner";
 import { moduleMetas, getModuleMeta, getModuleContent } from "@/content/modules";
 import { getPracticeLab } from "@/content/learning-blueprint";
-import { getQuizForModule } from "@/content/quizzes";
+import { getQuizForModule } from "@/content/quizzes-v2";
 import { useOnboardingStore } from "@/lib/store";
 import { useRequireRegistration } from "@/lib/useRequireRegistration";
 import { ImmersiveStory } from "@/components/module/ImmersiveStory";
@@ -32,7 +32,7 @@ import { ImmersiveLessonStage } from "@/components/module/ImmersiveLessonStage";
 import { MermaidViewer } from "@/components/diagrams/MermaidViewer";
 import { ModuleRating } from "@/components/module/ModuleRating";
 import { CertificateActions } from "@/components/module/CertificateActions";
-import type { ContentBlock, ModuleContentFull, ModuleSection, ModuleMeta } from "@/lib/types";
+import type { ContentBlock, ModuleContentFull, ModuleSection, ModuleMeta, QuizQuestionClient } from "@/lib/types";
 import { AccessibilityToolbar } from "@/components/accessibility/AccessibilityToolbar";
 
 type Screen =
@@ -125,12 +125,21 @@ export function ModulePageClient() {
 
   const meta = getModuleMeta(params.slug);
   const content = getModuleContent(params.slug);
-  const quiz = getQuizForModule(params.slug);
   const practiceLab = getPracticeLab(params.slug);
   const modProgress = progress[params.slug];
   const moduleIndex = moduleMetas.findIndex((module) => module.slug === params.slug);
   const previousReady = moduleMetas.slice(0, moduleIndex).reverse().find((module) => module.status === "ready");
   const nextReady = moduleMetas.slice(moduleIndex + 1).find((module) => module.status === "ready");
+
+  const [quiz, setQuiz] = useState<QuizQuestionClient[] | null>(null);
+  
+  useEffect(() => {
+    if (!params.slug) return;
+    fetch(`http://localhost:3001/quiz/${params.slug}`)
+      .then(r => r.json())
+      .then(setQuiz)
+      .catch(console.error);
+  }, [params.slug]);
 
   const screens = useMemo(() => (content ? buildScreens(content) : []), [content]);
   const totalScreens = screens.length;
@@ -185,7 +194,7 @@ export function ModulePageClient() {
       {!isFocusMode && <SiteHeader />}
 
       {!isFocusMode && (
-        <div className="border-b border-border/50 bg-background">
+        <div className="sticky top-0 z-40 md:top-14 border-b border-border/50 bg-background/95 backdrop-blur-md">
           <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
             <Link href="/trilha" className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-muted transition-colors hover:text-atlas-orange">
               <ArrowLeft size={14} /> <span className="hidden sm:inline">Academia ATLASGR</span>
@@ -206,8 +215,7 @@ export function ModulePageClient() {
       )}
 
       <div className="border-b border-border/40 bg-surface-2/40 py-2 print:hidden">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
-          <AccessibilityToolbar currentText={getScreenText(screen, meta, content)} />
+        <div className="mx-auto flex max-w-5xl items-center justify-end gap-4 px-4 sm:px-6">
           <button
             onClick={() => setIsFocusMode((value) => !value)}
             className="inline-flex items-center gap-2 rounded-lg border border-border/50 bg-surface px-3 py-1.5 text-xs font-semibold text-muted transition-colors hover:text-atlas-orange"
@@ -217,6 +225,11 @@ export function ModulePageClient() {
             <span className="hidden sm:inline">{isFocusMode ? "Sair do foco" : "Modo foco"}</span>
           </button>
         </div>
+      </div>
+      
+      {/* Player Fixo Flutuante de Acessibilidade */}
+      <div className="fixed bottom-24 right-4 z-40 print:hidden lg:right-10">
+        <AccessibilityToolbar currentText={getScreenText(screen, meta, content)} />
       </div>
 
       <main id="main-content" className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-8 sm:px-6 sm:py-10">
@@ -363,14 +376,28 @@ export function ModulePageClient() {
                 )}
                 {showQuiz && (
                   <div className="relative z-10 mt-8 text-left">
-                    <QuizRunner
-                      questions={quiz}
-                      title={`Simulador — ${content.title}`}
-                      onFinish={({ score, passed }) => {
-                        completeModuleQuiz(params.slug, score);
-                        if (passed && nextReady) setTimeout(() => router.push(`/trilha/${nextReady.slug}`), 1800);
-                      }}
-                    />
+                    {quiz ? (
+                      <QuizRunner
+                        questions={quiz}
+                        title={`Simulador — ${content.title}`}
+                        onSubmit={async (answers) => {
+                          const userId = (registration as any)?.userId || (registration as any)?.id;
+                          const res = await fetch(`http://localhost:3001/quiz/${params.slug}/submit`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ userId, answers })
+                          });
+                          const data = await res.json();
+                          completeModuleQuiz(params.slug, data.score);
+                          if (data.passed && nextReady) {
+                            setTimeout(() => router.push(`/trilha/${nextReady.slug}`), 5000);
+                          }
+                          return data;
+                        }}
+                      />
+                    ) : (
+                      <p className="text-center text-muted">Carregando questões...</p>
+                    )}
                     {modProgress?.passed && <div className="mt-12 border-t border-border pt-8"><CertificateActions moduleTitle={content.title} moduleNumber={meta.number} /><ModuleRating /></div>}
                   </div>
                 )}

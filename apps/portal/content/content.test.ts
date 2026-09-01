@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { glossary } from "./glossary";
 import { moduleMetas, getModuleContent, readyModuleSlugs } from "./modules";
-import { buildFinalExam, getAllBuiltQuestions, getQuizForModule } from "./quizzes";
 import type { ContentBlock, Paragraph } from "@/lib/types";
 
 function collectTermRefs(paragraphs: Paragraph[]): string[] {
@@ -109,34 +108,3 @@ describe("glossary references in module content", () => {
   });
 });
 
-describe("quizzes", () => {
-  it("every ready module has exactly 10 questions with a valid correctIndex", () => {
-    for (const slug of readyModuleSlugs) {
-      const questions = getQuizForModule(slug);
-      expect(questions, `Módulo ${slug} sem quiz`).toHaveLength(10);
-      for (const q of questions) {
-        expect(q.options.length).toBeGreaterThanOrEqual(2);
-        expect(q.correctIndex).toBeGreaterThanOrEqual(0);
-        expect(q.correctIndex).toBeLessThan(q.options.length);
-        expect(q.moduleSlug).toBe(slug);
-      }
-    }
-  });
-
-  it("keeps a 150-question source pool with 10 questions per module", () => {
-    expect(getAllBuiltQuestions()).toHaveLength(readyModuleSlugs.length * 10);
-  });
-
-  it("builds a balanced 30-question final exam with two questions from every module", () => {
-    const exam = buildFinalExam(2);
-    expect(exam).toHaveLength(readyModuleSlugs.length * 2);
-    for (const slug of readyModuleSlugs) {
-      expect(exam.filter((q) => q.moduleSlug === slug)).toHaveLength(2);
-    }
-  });
-
-  it("has no duplicate question ids across the full pool", () => {
-    const ids = getAllBuiltQuestions().map((q) => q.id);
-    expect(new Set(ids).size).toBe(ids.length);
-  });
-});

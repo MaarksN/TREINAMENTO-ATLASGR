@@ -1,16 +1,22 @@
 "use client";
 
-const LiveRobberySimulator: React.FC = () => {
-  const [gameState, setGameState] = useState<'idle' | 'active' | 'resolved' | 'failed'>('idle');
-  const [signalLost, setSignalLost] = useState(false);
-  const [messages, setMessages] = useState<{ sender: 'system' | 'user' | 'prf', text: string }[]>([]);
+import React, { useState, useEffect } from "react";
+import styles from "./LiveRobberySimulator.module.css";
 
+type GameState = "idle" | "active" | "resolved" | "failed";
+type Message = { sender: 'system' | 'user' | 'prf'; text: string };
+
+
+export default function LiveRobberySimulator() {
+  const [gameState, setGameState] = useState<GameState>("idle");
+  const [signalLost, setSignalLost] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [contextValidated, setContextValidated] = useState(false);
+  const [protocolEscalated, setProtocolEscalated] = useState(false);
   const addMessage = React.useCallback((sender: 'system' | 'user' | 'prf', text: string) => {
     setMessages(prev => [...prev, { sender, text }]);
   }, []);
-  const [truckLocked, setTruckLocked] = useState(false);
-  const [prfContacted, setPrfContacted] = useState(false);
-  
+
   useEffect(() => {
     if (gameState === 'active' && !signalLost) {
       const timer = setTimeout(() => {
@@ -19,16 +25,7 @@ const LiveRobberySimulator: React.FC = () => {
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [gameState, signalLost]);
-
-export default function LiveRobberySimulator() {
-  const [gameState, setGameState] = useState<GameState>("idle");
-  const [signalLost, setSignalLost] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [contextValidated, setContextValidated] = useState(false);
-  const [protocolEscalated, setProtocolEscalated] = useState(false);
-
-
+  }, [gameState, signalLost, addMessage]);
 
   function startGame() {
     setGameState("active");

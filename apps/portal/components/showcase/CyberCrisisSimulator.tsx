@@ -9,6 +9,9 @@ const CyberCrisisSimulator: React.FC = () => {
     isolateNetwork: false,
     alertDPO: false,
     paidRansom: false,
+    contain: false,
+    report: false,
+    improvise: false,
   });
 
   useEffect(() => {
@@ -26,6 +29,13 @@ const CyberCrisisSimulator: React.FC = () => {
     return () => clearInterval(interval);
   }, [isActive, timeLeft]);
 
+  const startGame = () => {
+    setGameState("playing");
+    setIsActive(true);
+    setTimeLeft(120);
+    setActions({ isolateNetwork: false, alertDPO: false, paidRansom: false, contain: false, report: false, improvise: false });
+  };
+
   useEffect(() => {
     if (actions.isolateNetwork && actions.alertDPO && !actions.paidRansom && gameState === 'playing') {
       setTimeout(() => {
@@ -33,13 +43,20 @@ const CyberCrisisSimulator: React.FC = () => {
         setIsActive(false);
       }, 0);
     }
+  }, [actions, gameState]);
 
+  const handleAction = (action: keyof typeof actions) => {
     const nextActions = { ...actions, [action]: true };
     setActions(nextActions);
-    if (nextActions.contain && nextActions.report) {
+    
+    if (action === "improvise") {
+      setGameState("lost");
+      setIsActive(false);
+    } else if (nextActions.contain && nextActions.report) {
       setGameState("won");
+      setIsActive(false);
     }
-  }
+  };
 
   return (
     <div className={styles.container}>

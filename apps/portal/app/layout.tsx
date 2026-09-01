@@ -65,7 +65,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="pt-BR"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${montserrat.variable} h-full`}
+      className={`${montserrat.variable} h-full scroll-smooth`}
     >
       <body className="min-h-full antialiased">
         <a

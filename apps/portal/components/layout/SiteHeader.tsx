@@ -24,6 +24,8 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
@@ -34,7 +36,16 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
     queueMicrotask(() => setMounted(true));
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 20);
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+        setHidden(true); // scrolling down
+        setMenuOpen(false); // auto close menu on scroll down
+      } else {
+        setHidden(false); // scrolling up
+      }
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -67,7 +78,8 @@ export function SiteHeader({ hideNavLinks = false }: { hideNavLinks?: boolean })
         "sticky top-0 z-50 transition-all duration-300",
         scrolled
           ? "border-b border-border/50 bg-background/80 backdrop-blur-xl shadow-sm py-2"
-          : "bg-transparent py-4 border-b border-transparent"
+          : "bg-transparent py-4 border-b border-transparent",
+        hidden ? "-translate-y-full" : "translate-y-0"
       )}
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">

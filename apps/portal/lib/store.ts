@@ -136,13 +136,8 @@ export const useOnboardingStore = create<OnboardingState>()(
         // Sincronizar com o backend NestJS para garantir imutabilidade e persistência real
         // registration.userId should be populated in startSessionAs
         const userId = (get().registration as any)?.userId;
-        if (userId) {
-          fetch(`http://localhost:3001/gamification/${userId}/quiz`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ moduleId: slug, score }),
-          }).catch(() => {});
-        }
+        // O fetch foi removido daqui pois o servidor agora processa a submissão completa do quiz, 
+        // e atualiza XP e progresso no banco de dados na rota /quiz/:moduleId/submit.
 
         get().touchStreak();
         if (score === 100) get().addBadge("nota-maxima");
